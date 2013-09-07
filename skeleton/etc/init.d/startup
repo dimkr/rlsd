@@ -1,0 +1,62 @@
+#!/bin/dash
+
+# set the executable search path
+export PATH="/bin"
+
+# mount virtual file systems
+echo -n "Mounting virtual file systems ..."
+
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mount -t tmpfs tmp /run
+mkdir /run/tmp
+
+mkdir /dev/shm
+mount -t tmpfs shm /dev/shm
+mkdir /dev/pts
+mount -t devpts pts /dev/pts
+
+# start logging daemons
+echo -n "done.
+Starting logging services ..."
+
+syslogd
+klogd
+
+# start udev and wait for all uevents to be handled
+echo -n "done.
+Starting udev ..."
+
+mkdir /run/udev
+udevd --daemon --children-max=1 --resolve-names=early > /dev/null 2>&1
+udevadm trigger
+udevadm settle
+
+# set the hostname
+echo -n "done.
+Setting the hostname ..."
+
+hostname $(cat /etc/hostname)
+
+# configure network interfaces
+echo -n "done.
+Configuring networking ..."
+
+ifconfig lo 127.0.0.1 up
+route add -net 127.0.0.0 netmask 255.0.0.0 lo
+
+echo -n "done.
+Starting Dropbear ..."
+
+for i in rsa dss
+do
+	dropbearkey -t $i -f /tmp/${i}_key > /dev/null 2>&1
+done
+dropbear -d /tmp/dss_key -r /tmp/rsa_key
+
+echo "done."
+
+# run the shell
+cat /etc/issue /etc/motd
+exec cttyhack sh -l

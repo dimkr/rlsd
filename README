@@ -1,0 +1,64 @@
+ _
+| |    __ _ _____   _ _   ___  __
+| |   / _` |_  / | | | | | \ \/ /
+| |__| (_| |/ /| |_| | |_| |>  <
+|_____\__,_/___|\__, |\__,_/_/\_\
+                |___/
+
+Lazyux is a ultra-minimalistic, embedded-like Linux (https://www.kernel.org/)
+distribution in its early stages of development.
+
+TODO:
+  - Persistency, using aufs3 (http://aufs.sourceforge.net/)
+  - Built-in firewall
+  - A kernel build script
+  - A bootable media construction script, with UEFI support
+  - More applications
+  - Simple package management
+  - More applets in lazy-utils, so some packages can be dropped
+
+Features:
+  - Free
+  - Extremely lightweight
+  - The whole thing is cross-compiled quickly
+  - Everything is linked statically
+  - Secure (WIP)
+
+Potantial uses:
+  - A "live" operating system for private browsing, system rescue, etc'
+  - Firmware for routers, firewalls and switches
+  - A dedicated server operating system
+
+Included packages:
+  - Core:
+    - Linux (https://www.kernel.org/)
+    - musl (http://www.musl-libc.org/)
+    - toybox (http://www.landley.net/toybox/)
+    - lazy-utils (https://github.com/iguleder/lazy-utils)
+    - dash (http://gondor.apana.org.au/~herbert/dash/)
+    - kmod (https://www.kernel.org/pub/linux/utils/kernel/kmod/)
+    - eudev (https://github.com/gentoo/eudev)
+    - ISC DHCP (http://www.isc.org/downloads/dhcp/)
+  - Applications:
+    - tcsh (http://www.tcsh.org/)
+    - Lynx (http://lynx.isc.org/)
+    - ircII (http://www.eterna.com.au/ircii/)
+    - Dropbear (https://matt.ucc.asn.au/dropbear/dropbear.html)
+    - vile (http://invisible-island.net/vile/)
+    - GNU nano (http://www.nano-editor.org/)
+    - Calcurse (http://calcurse.org/)
+    - GNU Screen (http://www.gnu.org/software/screen/)
+    - less (http://www.greenwoodsoftware.com/less/)
+    - man (http://primates.ximian.com/~flucifredi/man/)
+    - htop (http://htop.sourceforge.net/)
+    - ncdu (http://dev.yorhel.nl/ncdu)
+    - alsa-utils (www.alsa-project.org/)
+    - mpg123 (http://www.mpg123.de/)
+    - vorbis-tools (http://www.vorbis.com/)
+    - bwm-ng (http://www.gropp.org/?id=projects&sub=bwm-ng)
+
+While these packages are licensed under various licenses, Lazyux itself is
+licensed under a 2-clause BSD license, see COPYING for the license text. For a
+list of its authors and contributors, see AUTHORS.
+
+The ASCII art logo at the top was made using FIGlet (http://www.figlet.org/).

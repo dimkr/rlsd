@@ -1,0 +1,7 @@
+CC="gcc"
+AR="ar"
+CFLAGS="-mtune=generic -Os -fomit-frame-pointer -fPIC -pipe"
+LDFLAGS="-fPIC"
+SYSROOT="/home/dima/Stuff/musl/sysroot"
+HOST="x86_64-unknown-linux"
+STRIP="strip"

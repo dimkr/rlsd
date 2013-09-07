@@ -1,0 +1,4 @@
+startup_message off
+caption always
+caption string "%{= kw}%-w%{wk}%n %t%{-}%+w"
+altscreen on

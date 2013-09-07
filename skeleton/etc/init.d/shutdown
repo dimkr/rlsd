@@ -1,0 +1,13 @@
+#!/bin/dash
+
+# unmount all virtual file systems
+echo -n "Unmounting virtual file systems ..."
+
+umount /dev/pts
+umount /dev/shm
+umount /run
+umount /dev
+umount /proc
+umount /sys
+
+echo "done."
