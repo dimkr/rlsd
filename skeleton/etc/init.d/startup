@@ -57,6 +57,5 @@ dropbear -d /tmp/dss_key -r /tmp/rsa_key
 
 echo "done."
 
-# run the shell
-cat /etc/issue /etc/motd
-exec cttyhack sh -l
+# show a login prompt
+exec cttyhack login
