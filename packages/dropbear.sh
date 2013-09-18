@@ -8,6 +8,9 @@ dropbear_build() {
 	tar -xjvf dropbear-$PACKAGE_VERSION.tar.bz2
 	cd dropbear-$PACKAGE_VERSION
 
+	sed s~'^#define LOCAL_IDENT .*'~'#define LOCAL_IDENT "SSH-2.0-None"'~ \
+	    -i sysoptions.h
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

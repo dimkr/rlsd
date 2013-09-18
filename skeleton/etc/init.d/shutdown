@@ -10,4 +10,4 @@ umount /dev
 umount /proc
 umount /sys
 
-echo "done."
+echo " done."

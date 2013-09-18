@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.10.11"
+PACKAGE_VERSION="3.10.12"
 PACKAGE_SOURCES="https://www.kernel.org/pub/linux/kernel/v3.x/linux-$PACKAGE_VERSION.tar.xz"
 
 linux_headers_build() {
