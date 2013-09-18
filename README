@@ -5,7 +5,7 @@
 |_____\__,_/___|\__, |\__,_/_/\_\
                 |___/
 
-Lazyux is a ultra-minimalistic, embedded-like Linux (https://www.kernel.org/)
+Lazyux is an ultra-minimalistic, embedded-like Linux (https://www.kernel.org/)
 distribution in its early stages of development.
 
 TODO:
@@ -13,9 +13,10 @@ TODO:
   - Built-in firewall
   - A kernel build script
   - A bootable media construction script, with UEFI support
+  - Make man work
   - More applications
   - Simple package management
-  - More applets in lazy-utils, so some packages can be dropped
+  - Add a DHCP client to lazy-utils, so ISC DHCP can be dropped
 
 Features:
   - Free
@@ -23,6 +24,7 @@ Features:
   - The whole thing is cross-compiled quickly
   - Everything is linked statically
   - Secure (WIP)
+  - Easy remote administration (WIP)
 
 Potantial uses:
   - A "live" operating system for private browsing, system rescue, etc'
@@ -33,11 +35,8 @@ Included packages:
   - Core:
     - Linux (https://www.kernel.org/)
     - musl (http://www.musl-libc.org/)
-    - toybox (http://www.landley.net/toybox/)
     - lazy-utils (https://github.com/iguleder/lazy-utils)
     - dash (http://gondor.apana.org.au/~herbert/dash/)
-    - kmod (https://www.kernel.org/pub/linux/utils/kernel/kmod/)
-    - eudev (https://github.com/gentoo/eudev)
     - ISC DHCP (http://www.isc.org/downloads/dhcp/)
   - Applications:
     - tcsh (http://www.tcsh.org/)
