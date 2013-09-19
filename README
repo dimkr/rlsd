@@ -5,26 +5,32 @@
 |_____\__,_/___|\__, |\__,_/_/\_\
                 |___/
 
-Lazyux is an ultra-minimalistic, embedded-like Linux (https://www.kernel.org/)
-distribution in its early stages of development.
-
-TODO:
-  - Persistency, using aufs3 (http://aufs.sourceforge.net/)
-  - Built-in firewall
-  - A kernel build script
-  - A bootable media construction script, with UEFI support
-  - Make man work
-  - More applications
-  - Simple package management
-  - Add a DHCP client to lazy-utils, so ISC DHCP can be dropped
+Lazyux is an ultra-minimalistic, no-frills, embedded-like distribution of
+Linux-libre (http://linux-libre.fsfla.org/) in its early stages of development.
 
 Features:
-  - Free
-  - Extremely lightweight
-  - The whole thing is cross-compiled quickly
-  - Everything is linked statically
-  - Secure (WIP)
-  - Easy remote administration (WIP)
+  - Small and extremely lightweight
+  - Secure
+  - Cross-compiled quickly
+  - Statically-linked
+  - Supports remote administration and headless systems
+  - Familiar: Unix-like and written in C
+  - Permissively-licensed
+
+Current status:
+  - Builds flawlessly for x86_64 on Debian 7 (http://www.debian.org/)
+  - Boots and uses 12-15 MB of RAM
+  - Automatically detects all hardware, using the kmoduled applet from
+    lazy-utils (https://github.com/iguleder/lazy-utils)
+  - All include applications work
+  - Contains documentation for each package under /usr/share/doc and in man
+    pages
+  - At the moment, the kernel cannot be cross-compiled
+  - Lacks network tools (i.e route, ifconfig) and a firewall
+  - Lacks a script for the automated construction of a bootable media, which is
+    a manual process at the moment
+  - Lacks a persistent root file system
+  - Lacks package management
 
 Potantial uses:
   - A "live" operating system for private browsing, system rescue, etc'
@@ -33,7 +39,7 @@ Potantial uses:
 
 Included packages:
   - Core:
-    - Linux (https://www.kernel.org/)
+    - Linux-libre (http://linux-libre.fsfla.org/)
     - musl (http://www.musl-libc.org/)
     - lazy-utils (https://github.com/iguleder/lazy-utils)
     - dash (http://gondor.apana.org.au/~herbert/dash/)
@@ -41,6 +47,7 @@ Included packages:
   - Applications:
     - tcsh (http://www.tcsh.org/)
     - Lynx (http://lynx.isc.org/)
+    - Ytree (http://www.han.de/~werner/ytree.html)
     - ircII (http://www.eterna.com.au/ircii/)
     - Dropbear (https://matt.ucc.asn.au/dropbear/dropbear.html)
     - vile (http://invisible-island.net/vile/)
@@ -48,7 +55,7 @@ Included packages:
     - Calcurse (http://calcurse.org/)
     - GNU Screen (http://www.gnu.org/software/screen/)
     - less (http://www.greenwoodsoftware.com/less/)
-    - man (http://primates.ximian.com/~flucifredi/man/)
+    - mandoc from mdocml (http://mdocml.bsd.lv/)
     - htop (http://htop.sourceforge.net/)
     - ncdu (http://dev.yorhel.nl/ncdu)
     - alsa-utils (www.alsa-project.org/)

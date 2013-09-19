@@ -61,4 +61,4 @@ dropbear -d /tmp/dss_key -r /tmp/rsa_key
 echo "done."
 
 # show a login prompt
-exec cttyhack login
+exec cttyhack sulogin
