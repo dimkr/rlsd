@@ -1,0 +1,68 @@
+#!/bin/dash
+
+# man: displays manual pages
+# this script replaces man (http://primates.ximian.com/~flucifredi/man/) and
+# man-db (http://www.nongnu.org/man-db/), which have many features and depend on
+# groff (http://www.gnu.org/software/groff/), with a small alternative that uses
+# mandoc (http://mdocml.bsd.lv/)
+
+# parse the command-line
+case $# in
+	2)
+		if [ "-k" = "$1" ]
+		then
+			category=""
+			name="$2"
+			should_display=0
+		else
+			category="$1"
+			name="$2"
+			should_display=1
+		fi
+		;;
+
+	1)
+		category=""
+		name="$1"
+		should_display=1
+		;;
+
+	*)
+		exit 1
+		;;
+esac
+
+# if no category was specified, check all
+if [ -z "$category" ]
+then
+	categories="1 2 3 4 5 6 7 8 9"
+else
+	categories="$category"
+fi
+
+path=""
+for category in $categories
+do
+	# find the man page
+	if [ 1 -eq $should_display ]
+	then
+		if [ -e "/usr/share/man/man$category/$name.$category" ]
+		then
+			mandoc "/usr/share/man/man$category/$name.$category" | less
+			exit 0
+		fi
+	else
+		[ ! -e /usr/share/man/man$category ] && continue
+		cd /usr/share/man/man$category
+		for page in *.$category*
+		do
+			case "$page" in
+				*$name*)
+					echo "$page ($category)"
+					;;
+			esac
+		done
+	fi
+done
+
+exit 1

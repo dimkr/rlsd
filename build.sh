@@ -54,6 +54,14 @@ ${1}_build
 ${1}_package /tmp/$1
 [ -d /tmp/$1/lib ] && rm -vf /tmp/$1/lib/*.la
 [ -d /tmp/$1/bin ] && $STRIP --strip-all /tmp/$1/bin/*
+if [ -d /tmp/$1/usr/share/man ]
+then
+	find /tmp/$1/usr/share/man -name '*.gz' |
+	while read page
+	do
+		gunzip $page
+	done
+fi
 tar -C /tmp/$1 -c . | xz -9 -e > "$BINARY_TARBALL_DIR/$1-$PACKAGE_VERSION.txz"
 mkdir -p $SYSROOT
 cd $SYSROOT

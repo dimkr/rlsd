@@ -18,6 +18,8 @@ libogg_build() {
 
 libogg_package() {
 	make DESTDIR="$1" install
-	install -D -m 644 ChangeLog "$1/usr/share/doc/libogg/ChangeLog"
-	install -D -m 644 COPYING "$1/usr/share/doc/libogg/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/libvorbis/README"
+	install -m 644 CHANGES "$1/usr/share/doc/libvorbis/CHANGES"
+	install -m 644 AUTHORS "$1/usr/share/doc/libvorbis/AUTHORS"
+	install -m 644 COPYING "$1/usr/share/doc/libvorbis/COPYING"
 }
