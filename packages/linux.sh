@@ -1,11 +1,14 @@
 PACKAGE_VERSION="3.10.12"
 PACKAGE_MAJOR_VERSION="3.10"
-PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/3.10.12-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz"
+PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/3.10.12-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz https://dev.openwrt.org/export/head/trunk/target/linux/generic/patches-$PACKAGE_MAJOR_VERSION/100-overlayfs.patch"
 
 linux_build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION
 	tar -xJvf linux-libre-$PACKAGE_VERSION-gnu.tar.xz
 	cd linux-$PACKAGE_VERSION
+
+	# add overlayfs
+	patch -p1 < ../100-overlayfs.patch
 
 	# reset the minor version number, so the kernel is compatible woth modules
 	# built against previous minor versions
@@ -3766,6 +3769,7 @@ CONFIG_FANOTIFY=y
 CONFIG_AUTOFS4_FS=m
 CONFIG_FUSE_FS=m
 # CONFIG_CUSE is not set
+CONFIG_OVERLAYFS_FS=y
 
 #
 # Caches
@@ -3829,8 +3833,8 @@ CONFIG_MISC_FILESYSTEMS=y
 # CONFIG_CRAMFS is not set
 CONFIG_SQUASHFS=y
 # CONFIG_SQUASHFS_XATTR is not set
-CONFIG_SQUASHFS_ZLIB=y
-CONFIG_SQUASHFS_LZO=y
+# CONFIG_SQUASHFS_ZLIB is not set
+# CONFIG_SQUASHFS_LZO is not set
 CONFIG_SQUASHFS_XZ=y
 # CONFIG_SQUASHFS_4K_DEVBLK_SIZE is not set
 # CONFIG_SQUASHFS_EMBEDDED is not set

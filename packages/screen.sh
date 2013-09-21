@@ -25,7 +25,6 @@ screen_package() {
 	make DESTDIR="$1" install
 	rm -f "$1/bin/screen"
 	mv "$1/bin/screen-$PACKAGE_VERSION" "$1/bin/screen"
-	install -D -m 644 etc/etcscreenrc "$1/etc/screenrc"
 	install -D -m 644 README "$1/usr/share/doc/screen/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/screen/NEWS"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/screen/ChangeLog"

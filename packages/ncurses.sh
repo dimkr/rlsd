@@ -22,7 +22,8 @@ ncurses_build() {
 	            --without-shared \
 	            --with-normal \
 	            --without-debug \
-	            --without-profile
+	            --without-profile \
+	            --with-manpage-format=normal
 	make
 }
 

@@ -76,7 +76,7 @@ and developed against Debian 7 (Wheezy).
 
 The following packages are required in order to build Lazyux in a clean Debian
 environment:
-  - pkg-config: alsa-lib uses pkg-config when it searches for ncurses
+  - pkg-config, alsa-lib uses it when it searches for ncurses
   - git and unzip, to build lazy-utils
   - flex and bison, to build UnNetHack
 
