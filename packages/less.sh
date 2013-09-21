@@ -6,7 +6,11 @@ less_build() {
 	tar -xzvf less-$PACKAGE_VERSION.tar.gz
 	cd less-$PACKAGE_VERSION
 
-	./configure --host=$HOST --prefix= --datarootdir=/usr/share
+	./configure --host=$HOST \
+	            --prefix= \
+	            --datarootdir=/usr/share \
+	            --with-regex=re_comp \
+	            --with-editor=/bin/vi
 	make
 }
 

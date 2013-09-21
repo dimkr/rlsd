@@ -18,7 +18,6 @@ tcsh_build() {
 tcsh_package() {
 	install -D -m755 "$1/bin/tcsh"
 	make DESTDIR="$1" install
-	ln -s tcsh "$1/bin/sh"
 	install -D -m 644 README "$1/usr/share/doc/tcsh/README"
 	install -D -m 644 FAQ "$1/usr/share/doc/tcsh/FAQ"
 	install -D -m 644 NewThings "$1/usr/share/doc/tcsh/NewThings"

@@ -22,7 +22,8 @@ echo -n " done.
 Starting logging services ..."
 
 syslogd
-klogd
+logd /run/messages /var/log/messages
+logd /proc/kmsg /var/log/kern.log
 
 # run depmod, to create a cache of available kernel modules
 echo -n " done.

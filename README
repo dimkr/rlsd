@@ -8,6 +8,9 @@
 Lazyux is an ultra-minimalistic, no-frills, embedded-like distribution of
 Linux-libre (http://linux-libre.fsfla.org/) in its early stages of development.
 
+About Lazyux
+============
+
 Features:
   - Small and extremely lightweight
   - Secure
@@ -19,9 +22,8 @@ Features:
 
 Current status:
   - Builds flawlessly for x86_64 on Debian 7 (http://www.debian.org/)
-  - Boots and uses 12-15 MB of RAM
-  - Automatically detects all hardware, using the kmoduled applet from
-    lazy-utils (https://github.com/iguleder/lazy-utils)
+  - Boots under UEFI and automatically detects all hardware, using the kmoduled
+    applet from lazy-utils (https://github.com/iguleder/lazy-utils)
   - All include applications work
   - Contains documentation for each package under /usr/share/doc and in man
     pages
@@ -62,9 +64,27 @@ Included packages:
     - mpg123 (http://www.mpg123.de/)
     - vorbis-tools (http://www.vorbis.com/)
     - bwm-ng (http://www.gropp.org/?id=projects&sub=bwm-ng)
+    - UnNetHack (http://sourceforge.net/apps/trac/unnethack/)
+    - ELILO (http://sourceforge.net/projects/elilo/), built against gnu-efi
+      (http://sourceforge.net/projects/gnu-efi/)
 
-While these packages are licensed under various licenses, Lazyux itself is
-licensed under a 2-clause BSD license, see COPYING for the license text. For a
-list of its authors and contributors, see AUTHORS.
+Building Lazyux
+===============
+
+Although Lazyux can be built using any Linux distribution, it is actively tested
+and developed against Debian 7 (Wheezy).
+
+The following packages are required in order to build Lazyux in a clean Debian
+environment:
+  - pkg-config: alsa-lib uses pkg-config when it searches for ncurses
+  - git and unzip, to build lazy-utils
+  - flex and bison, to build UnNetHack
+
+Credits and Legal Information
+=============================
+
+While the packages included in Lazyux are licensed under various licenses,
+Lazyux itself is licensed under a 2-clause BSD license, see COPYING for the
+license text. For a list of its authors and contributors, see AUTHORS.
 
 The ASCII art logo at the top was made using FIGlet (http://www.figlet.org/).

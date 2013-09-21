@@ -20,7 +20,6 @@ vile_build() {
 
 vile_package() {
 	make DESTDIR="$1" install
-	ln -s vile "$1/bin/vi"
 	install -D -m 644 README "$1/usr/share/doc/vile/README"
 	for i in CHANGES*
 	do

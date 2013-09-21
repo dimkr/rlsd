@@ -10,6 +10,8 @@ dhcp_build() {
 	    -i common/lpf.c
 	sed s~'#define _ARPA_NAMESER_H_'~'&\n#include <sys/types.h>'~ \
 	    -i includes/arpa/nameser.h
+	sed s~'"/sbin/dhclient-script"'~'"/bin/dhclient-script"'~ \
+	   -i includes/dhcpd.h
 
 	./configure --host=$HOST \
 	            --prefix= \
@@ -21,6 +23,7 @@ dhcp_build() {
 
 dhcp_package() {
 	make DESTDIR="$1" install
+	install -m 755 client/scripts/linux "$1/bin/dhclient-script"
 	install -D -m 644 README "$1/usr/share/doc/dhcp/README"
 	install -m 644 RELNOTES "$1/usr/share/doc/dhcp/RELNOTES"
 	install -m 644 LICENSE "$1/usr/share/doc/dhcp/LICENSE"

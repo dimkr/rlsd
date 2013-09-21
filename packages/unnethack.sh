@@ -22,6 +22,7 @@ unnethack_build() {
 
 unnethack_package() {
 	make DESTDIR="$1" install
-	install -m 644 README "$1/usr/share/doc/unnethack/README"
-	install -m 644 Guidebook.txt "$1/usr/share/doc/unnethack/Guidebook.txt"
+	install -D -m 644 README "$1/usr/share/doc/unnethack/README"
+	install -m 644 doc/Guidebook.txt "$1/usr/share/doc/unnethack/Guidebook.txt"
+	install -m 644 dat/license "$1/usr/share/doc/unnethack/license"
 }

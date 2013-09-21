@@ -15,7 +15,8 @@ alsa_utils_build() {
 	            --disable-alsatest \
 	            --disable-alsaconf \
 	            --disable-alsaloop \
-	            --disable-xmlto
+	            --disable-xmlto \
+	            --without-udev-rules-dir
 	make
 }
 

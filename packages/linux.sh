@@ -17,6 +17,13 @@ linux_build() {
 	# reduce swappiness
 	sed s~'int vm_swappiness = 60;'~'int vm_swappiness = 20;'~ -i mm/vmscan.c
 
+	# always run init from /bin/init
+	sed -e s~'^\t    !run_init_process("/etc/init") ||$'~'\t    /* /etc/init */'~ \
+	    -e s~'^\t    !run_init_process("/bin/init") ||$'~'\t    /* /bin/init */'~ \
+	    -e s~'ramdisk_execute_command = "/init"'~'ramdisk_execute_command = "/bin/init"'~ \
+	    -e s~'^\tif (!run_init_process("/sbin/init") ||$'~'\tif (!run_init_process("/bin/init") ||'~ \
+	    -i init/main.c
+
 	# clean the sources tree
 	make clean
 	make mrproper
@@ -183,7 +190,7 @@ CONFIG_MM_OWNER=y
 CONFIG_RELAY=y
 CONFIG_BLK_DEV_INITRD=y
 CONFIG_INITRAMFS_SOURCE=""
-CONFIG_RD_GZIP=y
+# CONFIG_RD_GZIP is not set
 # CONFIG_RD_BZIP2 is not set
 # CONFIG_RD_LZMA is not set
 CONFIG_RD_XZ=y
@@ -468,7 +475,7 @@ CONFIG_SCHED_HRTICK=y
 # CONFIG_KEXEC is not set
 # CONFIG_CRASH_DUMP is not set
 CONFIG_PHYSICAL_START=0x1000000
-# CONFIG_RELOCATABLE is not set
+CONFIG_RELOCATABLE=y
 CONFIG_PHYSICAL_ALIGN=0x1000000
 CONFIG_HOTPLUG_CPU=y
 # CONFIG_BOOTPARAM_HOTPLUG_CPU0 is not set
@@ -503,7 +510,7 @@ CONFIG_ACPI_BUTTON=m
 CONFIG_ACPI_VIDEO=m
 CONFIG_ACPI_FAN=m
 CONFIG_ACPI_DOCK=y
-CONFIG_ACPI_I2C=m
+CONFIG_ACPI_I2C=y
 CONFIG_ACPI_PROCESSOR=m
 CONFIG_ACPI_HOTPLUG_CPU=y
 CONFIG_ACPI_PROCESSOR_AGGREGATOR=m
@@ -2190,7 +2197,7 @@ CONFIG_HPET=y
 # CONFIG_TCG_TPM is not set
 # CONFIG_TELCLOCK is not set
 CONFIG_DEVPORT=y
-CONFIG_I2C=m
+CONFIG_I2C=y
 CONFIG_I2C_BOARDINFO=y
 CONFIG_I2C_COMPAT=y
 CONFIG_I2C_CHARDEV=m
@@ -2204,7 +2211,7 @@ CONFIG_I2C_MUX_PCA9541=m
 CONFIG_I2C_MUX_PCA954x=m
 CONFIG_I2C_HELPER_AUTO=y
 CONFIG_I2C_SMBUS=m
-CONFIG_I2C_ALGOBIT=m
+CONFIG_I2C_ALGOBIT=y
 CONFIG_I2C_ALGOPCA=m
 
 #
@@ -2329,6 +2336,7 @@ CONFIG_GPIO_MAX7300=m
 CONFIG_GPIO_MAX732X=m
 CONFIG_GPIO_PCA953X=m
 CONFIG_GPIO_PCF857X=m
+# CONFIG_GPIO_SX150X is not set
 CONFIG_GPIO_ADP5588=m
 
 #
@@ -2646,34 +2654,68 @@ CONFIG_BCMA_DRIVER_GPIO=y
 #
 CONFIG_MFD_CORE=m
 # CONFIG_MFD_CS5535 is not set
+# CONFIG_MFD_AS3711 is not set
+# CONFIG_PMIC_ADP5520 is not set
+# CONFIG_MFD_AAT2870_CORE is not set
 # CONFIG_MFD_CROS_EC is not set
+# CONFIG_PMIC_DA903X is not set
+# CONFIG_MFD_DA9052_I2C is not set
+# CONFIG_MFD_DA9055 is not set
 # CONFIG_MFD_MC13XXX_I2C is not set
 # CONFIG_HTC_PASIC3 is not set
+# CONFIG_HTC_I2CPLD is not set
 CONFIG_LPC_ICH=m
 CONFIG_LPC_SCH=m
 # CONFIG_MFD_JANZ_CMODIO is not set
+# CONFIG_MFD_88PM800 is not set
+# CONFIG_MFD_88PM805 is not set
+# CONFIG_MFD_88PM860X is not set
+# CONFIG_MFD_MAX77686 is not set
+# CONFIG_MFD_MAX77693 is not set
+# CONFIG_MFD_MAX8907 is not set
+# CONFIG_MFD_MAX8925 is not set
+# CONFIG_MFD_MAX8997 is not set
+# CONFIG_MFD_MAX8998 is not set
 # CONFIG_MFD_VIPERBOARD is not set
 # CONFIG_MFD_RETU is not set
 # CONFIG_MFD_PCF50633 is not set
 # CONFIG_UCB1400_CORE is not set
 CONFIG_MFD_RDC321X=m
 # CONFIG_MFD_RTSX_PCI is not set
+# CONFIG_MFD_RC5T583 is not set
+# CONFIG_MFD_SEC_CORE is not set
 # CONFIG_MFD_SI476X_CORE is not set
 # CONFIG_MFD_SM501 is not set
+# CONFIG_MFD_SMSC is not set
 # CONFIG_ABX500_CORE is not set
+# CONFIG_MFD_STMPE is not set
 # CONFIG_MFD_SYSCON is not set
 # CONFIG_MFD_TI_AM335X_TSCADC is not set
+# CONFIG_MFD_LP8788 is not set
+# CONFIG_MFD_PALMAS is not set
 # CONFIG_TPS6105X is not set
 # CONFIG_TPS65010 is not set
 # CONFIG_TPS6507X is not set
+# CONFIG_MFD_TPS65090 is not set
 # CONFIG_MFD_TPS65217 is not set
+# CONFIG_MFD_TPS6586X is not set
+# CONFIG_MFD_TPS65910 is not set
 # CONFIG_MFD_TPS65912 is not set
+# CONFIG_MFD_TPS65912_I2C is not set
+# CONFIG_MFD_TPS80031 is not set
+# CONFIG_TWL4030_CORE is not set
+# CONFIG_TWL6040_CORE is not set
 CONFIG_MFD_WL1273_CORE=m
 # CONFIG_MFD_LM3533 is not set
 # CONFIG_MFD_TIMBERDALE is not set
+# CONFIG_MFD_TC3589X is not set
 # CONFIG_MFD_TMIO is not set
 CONFIG_MFD_VX855=m
 # CONFIG_MFD_ARIZONA_I2C is not set
+# CONFIG_MFD_WM8400 is not set
+# CONFIG_MFD_WM831X_I2C is not set
+# CONFIG_MFD_WM8350_I2C is not set
+# CONFIG_MFD_WM8994 is not set
 CONFIG_REGULATOR=y
 # CONFIG_REGULATOR_DEBUG is not set
 # CONFIG_REGULATOR_DUMMY is not set
@@ -2691,6 +2733,7 @@ CONFIG_REGULATOR_MAX8952=m
 CONFIG_REGULATOR_MAX8973=m
 CONFIG_REGULATOR_LP3971=m
 CONFIG_REGULATOR_LP3972=m
+# CONFIG_REGULATOR_LP872X is not set
 CONFIG_REGULATOR_LP8755=m
 CONFIG_REGULATOR_TPS51632=m
 CONFIG_REGULATOR_TPS62360=m
@@ -2709,7 +2752,7 @@ CONFIG_AGP_VIA=m
 CONFIG_VGA_ARB=y
 CONFIG_VGA_ARB_MAX_GPUS=2
 CONFIG_VGA_SWITCHEROO=y
-CONFIG_DRM=m
+CONFIG_DRM=y
 CONFIG_DRM_USB=m
 CONFIG_DRM_KMS_HELPER=m
 # CONFIG_DRM_LOAD_EDID_FIRMWARE is not set
@@ -2735,7 +2778,8 @@ CONFIG_DRM_MGA=m
 CONFIG_DRM_SIS=m
 CONFIG_DRM_VIA=m
 CONFIG_DRM_SAVAGE=m
-# CONFIG_DRM_VMWGFX is not set
+CONFIG_DRM_VMWGFX=m
+# CONFIG_DRM_VMWGFX_FBCON is not set
 CONFIG_DRM_GMA500=m
 CONFIG_DRM_GMA600=y
 CONFIG_DRM_GMA3600=y
@@ -2745,10 +2789,10 @@ CONFIG_DRM_MGAG200=m
 CONFIG_DRM_CIRRUS_QEMU=m
 # CONFIG_DRM_QXL is not set
 # CONFIG_VGASTATE is not set
-CONFIG_VIDEO_OUTPUT_CONTROL=m
+CONFIG_VIDEO_OUTPUT_CONTROL=y
 CONFIG_HDMI=y
 CONFIG_FB=y
-CONFIG_FIRMWARE_EDID=y
+# CONFIG_FIRMWARE_EDID is not set
 # CONFIG_FB_DDC is not set
 CONFIG_FB_BOOT_VESA_SUPPORT=y
 CONFIG_FB_CFB_FILLRECT=y
@@ -2764,8 +2808,8 @@ CONFIG_FB_DEFERRED_IO=y
 # CONFIG_FB_SVGALIB is not set
 # CONFIG_FB_MACMODES is not set
 CONFIG_FB_BACKLIGHT=y
-CONFIG_FB_MODE_HELPERS=y
-CONFIG_FB_TILEBLITTING=y
+# CONFIG_FB_MODE_HELPERS is not set
+# CONFIG_FB_TILEBLITTING is not set
 
 #
 # Frame buffer hardware drivers
@@ -2836,7 +2880,7 @@ CONFIG_VGA_CONSOLE=y
 CONFIG_VGACON_SOFT_SCROLLBACK=y
 CONFIG_VGACON_SOFT_SCROLLBACK_SIZE=64
 CONFIG_DUMMY_CONSOLE=y
-CONFIG_FRAMEBUFFER_CONSOLE=m
+CONFIG_FRAMEBUFFER_CONSOLE=y
 CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
 # CONFIG_FRAMEBUFFER_CONSOLE_ROTATION is not set
 CONFIG_FONTS=y
@@ -4209,7 +4253,6 @@ CONFIG_XZ_DEC_X86=y
 # CONFIG_XZ_DEC_SPARC is not set
 CONFIG_XZ_DEC_BCJ=y
 # CONFIG_XZ_DEC_TEST is not set
-CONFIG_DECOMPRESS_GZIP=y
 CONFIG_DECOMPRESS_XZ=y
 CONFIG_GENERIC_ALLOCATOR=y
 CONFIG_REED_SOLOMON=m
@@ -4232,10 +4275,17 @@ CONFIG_EOF
 }
 
 linux_package() {
+	# install the kernel image
 	install -D -m 644 "$(find arch -name bzImage -type f)" "$1/boot/bzImage"
+
+	# install the modules
 	make INSTALL_MOD_PATH="$1" modules_install
+
+	# move all modules directly to /lib/modules - there's no need for a
+	# sub-directory for each kernel version, since there's only one kernel
 	mv "$1/lib/modules/$PACKAGE_MAJOR_VERSION/kernel"/* "$1/lib/modules/"
 	rm -rf "$1/lib/modules/$PACKAGE_MAJOR_VERSION"
+
 	install -D -m 644 COPYING "$1/usr/share/doc/linux-libre/COPYING"
 	install -m 644 CREDITS "$1/usr/share/doc/linux-libre/CREDITS"
 	install -m 644 MAINTAINERS "$1/usr/share/doc/linux-libre/MAINTAINERS"
