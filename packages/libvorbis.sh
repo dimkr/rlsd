@@ -11,8 +11,7 @@ libvorbis_build() {
 	            --prefix= \
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
-	            --disable-shared \
-	            --enable-static
+	            $CONFIGURE_LIBRARY_FLAGS
 	make
 }
 

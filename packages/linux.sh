@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.10.12"
+PACKAGE_VERSION="3.10.13"
 PACKAGE_MAJOR_VERSION="3.10"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/3.10.12-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz https://dev.openwrt.org/export/head/trunk/target/linux/generic/patches-$PACKAGE_MAJOR_VERSION/100-overlayfs.patch"
 
@@ -10,22 +10,15 @@ linux_build() {
 	# add overlayfs
 	patch -p1 < ../100-overlayfs.patch
 
+	# apply all Lazyux modifications
+	patch -p1 < "$BASE_DIR/patches/linux.patch"
+
 	# reset the minor version number, so the kernel is compatible woth modules
 	# built against previous minor versions
 	sed s~'^SUBLEVEL = .*'~'SUBLEVEL ='~ -i Makefile
 
 	# reset EXTRAVERSION; Linux-libre scripts set it to "-gnu"
 	sed s~'^EXTRAVERSION =.*'~'EXTRAVERSION ='~ -i Makefile
-
-	# reduce swappiness
-	sed s~'int vm_swappiness = 60;'~'int vm_swappiness = 20;'~ -i mm/vmscan.c
-
-	# always run init from /bin/init
-	sed -e s~'^\t    !run_init_process("/etc/init") ||$'~'\t    /* /etc/init */'~ \
-	    -e s~'^\t    !run_init_process("/bin/init") ||$'~'\t    /* /bin/init */'~ \
-	    -e s~'ramdisk_execute_command = "/init"'~'ramdisk_execute_command = "/bin/init"'~ \
-	    -e s~'^\tif (!run_init_process("/sbin/init") ||$'~'\tif (!run_init_process("/bin/init") ||'~ \
-	    -i init/main.c
 
 	# clean the sources tree
 	make clean
@@ -1268,9 +1261,9 @@ CONFIG_HAVE_IDE=y
 #
 # SCSI device support
 #
-CONFIG_SCSI_MOD=m
+CONFIG_SCSI_MOD=y
 CONFIG_RAID_ATTRS=m
-CONFIG_SCSI=m
+CONFIG_SCSI=y
 CONFIG_SCSI_DMA=y
 CONFIG_SCSI_TGT=m
 CONFIG_SCSI_NETLINK=y
@@ -1279,10 +1272,10 @@ CONFIG_SCSI_NETLINK=y
 #
 # SCSI support type (disk, tape, CD-ROM)
 #
-CONFIG_BLK_DEV_SD=m
+CONFIG_BLK_DEV_SD=y
 # CONFIG_CHR_DEV_ST is not set
 # CONFIG_CHR_DEV_OSST is not set
-CONFIG_BLK_DEV_SR=m
+CONFIG_BLK_DEV_SR=y
 CONFIG_BLK_DEV_SR_VENDOR=y
 CONFIG_CHR_DEV_SG=m
 CONFIG_CHR_DEV_SCH=m
@@ -3161,9 +3154,9 @@ CONFIG_USB_ARCH_HAS_OHCI=y
 CONFIG_USB_ARCH_HAS_EHCI=y
 CONFIG_USB_ARCH_HAS_XHCI=y
 CONFIG_USB_SUPPORT=y
-CONFIG_USB_COMMON=m
+CONFIG_USB_COMMON=y
 CONFIG_USB_ARCH_HAS_HCD=y
-CONFIG_USB=m
+CONFIG_USB=y
 # CONFIG_USB_DEBUG is not set
 CONFIG_USB_ANNOUNCE_NEW_DEVICES=y
 
@@ -3183,13 +3176,13 @@ CONFIG_USB_WUSB_CBAF=m
 # USB Host Controller Drivers
 #
 CONFIG_USB_C67X00_HCD=m
-CONFIG_USB_XHCI_HCD=m
+CONFIG_USB_XHCI_HCD=y
 CONFIG_USB_XHCI_PLATFORM=m
 # CONFIG_USB_XHCI_HCD_DEBUGGING is not set
-CONFIG_USB_EHCI_HCD=m
+CONFIG_USB_EHCI_HCD=y
 CONFIG_USB_EHCI_ROOT_HUB_TT=y
 CONFIG_USB_EHCI_TT_NEWSCHED=y
-CONFIG_USB_EHCI_PCI=m
+CONFIG_USB_EHCI_PCI=y
 CONFIG_USB_EHCI_HCD_PLATFORM=m
 CONFIG_USB_OXU210HP_HCD=m
 CONFIG_USB_ISP116X_HCD=m
@@ -3225,7 +3218,7 @@ CONFIG_USB_TMC=m
 #
 # also be needed; see USB_STORAGE Help for more info
 #
-CONFIG_USB_STORAGE=m
+CONFIG_USB_STORAGE=y
 # CONFIG_USB_STORAGE_DEBUG is not set
 CONFIG_USB_STORAGE_REALTEK=m
 CONFIG_REALTEK_AUTOPM=y
@@ -3251,6 +3244,7 @@ CONFIG_USB_DWC3=m
 CONFIG_USB_DWC3_HOST=y
 # CONFIG_USB_DWC3_DEBUG is not set
 CONFIG_USB_CHIPIDEA=m
+# CONFIG_USB_CHIPIDEA_HOST is not set
 # CONFIG_USB_CHIPIDEA_DEBUG is not set
 
 #
@@ -4043,9 +4037,8 @@ CONFIG_HAVE_ARCH_KMEMCHECK=y
 # CONFIG_EARLY_PRINTK is not set
 # CONFIG_DEBUG_STACKOVERFLOW is not set
 # CONFIG_X86_PTDUMP is not set
-CONFIG_DEBUG_RODATA=y
-# CONFIG_DEBUG_RODATA_TEST is not set
-CONFIG_DEBUG_SET_MODULE_RONX=y
+# CONFIG_DEBUG_RODATA is not set
+# CONFIG_DEBUG_SET_MODULE_RONX is not set
 # CONFIG_DEBUG_NX_TEST is not set
 # CONFIG_DEBUG_TLBFLUSH is not set
 # CONFIG_IOMMU_DEBUG is not set
@@ -4233,7 +4226,7 @@ CONFIG_GENERIC_IOMAP=y
 CONFIG_GENERIC_IO=y
 CONFIG_CRC_CCITT=m
 CONFIG_CRC16=m
-CONFIG_CRC_T10DIF=m
+CONFIG_CRC_T10DIF=y
 CONFIG_CRC_ITU_T=m
 CONFIG_CRC32=y
 # CONFIG_CRC32_SELFTEST is not set

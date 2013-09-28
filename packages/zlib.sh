@@ -5,7 +5,13 @@ zlib_build() {
 	[ -d zlib-$PACKAGE_VERSION ] && rm -rf zlib-$PACKAGE_VERSION
 	tar -xzvf zlib-$PACKAGE_VERSION.tar.gz
 	cd zlib-$PACKAGE_VERSION
-	./configure --prefix=/usr --libdir=/lib --static
+	if [ 1 -eq $STATIC ]
+	then
+		library_flags="--libdir=/lib --static"
+	else
+		library_flags="--sharedlibdir=/lib"
+	fi
+	./configure --prefix=/usr $library_flags
 	make
 }
 

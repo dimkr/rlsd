@@ -11,15 +11,14 @@ libogg_build() {
 	            --prefix= \
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
-	            --disable-shared \
-	            --enable-static
+	            $CONFIGURE_LIBRARY_FLAGS
 	make
 }
 
 libogg_package() {
 	make DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/libvorbis/README"
-	install -m 644 CHANGES "$1/usr/share/doc/libvorbis/CHANGES"
-	install -m 644 AUTHORS "$1/usr/share/doc/libvorbis/AUTHORS"
-	install -m 644 COPYING "$1/usr/share/doc/libvorbis/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/libogg/README"
+	install -m 644 CHANGES "$1/usr/share/doc/libogg/CHANGES"
+	install -m 644 AUTHORS "$1/usr/share/doc/libogg/AUTHORS"
+	install -m 644 COPYING "$1/usr/share/doc/libogg/COPYING"
 }

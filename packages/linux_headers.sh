@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.10.12"
+PACKAGE_VERSION="3.10.13"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/3.10.12-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz"
 
 linux_headers_build() {
@@ -10,7 +10,7 @@ linux_headers_build() {
 }
 
 linux_headers_package() {
-	make INSTALL_HDR_PATH="$1" headers_install
+	make ARCH="$KARCH" INSTALL_HDR_PATH="$1" headers_install
 	mkdir "$1/usr"
 	mv "$1/include" "$1/usr/"
 	find "$1/usr/include" -name .install -or -name ..install.cmd | xargs rm -f

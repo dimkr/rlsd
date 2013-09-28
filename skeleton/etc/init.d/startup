@@ -9,13 +9,14 @@ echo -n "Mounting virtual file systems ..."
 mount -t proc proc /proc
 mount -t sysfs sys /sys
 mount -t devtmpfs dev /dev
-mount -t tmpfs tmp /run
+mount -t tmpfs -o mode=777 tmp /run
 mkdir /run/tmp
 
+mkdir /run/shm
 mkdir /dev/shm
-mount -t tmpfs shm /dev/shm
+mount -B /run/shm /dev/shm
 mkdir /dev/pts
-mount -t devpts pts /dev/pts
+mount -t devpts -o mode=620 pts /dev/pts
 
 # start logging daemons
 echo -n " done.

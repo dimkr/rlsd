@@ -1,0 +1,102 @@
+diff -rup linux-3.10.12-orig/init/main.c linux-3.10.12/init/main.c
+--- linux-3.10.12-orig/init/main.c	2013-09-26 08:46:47.389399921 +0000
++++ linux-3.10.12/init/main.c	2013-09-26 08:53:52.709406816 +0000
+@@ -154,7 +154,7 @@ static int __init set_reset_devices(char
+ __setup("reset_devices", set_reset_devices);
+ 
+ static const char * argv_init[MAX_INIT_ARGS+2] = { "init", NULL, };
+-const char * envp_init[MAX_INIT_ENVS+2] = { "HOME=/", "TERM=linux", NULL, };
++const char * envp_init[MAX_INIT_ENVS+2] = { "TERM=linux", NULL, };
+ static const char *panic_later, *panic_param;
+ 
+ extern const struct obs_kernel_param __setup_start[], __setup_end[];
+@@ -838,10 +838,7 @@ static int __ref kernel_init(void *unuse
+ 		pr_err("Failed to execute %s.  Attempting defaults...\n",
+ 			execute_command);
+ 	}
+-	if (!run_init_process("/sbin/init") ||
+-	    !run_init_process("/etc/init") ||
+-	    !run_init_process("/bin/init") ||
+-	    !run_init_process("/bin/sh"))
++	if (!run_init_process("/bin/init"))
+ 		return 0;
+ 
+ 	panic("No init found.  Try passing init= option to kernel. "
+@@ -891,7 +888,7 @@ static noinline void __init kernel_init_
+ 	 */
+ 
+ 	if (!ramdisk_execute_command)
+-		ramdisk_execute_command = "/init";
++		ramdisk_execute_command = "/bin/init";
+ 
+ 	if (sys_access((const char __user *) ramdisk_execute_command, 0) != 0) {
+ 		ramdisk_execute_command = NULL;
+diff -rup linux-3.10.12-orig/kernel/kmod.c linux-3.10.12/kernel/kmod.c
+--- linux-3.10.12-orig/kernel/kmod.c	2013-09-26 08:46:39.461399793 +0000
++++ linux-3.10.12/kernel/kmod.c	2013-09-26 20:58:52.012097172 +0000
+@@ -67,11 +67,11 @@ static DECLARE_RWSEM(umhelper_sem);
+ /*
+ 	modprobe_path is set via /proc/sys.
+ */
+-char modprobe_path[KMOD_PATH_LEN] = "/sbin/modprobe";
++char modprobe_path[KMOD_PATH_LEN] = "/bin/modprobe";
+ 
+ static void free_modprobe_argv(struct subprocess_info *info)
+ {
+-	kfree(info->argv[3]); /* check call_modprobe() */
++	kfree(info->argv[2]); /* check call_modprobe() */
+ 	kfree(info->argv);
+ }
+ 
+@@ -79,13 +79,11 @@ static int call_modprobe(char *module_na
+ {
+ 	struct subprocess_info *info;
+ 	static char *envp[] = {
+-		"HOME=/",
+-		"TERM=linux",
+-		"PATH=/sbin:/usr/sbin:/bin:/usr/bin",
++		"PATH=/bin",
+ 		NULL
+ 	};
+ 
+-	char **argv = kmalloc(sizeof(char *[5]), GFP_KERNEL);
++	char **argv = kmalloc(sizeof(char *[4]), GFP_KERNEL);
+ 	if (!argv)
+ 		goto out;
+ 
+@@ -95,9 +93,8 @@ static int call_modprobe(char *module_na
+ 
+ 	argv[0] = modprobe_path;
+ 	argv[1] = "-q";
+-	argv[2] = "--";
+-	argv[3] = module_name;	/* check free_modprobe_argv() */
+-	argv[4] = NULL;
++	argv[2] = module_name;	/* check free_modprobe_argv() */
++	argv[3] = NULL;
+ 
+ 	info = call_usermodehelper_setup(modprobe_path, argv, envp, GFP_KERNEL,
+ 					 NULL, free_modprobe_argv, NULL);
+diff -rup linux-3.10.12-orig/kernel/printk.c linux-3.10.12/kernel/printk.c
+--- linux-3.10.12-orig/kernel/printk.c	2013-09-26 08:46:39.517399794 +0000
++++ linux-3.10.12/kernel/printk.c	2013-09-26 20:58:15.084096574 +0000
+@@ -56,7 +56,7 @@
+ 
+ /* We show everything that is MORE important than this.. */
+ #define MINIMUM_CONSOLE_LOGLEVEL 1 /* Minimum loglevel we let people use */
+-#define DEFAULT_CONSOLE_LOGLEVEL 7 /* anything MORE serious than KERN_DEBUG */
++#define DEFAULT_CONSOLE_LOGLEVEL 3 /* anything MORE serious than KERN_ERR */
+ 
+ int console_printk[4] = {
+ 	DEFAULT_CONSOLE_LOGLEVEL,	/* console_loglevel */
+diff -rup linux-3.10.12-orig/mm/vmscan.c linux-3.10.12/mm/vmscan.c
+--- linux-3.10.12-orig/mm/vmscan.c	2013-09-26 08:46:50.101399965 +0000
++++ linux-3.10.12/mm/vmscan.c	2013-09-26 08:48:18.297401395 +0000
+@@ -128,7 +128,7 @@ struct scan_control {
+ /*
+  * From 0 .. 100.  Higher means more swappy.
+  */
+-int vm_swappiness = 60;
++int vm_swappiness = 20;
+ unsigned long vm_total_pages;	/* The total number of pages which the VM controls */
+ 
+ static LIST_HEAD(shrinker_list);

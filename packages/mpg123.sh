@@ -11,8 +11,7 @@ mpg123_build() {
 	            --prefix= \
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
-	            --enable-static \
-	            --disable-shared \
+	            $CONFIGURE_LIBRARY_FLAGS \
 	            --enable-debug=no \
 	            --enable-gapless=no \
 	            --enable-ipv6=yes \

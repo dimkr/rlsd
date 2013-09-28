@@ -11,6 +11,7 @@ lynx_build() {
 	            --mandir=/usr/share/man \
 	            --disable-nls \
 	            --enable-ipv6 \
+	            --disable-gzip-help \
 	            --with-zlib
 	make
 }

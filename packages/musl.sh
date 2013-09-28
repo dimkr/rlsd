@@ -1,4 +1,4 @@
-PACKAGE_VERSION="0.9.13"
+PACKAGE_VERSION="0.9.14"
 PACKAGE_SOURCES="http://www.musl-libc.org/releases/musl-$PACKAGE_VERSION.tar.gz"
 
 musl_build() {
@@ -6,22 +6,11 @@ musl_build() {
 	tar -xzvf musl-$PACKAGE_VERSION.tar.gz
 	cd musl-$PACKAGE_VERSION
 
-	# define PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP in pthread.h, to allow
-	# alsa-lib to be built against musl
-	sed s~'#define PTHREAD_MUTEX_INITIALIZER {{{0}}}'~'&\n#define PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP {{{1,0,0,0,0,0,0,0,0,0}}}'~ \
-	    -i include/pthread.h
-
-	# define __compar_fn_t, a callback passed to bsearch() - this is a glibc
-	# implementation detail, but some packages (i.e eudev) cast pointers to it
-	sed s~'void \*bsearch'~'typedef int (*__compar_fn_t)(const void *, const void *);\nvoid *bsearch'~ \
-	    -i include/stdlib.h
-
 	./configure --prefix=$SYSROOT \
 	            --includedir=$SYSROOT/usr/include \
 	            --disable-debug \
 	            --enable-gcc-wrapper \
-	            --disable-shared \
-	            --enable-static
+	            $CONFIGURE_LIBRARY_FLAGS
 	make
 }
 

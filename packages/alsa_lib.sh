@@ -7,6 +7,9 @@ alsa_lib_build() {
 	cd alsa-lib-$PACKAGE_VERSION
 
 	sed s~'#endif'~'&\n#include <sys/types.h>'~ -i include/pcm.h
+	sed s~'#define __kernel_off_t\t\toff_t'~'/* & */'~ -i include/local.h
+	sed s~'PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP'~'PTHREAD_MUTEX_INITIALIZER'~ \
+	    -i src/conf.c
 
 	# hacks from https://github.com/rofl0r/sabotage/blob/master/pkg/alsa-lib
 	rm -f src/compat/hsearch_r.c
@@ -16,8 +19,7 @@ alsa_lib_build() {
 	            --prefix= \
 	            --datarootdir=/usr/share \
 	            --includedir=/usr/include \
-	            --disable-shared \
-	            --enable-static \
+	            $CONFIGURE_LIBRARY_FLAGS \
 	            --disable-old-symbols \
 	            --disable-python \
 	            --without-debug

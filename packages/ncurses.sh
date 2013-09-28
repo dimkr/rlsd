@@ -7,6 +7,12 @@ ncurses_build() {
 	cd ncurses-$PACKAGE_VERSION
 
 	# building with "--enable-glob" fails against musl 0.9.12
+	if [ 1 -eq $STATIC ]
+	then
+		library_flags="--without-shared --with-normal"
+	else
+		library_flags="--with-shared --without-normal"
+	fi
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
@@ -19,8 +25,7 @@ ncurses_build() {
 	            --without-tests \
 	            --enable-pc-files \
 	            --without-libtool \
-	            --without-shared \
-	            --with-normal \
+	            $library_flags \
 	            --without-debug \
 	            --without-profile \
 	            --with-manpage-format=normal

@@ -1,5 +1,10 @@
+#!/bin/sh
+
+# the base directory
+BASE_DIR="$(pwd)"
+
 # the directory for built packages tarballs
-BINARY_TARBALL_DIR="$(pwd)/built_packages"
+BINARY_TARBALL_DIR="$BASE_DIR/built_packages"
 
 # uneeded files which should be removed from packages
 UNNEEDED_FILES="usr/share/pixmaps usr/share/applications usr/share/info "
@@ -12,6 +17,8 @@ export AR
 export CFLAGS="$CFLAGS -I$SYSROOT/usr/include"
 export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
 export PKG_CONFIG_PATH="$SYSROOT/lib/pkgconfig"
+export KARCH
+export BASE_DIR
 
 # if musl is already installed, use its wrapper instead of the real compiler
 if [ -e "$SYSROOT/bin/musl-gcc" ]
@@ -21,6 +28,14 @@ then
 else
 	# otherwise, build musl with the compiler specified in the configuration
 	export CC
+fi
+
+# choose the library type flags passed to configure scripts
+if [ 1 -eq $STATIC ]
+then
+	CONFIGURE_LIBRARY_FLAGS="--enable-static --disable-shared"
+else
+	CONFIGURE_LIBRARY_FLAGS="--disable-static --enable-shared"
 fi
 
 # make sure the package name is valid
