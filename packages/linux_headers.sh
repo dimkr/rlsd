@@ -1,9 +1,9 @@
-PACKAGE_VERSION="3.10.13"
-PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/3.10.12-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz"
+PACKAGE_VERSION="2.6.32.61"
+PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu1/linux-libre-$PACKAGE_VERSION-gnu1.tar.xz"
 
 linux_headers_build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION
-	tar -xJvf linux-libre-$PACKAGE_VERSION-gnu.tar.xz
+	tar -xJvf linux-libre-$PACKAGE_VERSION-gnu1.tar.xz
 	cd linux-$PACKAGE_VERSION
 	make clean
 	make mrproper
