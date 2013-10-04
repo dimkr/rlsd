@@ -9,8 +9,8 @@ echo -n "Mounting virtual file systems ..."
 mount -t proc proc /proc
 mount -t sysfs sys /sys
 mount -t devtmpfs dev /dev
-mount -t tmpfs -o mode=777 tmp /run
-mkdir /run/tmp
+mount -t tmpfs run /run
+mount -t tmpfs -o mode=777,noexec,nosuid,nodev tmp /tmp
 
 mkdir /run/shm
 mkdir /dev/shm
@@ -51,16 +51,16 @@ Configuring networking ..."
 ifconfig lo 127.0.0.1 up
 route add -net 127.0.0.0 netmask 255.0.0.0 lo
 
+# start Dropbear, with the keys under /run
 echo -n " done.
 Starting Dropbear ..."
 
+mkdir /run/dropbear
 for i in rsa dss
 do
-	dropbearkey -t $i -f /tmp/${i}_key > /dev/null 2>&1
+	dropbearkey -t $i -f /run/dropbear/${i}_key > /dev/null 2>&1
 done
-dropbear -d /tmp/dss_key -r /tmp/rsa_key
-
-echo "done."
+dropbear -d /run/dropbear/dss_key -r /run/dropbear/rsa_key
 
 # show a login prompt
 exec cttyhack sulogin
