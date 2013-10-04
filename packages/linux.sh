@@ -1,6 +1,6 @@
-PACKAGE_VERSION="3.10.13"
+PACKAGE_VERSION="3.10.14"
 PACKAGE_MAJOR_VERSION="3.10"
-PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/3.10.12-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz https://dev.openwrt.org/export/head/trunk/target/linux/generic/patches-$PACKAGE_MAJOR_VERSION/100-overlayfs.patch"
+PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz https://dev.openwrt.org/export/head/trunk/target/linux/generic/patches-$PACKAGE_MAJOR_VERSION/100-overlayfs.patch"
 
 linux_build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION
@@ -4278,9 +4278,11 @@ linux_package() {
 	# install the modules
 	make INSTALL_MOD_PATH="$1" modules_install
 
-	# move all modules directly to /lib/modules - there's no need for a
-	# sub-directory for each kernel version, since there's only one kernel
+	# move all modules and modules.builtin directly to /lib/modules - there's no
+	# need for a sub-directory for each kernel version, since there's only one
+	# kernel
 	mv "$1/lib/modules/$PACKAGE_MAJOR_VERSION/kernel"/* "$1/lib/modules/"
+	mv "$1/lib/modules/$PACKAGE_MAJOR_VERSION/modules.builtin" "$1/lib/modules/"
 	rm -rf "$1/lib/modules/$PACKAGE_MAJOR_VERSION"
 
 	install -D -m 644 COPYING "$1/usr/share/doc/linux-libre/COPYING"
