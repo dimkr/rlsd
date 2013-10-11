@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2013.58"
+PACKAGE_VERSION="2013.59"
 PACKAGE_SOURCES="https://matt.ucc.asn.au/dropbear/releases/dropbear-$PACKAGE_VERSION.tar.bz2"
 
 PROGRAMS="dropbear dbclient dropbearkey scp"
