@@ -1,0 +1,3 @@
+umask 022
+export PATH="/bin"
+export PS1='[\u@\w]\$ '

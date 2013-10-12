@@ -44,10 +44,10 @@ Included packages:
     - Linux-libre (http://linux-libre.fsfla.org/)
     - musl (http://www.musl-libc.org/)
     - lazy-utils (https://github.com/iguleder/lazy-utils)
-    - dash (http://gondor.apana.org.au/~herbert/dash/)
+    - loksh (https://github.com/iguleder/loksh), a port ksh from OpenBSD
+      (http://www.openbsd.org/)
     - ISC DHCP (http://www.isc.org/downloads/dhcp/)
   - Applications:
-    - tcsh (http://www.tcsh.org/)
     - Lynx (http://lynx.isc.org/)
     - Ytree (http://www.han.de/~werner/ytree.html)
     - ircII (http://www.eterna.com.au/ircii/)

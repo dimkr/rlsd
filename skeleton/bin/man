@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 # man: displays manual pages
 # this script replaces man (http://primates.ximian.com/~flucifredi/man/) and

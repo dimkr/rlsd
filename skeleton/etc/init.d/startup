@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 # set the executable search path
 export PATH="/bin"
