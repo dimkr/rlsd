@@ -1,7 +1,7 @@
-diff -rup linux-3.10.12-orig/init/main.c linux-3.10.12/init/main.c
---- linux-3.10.12-orig/init/main.c	2013-09-26 08:46:47.389399921 +0000
-+++ linux-3.10.12/init/main.c	2013-09-26 08:53:52.709406816 +0000
-@@ -154,7 +154,7 @@ static int __init set_reset_devices(char
+diff -rup linux-3.10.17-orig/init/main.c linux-3.10.17/init/main.c
+--- linux-3.10.17-orig/init/main.c	2013-10-26 09:20:43.685293949 +0000
++++ linux-3.10.17/init/main.c	2013-10-26 09:23:54.987590909 +0000
+@@ -155,7 +155,7 @@ static int __init set_reset_devices(char
  __setup("reset_devices", set_reset_devices);
  
  static const char * argv_init[MAX_INIT_ARGS+2] = { "init", NULL, };
@@ -10,7 +10,7 @@ diff -rup linux-3.10.12-orig/init/main.c linux-3.10.12/init/main.c
  static const char *panic_later, *panic_param;
  
  extern const struct obs_kernel_param __setup_start[], __setup_end[];
-@@ -838,10 +838,7 @@ static int __ref kernel_init(void *unuse
+@@ -840,10 +840,7 @@ static int __ref kernel_init(void *unuse
  		pr_err("Failed to execute %s.  Attempting defaults...\n",
  			execute_command);
  	}
@@ -22,7 +22,7 @@ diff -rup linux-3.10.12-orig/init/main.c linux-3.10.12/init/main.c
  		return 0;
  
  	panic("No init found.  Try passing init= option to kernel. "
-@@ -891,7 +888,7 @@ static noinline void __init kernel_init_
+@@ -893,7 +890,7 @@ static noinline void __init kernel_init_
  	 */
  
  	if (!ramdisk_execute_command)
@@ -31,9 +31,9 @@ diff -rup linux-3.10.12-orig/init/main.c linux-3.10.12/init/main.c
  
  	if (sys_access((const char __user *) ramdisk_execute_command, 0) != 0) {
  		ramdisk_execute_command = NULL;
-diff -rup linux-3.10.12-orig/kernel/kmod.c linux-3.10.12/kernel/kmod.c
---- linux-3.10.12-orig/kernel/kmod.c	2013-09-26 08:46:39.461399793 +0000
-+++ linux-3.10.12/kernel/kmod.c	2013-09-26 20:58:52.012097172 +0000
+diff -rup linux-3.10.17-orig/kernel/kmod.c linux-3.10.17/kernel/kmod.c
+--- linux-3.10.17-orig/kernel/kmod.c	2013-10-26 09:21:29.185047454 +0000
++++ linux-3.10.17/kernel/kmod.c	2013-10-26 09:24:38.864019877 +0000
 @@ -67,11 +67,11 @@ static DECLARE_RWSEM(umhelper_sem);
  /*
  	modprobe_path is set via /proc/sys.
@@ -44,7 +44,7 @@ diff -rup linux-3.10.12-orig/kernel/kmod.c linux-3.10.12/kernel/kmod.c
  static void free_modprobe_argv(struct subprocess_info *info)
  {
 -	kfree(info->argv[3]); /* check call_modprobe() */
-+	kfree(info->argv[2]); /* check call_modprobe() */
++	kfree(info->argv[1]); /* check call_modprobe() */
  	kfree(info->argv);
  }
  
@@ -64,21 +64,22 @@ diff -rup linux-3.10.12-orig/kernel/kmod.c linux-3.10.12/kernel/kmod.c
  	if (!argv)
  		goto out;
  
-@@ -95,9 +93,8 @@ static int call_modprobe(char *module_na
+@@ -94,10 +92,8 @@ static int call_modprobe(char *module_na
+ 		goto free_argv;
  
  	argv[0] = modprobe_path;
- 	argv[1] = "-q";
+-	argv[1] = "-q";
 -	argv[2] = "--";
 -	argv[3] = module_name;	/* check free_modprobe_argv() */
 -	argv[4] = NULL;
-+	argv[2] = module_name;	/* check free_modprobe_argv() */
-+	argv[3] = NULL;
++	argv[1] = module_name;	/* check free_modprobe_argv() */
++	argv[2] = NULL;
  
  	info = call_usermodehelper_setup(modprobe_path, argv, envp, GFP_KERNEL,
  					 NULL, free_modprobe_argv, NULL);
-diff -rup linux-3.10.12-orig/kernel/printk.c linux-3.10.12/kernel/printk.c
---- linux-3.10.12-orig/kernel/printk.c	2013-09-26 08:46:39.517399794 +0000
-+++ linux-3.10.12/kernel/printk.c	2013-09-26 20:58:15.084096574 +0000
+diff -rup linux-3.10.17-orig/kernel/printk.c linux-3.10.17/kernel/printk.c
+--- linux-3.10.17-orig/kernel/printk.c	2013-10-26 09:21:29.671711485 +0000
++++ linux-3.10.17/kernel/printk.c	2013-10-26 09:23:54.990924224 +0000
 @@ -56,7 +56,7 @@
  
  /* We show everything that is MORE important than this.. */
@@ -88,10 +89,10 @@ diff -rup linux-3.10.12-orig/kernel/printk.c linux-3.10.12/kernel/printk.c
  
  int console_printk[4] = {
  	DEFAULT_CONSOLE_LOGLEVEL,	/* console_loglevel */
-diff -rup linux-3.10.12-orig/mm/vmscan.c linux-3.10.12/mm/vmscan.c
---- linux-3.10.12-orig/mm/vmscan.c	2013-09-26 08:46:50.101399965 +0000
-+++ linux-3.10.12/mm/vmscan.c	2013-09-26 08:48:18.297401395 +0000
-@@ -128,7 +128,7 @@ struct scan_control {
+diff -rup linux-3.10.17-orig/mm/vmscan.c linux-3.10.17/mm/vmscan.c
+--- linux-3.10.17-orig/mm/vmscan.c	2013-10-26 09:19:44.668947001 +0000
++++ linux-3.10.17/mm/vmscan.c	2013-10-26 09:23:55.014257430 +0000
+@@ -129,7 +129,7 @@ struct scan_control {
  /*
   * From 0 .. 100.  Higher means more swappy.
   */
