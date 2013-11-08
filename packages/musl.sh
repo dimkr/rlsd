@@ -8,6 +8,7 @@ musl_build() {
 
 	./configure --prefix=$SYSROOT \
 	            --includedir=$SYSROOT/usr/include \
+	            --host=$HOST \
 	            --disable-debug \
 	            --enable-gcc-wrapper \
 	            $CONFIGURE_LIBRARY_FLAGS
