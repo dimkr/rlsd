@@ -6,10 +6,17 @@ tinyxserver_build() {
 	unzip tinyxserver-master.zip
 	cd tinyxserver-master
 
+	case "$HOST" in
+		*64*)
+			CFLAGS="-D_XSERVER64=1 $CFLAGS"
+			;;
+	esac
+
+	make clean
 	make CC="$CC" \
 	     EXTRA_CFLAGS="$CFLAGS" \
 	     LDFLAGS="$LDFLAGS" \
-	     FONTDIRS="/usr/share/fonts/misc/,/usr/share/fonts/truetype/,/usr/share/fonts/X11/100dpi/,/usr/share/fonts/X11/75dpi/"
+	     FONTDIRS="/usr/share/fonts/misc/,/usr/share/fonts/truetype/,/usr/share/fonts/100dpi/,/usr/share/fonts/75dpi/,/usr/share/fonts/cyrillic"
 }
 
 tinyxserver_package() {
