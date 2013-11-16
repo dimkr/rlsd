@@ -7,7 +7,7 @@ BASE_DIR="$(pwd)"
 BINARY_TARBALL_DIR="$BASE_DIR/built_packages"
 
 # uneeded files which should be removed from packages
-UNNEEDED_FILES="usr/share/pixmaps usr/share/applications usr/share/info "
+UNNEEDED_FILES="usr/share/pixmaps usr/share/applications usr/share/info"
 
 # include the configuration file
 . ./config
@@ -19,6 +19,18 @@ export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
 export PKG_CONFIG_PATH="$SYSROOT/lib/pkgconfig"
 export KARCH
 export BASE_DIR
+
+# replace pkg-config with a wrapper which forces "--static"
+if [ 1 -eq $STATIC ]
+then
+	if [ ! -f pkg-config ]
+	then
+		echo "#!/bin/sh
+exec $(which pkg-config) --static \"\$@\"" > pkg-config
+		chmod 755 pkg-config
+	fi
+	export PATH="$BASE_DIR:$PATH"
+fi
 
 # if musl is already installed, use its wrapper instead of the real compiler
 if [ -e "$SYSROOT/bin/musl-gcc" ]
@@ -113,6 +125,21 @@ then
 	while read page
 	do
 		gunzip "$page"
+	done
+fi
+
+if [ -d "$installation_prefix/usr/share/fonts" ]
+then
+	for i in "$installation_prefix/usr/share/fonts"/*
+	do
+		# remove font cache files
+		[ -f "$i/fonts.dir" ] && rm -f "$i/fonts.dir"
+
+		# decompress all fonts
+		for j in "$i"/*.gz
+		do
+			gunzip "$j"
+		done
 	done
 fi
 

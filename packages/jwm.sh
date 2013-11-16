@@ -7,11 +7,15 @@ jwm_build() {
 	cd jwm-$PACKAGE_VERSION
 
 	sed s/courier/fixed/ -i src/font.c
-	
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --sysconfdir=/etc \
-	            --datarootdir=/usr/share
+	            --datarootdir=/usr/share \
+	            --enable-xft \
+	            --disable-shape \
+	            --disable-xmu \
+	            --enable-xinerama
 	make
 }
 

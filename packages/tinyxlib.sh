@@ -10,14 +10,13 @@ tinyxlib_build() {
 	make CC="$CC" \
 	     EXTRA_CFLAGS="$CFLAGS" \
 	     LDFLAGS="$LDFLAGS" \
+	     BINDIR="/bin" \
 	     LIBDIR="/lib" \
-	     PREDIR="/" \
-	     INCDIR="/usr/include"
+	     STATIC="$STATIC"
 }
 
 tinyxlib_package() {
-	mkdir -p "$1/lib" "$1/usr/include"
-	make LIBDIR="$1/lib" PREDIR="$1" INCDIR="$1/usr/include" install
+	make DESTDIR="$1" BINDIR="/bin" LIBDIR="/lib" STATIC="$STATIC" install
 	install -D -m 644 README "$1/usr/share/doc/tinyxlib/README"
 	install -m 644 libXau/README "$1/usr/share/doc/tinyxlib/README.libXau"
 	install -m 644 libXmu/README "$1/usr/share/doc/tinyxlib/README.libXmu"
