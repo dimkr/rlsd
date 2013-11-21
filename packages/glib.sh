@@ -10,7 +10,10 @@ glib_build() {
 	patch -p1 < ../glib1-autotools.patch
 	patch -p1 < ../gcc340.patch
 	patch -p0 < "$BASE_DIR/patches/glib-1.2.10-gstrfuncs.diff"
+	patch -p1 < "$BASE_DIR/patches/glib-1.2.10-musl.patch"
+
 	autoreconf --force --install
+	CFLAGS="$CFLAGS -D_LARGEFILE64_SOURCE" \
 	./configure --host=$HOST \
 	            --target=$HOST \
 	            --prefix= \

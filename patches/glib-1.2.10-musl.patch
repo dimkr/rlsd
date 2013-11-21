@@ -1,0 +1,16 @@
+diff -rup glib-1.2.10-orig/gutils.c glib-1.2.10/gutils.c
+--- glib-1.2.10-orig/gutils.c	2013-11-21 21:03:29.593184992 +0000
++++ glib-1.2.10/gutils.c	2013-11-21 21:07:29.991882640 +0000
+@@ -481,8 +481,12 @@ g_get_any_init (void)
+ #  ifdef HAVE_GETPWUID_R
+         struct passwd pwd;
+ #    ifdef _SC_GETPW_R_SIZE_MAX  
++#      ifdef __GLIBC__
+         /* This reurns the maximum length */
+         guint bufsize = sysconf (_SC_GETPW_R_SIZE_MAX);
++#      else
++        guint bufsize = _SC_GETPW_R_SIZE_MAX;
++#      endif
+ #    else /* _SC_GETPW_R_SIZE_MAX */
+         guint bufsize = 64;
+ #    endif /* _SC_GETPW_R_SIZE_MAX */
