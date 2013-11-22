@@ -19,18 +19,32 @@ export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
 export PKG_CONFIG_PATH="$SYSROOT/lib/pkgconfig"
 export KARCH
 export BASE_DIR
+export SYSROOT
+export PATH="$BASE_DIR:$PATH"
 
 # replace pkg-config with a wrapper which forces "--static"
-if [ 1 -eq $STATIC ]
+if [ 1 -eq $STATIC ] && [ ! -f pkg-config ]
 then
-	if [ ! -f pkg-config ]
 	then
 		echo "#!/bin/sh
 exec $(which pkg-config) --static \"\$@\"" > pkg-config
-		chmod 755 pkg-config
-	fi
-	export PATH="$BASE_DIR:$PATH"
+	chmod 755 pkg-config
 fi
+
+# replace glib-config and gtk-config with wrappers, which prepends paths with
+# $SYSROOT
+for library in glib gtk
+do
+	if [ -f "$SYSROOT/bin/$library-config" ] && [ ! -f $library-config ]
+	then
+		echo "#!/bin/sh
+\"$SYSROOT/bin/$library-config\" \"\$@\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~ -e s~'-I/usr'~\"-I$SYSROOT/usr\"~ -e s~'-I/lib'~\"-I$SYSROOT/lib\"~" \
+		> $library-config
+		chmod 755 $library-config
+	fi
+done
+export GLIB_CONFIG="$BASE_DIR/glib-config"
+export GTK_CONFIG="$BASE_DIR/gtk-config"
 
 # if musl is already installed, use its wrapper instead of the real compiler
 if [ -e "$SYSROOT/bin/musl-gcc" ]

@@ -18,8 +18,10 @@ exec pkg-config "$@"' > glib-config
 	./configure --host=$HOST \
 	            --target=$HOST \
 	            --prefix= \
-	            --includedir=/usr/include \
 	            --datadir=/usr/share \
+	            --includedir=/usr/include \
+	            --infodir=/usr/share/info \
+	            --mandir=/usr/share/man \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --enable-debug=no \
 	            --disable-nls \
@@ -28,7 +30,7 @@ exec pkg-config "$@"' > glib-config
 }
 
 gtk_package() {
-	make DESTDIR="$1" install/
+	make DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gtk+/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/gtk+/ChangeLog"
 	install -m 644 AUTHORS "$1/usr/share/doc/gtk+/AUTHORS"
