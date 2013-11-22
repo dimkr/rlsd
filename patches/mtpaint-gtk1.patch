@@ -1,0 +1,23 @@
+diff -rup mtPaint-master-orig/configure mtPaint-master/configure
+--- mtPaint-master-orig/configure	2013-11-22 20:04:43.771957254 +0000
++++ mtPaint-master/configure	2013-11-22 20:09:16.900477589 +0000
+@@ -586,7 +586,7 @@ rm -f _conf.c _conf.tmp
+ FOUND_GTK=
+ [ "$OS" != "${OS#MinGW/}" ] && GTK=2
+ [ "$GTK" != 1 ] && PKGCONFIG gtk+-2.0 --cflags > /dev/null 2>&1 && FOUND_GTK=2 GTK=2
+-[ "$GTK" != 2 ] && PKGCONFIG gtk+ --cflags > /dev/null 2>&1 && FOUND_GTK=1 GTK=1
++[ "$GTK" != 2 ] && gtk-config --cflags gtk > /dev/null 2>&1 && FOUND_GTK=1 GTK=1
+ GTK=${GTK:-1}
+ 
+ if [ "$USE_THREADS" = NO ] ; then
+@@ -608,8 +608,8 @@ then
+ # !!! Full equivalent to "gtk-config gtk" would be "pkg-config gtk+ gmodule",
+ # but for mtPaint, 'gmodule' is nothing but a nuisance anyway
+ 	GTKPREFIX=`PKGCONFIG gtk+ --variable=prefix`
+-	INCLUDES="$INCLUDES `PKGCONFIG gtk+ $THREADS --cflags`"
+-	LIBS="$LIBS `PKGCONFIG gtk+ $THREADS --libs`"
++	INCLUDES="$INCLUDES `gtk-config --cflags gtk $THREADS`"
++	LIBS="$LIBS `gtk-config --libs gtk $THREADS`"
+ elif [ "GTK" = 2 ] && [ "$OS" != "${OS%/MSYS}" ]
+ then # Windows system w/o working pkg-config
+ 	GTKPREFIX=/
