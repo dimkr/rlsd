@@ -1,6 +1,5 @@
-PACKAGE_VERSION="0.2.6"
+PACKAGE_VERSION="0.2.7"
 PACKAGE_SOURCES="http://download.savannah.gnu.org/releases/beaver/archive/beaver-$PACKAGE_VERSION.tar.gz"
-
 
 beaver_build() {
 	[ -d beaver-$PACKAGE_VERSION ] && rm -rf beaver-$PACKAGE_VERSION
