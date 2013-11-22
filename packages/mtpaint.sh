@@ -8,7 +8,6 @@ mtpaint_build() {
 
 	patch -p1 < "$BASE_DIR/patches/mtpaint-gtk1.patch"
 
-	CFLAGS="-DNEED_CMYK $CFLAGS" \
 	./configure --host=$HOST \
 	            --prefix=/usr \
 	            --bindir=/bin \
@@ -17,6 +16,7 @@ mtpaint_build() {
 	            gtkcolsel \
 	            thread \
 	            cflags \
+	            jpeg \
 	            man
 	make
 }
