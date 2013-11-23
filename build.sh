@@ -7,7 +7,7 @@ BASE_DIR="$(pwd)"
 BINARY_TARBALL_DIR="$BASE_DIR/built_packages"
 
 # uneeded files which should be removed from packages
-UNNEEDED_FILES="usr/share/pixmaps usr/share/applications usr/share/info"
+UNNEEDED_FILES="usr/share/pixmaps usr/share/applications usr/share/info usr/share/gtk-doc"
 
 # include the configuration file
 . ./config
@@ -23,15 +23,14 @@ export SYSROOT
 export PATH="$BASE_DIR:$PATH"
 
 # replace pkg-config with a wrapper which forces "--static"
-if [ 1 -eq $STATIC ] && [ ! -f pkg-config ]
+if [ 1 -eq $STATIC ] && [ -d "$SYSROOT/lib/pkgconfig" ] && [ ! -f pkg-config ]
 then
-	then
-		echo "#!/bin/sh
+	echo "#!/bin/sh
 exec $(which pkg-config) --static \"\$@\"" > pkg-config
 	chmod 755 pkg-config
 fi
 
-# replace glib-config and gtk-config with wrappers, which prepends paths with
+# replace glib-config and gtk-config with wrappers, which prepend paths with
 # $SYSROOT
 for library in glib gtk
 do

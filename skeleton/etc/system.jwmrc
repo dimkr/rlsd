@@ -158,7 +158,7 @@
 			  contained within a Desktop tag to give a specific background
 			  for that desktop.
 		 -->
-		<Background type="gradient">#777777:#444444</Background>
+		<Background type="solid">#444444</Background>
 		<Desktop name="A"></Desktop>
 		<Desktop name="B"></Desktop>
 		<Desktop name="C"></Desktop>
