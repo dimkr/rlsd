@@ -1,0 +1,26 @@
+diff -rup aterm-1.0.1-orig/src/command.c aterm-1.0.1/src/command.c
+--- aterm-1.0.1-orig/src/command.c	2013-11-23 17:16:39.431093363 +0000
++++ aterm-1.0.1/src/command.c	2013-11-23 17:18:28.133837802 +0000
+@@ -46,6 +46,8 @@
+ static const char rcsid[] = "$Id: command.c,v 1.24 2006/06/26 18:01:20 sasha Exp $";
+ #endif
+ 
++#include <pty.h>
++
+ /*{{{ includes: */
+ #include "rxvt.h"		/* NECESSARY */
+ #ifdef HAVE_AFTERSTEP
+@@ -551,6 +553,13 @@ int
+ get_pty(void)
+ {
+     int             fd = -1;
++    int             slave;
++
++    if (-1 != openpty(&fd, &slave, NULL, NULL, NULL)) {
++        ptydev = ttydev = strdup(ttyname(slave));
++        goto Found;
++    }
++    goto Failed;
+ 
+ #if defined (__sgi)
+     ptydev = ttydev = _getpty(&fd, O_RDWR | O_NDELAY, 0622, 0);

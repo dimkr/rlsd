@@ -1,0 +1,12 @@
+diff -rup ratpoison-1.4.6-orig/src/conf.h ratpoison-1.4.6/src/conf.h
+--- ratpoison-1.4.6-orig/src/conf.h	2013-11-23 16:04:38.401169058 +0000
++++ ratpoison-1.4.6/src/conf.h	2013-11-23 16:15:40.120917548 +0000
+@@ -123,7 +123,7 @@
+ #define DEFAULT_FONT "-*-fixed-bold-r-normal-*-15-*-*-*-c-*-*-*"
+ #define BACKUP_FONT "*"
+ 
+-#define DEFAULT_XFT_FONT "Mono-11"
++#define DEFAULT_XFT_FONT "Terminus-14"
+ 
+ /* maximum xvsprintf result string length for systems with pre-C99 snprintf:
+  * on errors that are either permanent or cannot be distinguished from those

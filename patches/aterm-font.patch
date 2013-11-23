@@ -1,0 +1,37 @@
+diff -rup aterm-1.0.1-orig/src/feature.h aterm-1.0.1/src/feature.h
+--- aterm-1.0.1-orig/src/feature.h	2013-11-23 17:16:39.431093363 +0000
++++ aterm-1.0.1/src/feature.h	2013-11-23 17:27:51.640785024 +0000
+@@ -330,22 +330,25 @@
+  * sets (NFONT_LIST) have been matched up
+  */
+ #ifdef KANJI
+-# define NFONTS		5
++# define NFONTS		6
+ # define FONT0_IDX	2
+-# define MFONT_LIST	"k14", "jiskan16", "jiskan18", "jiskan24", "jiskan26"
+-# define NFONT_LIST	"7x14", "8x16", "9x18", "12x24", "13x26"
++# define MFONT_LIST	"*-terminus-medium-*-14-*", "k14", "jiskan16", \
++                        "jiskan18", "jiskan24", "jiskan26"
++# define NFONT_LIST	"*-terminus-medium-*-14-*", "7x14", "8x16", "9x18", \
++                        "12x24", "13x26"
+ #else
+ # ifdef ZH
+-#  define NFONTS	5
++#  define NFONTS	6
+ #  define FONT0_IDX	1
+-#  define MFONT_LIST	"taipei16", "taipeik20", "taipeik24", "taipeik20", \
+-			"taipei16"
++#  define MFONT_LIST	"*-terminus-medium-*-14-*", "taipei16", "taipeik20",
++                        "taipeik24", "taipeik20", "taipei16"
+ #  define NFONT_LIST	"8x16", "10x20", "12x24", "10x20", "8x16"
+ # else				/* no Kanji or Big5 support */
+-#  define NFONTS	5
++#  define NFONTS	6
+ #  define FONT0_IDX	2
+ #  undef  MFONT_LIST
+-#  define NFONT_LIST	"7x14", "6x10", "6x13", "8x13", "9x15"
++#  define NFONT_LIST	"*-terminus-medium-*-14-*", "7x14", "6x10", "6x13", \
++                        "8x13", "9x15"
+ # endif
+ #endif
+ 
