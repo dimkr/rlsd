@@ -6,7 +6,6 @@ unnethack_build() {
 	tar -xzvf unnethack-4.0.0-20120401.tar.gz
 	cd unnethack-4.0.0-20120401
 
-	sed s~'#!/bin/sh'~'#!/bin/dash'~ -i sys/unix/nethack.sh
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
