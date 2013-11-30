@@ -11,7 +11,9 @@ fontconfig_build() {
 	            --prefix= \
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
-	            $CONFIGURE_LIBRARY_FLAGS
+	            $CONFIGURE_LIBRARY_FLAGS \
+	            --enable-libxml2 \
+	            --with-templatedir="/etc/fonts/conf.avail"
 	make
 }
 
