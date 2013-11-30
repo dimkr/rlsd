@@ -21,23 +21,25 @@ export KARCH
 export BASE_DIR
 export SYSROOT
 export PATH="$BASE_DIR:$PATH"
+export LANG="C"
+export LC_ALL="C"
 
 # replace pkg-config with a wrapper which forces "--static"
 if [ 1 -eq $STATIC ] && [ -d "$SYSROOT/lib/pkgconfig" ] && [ ! -f pkg-config ]
 then
 	echo "#!/bin/sh
-exec $(which pkg-config) --static \"\$@\"" > pkg-config
+exec $(which pkg-config) --static \"\$@\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~g -e s~'-I/usr'~\"-I$SYSROOT/usr\"~g -e s~'-I/lib'~\"-I$SYSROOT/lib\"~g" > pkg-config
 	chmod 755 pkg-config
 fi
 
-# replace glib-config and gtk-config with wrappers, which prepend paths with
-# $SYSROOT
-for library in glib gtk
+# replace glib-config, gtk-config and freetype-config with wrappers, which
+# prepend paths with $SYSROOT
+for library in glib gtk freetype
 do
 	if [ -f "$SYSROOT/bin/$library-config" ] && [ ! -f $library-config ]
 	then
 		echo "#!/bin/sh
-\"$SYSROOT/bin/$library-config\" \"\$@\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~ -e s~'-I/usr'~\"-I$SYSROOT/usr\"~ -e s~'-I/lib'~\"-I$SYSROOT/lib\"~" \
+\"$SYSROOT/bin/$library-config\" \"\$@\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~g -e s~'-I/usr'~\"-I$SYSROOT/usr\"~g -e s~'-I/lib'~\"-I$SYSROOT/lib\"~g" \
 		> $library-config
 		chmod 755 $library-config
 	fi
@@ -117,9 +119,20 @@ done
 # remove libtool libraries
 [ -d "$installation_prefix/lib" ] && rm -vf "$installation_prefix/lib"/*.la
 
-# strip all executables
-[ -d "$installation_prefix/bin" ] && \
-                               "$STRIP" --strip-all "$installation_prefix/bin"/*
+# strip all executables, unless they were built in debug mode
+should_strip=1
+for flag in $CFLAGS
+do
+	if [ "-g" = "$flag" ]
+	then
+		should_strip=0
+		break
+	fi
+done
+if [ 1 -eq $should_strip ] && [ -d "$installation_prefix/bin" ]
+then
+	"$STRIP" --strip-all "$installation_prefix/bin"/*
+fi
 
 # strip all kernel modules
 if [ -d "$installation_prefix/lib/modules" ]
