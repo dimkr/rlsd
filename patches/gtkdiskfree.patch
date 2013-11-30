@@ -1,0 +1,39 @@
+diff -rup gtkdiskfree-1.6.5-orig/Makefile.in gtkdiskfree-1.6.5/Makefile.in
+--- gtkdiskfree-1.6.5-orig/Makefile.in	2013-11-30 19:36:47.979628101 +0000
++++ gtkdiskfree-1.6.5/Makefile.in	2013-11-30 19:36:58.751628390 +0000
+@@ -10,7 +10,7 @@
+ # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ # PARTICULAR PURPOSE.
+ 
+-MAKE=gmake
++MAKE=make
+ SHELL = @SHELL@
+ 
+ srcdir = @srcdir@
+diff -rup gtkdiskfree-1.6.5-orig/mkinstalldirs gtkdiskfree-1.6.5/mkinstalldirs
+--- gtkdiskfree-1.6.5-orig/mkinstalldirs	2013-11-30 19:36:47.983628101 +0000
++++ gtkdiskfree-1.6.5/mkinstalldirs	2013-11-30 19:37:17.235628885 +0000
+@@ -22,9 +22,9 @@ do
+      esac
+ 
+      if test ! -d "$pathcomp"; then
+-        echo "mkdirhier $pathcomp"
++        echo "mkdir -p $pathcomp"
+ 
+-        mkdirhier "$pathcomp" || lasterr=$?
++        mkdir -p "$pathcomp" || lasterr=$?
+ 
+         if test ! -d "$pathcomp"; then
+   	  errstatus=$lasterr
+diff -rup gtkdiskfree-1.6.5-orig/src/Makefile.in gtkdiskfree-1.6.5/src/Makefile.in
+--- gtkdiskfree-1.6.5-orig/src/Makefile.in	2013-11-30 19:36:47.983628101 +0000
++++ gtkdiskfree-1.6.5/src/Makefile.in	2013-11-30 19:38:47.287631294 +0000
+@@ -99,7 +99,7 @@ gtkdiskfree_SOURCES = about.c callbacks.
+ 
+ gtkdiskfree_LDADD = @GTK_LIBS@
+ 
+-CFLAGS = -g -Wall -O3 @GTK_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -DLIBDIR=\"$(libdir)\"
++CFLAGS = -Wall @CFLAGS@ @GTK_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -DLIBDIR=\"$(libdir)\"
+ LIBS = @GTK_LIBS@
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = ../config.h
