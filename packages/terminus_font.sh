@@ -15,7 +15,6 @@ terminus_font_package() {
 	make DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/terminus-font/README"
 	install -m 644 CHANGES "$1/usr/share/doc/terminus-font/CHANGES"
-	install -m 644 LICENSE "$1/usr/share/doc/terminus-font/LICENSE"
 	install -m 644 AUTHORS "$1/usr/share/doc/terminus-font/AUTHORS"
 	install -m 644 COPYING "$1/usr/share/doc/terminus-font/COPYING"
 	install -m 644 OFL.TXT "$1/usr/share/doc/terminus-font/OFL.TXT"

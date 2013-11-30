@@ -23,6 +23,7 @@ emelfm_build() {
 emelfm_package() {
 	install -D -m 755 emelfm "$1/bin/emelfm"
 	install -D -m 644 README "$1/usr/share/doc/emelfm/README"
-	install -m 644 docs/help.txt "$1/usr/share/doc/emelfm/docs/help.txt"
+	install -D -m 644 docs/help.txt \
+	                  "$1/usr/share/doc/emelfm/docs/help.txt"
 	install -m 644 COPYING "$1/usr/share/doc/emelfm/COPYING"
 }
