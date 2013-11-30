@@ -1,0 +1,11 @@
+diff -rup mhwaveedit-1.4.23-orig/src/dataformat.h mhwaveedit-1.4.23/src/dataformat.h
+--- mhwaveedit-1.4.23-orig/src/dataformat.h	2013-11-30 18:50:30.699553728 +0000
++++ mhwaveedit-1.4.23/src/dataformat.h	2013-11-30 18:50:43.679554076 +0000
+@@ -22,6 +22,7 @@
+ #ifndef DATAFORMAT_H_INCLUDED
+ #define DATAFORMAT_H_INCLUDED
+ 
++#include <sys/types.h>
+ #include <gtk/gtk.h>
+ 
+ /* struct describing the sample format. */
