@@ -6,6 +6,7 @@ libxft_build() {
 	tar -xjvf libXft-$PACKAGE_VERSION.tar.bz2
 	cd libXft-$PACKAGE_VERSION
 
+	patch -p1 < "$BASE_DIR/patches/libXft-tinyxlib.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \
