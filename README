@@ -5,8 +5,9 @@
 |_____\__,_/___|\__, |\__,_/_/\_\
                 |___/
 
-Lazyux is an ultra-minimalistic, no-frills, embedded-like distribution of
-Linux-libre (http://linux-libre.fsfla.org/) in its early stages of development.
+Lazyux is an ultra-minimalistic, no-frills, graphical, embedded-like
+distribution of Linux-libre (http://linux-libre.fsfla.org/) in its early stages
+of development.
 
 About Lazyux
 ============
@@ -22,8 +23,9 @@ Features:
 
 Current status:
   - Builds flawlessly for x86_64 on Debian 7 (http://www.debian.org/)
-  - Boots under UEFI and automatically detects all hardware, using the kmoduled
-    applet from lazy-utils (https://github.com/iguleder/lazy-utils)
+  - Boots under UEFI, automatically detects all hardware, devd from
+    lazy-utils (https://github.com/iguleder/lazy-utils) and reaches a graphical
+    desktop
   - All include applications work
   - Contains documentation for each package under /usr/share/doc and in man
     pages
@@ -46,8 +48,15 @@ Included packages:
     - lazy-utils (https://github.com/iguleder/lazy-utils)
     - loksh (https://github.com/iguleder/loksh), a port ksh from OpenBSD
       (http://www.openbsd.org/)
-    - ISC DHCP (http://www.isc.org/downloads/dhcp/)
+    - tinyxlib (https://github.com/iguleder/tinyxlib)
+    - tinyxserver (https://github.com/iguleder/tinyxserver)
+    - FreeType (http://www.freetype.org/)
+    - libXft (http://cgit.freedesktop.org/xorg/lib/libXft/)
+    - Ratpoison (http://www.nongnu.org/ratpoison/)
+    - GTK+ (http://www.gtk.org/)
   - Applications:
+    - aterm (http://www.afterstep.org/aterm.php)
+    - ISC DHCP (http://www.isc.org/downloads/dhcp/)
     - Lynx (http://lynx.isc.org/)
     - Ytree (http://www.han.de/~werner/ytree.html)
     - ircII (http://www.eterna.com.au/ircii/)
@@ -79,6 +88,7 @@ environment:
   - pkg-config, alsa-lib uses it when it searches for ncurses
   - git and unzip, to build lazy-utils
   - flex and bison, to build UnNetHack
+  - nasm, to build libjpeg-turbo
 
 Credits and Legal Information
 =============================
