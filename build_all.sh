@@ -14,7 +14,8 @@ CORE="linux_headers
       zlib
       dhcp
       linux"
-MULTIMEDIA="alsa_lib mpg123 alsa_utils libogg libvorbis vorbis_tools"
+CORE_MULTIMEDIA="alsa_lib alsa_utils mpg123"
+EXTRA_MULTIMEDIA="libogg libvorbis vorbis_tools"
 X_SERVER="tinyxlib
           xinit
           tinyxserver
@@ -25,7 +26,7 @@ X_SERVER="tinyxlib
 LIBXFT="freetype libxml2 fontconfig libxft ttf_bitstream_vera"
 WINDOW_MANAGER="ratpoison"
 GTK="glib gtk"
-CORE_APPS="less vile screen dropbear aterm emelfm beaver"
+CORE_APPS="less vile screen dropbear aterm emelfm gtkedit"
 EXTRA_APPS="htop
             lynx
             ircii
@@ -33,14 +34,21 @@ EXTRA_APPS="htop
             ncdu
             bwm_ng
             unnethack
+            beaver
             gdmap
             xchat
+            xhippo
+            gtkfontsel
+            gtkdiskfree
+            mhwaveedit
             libpng
             libjpeg_turbo
+            giflib
+            meh
             mtpaint"
 
 # built packages
-ALL="$CORE $X_SERVER $LIBXFT $WINDOW_MANAGER $GTK $CORE_APPS $EXTRA_APPS"
+ALL="$CORE $X_SERVER $LIBXFT $WINDOW_MANAGER $GTK $CORE_APPS $CORE_MULTIMEDIA $EXTRA_APPS"
 
 # clean up
 [ -d "$SYSROOT" ] && rm -rf "$SYSROOT"
