@@ -1,0 +1,21 @@
+diff -rup meh-0.3-orig/Makefile meh-0.3/Makefile
+--- meh-0.3-orig/Makefile	2013-12-05 21:09:08.652137111 +0000
++++ meh-0.3/Makefile	2013-12-05 21:10:26.136139189 +0000
+@@ -7,7 +7,7 @@ OBJFILES := $(SRCFILES:%.c=%.o)
+ DEPFILES := $(OBJFILES:%.o=%.d)
+ TESTCLEAN := $(TESTTARGET) $(TESTTARGET).d $(TESTTARGET).o
+ CLEANFILES := $(CLEANFILES) $(DEPFILES) $(OBJFILES) test/test.o test/test.d test/test $(TARGET)
+-LIBS ?= -lX11 -lXext -ljpeg -lpng -lgif
++LIBS ?= -lX11 -lXext -ljpeg -lpng -lgif -lz
+ PREFIX ?= /usr/local
+ BINDIR = $(PREFIX)/bin
+ 
+@@ -32,7 +32,7 @@ test/test: test/test.o $(filter-out src/
+ 	$(CC) $(CFLAGS) -MMD -MP -MT "$*.d" -c -o $@ $<
+ 
+ install:
+-	install -Dm 755 meh $(BINDIR)
++	install -Dm 755 meh $(BINDIR)/meh
+ 
+ # Clean
+ clean:

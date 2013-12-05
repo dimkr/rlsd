@@ -1,0 +1,11 @@
+diff -rup meh-0.3-orig/src/meh.h meh-0.3/src/meh.h
+--- meh-0.3-orig/src/meh.h	2013-12-05 21:11:26.404140804 +0000
++++ meh-0.3/src/meh.h	2013-12-05 21:11:36.248141066 +0000
+@@ -1,6 +1,7 @@
+ #ifndef MEH_H
+ #define MEH_H MEH_H
+ 
++#include <sys/select.h>
+ #include <stdio.h>
+ 
+ struct image;
