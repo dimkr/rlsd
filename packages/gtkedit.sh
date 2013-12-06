@@ -6,7 +6,10 @@ gtkedit_build() {
 	tar -xzvf gtkedit-$PACKAGE_VERSION-src.tar.gz
 	cd gtkedit-$PACKAGE_VERSION-src
 
-	$CC $CFLAGS $(gtk-config --cflags) gtkedit.c $(gtk-config --libs) -o gtkedit
+	$CC $CFLAGS $(gtk-config --cflags) \
+	    gtkedit.c \
+	    $LDFLAGS $(gtk-config --libs) \
+	    -o gtkedit
 }
 
 gtkedit_package() {

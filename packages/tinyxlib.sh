@@ -1,9 +1,9 @@
-PACKAGE_VERSION="master"
-PACKAGE_SOURCES="https://github.com/iguleder/tinyxlib/archive/master.zip,tinyxlib-master.zip"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/tinyxlib/archive/master.zip,tinyxlib-$PACKAGE_VERSION.zip"
 
 tinyxlib_build() {
 	[ -d tinyxlib-master ] && rm -rf tinyxlib-master
-	unzip tinyxlib-master
+	unzip tinyxlib-$PACKAGE_VERSION.zip
 	cd tinyxlib-master
 
 	make clean
@@ -12,7 +12,8 @@ tinyxlib_build() {
 	     LDFLAGS="$LDFLAGS" \
 	     BINDIR="/bin" \
 	     LIBDIR="/lib" \
-	     STATIC="$STATIC"
+	     STATIC="$STATIC" \
+	     FONT_ENCODINGS_DIRECTORY="/usr/share/fonts/encodings/encodings.dir"
 }
 
 tinyxlib_package() {

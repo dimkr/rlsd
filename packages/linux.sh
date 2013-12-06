@@ -1,6 +1,6 @@
-PACKAGE_VERSION="3.10.21"
+PACKAGE_VERSION="3.10.22"
 PACKAGE_MAJOR_VERSION="3.10"
-PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz https://dev.openwrt.org/export/head/trunk/target/linux/generic/patches-$PACKAGE_MAJOR_VERSION/100-overlayfs.patch"
+PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz https://dev.openwrt.org/export/head/trunk/target/linux/generic/patches-$PACKAGE_MAJOR_VERSION/100-overlayfs.patch,linux-overlayfs.patch"
 
 linux_build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION

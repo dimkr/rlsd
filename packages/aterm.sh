@@ -19,8 +19,6 @@ aterm_build() {
 
 aterm_package() {
 	make DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/aterm/README"
-	install -D -m 644 NEWS "$1/usr/share/doc/aterm/NEWS"
-	install -D -m 644 AUTHORS "$1/usr/share/doc/aterm/AUTHORS"
-	install -D -m 644 COPYING "$1/usr/share/doc/aterm/COPYING"
+	install -D -m 644 ChangeLog "$1/usr/share/doc/aterm/ChangeLog"
+	install -m 644 ChangeLog.0.4 "$1/usr/share/doc/aterm/ChangeLog.0.4"
 }

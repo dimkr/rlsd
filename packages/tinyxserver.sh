@@ -1,9 +1,9 @@
-PACKAGE_VERSION="master"
-PACKAGE_SOURCES="https://github.com/iguleder/tinyxserver/archive/master.zip,tinyxserver-master.zip"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/tinyxserver/archive/master.zip,tinyxserver-$PACKAGE_VERSION.zip"
 
 tinyxserver_build() {
 	[ -d tinyxserver-master ] && rm -rf tinyxserver-master
-	unzip tinyxserver-master.zip
+	unzip tinyxserver-$PACKAGE_VERSION.zip
 	cd tinyxserver-master
 
 	case "$HOST" in

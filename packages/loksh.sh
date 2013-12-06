@@ -1,9 +1,9 @@
-PACKAGE_VERSION="master"
-PACKAGE_SOURCES="https://github.com/iguleder/loksh/archive/master.zip,loksh-master.zip"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/loksh/archive/master.zip,loksh-$PACKAGE_VERSION.zip"
 
 loksh_build() {
 	[ -d loksh-master ] && rm -rf loksh-master
-	unzip loksh-master.zip
+	unzip loksh-$PACKAGE_VERSION.zip
 	cd loksh-master
 
 	$CC $CFLAGS -I. *.c -o loksh

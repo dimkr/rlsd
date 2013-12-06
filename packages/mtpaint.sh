@@ -1,9 +1,9 @@
-PACKAGE_VERSION="master"
-PACKAGE_SOURCES="https://github.com/wjaguar/mtPaint/archive/master.zip,mtpaint-master.zip"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/wjaguar/mtPaint/archive/master.zip,mtpaint-$PACKAGE_VERSION.zip"
 
 mtpaint_build() {
 	[ -d mtPaint-master ] && rm -rf mtPaint-master
-	unzip mtpaint-master.zip
+	unzip mtpaint-$PACKAGE_VERSION.zip
 	cd mtPaint-master
 
 	patch -p1 < "$BASE_DIR/patches/mtpaint-gtk1.patch"
