@@ -8,7 +8,7 @@ linux_build() {
 	cd linux-$PACKAGE_VERSION
 
 	# add overlayfs
-	patch -p1 < ../100-overlayfs.patch
+	patch -p1 < ../linux-overlayfs.patch
 
 	# apply all Lazyux modifications
 	patch -p1 < "$BASE_DIR/patches/linux.patch"
