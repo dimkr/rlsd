@@ -12,6 +12,7 @@ CORE="linux_headers
       mandoc
       ncurses
       zlib
+      axel
       dhcp
       linux"
 CORE_MULTIMEDIA="alsa_lib alsa_utils mpg123"
