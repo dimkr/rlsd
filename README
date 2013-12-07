@@ -6,76 +6,34 @@
                 |___/
 
 Lazyux is an ultra-minimalistic, no-frills, graphical, embedded-like
-distribution of Linux-libre (http://linux-libre.fsfla.org/) in its early stages
-of development.
+distribution of Linux-libre (http://linux-libre.fsfla.org/) in development.
 
 About Lazyux
 ============
 
 Features:
-  - Small and extremely lightweight
-  - Secure
-  - Cross-compiled quickly
+  - Small and extremely lightweight, yet graphical
   - Statically-linked
-  - Supports remote administration and headless systems
+  - Built automatically and quickly
   - Familiar: Unix-like and written in C
   - Permissively-licensed
 
+Core components:
+  - Linux-libre (http://linux-libre.fsfla.org/)
+  - musl (http://www.musl-libc.org/)
+  - lazy-utils (http://dimakrasner.com/lazy_utils.html)
+  - loksh (http://dimakrasner.com/loksh.html)
+  - tinyxlib (https://github.com/iguleder/tinyxlib)
+  - tinyxserver (https://github.com/iguleder/tinyxserver)
+  - Ratpoison (http://www.nongnu.org/ratpoison/)
+  - GTK+ (http://www.gtk.org/)
+
 Current status:
-  - Builds flawlessly for x86_64 on Debian 7 (http://www.debian.org/)
-  - Boots under UEFI, automatically detects all hardware, devd from
-    lazy-utils (https://github.com/iguleder/lazy-utils) and reaches a graphical
-    desktop
-  - All include applications work
-  - Contains documentation for each package under /usr/share/doc and in man
-    pages
-  - At the moment, the kernel cannot be cross-compiled
-  - Lacks network tools (i.e route, ifconfig) and a firewall
-  - Lacks a script for the automated construction of a bootable media, which is
-    a manual process at the moment
+  - Builds flawlessly on Debian 7 (http://www.debian.org/)
+  - Boots under x86 (MBR) and x86_64 (UEFI); reaches a graphical desktop
+  - Lacks network tools (i.e route, ifconfig), WiFi support and a firewall
   - Lacks a persistent root file system
-  - Lacks package management
-
-Potantial uses:
-  - A "live" operating system for private browsing, system rescue, etc'
-  - Firmware for routers, firewalls and switches
-  - A dedicated server operating system
-
-Included packages:
-  - Core:
-    - Linux-libre (http://linux-libre.fsfla.org/)
-    - musl (http://www.musl-libc.org/)
-    - lazy-utils (https://github.com/iguleder/lazy-utils)
-    - loksh (https://github.com/iguleder/loksh), a port ksh from OpenBSD
-      (http://www.openbsd.org/)
-    - tinyxlib (https://github.com/iguleder/tinyxlib)
-    - tinyxserver (https://github.com/iguleder/tinyxserver)
-    - FreeType (http://www.freetype.org/)
-    - libXft (http://cgit.freedesktop.org/xorg/lib/libXft/)
-    - Ratpoison (http://www.nongnu.org/ratpoison/)
-    - GTK+ (http://www.gtk.org/)
-  - Applications:
-    - aterm (http://www.afterstep.org/aterm.php)
-    - ISC DHCP (http://www.isc.org/downloads/dhcp/)
-    - Lynx (http://lynx.isc.org/)
-    - Ytree (http://www.han.de/~werner/ytree.html)
-    - ircII (http://www.eterna.com.au/ircii/)
-    - Dropbear (https://matt.ucc.asn.au/dropbear/dropbear.html)
-    - vile (http://invisible-island.net/vile/)
-    - GNU nano (http://www.nano-editor.org/)
-    - Calcurse (http://calcurse.org/)
-    - GNU Screen (http://www.gnu.org/software/screen/)
-    - less (http://www.greenwoodsoftware.com/less/)
-    - mandoc from mdocml (http://mdocml.bsd.lv/)
-    - htop (http://htop.sourceforge.net/)
-    - ncdu (http://dev.yorhel.nl/ncdu)
-    - alsa-utils (www.alsa-project.org/)
-    - mpg123 (http://www.mpg123.de/)
-    - vorbis-tools (http://www.vorbis.com/)
-    - bwm-ng (http://www.gropp.org/?id=projects&sub=bwm-ng)
-    - UnNetHack (http://sourceforge.net/apps/trac/unnethack/)
-    - ELILO (http://sourceforge.net/projects/elilo/), built against gnu-efi
-      (http://sourceforge.net/projects/gnu-efi/)
+  - Some applications crash
 
 Building Lazyux
 ===============
