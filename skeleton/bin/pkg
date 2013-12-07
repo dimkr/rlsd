@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# pkg: installs or removes packages
+
+case "$1" in
+	install)
+		echo "Installing $2"
+
+		# download the package
+		axel -o "/tmp/$2.tgz" "ftp://dimakrasner.com/$2.tgz"
+		if [ 0 -ne $? ]
+		then
+			echo "Error: failed to download $2."
+			exit 1
+		fi
+
+		# extract the package
+		mkdir "/var/pkg/$2"
+		tar -xzvf "/tmp/$2.tgz" -C / > "/var/pkg/$2/contents"
+
+		# run the post-installation script
+		[ -f /metadata/install.sh ] && /metadata/install.sh
+
+		# move the post-removal script to /var/pkg
+		[ -f /metadata/remove.sh ] && \
+		                          mv /metadata/remove.sh "/var/pkg/$2/remove.sh"
+
+		# remove /metadata
+		rm -r /metadata
+
+		# delete the package
+		rm "/tmp/$2.tgz"
+		;;
+
+	remove)
+		echo "Removing $2"
+
+		# make sure the package is installed
+		if [ ! -f "/var/pkg/$2/contents" ]
+		then
+			echo "Error: $1 is not installed."
+			exit 1
+		fi
+
+		# remove the package files
+		while read file
+		do
+			rm "$file"
+		done < "/var/pkg/$2/contents"
+
+		# run the post-removal script
+		if [ -e "/var/pkg/$2/remove.sh" ]
+		then
+			"/var/pkg/$2/remove.sh"
+			rm "/var/pkg/$2/remove.sh"
+		fi
+
+		# remove the package metadata
+		rm "/var/pkg/$2/contents"
+		;;
+
+	*)
+		exit 1
+esac
