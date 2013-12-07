@@ -7,6 +7,7 @@ CORE="linux_headers
       musl
       lazy_utils
       loksh
+      xz_embedded
       tar
       gzip
       gnu_efi

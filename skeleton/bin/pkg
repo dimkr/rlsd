@@ -7,7 +7,7 @@ case "$1" in
 		echo "Installing $2"
 
 		# download the package
-		axel -o "/tmp/$2.tgz" "ftp://dimakrasner.com/$2.tgz"
+		axel -o "/tmp/$2.pkg" "ftp://dimakrasner.com/$2.pkg"
 		if [ 0 -ne $? ]
 		then
 			echo "Error: failed to download $2."
@@ -16,7 +16,7 @@ case "$1" in
 
 		# extract the package
 		mkdir "/var/pkg/$2"
-		tar -xzvf "/tmp/$2.tgz" -C / > "/var/pkg/$2/contents"
+		cat "/tmp/$2.pkg" | xzminidec | tar -xvf - -C / > "/var/pkg/$2/contents"
 
 		# run the post-installation script
 		[ -f /metadata/install.sh ] && /metadata/install.sh
@@ -29,7 +29,7 @@ case "$1" in
 		rm -r /metadata
 
 		# delete the package
-		rm "/tmp/$2.tgz"
+		rm "/tmp/$2.pkg"
 		;;
 
 	remove)
