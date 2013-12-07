@@ -7,7 +7,11 @@ BASE_DIR="$(pwd)"
 BINARY_TARBALL_DIR="$BASE_DIR/built_packages"
 
 # uneeded files which should be removed from packages
-UNNEEDED_FILES="usr/share/pixmaps usr/share/applications usr/share/info usr/share/gtk-doc"
+UNNEEDED_FILES="usr/share/pixmaps
+                usr/share/applications
+                usr/share/info
+                usr/share/gtk-doc
+                lib/charset.alias"
 
 # include the configuration file
 . ./config
@@ -113,7 +117,7 @@ ${1}_package "$installation_prefix"
 # remove all unneeded files
 for i in $UNNEEDED_FILES
 do
-	[ -d "$installation_prefix/$i" ] && rm -rf "$installation_prefix/$i"
+	[ -e "$installation_prefix/$i" ] && rm -rf "$installation_prefix/$i"
 done
 
 # remove libtool libraries

@@ -7,6 +7,8 @@ CORE="linux_headers
       musl
       lazy_utils
       loksh
+      tar
+      gzip
       gnu_efi
       elilo
       mandoc
