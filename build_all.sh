@@ -29,7 +29,7 @@ X_SERVER="tinyxlib
 LIBXFT="freetype libxml2 fontconfig libxft ttf_bitstream_vera"
 WINDOW_MANAGER="ratpoison"
 GTK="glib gtk"
-CORE_APPS="less vile screen ytree dropbear aterm emelfm gtkedit"
+CORE_APPS="less vile screen ytree dropbear lpackage aterm emelfm gtkedit"
 EXTRA_APPS="htop
             lynx
             ircii
@@ -52,7 +52,14 @@ EXTRA_APPS="htop
             mtpaint"
 
 # built packages
-ALL="$CORE $X_SERVER $LIBXFT $WINDOW_MANAGER $GTK $CORE_APPS $CORE_MULTIMEDIA $EXTRA_APPS"
+ALL="$CORE
+     $X_SERVER
+     $LIBXFT
+     $WINDOW_MANAGER
+     $GTK
+     $CORE_APPS
+     $CORE_MULTIMEDIA
+     $EXTRA_APPS"
 
 # clean up
 [ -d "$SYSROOT" ] && rm -rf "$SYSROOT"
