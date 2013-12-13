@@ -34,10 +34,12 @@ EXTRA_APPS="htop
             bwm_ng
             unnethack
             beaver
+            guitar
             gdmap
             xchat
             xhippo
             gtkfontsel
+            gtkcat
             gtkdiskfree
             mhwaveedit
             libpng
