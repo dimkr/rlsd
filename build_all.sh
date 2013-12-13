@@ -21,7 +21,6 @@ CORE="linux_headers
 CORE_MULTIMEDIA="alsa_lib alsa_utils mpg123"
 EXTRA_MULTIMEDIA="libogg libvorbis vorbis_tools"
 X_SERVER="tinyxlib
-          xinit
           tinyxserver
           font_cursor_misc
           font_misc_misc

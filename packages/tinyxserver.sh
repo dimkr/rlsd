@@ -21,6 +21,13 @@ tinyxserver_build() {
 
 tinyxserver_package() {
 	install -D -m 755 Xfbdev "$1/bin/Xfbdev"
+	install -m 755 xinit "$1/bin/xinit"
+	install -D -m 644 init/xinit.1 "$1/usr/share/man/man1/xinit.1"
 	install -D -m 644 README "$1/usr/share/doc/tinyxserver/README"
 	install -m 644 changelog "$1/usr/share/doc/tinyxserver/changelog"
+	install -D -m 644 init/README "$1/usr/share/doc/xinit/README"
+	install -m 644 init/README.upstream "$1/usr/share/doc/xinit/README.upstream"
+	install -m 644 init/ChangeLog "$1/usr/share/doc/xinit/ChangeLog"
+	install -m 644 init/AUTHORS "$1/usr/share/doc/xinit/AUTHORS"
+	install -m 644 init/COPYING "$1/usr/share/doc/xinit/COPYING"
 }
