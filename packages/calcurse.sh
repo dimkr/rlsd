@@ -11,11 +11,11 @@ calcurse_build() {
 	            --datarootdir=/usr/share \
 	            --disable-nls \
 	            --disable-memory-debug
-	make
+	$MAKE
 }
 
 calcurse_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/calcurse/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/calcurse/NEWS"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/calcurse/AUTHORS"

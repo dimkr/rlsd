@@ -6,7 +6,9 @@ mandoc_build() {
 	tar -xzvf mdocml-$PACKAGE_VERSION.tar.gz
 	cd mdocml-$PACKAGE_VERSION
 
-	make CC="$CC" CFLAGS="-D__BEGIN_DECLS=\; -D__END_DECLS=\; -DVERSION=\'\"$PACKAGE_VERSION\"\' $CFLAGS" mandoc
+	$MAKE CC="$CC" \
+	      CFLAGS="-D__BEGIN_DECLS=\; -D__END_DECLS=\; -DVERSION=\'\"$PACKAGE_VERSION\"\' $CFLAGS" \
+	      mandoc
 }
 
 mandoc_package() {

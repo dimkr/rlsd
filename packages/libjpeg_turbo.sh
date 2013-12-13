@@ -18,9 +18,9 @@ libjpeg_turbo_build() {
 	            --without-jpeg7 \
 	            --without-jpeg8 \
 	            --without-turbojpeg
-	make
+	$MAKE
 }
 
 libjpeg_turbo_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 }

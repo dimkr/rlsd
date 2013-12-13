@@ -21,11 +21,11 @@ glib_build() {
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --enable-debug=no
-	make
+	$MAKE
 }
 
 glib_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/glib/README"
 	install -m 644 NEWS "$1/usr/share/doc/glib/NEWS"
 	install -m 644 AUTHORS "$1/usr/share/doc/glib/AUTHORS"

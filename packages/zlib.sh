@@ -12,11 +12,11 @@ zlib_build() {
 		library_flags="--sharedlibdir=/lib"
 	fi
 	./configure --prefix=/usr $library_flags
-	make
+	$MAKE
 }
 
 zlib_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/zlib/README"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/zlib/ChangeLog"
 }

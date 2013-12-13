@@ -12,11 +12,11 @@ tar_build() {
 	            --datarootdir=/usr/share \
 	            --without-included-regex \
 	            --disable-nls
-	make
+	$MAKE
 }
 
 tar_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/tar/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/tar/ChangeLog"
 	install -m 644 NEWS "$1/usr/share/doc/tar/NEWS"

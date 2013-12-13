@@ -15,11 +15,11 @@ vile_build() {
 	            --without-locale \
 	            --without-icondir \
 	            --disable-desktop
-	make
+	$MAKE
 }
 
 vile_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/vile/README"
 	for i in CHANGES*
 	do

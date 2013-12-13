@@ -9,11 +9,11 @@ meh_build() {
 	patch -p1 < "$BASE_DIR/patches/meh-musl.patch"
 	patch -p1 < "$BASE_DIR/patches/meh-giflib.patch"
 	patch -p1 < "$BASE_DIR/patches/meh-build.patch"
-	make
+	$MAKE
 }
 
 meh_package() {
-	make PREFIX="$1" install
+	$MAKE PREFIX="$1" install
 	install -D -m 644 README "$1/usr/share/doc/meh/README"
 	install -m 644 NEWS "$1/usr/share/doc/meh/NEWS"
 	install -m 644 AUTHORS "$1/usr/share/doc/meh/AUTHORS"

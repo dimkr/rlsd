@@ -11,11 +11,11 @@ gtkdiskfree_build() {
 	            --prefix= \
 	            --datadir=/usr/share \
 	            --disable-nls
-	make
+	$MAKE
 }
 
 gtkdiskfree_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gtkdiskfree/README"
 	install -m 644 NEWS "$1/usr/share/doc/gtkdiskfree/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/gtkdiskfree/ChangeLog"

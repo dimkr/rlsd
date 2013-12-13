@@ -6,11 +6,11 @@ bwm_ng_build() {
 	tar -xzvf bwm-ng-$PACKAGE_VERSION.tar.gz
 	cd bwm-ng-$PACKAGE_VERSION
 	./configure --host=$HOST --prefix= --datarootdir=/usr/share
-	make
+	$MAKE
 }
 
 bwm_ng_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/bwm-ng/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/bwm-ng/NEWS"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/bwm-ng/AUTHORS"

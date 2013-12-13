@@ -24,11 +24,11 @@ mhwaveedit_build() {
 	            --without-esound \
 	            --without-sun \
 	            --without-arts
-	make
+	$MAKE
 }
 
 mhwaveedit_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mhwaveedit/README"
 	install -m 644 NEWS "$1/usr/share/doc/mhwaveedit/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/mhwaveedit/ChangeLog"

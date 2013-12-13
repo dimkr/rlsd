@@ -18,11 +18,11 @@ dhcp_build() {
 	            --sbindir=/bin \
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share
-	make
+	$MAKE
 }
 
 dhcp_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -m 755 client/scripts/linux "$1/bin/dhclient-script"
 	install -D -m 644 README "$1/usr/share/doc/dhcp/README"
 	install -m 644 RELNOTES "$1/usr/share/doc/dhcp/RELNOTES"

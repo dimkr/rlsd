@@ -11,11 +11,11 @@ nano_build() {
 	            --disable-nls \
 	            --disable-memory-debug \
 	            --without-slang
-	make
+	$MAKE
 }
 
 nano_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/nano/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/nano/NEWS"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/nano/AUTHORS"

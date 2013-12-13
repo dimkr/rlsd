@@ -19,11 +19,11 @@ mpg123_build() {
 	            --with-audio=alsa \
 	            --with-default-audio=alsa \
 	            --with-optimization=0
-	make
+	$MAKE
 }
 
 mpg123_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mpg123/README"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/mpg123/ChangeLog"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/mpg123/AUTHORS"

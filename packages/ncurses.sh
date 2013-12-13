@@ -29,11 +29,11 @@ ncurses_build() {
 	            --without-debug \
 	            --without-profile \
 	            --with-manpage-format=normal
-	make
+	$MAKE
 }
 
 ncurses_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	mv "$1/usr/lib/pkgconfig" "$1/lib/"
 	rmdir "$1/usr/lib"
 	install -D -m 644 README "$1/usr/share/doc/ncurses/README"

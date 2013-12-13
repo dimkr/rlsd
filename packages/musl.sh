@@ -12,13 +12,13 @@ musl_build() {
 	            --disable-debug \
 	            --enable-gcc-wrapper \
 	            $CONFIGURE_LIBRARY_FLAGS
-	make
+	$MAKE
 }
 
 musl_package() {
 	# TODO: figure out how to build the GCC wrapper without having an empty
 	# installation directory
-	make install
+	$MAKE install
 
 	install -D -m 644 README "$1/usr/share/doc/musl/README"
 	install -D -m 644 WHATSNEW "$1/usr/share/doc/musl/WHATSNEW"

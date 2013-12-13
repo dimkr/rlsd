@@ -9,11 +9,11 @@ gtkfontsel_build() {
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share
-	make
+	$MAKE
 }
 
 gtkfontsel_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gtkfontsel/README"
 	install -m 644 NEWS "$1/usr/share/doc/gtkfontsel/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/gtkfontsel/ChangeLog"

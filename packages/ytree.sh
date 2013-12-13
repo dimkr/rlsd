@@ -17,12 +17,12 @@ ytree_build() {
 	    -e s~'install -m 0644 ytree.1.es.gz \$(MANESDIR)/'~'install -D -m 0644 ytree.1.es.gz $(MANESDIR)/ytree.1.es.gz'~ \
 	    -i Makefile
 
-	make CC="$CC"
+	$MAKE CC="$CC"
 }
 
 ytree_package() {
 	mkdir -p "$1/usr/share/man/man1" "$1/usr/share/man/es/man1"
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/ytree/README"
 	install -m 644 CHANGES "$1/usr/share/doc/ytree/CHANGES"
 	install -m 644 THANKS "$1/usr/share/doc/ytree/THANKS"

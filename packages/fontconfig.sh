@@ -14,11 +14,11 @@ fontconfig_build() {
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --enable-libxml2 \
 	            --with-templatedir="/etc/fonts/conf.avail"
-	make
+	$MAKE
 }
 
 fontconfig_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/fontconfig/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/fontconfig/ChangeLog"
 	install -m 644 AUTHORS "$1/usr/share/doc/fontconfig/AUTHORS"

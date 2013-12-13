@@ -17,7 +17,7 @@ emelfm_build() {
 	    -e s~'cd plugins; make install'~'# &'~ \
 	    -i Makefile
 
-	make
+	$MAKE
 }
 
 emelfm_package() {

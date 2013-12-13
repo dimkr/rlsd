@@ -16,7 +16,7 @@ jwm_build() {
 	            --disable-shape \
 	            --disable-xmu \
 	            --enable-xinerama
-	make
+	$MAKE
 }
 
 jwm_package() {

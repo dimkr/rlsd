@@ -13,11 +13,11 @@ lynx_build() {
 	            --enable-ipv6 \
 	            --disable-gzip-help \
 	            --with-zlib
-	make
+	$MAKE
 }
 
 lynx_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/lynx/README"
 	install -D -m 644 CHANGES "$1/usr/share/doc/lynx/CHANGES"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/lynx/AUTHORS"

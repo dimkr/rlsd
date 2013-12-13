@@ -9,7 +9,7 @@ xz_embedded_build() {
 	sed -e s~'CC =.*'~"CC = $CC"~ \
 	    -e s~'CFLAGS =.*'~"CFLAGS = $CFLAGS"~ \
 	    -i Makefile
-	make LDFLAGS="$LDFLAGS"
+	$MAKE LDFLAGS="$LDFLAGS"
 }
 
 xz_embedded_package() {

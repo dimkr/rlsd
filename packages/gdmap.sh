@@ -7,11 +7,11 @@ gdmap_build() {
 	cd gdmap-$PACKAGE_VERSION
 
 	./configure --host=$HOST --prefix= --datadir=/usr/share
-	make
+	$MAKE
 }
 
 gdmap_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gdmap/README"
 	install -m 644 AUTHORS "$1/usr/share/doc/gdmap/AUTHORS"
 	install -m 644 COPYING "$1/usr/share/doc/gdmap/COPYING"

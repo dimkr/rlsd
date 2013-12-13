@@ -18,11 +18,11 @@ dropbear_build() {
 	            --datarootdir=/usr/share \
 	            --enable-zlib \
 	            --disable-pam
-	make PROGRAMS="$PROGRAMS" MULTI=1
+	$MAKE PROGRAMS="$PROGRAMS" MULTI=1
 }
 
 dropbear_package() {
-	make DESTDIR="$1" PROGRAMS="$PROGRAMS" MULTI=1 install
+	$MAKE DESTDIR="$1" PROGRAMS="$PROGRAMS" MULTI=1 install
 	ln -s dropbearmulti "$1/bin/ssh"
 	install -D -m 644 README "$1/usr/share/doc/dropbear/README"
 	install -m 644 LICENSE "$1/usr/share/doc/dropbear/LICENSE"

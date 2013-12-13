@@ -23,11 +23,11 @@ alsa_lib_build() {
 	            --disable-old-symbols \
 	            --disable-python \
 	            --without-debug
-	make
+	$MAKE
 }
 
 alsa_lib_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 ChangeLog "$1/usr/share/doc/alsa-lib/ChangeLog"
 	install -D -m 644 COPYING "$1/usr/share/doc/alsa-lib/COPYING"
 }

@@ -17,11 +17,11 @@ alsa_utils_build() {
 	            --disable-alsaloop \
 	            --disable-xmlto \
 	            --without-udev-rules-dir
-	make
+	$MAKE
 }
 
 alsa_utils_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/alsa-utils/README"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/alsa-utils/ChangeLog"
 	install -D -m 644 COPYING "$1/usr/share/doc/alsa-utils/COPYING"

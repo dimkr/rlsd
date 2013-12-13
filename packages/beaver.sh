@@ -13,11 +13,11 @@ beaver_build() {
 	    -e s~'\$(DESTDIR)/share'~'$(DESTDIR)/usr/share'~g \
 	    -e s~'\$(DESTDIR)/man'~'$(DESTDIR)/usr/share/man'~g \
 	    -i Makefile
-	make
+	$MAKE
 }
 
 beaver_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 ../README "$1/usr/share/doc/beaver/README"
 	install -m 644 ../NEWS "$1/usr/share/doc/beaver/NEWS"
 	install -m 644 ../ChangeLog "$1/usr/share/doc/beaver/ChangeLog"

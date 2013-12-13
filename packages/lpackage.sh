@@ -6,9 +6,9 @@ lpackage_build() {
 	unzip lpackage-$PACKAGE_VERSION.zip
 	cd lpackage-master
 
-	make CC="$CC" CFLAGS="$CFLAGS"
+	$MAKE CC="$CC" CFLAGS="$CFLAGS"
 }
 
 lpackage_package() {
-	make DESTDIR="$1" BIN_DIR="bin" install
+	$MAKE DESTDIR="$1" BIN_DIR="bin" install
 }

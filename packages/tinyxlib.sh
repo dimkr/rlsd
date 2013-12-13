@@ -6,18 +6,18 @@ tinyxlib_build() {
 	unzip tinyxlib-$PACKAGE_VERSION.zip
 	cd tinyxlib-master
 
-	make clean
-	make CC="$CC" \
-	     EXTRA_CFLAGS="$CFLAGS" \
-	     LDFLAGS="$LDFLAGS" \
-	     BINDIR="/bin" \
-	     LIBDIR="/lib" \
-	     STATIC="$STATIC" \
-	     FONT_ENCODINGS_DIRECTORY="/usr/share/fonts/encodings/encodings.dir"
+	$MAKE clean
+	$MAKE CC="$CC" \
+	      EXTRA_CFLAGS="$CFLAGS" \
+	      LDFLAGS="$LDFLAGS" \
+	      BINDIR="/bin" \
+	      LIBDIR="/lib" \
+	      STATIC="$STATIC" \
+	      FONT_ENCODINGS_DIRECTORY="/usr/share/fonts/encodings/encodings.dir"
 }
 
 tinyxlib_package() {
-	make DESTDIR="$1" BINDIR="/bin" LIBDIR="/lib" STATIC="$STATIC" install
+	$MAKE DESTDIR="$1" BINDIR="/bin" LIBDIR="/lib" STATIC="$STATIC" install
 	install -D -m 644 README "$1/usr/share/doc/tinyxlib/README"
 	install -m 644 libXau/README "$1/usr/share/doc/tinyxlib/README.libXau"
 	install -m 644 libXmu/README "$1/usr/share/doc/tinyxlib/README.libXmu"

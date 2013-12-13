@@ -16,11 +16,11 @@ unnethack_build() {
 	            --with-owner=root \
 	            --with-group=root \
 	            --with-gamesdir=/var/lib/unnethack
-	make
+	$MAKE
 }
 
 unnethack_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/unnethack/README"
 	install -m 644 doc/Guidebook.txt "$1/usr/share/doc/unnethack/Guidebook.txt"
 	install -m 644 dat/license "$1/usr/share/doc/unnethack/license"

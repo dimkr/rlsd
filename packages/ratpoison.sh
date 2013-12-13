@@ -12,9 +12,9 @@ ratpoison_build() {
 	            --prefix= \
 	            --datarootdir=/usr/share \
 	            --with-xterm=aterm
-	make
+	$MAKE
 }
 
 ratpoison_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 }

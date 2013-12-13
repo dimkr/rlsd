@@ -11,11 +11,11 @@ axel_build() {
 	            --i18n=0 \
 	            --debug=0 \
 	            --strip=0
-	make
+	$MAKE
 }
 
 axel_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/axel/README"
 	install -m 644 CHANGES "$1/usr/share/doc/axel/CHANGES"
 	install -m 644 CREDITS "$1/usr/share/doc/axel/CREDITS"

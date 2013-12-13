@@ -18,11 +18,11 @@ screen_build() {
 	            --disable-colors256 \
 	            --disable-rxvt_osc \
 	            --with-sys-screenrc=/etc/screenrc
-	make
+	$MAKE
 }
 
 screen_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	rm -f "$1/bin/screen"
 	mv "$1/bin/screen-$PACKAGE_VERSION" "$1/bin/screen"
 	install -D -m 644 README "$1/usr/share/doc/screen/README"

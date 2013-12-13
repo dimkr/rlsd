@@ -14,11 +14,11 @@ vorbis_tools_build() {
 	            --without-flac \
 	            --without-speex \
 	            --without-kate
-	make
+	$MAKE
 }
 
 vorbis_tools_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/vorbis-tools/README"
 	install -D -m 644 CHANGES "$1/usr/share/doc/vorbis-tools/CHANGES"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/vorbis-tools/AUTHORS"

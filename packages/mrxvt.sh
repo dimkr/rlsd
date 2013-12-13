@@ -20,11 +20,11 @@ mrxvt_build() {
 	            --disable-xrender \
 	            --disable-jpeg \
 	            --enable-xft
-	make
+	$MAKE
 }
 
 mrxvt_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mrxvt/README"
 	install -m 644 NEWS "$1/usr/share/doc/mrxvt/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/mrxvt/ChangeLog"

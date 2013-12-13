@@ -7,11 +7,11 @@ gzip_build() {
 	cd gzip-$PACKAGE_VERSION
 
 	./configure --host=$HOST --prefix=/ --datarootdir=/usr/share
-	make
+	$MAKE
 }
 
 gzip_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gzip/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/gzip/ChangeLog"
 	install -m 644 NEWS "$1/usr/share/doc/gzip/NEWS"

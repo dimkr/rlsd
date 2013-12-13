@@ -12,11 +12,11 @@ libpng_build() {
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --without-binconfigs
-	make
+	$MAKE
 }
 
 libpng_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/libpng/README"
 	install -m 644 CHANGES "$1/usr/share/doc/libpng/CHANGES"
 	install -m 644 LICENSE "$1/usr/share/doc/libpng/LICENSE"

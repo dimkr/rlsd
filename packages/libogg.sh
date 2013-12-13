@@ -12,11 +12,11 @@ libogg_build() {
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS
-	make
+	$MAKE
 }
 
 libogg_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/libogg/README"
 	install -m 644 CHANGES "$1/usr/share/doc/libogg/CHANGES"
 	install -m 644 AUTHORS "$1/usr/share/doc/libogg/AUTHORS"

@@ -11,11 +11,11 @@ xchat_build() {
 	            --disable-nls \
 	            --enable-ipv6 \
 	            --disable-perl
-	make
+	$MAKE
 }
 
 xchat_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/xchat/README"
 	install -m 644 FAQ "$1/usr/share/doc/xchat/FAQ"
 	install -m 644 NEWS "$1/usr/share/doc/xchat/NEWS"

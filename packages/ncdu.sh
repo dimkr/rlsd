@@ -6,11 +6,11 @@ ncdu_build() {
 	tar -xzvf ncdu-$PACKAGE_VERSION.tar.gz
 	cd ncdu-$PACKAGE_VERSION
 	./configure --host=$HOST --prefix= --datarootdir=/usr/share
-	make
+	$MAKE
 }
 
 ncdu_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/ncdu/README"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/ncdu/ChangeLog"
 	install -D -m 644 COPYING "$1/usr/share/doc/ncdu/COPYING"

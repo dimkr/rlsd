@@ -14,7 +14,7 @@ elilo_build() {
 	    -e s~'^EFICRT0\t   = /usr/lib$'~"EFICRT0	   = $SYSROOT/lib"~ \
 	    -i Make.defaults
 
-	make CC="$CC"
+	$MAKE CC="$CC"
 }
 
 elilo_package() {

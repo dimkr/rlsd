@@ -13,11 +13,11 @@ freetype_build() {
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --without-bzip2 \
 	            --without-png
-	make
+	$MAKE
 }
 
 freetype_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/freetype/README"
 	install -m 644 docs/CHANGES "$1/usr/share/doc/freetype/CHANGES"
 	install -m 644 docs/LICENSE.TXT "$1/usr/share/doc/freetype/LICENSE.TXT"

@@ -14,11 +14,11 @@ ircii_build() {
 	            --datadir=/usr/share \
 	            --mandir=/usr/share/man \
 	            --enable-ipv6
-	make
+	$MAKE
 }
 
 ircii_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	rm -f "$1/bin/irc"
 	mv "$1/bin/irc-$PACKAGE_VERSION" "$1/bin/irc"
 	install -D -m 644 README "$1/usr/share/doc/ircii/README"

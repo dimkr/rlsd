@@ -14,11 +14,11 @@ aterm_build() {
 	            --disable-utmp \
 	            --disable-wtmp \
 	            --disable-memset
-	make
+	$MAKE
 }
 
 aterm_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 ChangeLog "$1/usr/share/doc/aterm/ChangeLog"
 	install -m 644 ChangeLog.0.4 "$1/usr/share/doc/aterm/ChangeLog.0.4"
 }

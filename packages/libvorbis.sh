@@ -12,11 +12,11 @@ libvorbis_build() {
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS
-	make
+	$MAKE
 }
 
 libvorbis_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	mv "$1/usr/share/doc/libvorbis-$PACKAGE_VERSION" \
 	   "$1/usr/share/doc/libvorbis"
 	install -D -m 644 README "$1/usr/share/doc/libvorbis/README"

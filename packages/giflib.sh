@@ -11,11 +11,11 @@ giflib_build() {
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS
-	make
+	$MAKE
 }
 
 giflib_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/giflib/README"
 	install -m 644 NEWS "$1/usr/share/doc/giflib/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/giflib/ChangeLog"

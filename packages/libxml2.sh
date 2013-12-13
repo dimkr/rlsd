@@ -15,13 +15,16 @@ libxml2_build() {
 	            --without-python \
 	            --without-threads \
 	            --without-modules
-	make
+	$MAKE
 }
 
 libxml2_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	mv "$1/usr/share/doc/libxml2-$PACKAGE_VERSION" "$1/usr/share/doc/libxml2"
 	install -D -m 644 README "$1/usr/share/doc/libxml2/README"
-	install -m 644 CHANGES "$1/usr/share/doc/libxml2/CHANGES"
-	install -m 644 LICENSE "$1/usr/share/doc/libxml2/LICENSE"
+	install -m 644 ChangeLog "$1/usr/share/doc/libxml2/ChangeLog"
+	install -m 644 NEWS "$1/usr/share/doc/libxml2/NEWS"
+	install -m 644 AUTHORS "$1/usr/share/doc/libxml2/AUTHORS"
+	install -m 644 Copyright "$1/usr/share/doc/libxml2/Copyright"
+	install -m 644 COPYING "$1/usr/share/doc/libxml2/COPYING"
 }

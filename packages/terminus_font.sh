@@ -8,11 +8,11 @@ terminus_font_build() {
 
 	sh configure --psfdir=/usr/share/fonts/console \
 	             --x11dir=/usr/share/fonts/misc
-	make
+	$MAKE
 }
 
 terminus_font_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/terminus-font/README"
 	install -m 644 CHANGES "$1/usr/share/doc/terminus-font/CHANGES"
 	install -m 644 AUTHORS "$1/usr/share/doc/terminus-font/AUTHORS"

@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.10.22"
+PACKAGE_VERSION="3.10.24"
 PACKAGE_MAJOR_VERSION="3.10"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz https://dev.openwrt.org/export/head/trunk/target/linux/generic/patches-$PACKAGE_MAJOR_VERSION/100-overlayfs.patch,linux-overlayfs.patch"
 
@@ -21,8 +21,8 @@ linux_build() {
 	sed s~'^EXTRAVERSION =.*'~'EXTRAVERSION ='~ -i Makefile
 
 	# clean the sources tree
-	make clean
-	make mrproper
+	$MAKE clean
+	$MAKE mrproper
 
 	cat << CONFIG_EOF > .config
 #
@@ -4263,7 +4263,7 @@ CONFIG_CORDIC=m
 CONFIG_OID_REGISTRY=m
 CONFIG_UCS2_STRING=y
 CONFIG_EOF
-	make bzImage modules
+	$MAKE bzImage modules
 }
 
 linux_package() {
@@ -4271,7 +4271,7 @@ linux_package() {
 	install -D -m 644 "$(find arch -name bzImage -type f)" "$1/boot/bzImage"
 
 	# install the modules
-	make INSTALL_MOD_PATH="$1" modules_install
+	$MAKE INSTALL_MOD_PATH="$1" modules_install
 
 	# move all modules and modules.builtin directly to /lib/modules - there's no
 	# need for a sub-directory for each kernel version, since there's only one

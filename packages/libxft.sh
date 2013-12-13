@@ -12,11 +12,11 @@ libxft_build() {
 	            --includedir=/usr/include \
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS
-	make
+	$MAKE
 }
 
 libxft_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/libXft/README"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/libXft/ChangeLog"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/libXft/AUTHORS"

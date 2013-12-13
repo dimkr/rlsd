@@ -11,11 +11,11 @@ less_build() {
 	            --datarootdir=/usr/share \
 	            --with-regex=re_comp \
 	            --with-editor=/bin/vi
-	make
+	$MAKE
 }
 
 less_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/less/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/less/NEWS"
 	install -D -m 644 LICENSE "$1/usr/share/doc/less/LICENSE"

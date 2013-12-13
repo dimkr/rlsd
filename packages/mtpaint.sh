@@ -18,11 +18,11 @@ mtpaint_build() {
 	            cflags \
 	            jpeg \
 	            man
-	make
+	$MAKE
 }
 
 mtpaint_package() {
-	make DESTDIR="$1" install
+	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mtpaint/README"
 	install -m 644 NEWS "$1/usr/share/doc/mtpaint/NEWS"
 	install -m 644 COPYING "$1/usr/share/doc/mtpaint/COPYING"

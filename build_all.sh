@@ -20,12 +20,7 @@ CORE="linux_headers
       linux"
 CORE_MULTIMEDIA="alsa_lib alsa_utils mpg123"
 EXTRA_MULTIMEDIA="libogg libvorbis vorbis_tools"
-X_SERVER="tinyxlib
-          tinyxserver
-          font_cursor_misc
-          font_misc_misc
-          font_alias
-          terminus_font"
+X_SERVER="tinyxlib tinyxserver terminus_font"
 LIBXFT="freetype libxml2 fontconfig libxft ttf_bitstream_vera"
 WINDOW_MANAGER="ratpoison"
 GTK="glib gtk"
