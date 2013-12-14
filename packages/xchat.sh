@@ -10,7 +10,9 @@ xchat_build() {
 	            --datadir=/usr/share \
 	            --disable-nls \
 	            --enable-ipv6 \
-	            --disable-perl
+	            --disable-textfe \
+	            --disable-perl \
+	            --disable-plugin
 	$MAKE
 }
 
@@ -18,7 +20,6 @@ xchat_package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/xchat/README"
 	install -m 644 FAQ "$1/usr/share/doc/xchat/FAQ"
-	install -m 644 NEWS "$1/usr/share/doc/xchat/NEWS"
 	install -m 644 AUTHORS "$1/usr/share/doc/xchat/AUTHORS"
 	install -m 644 COPYING "$1/usr/share/doc/xchat/COPYING"
 }

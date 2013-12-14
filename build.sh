@@ -11,7 +11,8 @@ UNNEEDED_FILES="usr/share/pixmaps
                 usr/share/applications
                 usr/share/info
                 usr/share/gtk-doc
-                lib/charset.alias"
+                lib/charset.alias
+                etc/X11"
 
 # include the configuration file
 . ./config
