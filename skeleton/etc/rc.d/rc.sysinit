@@ -49,7 +49,8 @@ hostname $(cat /etc/hostname)
 echo -n " done.
 Configuring networking ..."
 
-ifconfig lo 127.0.0.1 up
+ifup lo
+ifaddr lo 127.0.0.1
 route add -net 127.0.0.0 netmask 255.0.0.0 lo
 
 # start Dropbear, with the keys under /run
