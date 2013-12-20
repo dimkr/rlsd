@@ -1,0 +1,44 @@
+diff -rup gtklepin-0.2-orig/src/boulot.c gtklepin-0.2/src/boulot.c
+--- gtklepin-0.2-orig/src/boulot.c	2013-12-20 16:49:55.665951488 +0000
++++ gtklepin-0.2/src/boulot.c	2013-12-20 16:50:32.993952883 +0000
+@@ -786,7 +786,7 @@ void import_text_file () {
+ 
+ 		gtk_text_freeze((GtkText *)data_s->text);
+ 		while(!feof(fichier)) {
+-	                buf=getline(fichier);
++	                buf=g_getline(fichier);
+ 			gtk_editable_insert_text(data_s->text, buf->str, buf->len, &pos);
+ 			g_string_free(buf,TRUE);
+ 		}
+diff -rup gtklepin-0.2-orig/src/misc.c gtklepin-0.2/src/misc.c
+--- gtklepin-0.2-orig/src/misc.c	2013-12-20 16:49:55.665951488 +0000
++++ gtklepin-0.2/src/misc.c	2013-12-20 16:50:21.269952445 +0000
+@@ -32,7 +32,7 @@
+ 
+ #include "misc.h"
+ 
+-GString *getline(FILE *fichier) {
++GString *g_getline(FILE *fichier) {
+ 	GString *temp;
+ 	gchar buf[128];
+ 	
+diff -rup gtklepin-0.2-orig/src/misc.h gtklepin-0.2/src/misc.h
+--- gtklepin-0.2-orig/src/misc.h	2013-12-20 16:49:55.665951488 +0000
++++ gtklepin-0.2/src/misc.h	2013-12-20 16:50:15.589952232 +0000
+@@ -1,3 +1,3 @@
+ #include <gtk/gtk.h>
+ 
+-GString *getline(FILE *fichier);
++GString *g_getline(FILE *fichier);
+diff -rup gtklepin-0.2-orig/src/options.c gtklepin-0.2/src/options.c
+--- gtklepin-0.2-orig/src/options.c	2013-12-20 16:49:55.665951488 +0000
++++ gtklepin-0.2/src/options.c	2013-12-20 16:50:40.457953162 +0000
+@@ -260,7 +260,7 @@ void read_options(GtkWidget *window, GLi
+ 	if(NULL==(fichier=fopen(buf->str,"rt"))) return;
+ 	while(!feof(fichier)) {
+ 	        g_string_free(buf,TRUE);
+-		buf=getline(fichier);
++		buf=g_getline(fichier);
+                 if(feof(fichier)) break;
+ 		if(buf->str[0]!='#') {
+ 			buf2=g_string_new("");

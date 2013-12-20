@@ -49,6 +49,7 @@ EXTRA_APPS="htop
             xchat
             xhippo
             guiftp
+            gtklepin
             gtkfontsel
             gcolor
             gtkcat
