@@ -1,0 +1,42 @@
+diff -rup guiftp-0.1-orig/src/bookmarks.c guiftp-0.1/src/bookmarks.c
+--- guiftp-0.1-orig/src/bookmarks.c	2013-12-20 16:37:57.561924670 +0000
++++ guiftp-0.1/src/bookmarks.c	2013-12-20 16:38:09.833925128 +0000
+@@ -910,7 +910,7 @@ void edit_bookmarks(GtkWidget *w, gpoint
+ 	gtk_main();
+ }
+ 
+-static GString *getline(FILE *fichier)
++static GString *g_getline(FILE *fichier)
+ {
+ 	GString *temp;
+ 	gchar buf[128];
+@@ -950,7 +950,7 @@ static void read_bookmarks(FILE *fichier
+ 	
+ 	while(!feof(fichier))
+ 	{
+-		buf=getline(fichier);
++		buf=g_getline(fichier);
+ 		if(feof(fichier))
+ 		{
+ 			g_string_free(buf,TRUE);
+diff -rup guiftp-0.1-orig/src/options.c guiftp-0.1/src/options.c
+--- guiftp-0.1-orig/src/options.c	2013-12-20 16:37:57.561924670 +0000
++++ guiftp-0.1/src/options.c	2013-12-20 16:39:16.109927603 +0000
+@@ -281,7 +281,7 @@ void edit_options()
+ 	gtk_main();
+ }
+ 
+-static GString *getline(FILE *fichier)
++static GString *g_getline(FILE *fichier)
+ {
+ 	GString *temp;
+ 	gchar buf[128];
+@@ -321,7 +321,7 @@ void read_options()
+ 	g_string_free(buf,TRUE);
+ 	while(!feof(fichier))
+ 	{
+-		buf=getline(fichier);
++		buf=g_getline(fichier);
+                 if(feof(fichier))
+ 		{
+ /*			printf("%d %d %d %d %d\n",options.ShowToolbar,options.ToolBarType,options.ShowHiddenFiles,options.SortDirectoriesFirst,options.Timeout);

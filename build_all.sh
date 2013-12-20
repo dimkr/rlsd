@@ -48,6 +48,7 @@ EXTRA_APPS="htop
             gdmap
             xchat
             xhippo
+            guiftp
             gtkfontsel
             gcolor
             gtkcat
