@@ -31,7 +31,7 @@ CORE_APPS="less
            dropbear
            lpackage
            aterm
-           emelfm
+           uxplor
            gtkfind
            gtkedit
            calcoo
@@ -53,6 +53,7 @@ EXTRA_APPS="htop
             gtkfontsel
             gcolor
             gtkcat
+            emelfm
             gtkdiskfree
             mhwaveedit
             libpng

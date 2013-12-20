@@ -1,0 +1,24 @@
+diff -rup uxplor-0.26-orig/Makefile uxplor-0.26/Makefile
+--- uxplor-0.26-orig/Makefile	2013-12-20 21:01:25.768179873 +0000
++++ uxplor-0.26/Makefile	2013-12-20 21:09:07.724197123 +0000
+@@ -1,13 +1,16 @@
+-	CC = gcc
+-	FLAGS = `gtk-config --libs`
+-	CFLAGS = -g -O2 -c -Wall `gtk-config --cflags`
++	CC ?= gcc
++	GTK_LIBS = `gtk-config --libs`
++	GTK_CFLAGS = `gtk-config --cflags`
+ 	FILES = lowlevel.o global.o dir.o tree.o flist.o init.o \
+ 		menu.o selection.o std_dialog.o preferences.o \
+ 		dragdrop.o search.o filesys/rename.o filesys/link.o \
+ 		filesys/delete.o filesys/copy.o toolbar.o
+ 
++%.o: %.c
++	$(CC) -c -o $@ $< $(GTK_CFLAGS) $(CFLAGS)
++
+ default: $(FILES)
+-	$(CC) -o uxplor $(FILES) $(FLAGS)
++	$(CC) -o uxplor $(FILES) $(GTK_LIBS) $(LDFLAGS)
+ 	@ ls -al uxplor;strip uxplor;ls -al uxplor
+ 
+ tags:

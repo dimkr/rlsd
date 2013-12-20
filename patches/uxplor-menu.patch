@@ -1,0 +1,27 @@
+diff -rup uxplor-0.26-orig/menu.c uxplor-0.26/menu.c
+--- uxplor-0.26-orig/menu.c	2013-12-20 21:01:25.768179873 +0000
++++ uxplor-0.26/menu.c	2013-12-20 21:17:46.292216485 +0000
+@@ -39,11 +39,6 @@ static GtkItemFactoryEntry popup_items[]
+ {
+ 	{"/Open",          "",   GTK_SIGNAL_FUNC(open_selection),         0, NULL},
+ 	{"/<separator>",   NULL, NULL,                                    0, "<Separator>"},
+-	{"/Edit",          "",   GTK_SIGNAL_FUNC(Xedit_selection),        0, NULL},
+-	{"/Cmd Here",      "",   GTK_SIGNAL_FUNC(Cmd_prompt_here),        0, NULL},
+-	{"/<separator>",   NULL, NULL,                                    0, "<Separator>"},
+-	{"/SendTo:",       "",   GTK_SIGNAL_FUNC(sendto_selection),       0, NULL},
+-	{"/<separator>",   NULL, NULL,                                    0, "<Separator>"},
+ 	{"/Cut",           "",   GTK_SIGNAL_FUNC(selection_to_clipboard), MOVE_FILE,  NULL},
+ 	{"/Copy",          "",   GTK_SIGNAL_FUNC(selection_to_clipboard), COPY_FILE,  NULL},
+ 	{"/Paste",         "",   GTK_SIGNAL_FUNC(paste_clipboard),        0, NULL},
+diff -rup uxplor-0.26-orig/selection.c uxplor-0.26/selection.c
+--- uxplor-0.26-orig/selection.c	2013-12-20 21:01:25.768179873 +0000
++++ uxplor-0.26/selection.c	2013-12-20 21:18:25.236217949 +0000
+@@ -157,7 +157,7 @@ void open_selection (GtkWidget *w, gpoin
+ 	list = datas;
+ 	while (datas) {
+ 		char    cmdstr[256];
+-		sprintf(cmdstr,"mime_start %s &",(char*)(datas->data));
++		sprintf(cmdstr,"xdg-open %s &",(char*)(datas->data));
+ 		SYSTEM(cmdstr);
+ 		free (datas->data);
+ 		datas = datas->next;
