@@ -24,7 +24,17 @@ X_SERVER="tinyxlib tinyxserver terminus_font"
 LIBXFT="freetype libxml2 fontconfig libxft ttf_bitstream_vera"
 WINDOW_MANAGER="ratpoison"
 GTK="glib gtk"
-CORE_APPS="less vile screen ytree dropbear lpackage aterm emelfm gtkedit"
+CORE_APPS="less
+           vile
+           screen
+           ytree
+           dropbear
+           lpackage
+           aterm
+           emelfm
+           gtkedit
+           calcoo
+           guitar"
 EXTRA_APPS="htop
             lynx
             ircii
@@ -34,7 +44,6 @@ EXTRA_APPS="htop
             bwm_ng
             unnethack
             beaver
-            guitar
             gdmap
             xchat
             xhippo
