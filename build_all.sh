@@ -39,6 +39,7 @@ EXTRA_APPS="htop
             xchat
             xhippo
             gtkfontsel
+            gcolor
             gtkcat
             gtkdiskfree
             mhwaveedit
