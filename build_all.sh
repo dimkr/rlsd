@@ -32,6 +32,7 @@ CORE_APPS="less
            lpackage
            aterm
            emelfm
+           gtkfind
            gtkedit
            calcoo
            guitar"

@@ -1,0 +1,70 @@
+diff -rup gtkfind-1.1-orig/configure gtkfind-1.1/configure
+--- gtkfind-1.1-orig/configure	2013-12-20 11:38:19.841253266 +0000
++++ gtkfind-1.1/configure	2013-12-20 11:41:35.169260561 +0000
+@@ -2389,18 +2389,8 @@ echo "$as_me:$LINENO: result: $ac_cv_pro
+ echo "${ECHO_T}$ac_cv_prog_cc_g" >&6
+ if test "$ac_test_CFLAGS" = set; then
+   CFLAGS=$ac_save_CFLAGS
+-elif test $ac_cv_prog_cc_g = yes; then
+-  if test "$GCC" = yes; then
+-    CFLAGS="-g -O2"
+-  else
+-    CFLAGS="-g"
+-  fi
+ else
+-  if test "$GCC" = yes; then
+-    CFLAGS="-O2"
+-  else
+-    CFLAGS=
+-  fi
++  CFLAGS=
+ fi
+ echo "$as_me:$LINENO: checking for $CC option to accept ANSI C" >&5
+ echo $ECHO_N "checking for $CC option to accept ANSI C... $ECHO_C" >&6
+@@ -3292,18 +3282,8 @@ echo "$as_me:$LINENO: result: $ac_cv_pro
+ echo "${ECHO_T}$ac_cv_prog_cc_g" >&6
+ if test "$ac_test_CFLAGS" = set; then
+   CFLAGS=$ac_save_CFLAGS
+-elif test $ac_cv_prog_cc_g = yes; then
+-  if test "$GCC" = yes; then
+-    CFLAGS="-g -O2"
+-  else
+-    CFLAGS="-g"
+-  fi
+ else
+-  if test "$GCC" = yes; then
+-    CFLAGS="-O2"
+-  else
+-    CFLAGS=
+-  fi
++  CFLAGS=
+ fi
+ echo "$as_me:$LINENO: checking for $CC option to accept ANSI C" >&5
+ echo $ECHO_N "checking for $CC option to accept ANSI C... $ECHO_C" >&6
+diff -rup gtkfind-1.1-orig/Makefile.am gtkfind-1.1/Makefile.am
+--- gtkfind-1.1-orig/Makefile.am	2013-12-20 11:38:19.841253266 +0000
++++ gtkfind-1.1/Makefile.am	2013-12-20 11:43:44.181265376 +0000
+@@ -3,8 +3,8 @@ bin_PROGRAMS = gtkfind mktmp
+ gtkfind_SOURCES = create.c create.h flags.c flags.h glob.c glob.h gtk_print1.c gtk_print1.h gtkfind.c gtkfind.h save.c save.h util.c util.h widgets.c widgets.h
+ gtkfind_LDADD = @GTKFIND_LDFLAGS@
+ INCLUDES = @GTKFIND_INCLUDES@
+-CFLAGS = -Wall -O2 -g
++CFLAGS = @GTKFIND_CFLAGS@
+ 
+ mktmp_SOURCES = mktmp.c
+ 
+-man_MANS = gtkfind.1 mktmp.1
+\ No newline at end of file
++man_MANS = gtkfind.1 mktmp.1
+diff -rup gtkfind-1.1-orig/Makefile.in gtkfind-1.1/Makefile.in
+--- gtkfind-1.1-orig/Makefile.in	2013-12-20 11:38:19.841253266 +0000
++++ gtkfind-1.1/Makefile.in	2013-12-20 11:42:49.613263342 +0000
+@@ -98,7 +98,7 @@ AUTOMAKE = @AUTOMAKE@
+ AWK = @AWK@
+ CC = @CC@
+ CCDEPMODE = @CCDEPMODE@
+-CFLAGS = -Wall -O2 -g
++CFLAGS = @CFLAGS@
+ CONFIG_MAN = @CONFIG_MAN@
+ CONFIG_XTERM = @CONFIG_XTERM@
+ CPP = @CPP@
