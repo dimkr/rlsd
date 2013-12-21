@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.12.1"
+PACKAGE_VERSION="1.12.2"
 PACKAGE_SOURCES="http://mdocml.bsd.lv/snapshots/mdocml-$PACKAGE_VERSION.tar.gz"
 
 mandoc_build() {
