@@ -10,12 +10,14 @@ CORE="linux_headers
       xz_embedded
       tar
       gzip
+      isolinux
       gnu_efi
       elilo
       mandoc
       ncurses
       zlib
       axel
+      dhcpcd
       dhcp
       linux"
 CORE_MULTIMEDIA="alsa_lib alsa_utils mpg123"
