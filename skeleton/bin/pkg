@@ -16,7 +16,9 @@ case "$1" in
 
 		# extract the package
 		mkdir "/var/pkg/$2"
-		cat "/tmp/$2.pkg" | xzminidec | tar -xvf - -C / > "/var/pkg/$2/contents"
+		cat "/tmp/$2.pkg" | \
+		xzminidec | \
+		bsdtar -xvf - -C / > "/var/pkg/$2/contents"
 
 		# run the post-installation script
 		[ -f /metadata/install.sh ] && /metadata/install.sh

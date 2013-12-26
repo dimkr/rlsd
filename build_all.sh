@@ -8,14 +8,13 @@ CORE="linux_headers
       lazy_utils
       loksh
       xz_embedded
-      tar
-      gzip
+      zlib
+      libarchive
       isolinux
       gnu_efi
       elilo
       mandoc
       ncurses
-      zlib
       axel
       dhcpcd
       dhcp
