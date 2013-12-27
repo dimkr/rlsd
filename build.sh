@@ -40,7 +40,7 @@ fi
 
 # replace glib-config, gtk-config and freetype-config with wrappers, which
 # prepend paths with $SYSROOT
-for library in glib gtk freetype
+for library in glib gtk freetype gdk-pixbuf
 do
 	if [ -f "$SYSROOT/bin/$library-config" ] && [ ! -f $library-config ]
 	then
@@ -81,6 +81,9 @@ fi
 # include the build script
 . ./packages/$1.sh
 
+# create a directory for the package sources
+mkdir -p ./sources/$1
+
 # download the package source files
 for i in $PACKAGE_SOURCES
 do
@@ -101,10 +104,11 @@ do
 			esac
 
 			# if the file already exists, do nothing
-			[ -f "$output_file" ] && continue
+			[ -e "$output_file" ] && continue
 
 			# download the file
-			wget "$url" -O "$output_file"
+			wget "$url" -O "./sources/$1/$output_file"
+			ln -s "./sources/$1/$output_file" .
 			;;
     esac
 done
