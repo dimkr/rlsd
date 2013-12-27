@@ -47,6 +47,12 @@ environment:
   - git and unzip, to build lazy-utils
   - flex and bison, to build UnNetHack
   - nasm, to build libjpeg-turbo
+  - fontforge and libfont-ttf-perl, to build the DejaVu fonts
+
+Once the required packages are installed, build a bootable Lazyux image using
+the scripts:
+  sh build_all.sh
+  sh create_iso.sh
 
 Credits and Legal Information
 =============================
