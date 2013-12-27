@@ -5,6 +5,8 @@ xchat_build() {
 	[ -d xchat-$PACKAGE_VERSION ] && rm -rf xchat-$PACKAGE_VERSION
 	tar -xjvf xchat-$PACKAGE_VERSION.tar.bz2
 	cd xchat-$PACKAGE_VERSION
+
+	patch -p 1 < "$BASE_DIR/patches/xchat-root.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
