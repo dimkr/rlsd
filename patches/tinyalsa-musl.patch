@@ -1,0 +1,11 @@
+diff -rup tinyalsa-orig/include/sound/asound.h tinyalsa/include/sound/asound.h
+--- tinyalsa-orig/include/sound/asound.h	2013-12-27 17:27:14.052719655 +0000
++++ tinyalsa/include/sound/asound.h	2013-12-27 17:37:45.132736556 +0000
+@@ -13,6 +13,7 @@
+ #define __SOUND_ASOUND_H
+ 
+ #include <linux/types.h>
++#include <time.h>
+ 
+ #define SNDRV_PROTOCOL_VERSION(major, minor, subminor) (((major)<<16)|((minor)<<8)|(subminor))
+ #define SNDRV_PROTOCOL_MAJOR(version) (((version)>>16)&0xffff)

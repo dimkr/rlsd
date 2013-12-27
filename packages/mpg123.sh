@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.16.0"
+PACKAGE_VERSION="1.17.0"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/mpg123/mpg123/$PACKAGE_VERSION/mpg123-$PACKAGE_VERSION.tar.bz2"
 
 mpg123_build() {
@@ -16,8 +16,8 @@ mpg123_build() {
 	            --enable-gapless=no \
 	            --enable-ipv6=yes \
 	            --enable-network=yes \
-	            --with-audio=alsa \
-	            --with-default-audio=alsa \
+	            --with-audio=tinyalsa \
+	            --with-default-audio=tinyalsa \
 	            --with-optimization=0
 	$MAKE
 }
