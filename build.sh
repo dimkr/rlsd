@@ -84,6 +84,9 @@ fi
 # create a directory for the package sources
 mkdir -p ./sources/$1
 
+# create a sandbox directory for building packages
+[ ! -d build ] && mkdir build
+
 # download the package source files
 for i in $PACKAGE_SOURCES
 do
@@ -104,16 +107,17 @@ do
 			esac
 
 			# if the file already exists, do nothing
-			[ -e "$output_file" ] && continue
+			[ -e "build/$output_file" ] && continue
 
 			# download the file
 			wget "$url" -O "./sources/$1/$output_file"
-			ln -s "./sources/$1/$output_file" .
+			ln -s "../sources/$1/$output_file" build/
 			;;
     esac
 done
 
 # build the package
+cd build
 ${1}_build
 
 # install the package to a directory
