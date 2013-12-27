@@ -64,5 +64,13 @@ do
 done
 dropbear -d /run/dropbear/dss_key -r /run/dropbear/rsa_key
 
+# update the font cache
+echo -n " done.
+Updating the font cache ..."
+
+fc-cache -f -s
+
+echo " done."
+
 # show a login prompt
 exec cttyhack sulogin
