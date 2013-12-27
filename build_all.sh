@@ -19,8 +19,7 @@ CORE="linux_headers
       dhcpcd
       dhcp
       linux"
-CORE_MULTIMEDIA="tinyalsa alsa_lib alsa_utils mpg123"
-EXTRA_MULTIMEDIA="libogg libvorbis vorbis_tools"
+CORE_MULTIMEDIA="tinyalsa mpg123"
 X_SERVER="tinyxlib tinyxserver terminus_font"
 LIBXFT="freetype libxml2 fontconfig libxft dejavu_fonts"
 WINDOW_MANAGER="ratpoison"
