@@ -48,7 +48,13 @@ do
 	then
 		if [ -e "/usr/share/man/man$category/$name.$category" ]
 		then
-			mandoc "/usr/share/man/man$category/$name.$category" | less
+			viewer="$(which less)"
+			if [ -n "$viewer" ]
+			then
+				mandoc "/usr/share/man/man$category/$name.$category" | $viewer
+			else
+				mandoc "/usr/share/man/man$category/$name.$category"
+			fi
 			exit 0
 		fi
 	else
