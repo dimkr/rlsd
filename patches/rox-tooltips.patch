@@ -1,0 +1,24 @@
+diff -rup rox-1.2.2-orig/ROX-Filer/src/main.h rox-1.2.2/ROX-Filer/src/main.h
+--- rox-1.2.2-orig/ROX-Filer/src/main.h	2014-01-10 11:57:30.525721649 +0000
++++ rox-1.2.2/ROX-Filer/src/main.h	2014-01-10 11:57:47.057722095 +0000
+@@ -14,7 +14,9 @@
+ typedef struct _Callback Callback;
+ typedef void (*CallbackFn)(gpointer data);
+ 
++#ifndef _TOOLBAR
+ extern GtkTooltips *tooltips;
++#endif
+ 
+ struct _Callback
+ {
+diff -rup rox-1.2.2-orig/ROX-Filer/src/toolbar.c rox-1.2.2/ROX-Filer/src/toolbar.c
+--- rox-1.2.2-orig/ROX-Filer/src/toolbar.c	2014-01-10 11:57:30.529721651 +0000
++++ rox-1.2.2/ROX-Filer/src/toolbar.c	2014-01-10 11:57:55.781722326 +0000
+@@ -31,6 +31,7 @@
+ #include "toolbar.h"
+ #include "options.h"
+ #include "support.h"
++#define _TOOLBAR
+ #include "main.h"
+ #include "menu.h"
+ #include "dnd.h"

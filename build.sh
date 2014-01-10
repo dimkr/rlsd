@@ -12,7 +12,8 @@ UNNEEDED_FILES="usr/share/pixmaps
                 usr/share/info
                 usr/share/gtk-doc
                 lib/charset.alias
-                etc/X11"
+                etc/X11
+                usr/share/gnome"
 
 # include the configuration file
 . ./config
@@ -38,9 +39,9 @@ exec $(which pkg-config) --static \"\$@\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"
 	chmod 755 pkg-config
 fi
 
-# replace glib-config, gtk-config and freetype-config with wrappers, which
-# prepend paths with $SYSROOT
-for library in glib gtk freetype gdk-pixbuf
+# replace glib-config, gtk-config, freetype-config, gdk-pixbuf-config and
+# xml2-config with wrappers, which prepend paths with $SYSROOT
+for library in glib gtk freetype gdk-pixbuf gdk-pixbuf xml2
 do
 	if [ -f "$SYSROOT/bin/$library-config" ] && [ ! -f $library-config ]
 	then

@@ -14,62 +14,68 @@ CORE="linux_headers
       gnu_efi
       elilo
       mandoc
-      ncurses
       axel
+      dropbear
       dhcpcd
-      dhcp
+      tinyalsa
+      mpg123
       linux"
-CORE_MULTIMEDIA="tinyalsa mpg123"
-X_SERVER="tinyxlib tinyxserver terminus_font"
-LIBXFT="freetype libxml2 fontconfig libxft dejavu_fonts"
-WINDOW_MANAGER="ratpoison"
-GTK="glib gtk"
-CORE_APPS="less
-           vile
-           screen
-           ytree
-           dropbear
-           lpackage
-           aterm
-           uxplor
-           gtkfind
-           gtkedit
-           calcoo
-           guitar"
-EXTRA_APPS="htop
-            lynx
-            ircii
-            calcurse
-            ncdu
-            nano
-            bwm_ng
-            unnethack
-            beaver
-            gdmap
-            xchat
-            xhippo
-            guiftp
-            gtklepin
-            gtkfontsel
-            gcolor
-            gtkcat
-            emelfm
-            gtkdiskfree
-            mhwaveedit
-            libpng
-            libjpeg_turbo
-            giflib
-            meh
-            mtpaint"
+DESKTOP_CORE="tinyxlib
+              tinyxserver
+              terminus_font
+              freetype
+              libxml2
+              fontconfig
+              libxft
+              dejavu_fonts
+              ratpoison
+              glib
+              gtk
+              lpackage
+              aterm
+              uxplor
+              gtkfind
+              gtkedit
+              calcoo
+              guitar"
+CONSOLE_APPS="ncurses
+              less
+              vile
+              screen
+              ytree
+              htop
+              lynx
+              ircii
+              calcurse
+              ncdu
+              nano
+              bwm_ng
+              unnethack"
+GRAPHICAL_APPS="beaver
+                gdmap
+                xchat
+                xhippo
+                guiftp
+                gtklepin
+                gtkfontsel
+                gcolor
+                gtkcat
+                emelfm
+                gtkdiskfree
+                mhwaveedit
+                libpng
+                libjpeg_turbo
+                giflib
+                meh
+                mtpaint
+                tiff
+                gdk_pixbuf
+                rox"
 
 # built packages
 ALL="$CORE
-     $X_SERVER
-     $LIBXFT
-     $WINDOW_MANAGER
-     $GTK
+     $DESKTOP_CORE
      $CORE_APPS
-     $CORE_MULTIMEDIA
      $EXTRA_APPS"
 
 # clean up
