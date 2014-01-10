@@ -19,6 +19,8 @@ CORE="linux_headers
       dhcpcd
       tinyalsa
       mpg123
+      fuse
+      luufs
       linux"
 DESKTOP_CORE="tinyxlib
               tinyxserver

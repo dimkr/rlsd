@@ -1,0 +1,44 @@
+diff -ru fuse-2.9.3-orig/include/fuse_lowlevel.h fuse-2.9.3/include/fuse_lowlevel.h
+--- fuse-2.9.3-orig/include/fuse_lowlevel.h	2013-07-01 07:40:39.000000000 +0000
++++ fuse-2.9.3/include/fuse_lowlevel.h	2014-01-10 17:42:35.784177497 +0000
+@@ -31,6 +31,7 @@
+ #include <sys/stat.h>
+ #include <sys/statvfs.h>
+ #include <sys/uio.h>
++#include <sys/file.h>
+ 
+ #ifdef __cplusplus
+ extern "C" {
+diff -ru fuse-2.9.3-orig/lib/mount_util.c fuse-2.9.3/lib/mount_util.c
+--- fuse-2.9.3-orig/lib/mount_util.c	2013-07-01 07:25:36.000000000 +0000
++++ fuse-2.9.3/lib/mount_util.c	2014-01-10 17:37:02.516168571 +0000
+@@ -23,6 +23,7 @@
+ #include <sys/wait.h>
+ #include <sys/mount.h>
+ #include <sys/param.h>
++#include <paths.h>
+ 
+ #ifdef __NetBSD__
+ #define umount2(mnt, flags) unmount(mnt, (flags == 2) ? MNT_FORCE : 0)
+diff -ru fuse-2.9.3-orig/util/fusermount.c fuse-2.9.3/util/fusermount.c
+--- fuse-2.9.3-orig/util/fusermount.c	2013-07-01 07:25:36.000000000 +0000
++++ fuse-2.9.3/util/fusermount.c	2014-01-10 17:37:49.196169823 +0000
+@@ -28,6 +28,7 @@
+ #include <sys/socket.h>
+ #include <sys/utsname.h>
+ #include <sched.h>
++#include <paths.h>
+ 
+ #define FUSE_COMMFD_ENV		"_FUSE_COMMFD"
+ 
+diff -ru fuse-2.9.3-orig/util/mount_util.c fuse-2.9.3/util/mount_util.c
+--- fuse-2.9.3-orig/util/mount_util.c	2013-07-01 08:02:18.000000000 +0000
++++ fuse-2.9.3/util/mount_util.c	2014-01-10 17:37:22.608169110 +0000
+@@ -23,6 +23,7 @@
+ #include <sys/wait.h>
+ #include <sys/mount.h>
+ #include <sys/param.h>
++#include <paths.h>
+ 
+ #ifdef __NetBSD__
+ #define umount2(mnt, flags) unmount(mnt, (flags == 2) ? MNT_FORCE : 0)
