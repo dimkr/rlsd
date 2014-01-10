@@ -1,0 +1,12 @@
+diff -rup rox-1.2.2-orig/ROX-Filer/src/main.c rox-1.2.2/ROX-Filer/src/main.c
+--- rox-1.2.2-orig/ROX-Filer/src/main.c	2014-01-10 19:20:09.520334254 +0000
++++ rox-1.2.2/ROX-Filer/src/main.c	2014-01-10 19:20:23.556334630 +0000
+@@ -384,7 +384,7 @@ int main(int argc, char **argv)
+ 
+ 	tooltips = gtk_tooltips_new();
+ 
+-	if (euid == 0 || show_user)
++	if (show_user)
+ 		show_user_message = g_strdup_printf( _("Running as user '%s'"), 
+ 				user_name(euid));
+ 	

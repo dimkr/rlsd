@@ -9,6 +9,7 @@ rox_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/rox-tooltips.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-libpng.patch"
+	patch -p 1 < "$BASE_DIR/patches/rox-root.patch"
 
 	cd ROX-Filer/src
 	XML_CONFIG="xml2-config" ./configure --host=$HOST --with-platform=$PLATFORM
@@ -36,6 +37,6 @@ rox_package() {
 
 	mkdir "$1/bin"
 	echo "#!/bin/sh
-exec /lib/rox/AppRun \"$@\"" > "$1/bin/rox"
+exec /usr/share/rox/AppRun \"\$@\"" > "$1/bin/rox"
 	chmod 755 "$1/bin/rox"
 }
