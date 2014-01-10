@@ -87,7 +87,7 @@
 
 	<WindowStyle>
 
-		<Font>Vera Sans 48</Font>
+		<Font>Sans 48</Font>
 		<Width>3</Width>
 		<Height>24</Height>
 
@@ -108,7 +108,7 @@
 	</WindowStyle>
 
 	<TaskListStyle>
-		<Font>Vera Sans 8</Font>
+		<Font>Sans 8</Font>
 		<ActiveForeground>white</ActiveForeground>
 		<ActiveBackground>black:#333333</ActiveBackground>
 		<Foreground>black</Foreground>
@@ -117,7 +117,7 @@
 
 	<!-- Additional TrayStyle attribute: insert -->
 	<TrayStyle>
-		<Font>Vera Sans 8-12:bold</Font>
+		<Font>Sans 8-12:bold</Font>
 		<Background>#777777</Background>
 		<Foreground>white</Foreground>
 		<Opacity>1.0</Opacity>
@@ -132,7 +132,7 @@
 	</PagerStyle>
 
 	<MenuStyle>
-		<Font>Vera Sans 8</Font>
+		<Font>Sans 8</Font>
 		<Foreground>black</Foreground>
 		<Background>#CCCCCC</Background>
 		<ActiveForeground>white</ActiveForeground>
@@ -141,7 +141,7 @@
 	</MenuStyle>
 
 	<PopupStyle>
-		<Font>Vera Sans 8</Font>
+		<Font>Sans 8</Font>
 		<Outline>#333333</Outline>
 		<Foreground>black</Foreground>
 		<Background>#DCDCDC</Background>

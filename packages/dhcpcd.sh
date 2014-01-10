@@ -7,7 +7,11 @@ dhcpcd_build() {
 	cd dhcpcd-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/dhcpcd-musl.patch"
-	./configure --host=$HOST --prefix=/ --sbindir=/bin --mandir=/usr/share/man --libexecdir=/lib/dhcpcd
+	./configure --host=$HOST \
+	            --prefix=/ \
+	            --sbindir=/bin \
+	            --mandir=/usr/share/man \
+	            --libexecdir=/lib/dhcpcd
 	$MAKE
 }
 
