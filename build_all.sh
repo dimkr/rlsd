@@ -69,6 +69,7 @@ GRAPHICAL_APPS="beaver
                 libjpeg_turbo
                 giflib
                 meh
+                gtksee
                 mtpaint
                 tiff
                 gdk_pixbuf
