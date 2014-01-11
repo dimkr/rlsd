@@ -70,7 +70,8 @@ GRAPHICAL_APPS="beaver
                 gtkdiskfree
                 mhwaveedit
                 giflib
-                mtpaint"
+                mtpaint
+                dillo"
 
 # built packages
 ALL="$CORE

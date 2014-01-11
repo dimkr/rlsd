@@ -1,0 +1,12 @@
+diff -rup dillo-0.8.6-orig/dpi/Makefile.in dillo-0.8.6/dpi/Makefile.in
+--- dillo-0.8.6-orig/dpi/Makefile.in	2014-01-11 17:28:17.836327109 +0000
++++ dillo-0.8.6/dpi/Makefile.in	2014-01-11 17:39:15.956337778 +0000
+@@ -112,7 +112,7 @@ LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(
+ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+ 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+ CXXLD = $(CXX)
+-CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
++CXXLINK = $(CCLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
+ 	-o $@
+ SOURCES = $(bookmarks_dpi_SOURCES) $(cookies_dpi_SOURCES) \
+ 	$(datauri_filter_dpi_SOURCES) $(downloads_dpi_SOURCES) \
