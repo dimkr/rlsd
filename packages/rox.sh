@@ -10,6 +10,7 @@ rox_build() {
 	patch -p 1 < "$BASE_DIR/patches/rox-tooltips.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-libpng.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-root.patch"
+	patch -p 1 < "$BASE_DIR/patches/rox-aterm.patch"
 
 	cd ROX-Filer/src
 	XML_CONFIG="xml2-config" ./configure --host=$HOST --with-platform=$PLATFORM

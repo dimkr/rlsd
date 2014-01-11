@@ -1,0 +1,12 @@
+diff -rup rox-1.2.2-orig/ROX-Filer/src/menu.c rox-1.2.2/ROX-Filer/src/menu.c
+--- rox-1.2.2-orig/ROX-Filer/src/menu.c	2014-01-11 13:09:18.605203379 +0000
++++ rox-1.2.2/ROX-Filer/src/menu.c	2014-01-11 13:11:20.925206656 +0000
+@@ -344,7 +344,7 @@ void menu_init(void)
+ 	gtk_signal_connect(GTK_OBJECT(filer_file_menu), "unmap_event",
+ 			GTK_SIGNAL_FUNC(menu_closed), NULL);
+ 
+-	option_add_string("menu_xterm", "xterm", NULL);
++	option_add_string("menu_xterm", "aterm", NULL);
+ 	option_add_int("menu_iconsize", MIS_SMALL, NULL);
+ 	option_add_saver(save_menus);
+ 
