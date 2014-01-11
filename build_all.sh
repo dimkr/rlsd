@@ -35,11 +35,16 @@ DESKTOP_CORE="tinyxlib
               gtk
               lpackage
               aterm
-              uxplor
               gtkfind
               gtkedit
               calcoo
-              guitar"
+              guitar
+              libpng
+              libjpeg_turbo
+              tiff
+              gtksee
+              gdk_pixbuf
+              rox"
 CONSOLE_APPS="ncurses
               less
               vile
@@ -62,24 +67,16 @@ GRAPHICAL_APPS="beaver
                 gtkfontsel
                 gcolor
                 gtkcat
-                emelfm
                 gtkdiskfree
                 mhwaveedit
-                libpng
-                libjpeg_turbo
                 giflib
-                meh
-                gtksee
-                mtpaint
-                tiff
-                gdk_pixbuf
-                rox"
+                mtpaint"
 
 # built packages
 ALL="$CORE
      $DESKTOP_CORE
-     $CORE_APPS
-     $EXTRA_APPS"
+     $CONSOLE_APPS
+     $GRAPHICAL_APPS"
 
 # clean up
 [ -d "$SYSROOT" ] && rm -rf "$SYSROOT"
