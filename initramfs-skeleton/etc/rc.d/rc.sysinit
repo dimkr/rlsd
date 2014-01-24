@@ -1,0 +1,79 @@
+#!/bin/loksh
+
+# set the executable search path
+export PATH="/bin"
+
+# mount virtual file systems
+echo -n "Mounting virtual file systems ..."
+
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mount -t tmpfs run /mnt/union/run
+mount -t tmpfs -o mode=600,size=25% log /var/log
+
+# start logging daemons
+echo -n " done.
+Starting logging services ..."
+
+syslogd
+logd /run/messages /var/log/messages
+logd /proc/kmsg /var/log/kern.log
+
+# find the home partition
+echo -n " done.
+Searching for the home partition ..."
+cd /sys/class/block
+for partition in *
+do
+	echo -n " $partition"
+	mount -o ro /dev/$partition /mnt/home
+	if [ 0 -eq $? ]
+	then
+		if [ -f /mnt/home/bzImage ] && \
+		   [ -f /mnt/home/initrd.xz ] && \
+		   [ -f /mnt/home/rootfs.sfs ]
+		then
+			break
+		fi
+	fi
+	umount /mnt/home
+done
+
+# mount the root file system image
+echo -n " done.
+Mounting the root file system ..."
+mount -t squasfs -o loop,ro /mnt/home/rootfs.sfs /mnt/ro
+
+# mount a writable file system
+echo -n " done.
+Setting up a writable system ..."
+mount -t tmpfs save /mnt/rw
+
+# mount a layered file system
+echo -n " done.
+Setting up a layered file system ..."
+
+luufs /mnt/union
+
+# bind the existing virtual file system and mount additional ones
+echo -n " done.
+Mounting additional virtual file systems ..."
+
+mount -B /proc /mnt/union/proc
+mount -B /sys /mnt/union/sys
+mount -B /dev /mnt/union/dev
+mount -B /run /mnt/union/run
+mount -B /var/log /mnt/union/var/log
+mount -t tmpfs -o mode=777,noexec,nosuid,nodev,size=25% tmp /mnt/union/tmp
+
+mkdir /mnt/union/run/shm
+mkdir /mnt/union/dev/shm
+mount -B /mnt/union/run/shm /mnt/union/dev/shm
+mkdir /mnt/union/dev/pts
+mount -t devpts -o mode=620 pts /mnt/union/dev/pts
+
+echo " done."
+
+# continue the boot process inside the layered file system
+exec chroot /mnt/union post_init

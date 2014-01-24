@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# post_init: a system initialization script for the layered file system
+
+# update cache and start all daemons
+for i in /etc/init.d/*
+do
+	$i
+done
+
+# show a login prompt
+exec cttyhack sulogin

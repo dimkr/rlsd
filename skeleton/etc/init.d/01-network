@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# set the hostname
+echo -n "Setting the hostname ..."
+
+hostname $(cat /etc/hostname)
+
+# configure network interfaces
+echo -n " done.
+Configuring networking ..."
+
+ifup lo
+ifaddr lo 127.0.0.1
+route add -net 127.0.0.0 netmask 255.0.0.0 lo
+
+echo " done."

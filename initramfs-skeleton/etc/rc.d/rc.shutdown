@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/loksh
 
 # unmount all virtual file systems
 echo -n "Unmounting virtual file systems ..."
