@@ -11,7 +11,6 @@ dropbear_build() {
 	sed s~'^#define LOCAL_IDENT .*'~'#define LOCAL_IDENT "SSH-2.0-None"'~ \
 	    -i sysoptions.h
 
-	touch scp.1
 	./configure --host=$HOST \
 	            --prefix= \
 	            --sbindir=/bin \
