@@ -13,7 +13,9 @@ UNNEEDED_FILES="usr/share/pixmaps
                 usr/share/gtk-doc
                 lib/charset.alias
                 etc/X11
-                usr/share/gnome"
+                usr/share/gnome
+                etc/init.d
+                etc/udev"
 
 # include the configuration file
 . ./config
