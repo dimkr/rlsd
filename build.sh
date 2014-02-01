@@ -148,7 +148,10 @@ do
 done
 if [ 1 -eq $should_strip ] && [ -d "$installation_prefix/bin" ]
 then
-	"$STRIP" --strip-all "$installation_prefix/bin"/*
+	for i in "$installation_prefix/bin"/*
+	do
+		[ -f "$i" ] && "$STRIP" --strip-all "$i"
+	done
 fi
 
 # strip all kernel modules
