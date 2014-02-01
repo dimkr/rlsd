@@ -6,7 +6,7 @@ luufs_build() {
 	unzip luufs-$PACKAGE_VERSION.zip
 	cd luufs-master
 
-	patch -p 1 < "$BASE_DIR/patches/luufs-layers.patch"
+	make clean
 	$MAKE CC="$CC" CFLAGS="$CFLAGS"
 }
 
