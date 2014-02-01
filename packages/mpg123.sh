@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.17.0"
+PACKAGE_VERSION="1.18.0"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/mpg123/mpg123/$PACKAGE_VERSION/mpg123-$PACKAGE_VERSION.tar.bz2"
 
 mpg123_build() {

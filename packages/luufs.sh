@@ -6,7 +6,6 @@ luufs_build() {
 	unzip luufs-$PACKAGE_VERSION.zip
 	cd luufs-master
 
-	make clean
 	$MAKE CC="$CC" CFLAGS="$CFLAGS"
 }
 

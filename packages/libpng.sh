@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.6.7"
+PACKAGE_VERSION="1.6.8"
 PACKAGE_SOURCES="http://prdownloads.sourceforge.net/libpng/libpng-$PACKAGE_VERSION.tar.xz"
 
 libpng_build() {
