@@ -2,7 +2,7 @@
 
 . ./config
 
-INITRAMFS_PROGRAMS="init loksh syslogd logd mkdir mount umount luufs chroot"
+INITRAMFS_PROGRAMS="init loksh cat syslogd logd mkdir mount umount luufs chroot"
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"
@@ -18,6 +18,9 @@ for i in $INITRAMFS_PROGRAMS
 do
 	cp "$SYSROOT/bin/$i" "$initramfs_root/bin"
 done
+
+# add the version string to the initramfs
+echo -n "$VERSION" > "$initramfs_root/etc/version"
 
 # create a temporary directory for the extracted ISO image contents
 iso_root="$(mktemp -d)"

@@ -3,6 +3,9 @@
 # set the executable search path
 export PATH="/bin"
 
+# show the version string
+echo "Welcome to Lazyux $(cat /etc/version)!"
+
 # mount virtual file systems
 echo -n "Mounting virtual file systems ..."
 
@@ -26,7 +29,6 @@ Searching for the home partition ..."
 cd /sys/class/block
 for partition in *
 do
-	echo -n " $partition"
 	mount -o ro /dev/$partition /mnt/home
 	if [ 0 -eq $? ]
 	then
@@ -64,6 +66,7 @@ mount -B /proc /mnt/union/proc
 mount -B /sys /mnt/union/sys
 mount -B /dev /mnt/union/dev
 mount -B /run /mnt/union/run
+mount -B /mnt/union/run /mnt/union/var/run
 mount -B /var/log /mnt/union/var/log
 mount -t tmpfs -o mode=777,noexec,nosuid,nodev,size=25% tmp /mnt/union/tmp
 
@@ -72,6 +75,12 @@ mkdir /mnt/union/dev/shm
 mount -B /mnt/union/run/shm /mnt/union/dev/shm
 mkdir /mnt/union/dev/pts
 mount -t devpts -o mode=620 pts /mnt/union/dev/pts
+
+# bind /var/cache to the writeable layer, to bypass limitations in FUSE and
+# luufs which affect fc-cache
+mkdir /mnt/rw/var
+mkdir /mnt/rw/var/cache
+mount -B /mnt/rw/var/cache /mnt/union/var/cache
 
 echo " done."
 
