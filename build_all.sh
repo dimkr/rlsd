@@ -17,6 +17,8 @@ CORE="linux_headers
       axel
       dropbear
       dhcpcd
+      libnl
+      wpa_supplicant
       tinyalsa
       mpg123
       fuse
