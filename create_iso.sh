@@ -2,7 +2,17 @@
 
 . ./config
 
-INITRAMFS_PROGRAMS="init loksh cat syslogd logd mkdir mount umount luufs chroot"
+INITRAMFS_PROGRAMS="init
+                    loksh
+                    cat
+                    syslogd
+                    logd
+                    mkdir
+                    mount
+                    umount
+                    luufs
+                    sleep
+                    klogecho"
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"
@@ -28,13 +38,14 @@ iso_root="$(mktemp -d)"
 # generate a compressed initramfs
 cd "$initramfs_root"
 find -name .gitignore -delete
+chown -R 0:0 .
 find . | cpio -o -H newc | xz -9 -e --check=none > "$iso_root/initrd.xz"
 rm -rf "$initramfs_root"
 
 # add the skeleton to the root file system
 root_fs="$(mktemp -d -u)"
 cp -ar "$SYSROOT" "$root_fs"
-cp -ar skeleton/* "$root_fs"
+cp -ar "$BASE_DIR/skeleton"/* "$root_fs"
 
 # create a 4 MB, FAT12 UEFI boot image, for UEFI boot
 dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=4
@@ -57,6 +68,7 @@ mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 
 # generate the root file system image
 find "$root_fs" -name .gitignore -delete
+chown -R 0:0 "$root_fs"
 mksquashfs "$root_fs" \
            "$iso_root/rootfs.sfs" \
            -comp xz \
@@ -66,6 +78,7 @@ mksquashfs "$root_fs" \
 rm -rf "$root_fs"
 
 # generate an ISO image
+[ -f "$BASE_DIR/$ISO_NAME" ] && rm -f "$BASE_DIR/$ISO_NAME"
 xorriso -dev "$BASE_DIR/$ISO_NAME" \
         -volid "LAZYUX_$VERSION" \
         -joliet on \

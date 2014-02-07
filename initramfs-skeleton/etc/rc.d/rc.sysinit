@@ -12,35 +12,50 @@ echo -n "Mounting virtual file systems ..."
 mount -t proc proc /proc
 mount -t sysfs sys /sys
 mount -t devtmpfs dev /dev
-mount -t tmpfs run /mnt/union/run
+mount -t tmpfs run /run
 mount -t tmpfs -o mode=600,size=25% log /var/log
 
 # start logging daemons
 echo -n " done.
 Starting logging services ..."
 
-syslogd
+syslogd /run/messages
 logd /run/messages /var/log/messages
 logd /proc/kmsg /var/log/kern.log
+
+# turn off kernel messages
+klogecho off
 
 # find the home partition
 echo -n " done.
 Searching for the home partition ..."
 cd /sys/class/block
-for partition in *
+is_found=0
+for i in 1 2 3 4 5
 do
-	mount -o ro /dev/$partition /mnt/home
-	if [ 0 -eq $? ]
-	then
-		if [ -f /mnt/home/bzImage ] && \
-		   [ -f /mnt/home/initrd.xz ] && \
-		   [ -f /mnt/home/rootfs.sfs ]
+	for partition in *
+	do
+		mount -o ro /dev/$partition /mnt/home
+		if [ 0 -eq $? ]
 		then
-			break
+			if [ -f /mnt/home/bzImage ] && \
+			   [ -f /mnt/home/initrd.xz ] && \
+			   [ -f /mnt/home/rootfs.sfs ]
+			then
+				is_found=1
+				break
+			fi
 		fi
-	fi
-	umount /mnt/home
+		umount /mnt/home
+	done
+	[ 1 -eq $is_found ] && break
+	sleep 5
 done
+if [ 0 -eq $is_found ]
+then
+	echo "failure."
+	exit
+fi
 
 # mount the root file system image
 echo -n " done.
@@ -70,9 +85,8 @@ mount -B /mnt/union/run /mnt/union/var/run
 mount -B /var/log /mnt/union/var/log
 mount -t tmpfs -o mode=777,noexec,nosuid,nodev,size=25% tmp /mnt/union/tmp
 
-mkdir /mnt/union/run/shm
-mkdir /mnt/union/dev/shm
-mount -B /mnt/union/run/shm /mnt/union/dev/shm
+mkdir /run/shm
+mount -B /run/shm /mnt/union/dev/shm
 mkdir /mnt/union/dev/pts
 mount -t devpts -o mode=620 pts /mnt/union/dev/pts
 
@@ -85,4 +99,4 @@ mount -B /mnt/rw/var/cache /mnt/union/var/cache
 echo " done."
 
 # continue the boot process inside the layered file system
-exec chroot /mnt/union post_init
+exec /mnt/ro/bin/chroot /mnt/union /bin/post_init
