@@ -31,7 +31,7 @@ Core components:
 Current status:
   - Builds flawlessly on Debian 7 (http://www.debian.org/)
   - Boots under x86 (MBR) and x86_64 (UEFI); reaches a graphical desktop
-  - Lacks network tools (i.e route, ifconfig), WiFi support and a firewall
+  - Lacks network tools (i.e route, ifconfig) and a firewall
   - Lacks a persistent root file system
   - Some applications crash
 

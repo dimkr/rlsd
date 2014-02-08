@@ -1,4 +1,4 @@
-PACKAGE_VERSION="6.1.0"
+PACKAGE_VERSION="3.2.3"
 PACKAGE_SOURCES="http://roy.marples.name/downloads/dhcpcd/dhcpcd-$PACKAGE_VERSION.tar.bz2"
 
 dhcpcd_build() {
@@ -7,15 +7,11 @@ dhcpcd_build() {
 	cd dhcpcd-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/dhcpcd-musl.patch"
-	./configure --host=$HOST \
-	            --prefix=/ \
-	            --sbindir=/bin \
-	            --mandir=/usr/share/man \
-	            --libexecdir=/lib/dhcpcd
-	$MAKE
+
+	$MAKE CC="$CC" CFLAGS="-Icompat $CFLAGS" LDFLAGS="$LDFLAGS" INFODIR="/run"
 }
 
 dhcpcd_package() {
-	$MAKE DESTDIR="$1" install
+	$MAKE DESTDIR="$1" BINDIR="/bin" install
 	install -D -m 644 README "$1/usr/share/doc/dhcpcd/README"
 }

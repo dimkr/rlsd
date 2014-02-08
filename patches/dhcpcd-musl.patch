@@ -1,18 +1,17 @@
-diff -rupN dhcpcd-6.1.0-orig/common.c dhcpcd-6.1.0/common.c
---- dhcpcd-6.1.0-orig/common.c	2013-09-20 10:27:24.000000000 +0000
-+++ dhcpcd-6.1.0/common.c	2013-12-21 15:56:12.520228436 +0000
-@@ -30,8 +30,6 @@
- #  define _GNU_SOURCE
- #endif
+diff -rupN dhcpcd-3.2.3-orig/common.h dhcpcd-3.2.3/common.h
+--- dhcpcd-3.2.3-orig/common.h	2008-02-25 10:28:19.000000000 +0200
++++ dhcpcd-3.2.3/common.h	2014-02-08 10:50:42.943468139 +0200
+@@ -32,6 +32,7 @@
+ #include <sys/time.h>
+ #include <stdio.h>
+ #include <string.h>
++#include <sys/types.h>
  
--#include <sys/cdefs.h>
--
- #ifdef __APPLE__
- #  include <mach/mach_time.h>
- #  include <mach/kern_return.h>
-diff -rupN dhcpcd-6.1.0-orig/compat/sys/queue.h dhcpcd-6.1.0/compat/sys/queue.h
---- dhcpcd-6.1.0-orig/compat/sys/queue.h	1970-01-01 00:00:00.000000000 +0000
-+++ dhcpcd-6.1.0/compat/sys/queue.h	2013-12-21 16:09:43.704250157 +0000
+ #if __GNUC__ > 2 || defined(__INTEL_COMPILER)
+ # define _unused __attribute__((__unused__))
+diff -rupN dhcpcd-3.2.3-orig/compat/sys/queue.h dhcpcd-3.2.3/compat/sys/queue.h
+--- dhcpcd-3.2.3-orig/compat/sys/queue.h	1970-01-01 02:00:00.000000000 +0200
++++ dhcpcd-3.2.3/compat/sys/queue.h	2014-02-08 10:49:10.431465662 +0200
 @@ -0,0 +1,692 @@
 +/*-
 + * Copyright (c) 1991, 1993
@@ -706,117 +705,54 @@ diff -rupN dhcpcd-6.1.0-orig/compat/sys/queue.h dhcpcd-6.1.0/compat/sys/queue.h
 +} while (0)
 +
 +#endif /* !_SYS_QUEUE_H_ */
-diff -rupN dhcpcd-6.1.0-orig/configure dhcpcd-6.1.0/configure
---- dhcpcd-6.1.0-orig/configure	2013-09-20 10:27:24.000000000 +0000
-+++ dhcpcd-6.1.0/configure	2013-12-21 16:11:39.372253254 +0000
-@@ -264,10 +264,7 @@ else
- fi
- $CC --version | $SED -e '1!d'
- echo "CC=		$CC" >>$CONFIG_MK
--
--if [ -n "$CFLAGS" ]; then
--	echo "CFLAGS=		$CFLAGS" >>$CONFIG_MK
--fi
-+echo "CFLAGS=		-I./compat $CFLAGS" >>$CONFIG_MK
- if [ -n "$CPPFLAGS" ]; then
- 	echo "CPPFLAGS=		$CPPFLAGS" >>$CONFIG_MK
- fi
-@@ -356,7 +353,7 @@ fi
+diff -rupN dhcpcd-3.2.3-orig/config.h dhcpcd-3.2.3/config.h
+--- dhcpcd-3.2.3-orig/config.h	2008-02-25 10:28:19.000000000 +0200
++++ dhcpcd-3.2.3/config.h	2014-02-08 11:00:09.487483312 +0200
+@@ -46,7 +46,7 @@
+  * You can always create your own DUID file that just contains the
+  * hex string that represents the DUID.
+  * See RFC 3315 for details on this. */
+-#define ENABLE_DUID
++/* #define ENABLE_DUID */
  
- # Add CPPFLAGS and CFLAGS to CC for testing features
- XCC="$CC `$SED -n -e 's/CPPLAGS+=*\(.*\)/\1/p' $CONFIG_MK`"
--XCC="$XCC `$SED -n -e 's/CFLAGS+=*\(.*\)/\1/p' $CONFIG_MK`"
-+XCC="$XCC -I./compat `$SED -n -e 's/CFLAGS+=*\(.*\)/\1/p' $CONFIG_MK`"
+ /* resolvconf is framework for multiple interfaces to manage resolv.conf */
+ #define ENABLE_RESOLVCONF
+@@ -73,11 +73,10 @@
  
- abort=false
- # We require the libc to support non standard functions, like getifaddrs
-diff -rupN dhcpcd-6.1.0-orig/dhcp6.c dhcpcd-6.1.0/dhcp6.c
---- dhcpcd-6.1.0-orig/dhcp6.c	2013-09-20 10:27:24.000000000 +0000
-+++ dhcpcd-6.1.0/dhcp6.c	2013-12-21 15:56:31.284228941 +0000
-@@ -31,10 +31,6 @@
- #include <sys/utsname.h>
+ #define DEFAULT_SCRIPT      ETCDIR "/" PACKAGE ".sh"
  
- #include <netinet/in.h>
--#ifdef __linux__
--#  define _LINUX_IN6_H
--#  include <linux/ipv6.h>
--#endif
+-#define STATEDIR            "/var"
+-#define PIDFILE             STATEDIR "/run/" PACKAGE "-%s.pid"
++#define PIDFILE             "/run/" PACKAGE "-%s.pid"
  
- #include <ctype.h>
- #include <errno.h>
-diff -rupN dhcpcd-6.1.0-orig/dhcpcd.c dhcpcd-6.1.0/dhcpcd.c
---- dhcpcd-6.1.0-orig/dhcpcd.c	2013-09-20 10:27:24.000000000 +0000
-+++ dhcpcd-6.1.0/dhcpcd.c	2013-12-21 15:55:00.672226511 +0000
-@@ -48,6 +48,7 @@ const char copyright[] = "Copyright (c)
- #include <string.h>
- #include <syslog.h>
- #include <unistd.h>
-+#include <fcntl.h>
- #include <time.h>
+ #ifndef INFODIR
+-# define INFODIR            "/var/lib/dhcpcd"
++# define INFODIR            "/run"
+ #endif
+ #define INFOFILE            INFODIR "/" PACKAGE "-%s.info"
+ #define DUIDFILE            INFODIR "/" PACKAGE ".duid"
+diff -rupN dhcpcd-3.2.3-orig/dhcpcd.c dhcpcd-3.2.3/dhcpcd.c
+--- dhcpcd-3.2.3-orig/dhcpcd.c	2008-02-25 10:28:19.000000000 +0200
++++ dhcpcd-3.2.3/dhcpcd.c	2014-02-08 10:51:19.535469117 +0200
+@@ -611,7 +611,7 @@ int main(int argc, char **argv)
+ 	}
  
- #include "arp.h"
-diff -rupN dhcpcd-6.1.0-orig/if-pref.c dhcpcd-6.1.0/if-pref.c
---- dhcpcd-6.1.0-orig/if-pref.c	2013-09-20 10:27:24.000000000 +0000
-+++ dhcpcd-6.1.0/if-pref.c	2013-12-21 15:55:00.672226511 +0000
-@@ -26,6 +26,7 @@
-  */
+ 	/* Seed random */
+-	srandomdev ();
++	srand (time(NULL));
  
- #include <sys/types.h>
-+#include <sys/queue.h>
- 
- #include "config.h"
- #include "dhcp.h"
-diff -rupN dhcpcd-6.1.0-orig/ipv6nd.c dhcpcd-6.1.0/ipv6nd.c
---- dhcpcd-6.1.0-orig/ipv6nd.c	2013-09-20 10:27:24.000000000 +0000
-+++ dhcpcd-6.1.0/ipv6nd.c	2013-12-21 15:55:00.668226511 +0000
-@@ -33,11 +33,6 @@
- #include <netinet/ip6.h>
- #include <netinet/icmp6.h>
- 
--#ifdef __linux__
--#  define _LINUX_IN6_H
--#  include <linux/ipv6.h>
--#endif
--
- #include <errno.h>
- #include <stddef.h>
- #include <stdlib.h>
-diff -rupN dhcpcd-6.1.0-orig/README dhcpcd-6.1.0/README
---- dhcpcd-6.1.0-orig/README	2013-09-20 10:27:24.000000000 +0000
-+++ dhcpcd-6.1.0/README	2013-12-21 16:17:52.096263238 +0000
-@@ -82,3 +82,35 @@ ChangeLog
- We no longer supply a ChangeLog.
- However, you're more than welcome to read the commit log at
- http://roy.marples.name/projects/dhcpcd/log/
-+
-+queue.h
-+-------
-+
-+The following legal information applies to sys/queue.h:
-+
-+Copyright (c) 1991, 1993
-+The Regents of the University of California.  All rights reserved.
-+
-+Redistribution and use in source and binary forms, with or without
-+modification, are permitted provided that the following conditions
-+are met:
-+1. Redistributions of source code must retain the above copyright
-+   notice, this list of conditions and the following disclaimer.
-+2. Redistributions in binary form must reproduce the above copyright
-+   notice, this list of conditions and the following disclaimer in the
-+   documentation and/or other materials provided with the distribution.
-+4. Neither the name of the University nor the names of its contributors
-+   may be used to endorse or promote products derived from this software
-+   without specific prior written permission.
-+
-+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
-+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-+ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-+SUCH DAMAGE.
+ 	/* Massage our filters per platform */
+ 	setup_packet_filters ();
+diff -rupN dhcpcd-3.2.3-orig/mk/cc.mk dhcpcd-3.2.3/mk/cc.mk
+--- dhcpcd-3.2.3-orig/mk/cc.mk	2008-02-25 10:28:19.000000000 +0200
++++ dhcpcd-3.2.3/mk/cc.mk	2014-02-08 10:52:24.419470860 +0200
+@@ -14,7 +14,8 @@ _CC_FLAGS=	-pedantic -Wall -Wunused -Wim
+ 		-Wmissing-declarations -Wno-missing-prototypes -Wwrite-strings \
+ 		-Wbad-function-cast -Wnested-externs -Wcomment -Winline \
+ 		-Wchar-subscripts -Wcast-align -Wno-format-nonliteral \
+-		-Wdeclaration-after-statement -Wsequence-point -Wextra
++		-Wdeclaration-after-statement -Wsequence-point -Wextra \
++         	-I$(shell pwd)/compat
+ _CC_FLAGS_SH=	for f in ${_CC_FLAGS}; do \
+ 		if ${CC} $$f -S -o /dev/null -xc /dev/null >/dev/null 2>&1; \
+ 		then printf "%s" "$$f "; fi \
