@@ -18,6 +18,7 @@ CORE="linux_headers
       dropbear
       dhcpcd
       libnl
+      wireless_tools
       wpa_supplicant
       tinyalsa
       mpg123
@@ -49,7 +50,7 @@ DESKTOP_CORE="tinyxlib
               rox"
 CONSOLE_APPS="ncurses
               less
-              vile
+              joe
               screen
               ytree
               htop
@@ -57,7 +58,6 @@ CONSOLE_APPS="ncurses
               ircii
               calcurse
               ncdu
-              nano
               bwm_ng
               unnethack"
 GRAPHICAL_APPS="beaver
