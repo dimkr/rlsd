@@ -19,6 +19,7 @@ CORE="linux_headers
       dhcpcd
       libnl
       wireless_tools
+      iw
       wpa_supplicant
       tinyalsa
       mpg123
