@@ -66,8 +66,13 @@ mv "$root_fs/boot/bzImage" "$iso_root/"
 mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 
-# generate the root file system image
+# list all files under the root file system, to register it as a package
 find "$root_fs" -name .gitignore -delete
+mkdir "$root_fs/var/pkg/system"
+find "$root_fs" | sed s~"$root_fs"~~g > "$root_fs/var/pkg/system/contents"
+chmod 400 "$root_fs/var/pkg/system/contents"
+
+# generate the root file system image
 chown -R 0:0 "$root_fs"
 mksquashfs "$root_fs" \
            "$iso_root/rootfs.sfs" \
