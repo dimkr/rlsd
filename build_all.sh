@@ -18,7 +18,6 @@ CORE="linux_headers
       dropbear
       dhcpcd
       libnl_tiny
-      wireless_tools
       iw
       wpa_supplicant
       tinyalsa
