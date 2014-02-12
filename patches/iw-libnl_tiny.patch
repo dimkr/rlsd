@@ -1,0 +1,65 @@
+diff -rup iw-3.14-orig/iw.c iw-3.14/iw.c
+--- iw-3.14-orig/iw.c	2014-02-12 23:26:17.116467878 +0200
++++ iw-3.14/iw.c	2014-02-12 23:45:30.024498752 +0200
+@@ -23,8 +23,14 @@
+ #include "nl80211.h"
+ #include "iw.h"
+ 
++#ifdef CONFIG_LIBNL_TINY
++#define nl_handle nl_sock
++#define nl_handle_alloc_cb nl_socket_alloc_cb
++#define nl_handle_destroy nl_socket_free
++#endif
++
+ /* libnl 1.x compatibility code */
+-#if !defined(CONFIG_LIBNL20) && !defined(CONFIG_LIBNL30)
++#if !defined(CONFIG_LIBNL20) && !defined(CONFIG_LIBNL30) && !defined(CONFIG_LIBNL_TINY)
+ static inline struct nl_handle *nl_socket_alloc(void)
+ {
+ 	return nl_handle_alloc();
+@@ -40,7 +46,7 @@ static inline int nl_socket_set_buffer_s
+ {
+ 	return nl_set_buffer_size(sk, rxbuf, txbuf);
+ }
+-#endif /* CONFIG_LIBNL20 && CONFIG_LIBNL30 */
++#endif /* CONFIG_LIBNL20 && CONFIG_LIBNL30 && CONFIG_LIBNL_TINY */
+ 
+ int iw_debug = 0;
+ 
+diff -rup iw-3.14-orig/iw.h iw-3.14/iw.h
+--- iw-3.14-orig/iw.h	2014-02-12 23:26:17.116467878 +0200
++++ iw-3.14/iw.h	2014-02-12 23:50:35.016506920 +0200
+@@ -14,7 +14,7 @@
+ #define ETH_ALEN 6
+ 
+ /* libnl 1.x compatibility code */
+-#if !defined(CONFIG_LIBNL20) && !defined(CONFIG_LIBNL30)
++#if !defined(CONFIG_LIBNL20) && !defined(CONFIG_LIBNL30) && !defined(CONFIG_LIBNL_TINY)
+ #  define nl_sock nl_handle
+ #endif
+ 
+diff -rup iw-3.14-orig/Makefile iw-3.14/Makefile
+--- iw-3.14-orig/Makefile	2014-02-12 23:26:17.116467878 +0200
++++ iw-3.14/Makefile	2014-02-12 23:48:46.432504013 +0200
+@@ -26,6 +26,8 @@ OBJS += $(OBJS-y) $(OBJS-Y)
+ ALL = iw
+ 
+ ifeq ($(NO_PKG_CONFIG),)
++NLTINYFOUND := $(shell $(PKG_CONFIG) --atleast-version=1 libnl-tiny && echo Y)
++ifneq ($(NLTINYFOUND),Y)
+ NL3xFOUND := $(shell $(PKG_CONFIG) --atleast-version=3.2 libnl-3.0 && echo Y)
+ ifneq ($(NL3xFOUND),Y)
+ NL31FOUND := $(shell $(PKG_CONFIG) --exact-version=3.1 libnl-3.1 && echo Y)
+@@ -39,6 +41,12 @@ endif
+ endif
+ endif
+ endif
++endif
++
++ifeq ($(NLTINYFOUND),Y)
++CFLAGS += -DCONFIG_LIBNL_TINY
++NLLIBNAME = libnl-tiny
++endif
+ 
+ ifeq ($(NL1FOUND),Y)
+ NLLIBNAME = libnl-1

@@ -17,7 +17,7 @@ CORE="linux_headers
       axel
       dropbear
       dhcpcd
-      libnl
+      libnl_tiny
       wireless_tools
       iw
       wpa_supplicant

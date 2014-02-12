@@ -6,7 +6,8 @@ iw_build() {
 	tar -xJvf iw-$PACKAGE_VERSION.tar.xz
 	cd iw-$PACKAGE_VERSION
 
-	$MAKE
+	patch -p 1 < "$BASE_DIR/patches/iw-libnl_tiny.patch"
+	CFLAGS="-D_GNU_SOURCE $CFLAGS" $MAKE
 }
 
 iw_package() {

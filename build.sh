@@ -94,29 +94,41 @@ mkdir -p ./sources/$1
 for i in $PACKAGE_SOURCES
 do
 	case "$i" in
+		# if an output file was specified, separate it from the URL
+		*,*)
+			destination="${i##*,}"
+			url="${i%%,*}"
+			;;
+
+		# otherwise, filter the output file name from the URL
+		*)
+			destination="${i##*/}"
+			url="$i"
+			;;
+	esac
+
+	# if the file already exists, do nothing
+	[ -e "build/$destination" ] && continue
+
+	case "$i" in
 		ftp://*|http://*|https://*)
-			case "$i" in
-				# if an output file was specified, separate it from the URL
-				*,*)
-					output_file="${i##*,}"
-					url="${i%%,*}"
-					;;
+			wget "$url" -O "./sources/$1/$destination"
+			;;
 
-				# otherwise, filter the output file name from the URL
-				*)
-					output_file="${i##*/}"
-					url="$i"
-					;;
-			esac
-
-			# if the file already exists, do nothing
-			[ -e "build/$output_file" ] && continue
-
-			# download the file
-			wget "$url" -O "./sources/$1/$output_file"
-			ln -s "../sources/$1/$output_file" build/
+		svn://*)
+			temporary_diretcory="$(mktemp -d)"
+			cd "$temporary_diretcory"
+			output_directory="$(basename "$destination" .tar.xz)"
+			svn co $url "$output_directory"
+			tar -c "$output_directory" | \
+			xz -9 -e > "$BASE_DIR/sources/$1/$destination"
+			rm -rf "$temporary_diretcory"
+			cd "$BASE_DIR"
 			;;
     esac
+
+    # create a link to the file
+	ln -s "../sources/$1/$output_file" build/
 done
 
 # build the package

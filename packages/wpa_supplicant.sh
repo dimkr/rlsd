@@ -7,15 +7,16 @@ wpa_supplicant_build() {
 	cd wpa_supplicant-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/wpa_supplicant-musl.patch"
+	patch -p 1 < "$BASE_DIR/patches/wpa_supplicant-libnl_tiny.patch"
 
 	cd wpa_supplicant
 	cp defconfig .config
 	echo "CONFIG_TLS=none" >> .config
 	echo "CC = $CC" >> .config
-	echo "CFLAGS += $(pkg-config --cflags libnl-3.0)" >> .config
-	echo "LDFLAGS += $(pkg-config --libs libnl-3.0)" >> .config
-	echo "CONFIG_LIBNL32=y" >> .config
-	$MAKE CC="$CC"
+	echo "CFLAGS += -D_GNU_SOURCE $(pkg-config --cflags libnl-tiny)" >> .config
+	echo "LDFLAGS += $(pkg-config --libs libnl-tiny)" >> .config
+	echo "CONFIG_LIBNL_TINY=y" >> .config
+	$MAKE CC="$CC" CONFIG_LIBNL_TINY=1
 }
 
 wpa_supplicant_package() {
