@@ -6,11 +6,9 @@ gtkdiskfree_build() {
 	tar -xjvf gtkdiskfree-$PACKAGE_VERSION.tar.bz2
 	cd gtkdiskfree-$PACKAGE_VERSION
 
-	patch -p1 < "$BASE_DIR/patches/gtkdiskfree.patch"
-	./configure --host=$HOST \
-	            --prefix= \
-	            --datadir=/usr/share \
-	            --disable-nls
+	patch -p 1 < "$BASE_DIR/patches/gtkdiskfree-build.patch"
+
+	./configure --host=$HOST --prefix= --datadir=/usr/share --disable-nls
 	$MAKE
 }
 

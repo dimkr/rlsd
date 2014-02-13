@@ -1,0 +1,12 @@
+diff -rup linux-3.10.29-orig/mm/vmscan.c linux-3.10.29/mm/vmscan.c
+--- linux-3.10.29-orig/mm/vmscan.c	2014-02-13 18:08:49.877169194 +0200
++++ linux-3.10.29/mm/vmscan.c	2014-02-13 18:11:19.261173195 +0200
+@@ -129,7 +129,7 @@ struct scan_control {
+ /*
+  * From 0 .. 100.  Higher means more swappy.
+  */
+-int vm_swappiness = 60;
++int vm_swappiness = 20;
+ unsigned long vm_total_pages;	/* The total number of pages which the VM controls */
+ 
+ static LIST_HEAD(shrinker_list);

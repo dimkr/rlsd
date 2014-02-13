@@ -8,7 +8,9 @@ linux_build() {
 	cd linux-$PACKAGE_VERSION
 
 	# apply all Lazyux modifications
-	patch -p1 < "$BASE_DIR/patches/linux.patch"
+	patch -p 1 < "$BASE_DIR/patches/linux-swappiness.patch"
+	patch -p 1 < "$BASE_DIR/patches/linux-verbosity.patch"
+	patch -p 1 < "$BASE_DIR/patches/linux-lazy_utils.patch"
 
 	# reset the minor version number, so the kernel is compatible woth modules
 	# built against previous minor versions
