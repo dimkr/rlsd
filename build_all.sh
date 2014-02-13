@@ -21,6 +21,7 @@ CORE="linux_headers
       iw
       wpa_supplicant
       tinyalsa
+      tinyunmute
       mpg123
       fuse
       luufs

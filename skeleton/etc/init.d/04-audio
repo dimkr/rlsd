@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# unmute all mixer channels
+echo -n "Initializing audio volume ..."
+
+tinyunmute
+
+echo " done."

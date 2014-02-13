@@ -129,7 +129,7 @@ do
     esac
 
     # create a link to the file
-	ln -s "../sources/$1/$output_file" build/
+	ln -s "../sources/$1/$destination" build/
 done
 
 # build the package
