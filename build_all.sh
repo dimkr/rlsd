@@ -60,8 +60,7 @@ CONSOLE_APPS="ncurses
               calcurse
               ncdu
               nano
-              bwm_ng
-              unnethack"
+              bwm_ng"
 GRAPHICAL_APPS="beaver
                 gdmap
                 xchat

@@ -7,7 +7,7 @@ case "$1" in
 		echo "Installing $2"
 
 		# download the package
-		axel -o "/tmp/$2.pkg" "ftp://dimakrasner.com/$2.pkg"
+		wget -O "/tmp/$2.pkg" "ftp://dimakrasner.com/$2.pkg"
 		if [ 0 -ne $? ]
 		then
 			echo "Error: failed to download $2."

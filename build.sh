@@ -107,29 +107,30 @@ do
 			;;
 	esac
 
-	# if the file already exists, do nothing
-	[ -e "build/$destination" ] && continue
-
 	# download the file
-	case "$i" in
-		ftp://*|http://*|https://*)
-			wget "$url" -O "./sources/$1/$destination"
-			;;
+	if [ ! -f "./sources/$1/$destination" ]
+	then
+		case "$i" in
+			ftp://*|http://*|https://*)
+				wget "$url" -O "./sources/$1/$destination"
+				;;
 
-		svn://*)
-			temporary_diretcory="$(mktemp -d)"
-			cd "$temporary_diretcory"
-			output_directory="$(basename "$destination" .tar.xz)"
-			svn co $url "$output_directory"
-			tar -c "$output_directory" | \
-			xz -9 -e > "$BASE_DIR/sources/$1/$destination"
-			rm -rf "$temporary_diretcory"
-			cd "$BASE_DIR"
-			;;
-    esac
+			svn://*)
+				temporary_diretcory="$(mktemp -d)"
+				cd "$temporary_diretcory"
+				output_directory="$(basename "$destination" .tar.xz)"
+				svn co $url "$output_directory"
+				tar -c "$output_directory" | \
+				xz -9 -e > "$BASE_DIR/sources/$1/$destination"
+				rm -rf "$temporary_diretcory"
+				cd "$BASE_DIR"
+				;;
+		esac
+	fi
 
     # create a link to the file
-	ln -s "../sources/$1/$destination" build/
+	[ ! -e "build/$destination" ] && \
+	                                   ln -s "../sources/$1/$destination" build/
 done
 
 # build the package
