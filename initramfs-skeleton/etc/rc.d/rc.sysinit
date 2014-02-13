@@ -3,8 +3,8 @@
 # set the executable search path
 export PATH="/bin"
 
-# show the version string
-echo "Welcome to Lazyux $(cat /etc/version)!"
+# clear the screen from boot loader or early kernel messages
+clear
 
 # mount virtual file systems
 echo -n "Mounting virtual file systems ..."

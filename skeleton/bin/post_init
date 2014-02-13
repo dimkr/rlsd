@@ -8,5 +8,8 @@ do
 	$i
 done
 
+# clear the screen
+clear
+
 # show a login prompt
 exec cttyhack sulogin
