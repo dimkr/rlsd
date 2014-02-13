@@ -110,6 +110,7 @@ do
 	# if the file already exists, do nothing
 	[ -e "build/$destination" ] && continue
 
+	# download the file
 	case "$i" in
 		ftp://*|http://*|https://*)
 			wget "$url" -O "./sources/$1/$destination"

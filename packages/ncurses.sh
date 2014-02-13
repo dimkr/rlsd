@@ -28,6 +28,7 @@ ncurses_build() {
 	            $library_flags \
 	            --without-debug \
 	            --without-profile \
+	            --with-termlib \
 	            --with-manpage-format=normal
 	$MAKE
 }

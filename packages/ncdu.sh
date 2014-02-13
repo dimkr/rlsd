@@ -5,7 +5,7 @@ ncdu_build() {
 	[ -d ncdu-$PACKAGE_VERSION ] && rm -rf ncdu-$PACKAGE_VERSION
 	tar -xzvf ncdu-$PACKAGE_VERSION.tar.gz
 	cd ncdu-$PACKAGE_VERSION
-	./configure --host=$HOST --prefix= --datarootdir=/usr/share
+	./configure --host=$HOST --prefix= --datarootdir=/usr/share --with-ncurses
 	$MAKE
 }
 

@@ -1,5 +1,5 @@
-PACKAGE_VERSION="trunk"
-PACKAGE_SOURCES="svn://svn.openwrt.org/openwrt/trunk/package/libs/libnl-tiny,libnl-tiny-$PACKAGE_VERSION"
+PACKAGE_VERSION="svn$(date +%d%m%Y)"
+PACKAGE_SOURCES="svn://svn.openwrt.org/openwrt/trunk/package/libs/libnl-tiny,libnl-tiny-$PACKAGE_VERSION.tar.xz"
 
 libnl_tiny_build() {
 	[ -d libnl-tiny-$PACKAGE_VERSION ] && rm -rf libnl-tiny-$PACKAGE_VERSION
