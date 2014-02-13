@@ -28,7 +28,6 @@ ncurses_build() {
 	            $library_flags \
 	            --without-debug \
 	            --without-profile \
-	            --with-termlib \
 	            --with-manpage-format=normal
 	$MAKE
 }
@@ -37,6 +36,7 @@ ncurses_package() {
 	$MAKE DESTDIR="$1" install
 	mv "$1/usr/lib/pkgconfig" "$1/lib/"
 	rmdir "$1/usr/lib"
+	ln -s libncurses.a "$1/lib/libtinfo.a"
 	install -D -m 644 README "$1/usr/share/doc/ncurses/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/ncurses/NEWS"
 	install -D -m 644 ANNOUNCE "$1/usr/share/doc/ncurses/ANNOUNCE"

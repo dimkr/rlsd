@@ -22,6 +22,7 @@ ircii_package() {
 	rm -f "$1/bin/irc"
 	mv "$1/bin/irc-$PACKAGE_VERSION" "$1/bin/irc"
 	install -D -m 644 README "$1/usr/share/doc/ircii/README"
+	install -D -m 644 NEWS "$1/usr/share/doc/ircii/NEWS"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/ircii/ChangeLog"
 	install -D -m 644 doc/Copyright "$1/usr/share/doc/ircii/Copyright"
 }

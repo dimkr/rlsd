@@ -38,6 +38,6 @@ rox_package() {
 
 	mkdir "$1/bin"
 	echo "#!/bin/sh
-exec /usr/share/rox/AppRun \"\$@\"" > "$1/bin/rox"
+exec ./usr/share/rox/AppRun \"\$@\"" > "$1/bin/rox"
 	chmod 755 "$1/bin/rox"
 }

@@ -12,6 +12,7 @@ vile_build() {
 	            --mandir=/usr/share/man \
 	            --disable-plugins \
 	            --without-pkg-config \
+	            --with-ncurses \
 	            --without-locale \
 	            --without-icondir \
 	            --disable-desktop
