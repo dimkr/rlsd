@@ -14,7 +14,7 @@ CORE="linux_headers
       gnu_efi
       elilo
       mandoc
-      axel
+      wget
       dropbear
       dhcpcd
       libnl_tiny
