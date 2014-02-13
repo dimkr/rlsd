@@ -1,4 +1,4 @@
-PACKAGE_VERSION="20111115"
+PACKAGE_VERSION="20131230"
 PACKAGE_SOURCES="http://ircii.warped.com/ircii-$PACKAGE_VERSION.tar.bz2"
 
 ircii_build() {
@@ -6,7 +6,7 @@ ircii_build() {
 	tar -xjvf ircii-$PACKAGE_VERSION.tar.bz2
 	cd ircii-$PACKAGE_VERSION
 
-	sed s~'libexecdir="\$prefix/libexec"'~'#&'~ -i configure
+	patch -p 1 < "$BASE_DIR/patches/ircii-xargs.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \
