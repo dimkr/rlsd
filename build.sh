@@ -162,9 +162,10 @@ do
 done
 if [ 1 -eq $should_strip ] && [ -d "$installation_prefix/bin" ]
 then
-	for i in "$installation_prefix/bin"/*
+	find "$installation_prefix" | while read file
 	do
-		[ -f "$i" ] && "$STRIP" --strip-all "$i"
+		[ "application/x-executable" = "$(file -b --mime-type "$file")" ] && \
+		                                            "$STRIP" --strip-all "$file"
 	done
 fi
 
