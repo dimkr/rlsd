@@ -1,0 +1,11 @@
+diff -rup findutils-4.4.2-orig/gnulib/lib/freadahead.c findutils-4.4.2/gnulib/lib/freadahead.c
+--- findutils-4.4.2-orig/gnulib/lib/freadahead.c	2014-02-14 20:56:59.425453820 +0200
++++ findutils-4.4.2/gnulib/lib/freadahead.c	2014-02-14 21:03:00.353463486 +0200
+@@ -60,7 +60,5 @@ freadahead (FILE *fp)
+     return 0;
+   /* fp->_Buf <= fp->_Next <= fp->_Rend */
+   return fp->_Rend - fp->_Next;
+-#else
+- #error "Please port gnulib freadahead.c to your platform! Look at the definition of fflush, fread on your system, then report this to bug-gnulib."
+ #endif
+ }

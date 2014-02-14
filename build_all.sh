@@ -7,6 +7,7 @@ CORE="linux_headers
       musl
       lazy_utils
       loksh
+      findutils
       xz_embedded
       zlib
       libarchive
