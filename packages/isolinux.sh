@@ -9,6 +9,7 @@ isolinux_build() {
 
 isolinux_package() {
 	install -D -m 644 core/isolinux.bin "$1/boot/isolinux.bin"
+	install -m 644 mbr/isohdpfx.bin "$1/boot/isohdpfx.bin"
 	install -D -m 644 README "$1/usr/share/doc/syslinux/README"
 	install -m 644 NEWS "$1/usr/share/doc/syslinux/NEWS"
 	install -m 644 COPYING "$1/usr/share/doc/syslinux/COPYING"

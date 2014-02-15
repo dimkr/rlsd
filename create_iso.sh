@@ -61,6 +61,7 @@ rmdir "$mount_point"
 # for BIOS boot
 mv "$root_fs/boot/bzImage" "$iso_root/"
 mv "$root_fs/boot/isolinux.bin" "$iso_root/"
+mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 
 # list all files under the root file system, to register it as a package
@@ -80,16 +81,21 @@ mksquashfs "$root_fs" \
 rm -rf "$root_fs"
 
 # generate an ISO image
-[ -f "$BASE_DIR/$ISO_NAME" ] && rm -f "$BASE_DIR/$ISO_NAME"
-xorriso -dev "$BASE_DIR/$ISO_NAME" \
+xorriso -as mkisofs \
+        -iso-level 3 \
+        -full-iso9660-filenames \
         -volid "LAZYUX_$VERSION" \
-        -joliet on \
-        -compliance iso_9660_level=3 \
-        -map "$iso_root" / \
-        -boot_image isolinux dir=/ \
-        -boot_image isolinux next \
-        -boot_image any efi_path=efiboot.img
-isohybrid -u "$BASE_DIR/$ISO_NAME"
+        -appid "Lazyux $VERSION" \
+        -eltorito-boot isolinux.bin \
+        -eltorito-catalog boot.cat \
+        -no-emul-boot -boot-load-size 4 -boot-info-table \
+        -isohybrid-mbr "$iso_root/isohdpfx.bin" \
+        -eltorito-alt-boot \
+        -e efiboot.img \
+        -no-emul-boot \
+        -isohybrid-gpt-basdat \
+        -output "$BASE_DIR/$ISO_NAME" \
+        "$iso_root"
 
 # clean up
 rm -rf "$iso_root"
