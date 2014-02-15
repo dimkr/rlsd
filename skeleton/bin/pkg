@@ -7,18 +7,27 @@ case "$1" in
 		echo "Installing $2"
 
 		# download the package
-		wget -O "/tmp/$2.pkg" "ftp://dimakrasner.com/$2.pkg"
+		package="$(mktemp)"
+		wget -O "$package" "ftp://dimakrasner.com/$2.pkg"
 		if [ 0 -ne $? ]
 		then
 			echo "Error: failed to download $2."
 			exit 1
 		fi
 
-		# extract the package
+		# decompress the package
+		decompressed_package="$(mktemp)"
 		mkdir "/var/pkg/$2"
-		cat "/tmp/$2.pkg" | \
-		xzminidec | \
-		bsdtar -xvf - -C / > "/var/pkg/$2/contents"
+		xzminidec < "$package" > "$decompressed_package"
+		rm "$package"
+
+		# register the package contents
+		bsdtar -t -f "$decompressed_package" | \
+		grep -v ^metadata > "/var/pkg/$2/contents"
+
+		# extract the package
+		bsdtar -x -m -f "$decompressed_package" -C /
+		rm "$decompressed_package"
 
 		# run the post-installation script
 		[ -f /metadata/install.sh ] && /metadata/install.sh
@@ -29,9 +38,6 @@ case "$1" in
 
 		# remove /metadata
 		rm -r /metadata
-
-		# delete the package
-		rm "/tmp/$2.pkg"
 		;;
 
 	remove)
@@ -47,18 +53,19 @@ case "$1" in
 		# remove the package files
 		while read file
 		do
-			rm "$file"
+			if [ -d "$file" ]
+			then
+				rmdir "/$file"
+			else
+				rm "/$file"
+			fi
 		done < "/var/pkg/$2/contents"
 
 		# run the post-removal script
-		if [ -e "/var/pkg/$2/remove.sh" ]
-		then
-			"/var/pkg/$2/remove.sh"
-			rm "/var/pkg/$2/remove.sh"
-		fi
+		[ -f "/var/pkg/$2/remove.sh" ] && "/var/pkg/$2/remove.sh"
 
 		# remove the package metadata
-		rm "/var/pkg/$2/contents"
+		rm -r "/var/pkg/$2"
 		;;
 
 	*)
