@@ -6,13 +6,22 @@
                 |___/
 
 Lazyux is an ultra-minimalistic, no-frills, graphical, embedded-like
-distribution of Linux-libre (http://linux-libre.fsfla.org/) in development.
+distribution of Linux-libre (http://linux-libre.fsfla.org/) in constant
+development.
 
 About Lazyux
 ============
 
+Core values:
+  - Simplicity and transparency
+  - Unobtrusiveness
+  - Freedom and sharing of knowledge
+  - Cooperation with upstream projects, for the benefit of others
+
 Features:
-  - Small and extremely lightweight, yet graphical
+  - Supports x86_64, both BIOS and UEFI
+  - Small and extremely lightweight
+  - Graphical, with a keyboard-centric interface
   - Statically-linked
   - Built automatically and quickly
   - Familiar: Unix-like and written in C
@@ -28,14 +37,12 @@ Core components:
   - Ratpoison (http://www.nongnu.org/ratpoison/)
   - GTK+ (http://www.gtk.org/)
 
-Current status:
-  - Builds flawlessly on Debian 7 (http://www.debian.org/)
-  - Boots under x86 (MBR) and x86_64 (UEFI); reaches a graphical desktop
-  - Supports WiFi and DHCP
-  - Lacks network tools (i.e route, ifconfig) and a firewall
-  - Lacks a persistent root file system
-  - Some applications crash
-  - Lacks configuration wizards
+Missing features:
+  - Network tools (i.e route, ifconfig)
+  - A firewall
+  - A persistent root file system - currently, all changes are written to a
+    tmpfs file system
+  - Patches for common crashes in applications
 
 Building Lazyux
 ===============
@@ -46,7 +53,6 @@ and developed against Debian 7 (Wheezy).
 The following packages are required in order to build Lazyux in a clean Debian
 environment:
   - git and unzip, to build lazy-utils
-  - flex and bison, to build UnNetHack
   - nasm, to build libjpeg-turbo
   - fontforge and libfont-ttf-perl, to build the DejaVu fonts
 
