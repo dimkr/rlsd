@@ -12,7 +12,7 @@ linux_build() {
 	patch -p 1 < "$BASE_DIR/patches/linux-verbosity.patch"
 	patch -p 1 < "$BASE_DIR/patches/linux-lazy_utils.patch"
 
-	# reset the minor version number, so the kernel is compatible woth modules
+	# reset the minor version number, so the kernel is compatible with modules
 	# built against previous minor versions
 	sed s~'^SUBLEVEL = .*'~'SUBLEVEL ='~ -i Makefile
 
@@ -4275,12 +4275,18 @@ linux_package() {
 	# install the modules
 	$MAKE INSTALL_MOD_PATH="$1" modules_install
 
-	# move all modules and modules.builtin directly to /lib/modules - there's no
-	# need for a sub-directory for each kernel version, since there's only one
-	# kernel
-	mv "$1/lib/modules/$PACKAGE_MAJOR_VERSION/kernel"/* "$1/lib/modules/"
-	mv "$1/lib/modules/$PACKAGE_MAJOR_VERSION/modules.builtin" "$1/lib/modules/"
-	rm -rf "$1/lib/modules/$PACKAGE_MAJOR_VERSION"
+	# remove redundant kernel module information files
+	for i in "$1/lib/modules/$PACKAGE_MAJOR_VERSION"/*
+	do
+		case "$i" in
+			*/modules.builtin)
+				;;
+
+			*)
+				[ ! -d "$i" ] && rm -f "$i"
+				;;
+		esac
+	done
 
 	install -D -m 644 COPYING "$1/usr/share/doc/linux-libre/COPYING"
 	install -m 644 CREDITS "$1/usr/share/doc/linux-libre/CREDITS"
