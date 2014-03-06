@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2013.62"
+PACKAGE_VERSION="2014.63"
 PACKAGE_SOURCES="https://matt.ucc.asn.au/dropbear/releases/dropbear-$PACKAGE_VERSION.tar.bz2"
 
 PROGRAMS="dropbear dbclient dropbearkey scp"
@@ -7,8 +7,6 @@ dropbear_build() {
 	[ -d dropbear-$PACKAGE_VERSION ] && rm -rf dropbear-$PACKAGE_VERSION
 	tar -xjvf dropbear-$PACKAGE_VERSION.tar.bz2
 	cd dropbear-$PACKAGE_VERSION
-
-	patch -p 1 < "$BASE_DIR/patches/dropbear-man.patch"
 
 	sed s~'^#define LOCAL_IDENT .*'~'#define LOCAL_IDENT "SSH-2.0-None"'~ \
 	    -i sysoptions.h
