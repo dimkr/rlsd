@@ -7,6 +7,7 @@ gtkfind_build() {
 	cd gtkfind-$PACKAGE_VERSION
 
 	patch -p1 < "$BASE_DIR/patches/gtkfind-cflags.patch"
+	CONFIG_XTERM="/bin/aterm" \
 	./configure --host=$HOST --prefix= --mandir=/usr/share/man
 	$MAKE
 }
