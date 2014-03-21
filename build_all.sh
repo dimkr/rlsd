@@ -36,6 +36,7 @@ DESKTOP_CORE="tinyxlib
               libxft
               dejavu_fonts
               ratpoison
+              conky
               glib
               gtk
               lpackage

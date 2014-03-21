@@ -1,0 +1,11 @@
+diff -rup conky-1.9.0-orig/src/conky.c conky-1.9.0/src/conky.c
+--- conky-1.9.0-orig/src/conky.c	2014-03-21 18:13:07.762973017 +0200
++++ conky-1.9.0/src/conky.c	2014-03-21 18:13:25.398972701 +0200
+@@ -40,6 +40,7 @@
+ #include <signal.h>
+ #include <errno.h>
+ #include <limits.h>
++#include <stdbool.h>
+ #if HAVE_DIRENT_H
+ #include <dirent.h>
+ #endif
