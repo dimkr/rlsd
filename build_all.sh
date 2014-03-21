@@ -76,7 +76,8 @@ GRAPHICAL_APPS="beaver
                 mhwaveedit
                 giflib
                 mtpaint
-                dillo"
+                dillo
+                sylpheed"
 
 # built packages
 ALL="$CORE

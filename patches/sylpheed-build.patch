@@ -1,0 +1,19 @@
+diff -rup sylpheed-1.0.6-orig/configure sylpheed-1.0.6/configure
+--- sylpheed-1.0.6-orig/configure	2014-03-21 19:21:35.163899461 +0200
++++ sylpheed-1.0.6/configure	2014-03-21 19:24:57.755895833 +0200
+@@ -26510,12 +26510,12 @@ _ACEOF
+ 
+ 
+ 
+-localedir='${prefix}/${DATADIRNAME}/locale'
++localedir='${datadir}/locale'
+ 
+ 
+-manualdir='${prefix}/${DATADIRNAME}/${PACKAGE}/manual'
++manualdir='${datadir}/${PACKAGE}/manual'
+ 
+-faqdir='${prefix}/${DATADIRNAME}/${PACKAGE}/faq'
++faqdir='${datadir}/${PACKAGE}/faq'
+ 
+ 
+ 
