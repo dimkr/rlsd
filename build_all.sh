@@ -77,7 +77,8 @@ GRAPHICAL_APPS="beaver
                 giflib
                 mtpaint
                 dillo
-                sylpheed"
+                sylpheed
+                x11vnc"
 
 # built packages
 ALL="$CORE
