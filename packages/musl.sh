@@ -19,9 +19,13 @@ musl_package() {
 	$MAKE DESTDIR="$1" install
 
 	# move the GCC wrapper out of the package
-	mv "$1/bin/musl-gcc" "$BASE_DIR"
+	mv "$1/bin/musl-gcc" "$BASE_DIR/"
+	mv "$1/lib/musl-gcc.specs" "$BASE_DIR/"
 	rmdir "$1/bin"
-	sed s~"/lib"~"$SYSROOT/lib"~ -i "$BASE_DIR/musl-gcc"
+	sed s~"/lib/musl-gcc.specs"~"$BASE_DIR/musl-gcc.specs"~ -i "$BASE_DIR/musl-gcc"
+	sed -e s~"/lib"~"$SYSROOT/lib"~g \
+	    -e s~"/usr/include"~"$SYSROOT/usr/include"~g \
+	    -i "$BASE_DIR/musl-gcc.specs"
 
 	install -D -m 644 README "$1/usr/share/doc/musl/README"
 	install -D -m 644 WHATSNEW "$1/usr/share/doc/musl/WHATSNEW"
