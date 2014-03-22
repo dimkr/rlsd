@@ -1,1 +1,2 @@
+startup_message off
 exec conky
