@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# start bftpd
+echo -n "Starting bftpd ..."
+
+bftpd -d
+
+echo " done."

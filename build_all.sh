@@ -17,6 +17,7 @@ CORE="linux_headers
       mandoc
       wget
       dropbear
+      bftpd
       dhcpcd
       libnl_tiny
       iw

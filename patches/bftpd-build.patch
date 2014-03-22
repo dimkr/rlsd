@@ -1,0 +1,50 @@
+diff -rup bftpd-orig/Makefile bftpd/Makefile
+--- bftpd-orig/Makefile	2014-03-22 13:20:09.672979107 +0200
++++ bftpd/Makefile	2014-03-22 13:27:18.034971435 +0200
+@@ -3,11 +3,11 @@ VERSION=4.2
+ CC?=gcc
+ INSTALL=/usr/bin/install -c
+ prefix=/usr
+-CFLAGS=-g -O2 -DHAVE_CONFIG_H -Wall -I. -DVERSION=\"$(VERSION)\" -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -DPREFIX=\"$(prefix)\" 
++CFLAGS+=-DHAVE_CONFIG_H -Wall -I. -DVERSION=\"$(VERSION)\" -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -DPREFIX=\"$(prefix)\" 
+ LIBS= -lcrypt
+ mandir=${prefix}/man
+-sbindir=${exec_prefix}/sbin
+-DESTDIR=
++sbindir?=${exec_prefix}/sbin
++DESTDIR?=
+ DIRPAX=
+ PAX=
+ 
+@@ -16,7 +16,7 @@ OBJS=bftpdutmp.o commands.o commands_adm
+ SRCS=bftpdutmp.c commands.c commands_admin.c cwd.c dirlist.c list.c login.c logging.c main.c mystring.c options.c md5.c
+ 
+ OBJS2LINK=$(OBJS) $(PAX)
+-LDFLAGS=
++LDFLAGS?=
+ 
+ all: bftpd
+ 
+diff -rup bftpd-orig/Makefile.in bftpd/Makefile.in
+--- bftpd-orig/Makefile.in	2014-03-22 13:20:09.681979106 +0200
++++ bftpd/Makefile.in	2014-03-22 13:47:14.780950004 +0200
+@@ -15,7 +15,7 @@ OBJS=bftpdutmp.o commands.o commands_adm
+ SRCS=bftpdutmp.c commands.c commands_admin.c cwd.c dirlist.c list.c login.c logging.c main.c mystring.c options.c md5.c
+ 
+ OBJS2LINK=$(OBJS) $(PAX)
+-LDFLAGS=
++LDFLAGS=@LDFLAGS@
+ 
+ all: bftpd
+ 
+@@ -26,8 +26,8 @@ bftpd: $(OBJS)
+ $(OBJS): $(HEADERS) Makefile
+ 
+ install: all
+-	mkdir -p $(DESTDIR)/$(prefix)/sbin
+-	$(INSTALL) -g 0 -m 700 -o 0 bftpd $(DESTDIR)/$(prefix)/sbin
++	mkdir -p $(DESTDIR)/${sbindir}
++	$(INSTALL) -g 0 -m 700 -o 0 bftpd $(DESTDIR)/${sbindir}
+ 	mkdir -p $(DESTDIR)/$(mandir)/man8
+ 	$(INSTALL) -g 0 -m 644 -o 0 bftpd.8 $(DESTDIR)/$(mandir)/man8
+ 	mkdir -p $(DESTDIR)/$(prefix)/etc
