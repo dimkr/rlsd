@@ -1,0 +1,12 @@
+diff -rup ncurses-5.9-orig/configure ncurses-5.9/configure
+--- ncurses-5.9-orig/configure	2014-03-22 22:13:33.009993087 +0200
++++ ncurses-5.9/configure	2014-03-22 22:14:53.157991651 +0200
+@@ -3642,7 +3642,7 @@ echo "${ECHO_T}$enable_pc_files" >&6
+ echo "${ECHO_T}no" >&6
+ 		{ echo "$as_me:3643: WARNING: did not find library $PKG_CONFIG_LIBDIR" >&5
+ echo "$as_me: WARNING: did not find library $PKG_CONFIG_LIBDIR" >&2;}
+-		enable_pc_files=no
++		enable_pc_files=yes
+ 	fi
+ fi
+ 

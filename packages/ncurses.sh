@@ -6,6 +6,9 @@ ncurses_build() {
 	tar -xzvf ncurses-$PACKAGE_VERSION.tar.gz
 	cd ncurses-$PACKAGE_VERSION
 
+	# force the installation of pkg-config files
+	patch -p 1 < "$BASE_DIR/patches/ncurses-pkg-config.patch"
+
 	# building with "--enable-glob" fails against musl 0.9.12
 	if [ 1 -eq $STATIC ]
 	then
