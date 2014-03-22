@@ -7,13 +7,15 @@ conky_build() {
 	cd conky-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/conky-bool.patch"
+	patch -p 1 < "$BASE_DIR/patches/conky-font.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
 	            --disable-ncurses \
 	            --disable-lua \
 	            --disable-portmon \
-	            --disable-xdamage
+	            --disable-xdamage \
+	            --disable-xft
 	$MAKE
 }
 
