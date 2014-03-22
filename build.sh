@@ -57,10 +57,10 @@ export GLIB_CONFIG="$BASE_DIR/glib-config"
 export GTK_CONFIG="$BASE_DIR/gtk-config"
 
 # if musl is already installed, use its wrapper instead of the real compiler
-if [ -e "$SYSROOT/bin/musl-gcc" ]
+if [ -e "musl-gcc" ]
 then
 	export REALGCC="$CC"
-	export CC="$SYSROOT/bin/musl-gcc"
+	export CC="$BASE_DIR/musl-gcc"
 else
 	# otherwise, build musl with the compiler specified in the configuration
 	export CC
