@@ -1,6 +1,6 @@
 diff -rup bftpd-orig/Makefile bftpd/Makefile
---- bftpd-orig/Makefile	2014-03-22 13:20:09.672979107 +0200
-+++ bftpd/Makefile	2014-03-22 13:27:18.034971435 +0200
+--- bftpd-orig/Makefile	2014-03-23 14:03:40.510358502 -0400
++++ bftpd/Makefile	2014-03-23 14:09:27.094346248 -0400
 @@ -3,11 +3,11 @@ VERSION=4.2
  CC?=gcc
  INSTALL=/usr/bin/install -c
@@ -26,8 +26,8 @@ diff -rup bftpd-orig/Makefile bftpd/Makefile
  all: bftpd
  
 diff -rup bftpd-orig/Makefile.in bftpd/Makefile.in
---- bftpd-orig/Makefile.in	2014-03-22 13:20:09.681979106 +0200
-+++ bftpd/Makefile.in	2014-03-22 13:47:14.780950004 +0200
+--- bftpd-orig/Makefile.in	2014-03-23 14:03:40.510358502 -0400
++++ bftpd/Makefile.in	2014-03-23 14:09:30.302346135 -0400
 @@ -15,7 +15,7 @@ OBJS=bftpdutmp.o commands.o commands_adm
  SRCS=bftpdutmp.c commands.c commands_admin.c cwd.c dirlist.c list.c login.c logging.c main.c mystring.c options.c md5.c
  
@@ -37,14 +37,21 @@ diff -rup bftpd-orig/Makefile.in bftpd/Makefile.in
  
  all: bftpd
  
-@@ -26,8 +26,8 @@ bftpd: $(OBJS)
+@@ -26,13 +26,13 @@ bftpd: $(OBJS)
  $(OBJS): $(HEADERS) Makefile
  
  install: all
 -	mkdir -p $(DESTDIR)/$(prefix)/sbin
 -	$(INSTALL) -g 0 -m 700 -o 0 bftpd $(DESTDIR)/$(prefix)/sbin
 +	mkdir -p $(DESTDIR)/${sbindir}
-+	$(INSTALL) -g 0 -m 700 -o 0 bftpd $(DESTDIR)/${sbindir}
++	$(INSTALL) -m 700 bftpd $(DESTDIR)/${sbindir}
  	mkdir -p $(DESTDIR)/$(mandir)/man8
- 	$(INSTALL) -g 0 -m 644 -o 0 bftpd.8 $(DESTDIR)/$(mandir)/man8
+-	$(INSTALL) -g 0 -m 644 -o 0 bftpd.8 $(DESTDIR)/$(mandir)/man8
++	$(INSTALL) -m 644 bftpd.8 $(DESTDIR)/$(mandir)/man8
  	mkdir -p $(DESTDIR)/$(prefix)/etc
+ 	[ -f $(DESTDIR)/$(prefix)/etc/bftpd.conf ] || \
+-		$(INSTALL) -g 0 -m 600 -o 0 bftpd.conf $(DESTDIR)/$(prefix)/etc
++		$(INSTALL) -m 600 bftpd.conf $(DESTDIR)/$(prefix)/etc
+ 	mkdir -p $(DESTDIR)/$(prefix)/var/log
+ 	touch $(DESTDIR)/$(prefix)/var/log/bftpd.log
+ 	chmod 644 $(DESTDIR)/$(prefix)/var/log/bftpd.log
