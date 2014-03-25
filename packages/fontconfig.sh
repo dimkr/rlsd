@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.11.0"
+PACKAGE_VERSION="2.11.1"
 PACKAGE_SOURCES="http://www.freedesktop.org/software/fontconfig/release/fontconfig-$PACKAGE_VERSION.tar.bz2"
 
 fontconfig_build() {

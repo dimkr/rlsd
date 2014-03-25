@@ -1,9 +1,9 @@
 PACKAGE_VERSION="2.34"
-PACKAGE_SOURCES="http://downloads.sourceforge.net/project/dejavu/dejavu/$PACKAGE_VERSION/dejavu-fonts-$PACKAGE_VERSION.tar.bz2 http://downloads.sourceforge.net/project/dejavu/dejavu/$PACKAGE_VERSION/dejavu-fonts-ttf-$PACKAGE_VERSION.tar.bz2 http://www.unicode.org/Public/UNIDATA/UnicodeData.txt,dejavu_fonts-UnicodeData.txt http://www.unicode.org/Public/UNIDATA/Blocks.txt,dejavu_fonts-Blocks.txt http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.0.tar.bz2"
+PACKAGE_SOURCES="http://downloads.sourceforge.net/project/dejavu/dejavu/$PACKAGE_VERSION/dejavu-fonts-$PACKAGE_VERSION.tar.bz2 http://downloads.sourceforge.net/project/dejavu/dejavu/$PACKAGE_VERSION/dejavu-fonts-ttf-$PACKAGE_VERSION.tar.bz2 http://www.unicode.org/Public/UNIDATA/UnicodeData.txt,dejavu_fonts-UnicodeData.txt http://www.unicode.org/Public/UNIDATA/Blocks.txt,dejavu_fonts-Blocks.txt http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.1.tar.bz2"
 
 dejavu_fonts_build() {
-	[ -d fontconfig-2.11.0 ] && rm -rf fontconfig-2.11.0
-	tar -xjvf fontconfig-2.11.0.tar.bz2
+	[ -d fontconfig-2.11.1 ] && rm -rf fontconfig-2.11.1
+	tar -xjvf fontconfig-2.11.1.tar.bz2
 
 	[ -d dejavu-fonts-ttf-$PACKAGE_VERSION ] && rm -rf dejavu-fonts-ttf-$PACKAGE_VERSION
 	tar -xjvf dejavu-fonts-ttf-$PACKAGE_VERSION.tar.bz2
@@ -15,7 +15,7 @@ dejavu_fonts_build() {
 	mkdir resources
 	ln -s ../../dejavu_fonts-UnicodeData.txt resources/UnicodeData.txt
 	ln -s ../../dejavu_fonts-Blocks.txt resources/Blocks.txt
-	ln -s ../../fontconfig-2.11.0/fc-lang resources/
+	ln -s ../../fontconfig-2.11.1/fc-lang resources/
 	patch -p 1 < "$BASE_DIR/patches/dejavu-fonts-lgc_no_rename.patch"
 
 	$MAKE lgc
