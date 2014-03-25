@@ -64,6 +64,11 @@ mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 
+# generate font cache files
+cd "$root_fs/usr/share/fonts/misc"
+mkfontscale
+mkfontdir
+
 # list all files under the root file system, to register it as a package
 find "$root_fs" -name .gitignore -delete
 mkdir "$root_fs/var/pkg/system"

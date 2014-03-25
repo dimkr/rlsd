@@ -96,8 +96,3 @@ for package in $ALL
 do
 	sh build.sh $package
 done
-
-# generate font cache files
-cd "$SYSROOT/usr/share/fonts/misc"
-mkfontscale
-mkfontdir
