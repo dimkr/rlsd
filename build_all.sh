@@ -14,6 +14,7 @@ CORE="linux_headers
       isolinux
       gnu_efi
       elilo
+      refind
       mandoc
       wget
       dropbear
