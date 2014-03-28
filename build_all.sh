@@ -20,6 +20,7 @@ CORE="linux_headers
       dropbear
       bftpd
       dhcpcd
+      rfkill
       libnl_tiny
       iw
       wpa_supplicant
