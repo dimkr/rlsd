@@ -76,6 +76,7 @@ GRAPHICAL_APPS="beaver
                 gcolor
                 gtkcat
                 gtkdiskfree
+                alsa_lib
                 mhwaveedit
                 giflib
                 mtpaint
