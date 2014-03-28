@@ -12,7 +12,8 @@ INITRAMFS_PROGRAMS="init
                     luufs
                     sleep
                     klogecho
-                    clear"
+                    clear
+                    cat"
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"

@@ -40,8 +40,6 @@ Core components:
 Missing features:
   - Network tools (i.e route, ifconfig)
   - A firewall
-  - A persistent root file system - currently, all changes are written to a
-    tmpfs file system
   - Patches for common crashes in applications
 
 Building Lazyux

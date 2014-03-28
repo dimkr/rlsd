@@ -15,6 +15,23 @@ mount -t devtmpfs dev /dev
 mount -t tmpfs run /run
 mount -t tmpfs -o mode=600,size=25% log /var/log
 
+# read the kernel command-line
+home=""
+for i in $(cat /proc/cmdline)
+do
+	case "$i" in
+		home=*)
+			home="${i#*=}"
+			;;
+		sleep=*)
+			interval="${i#*=}"
+			echo -n " done.
+Waiting for $interval seconds ..."
+			sleep $interval
+			;;
+	esac
+done
+
 # start logging daemons
 echo -n " done.
 Starting logging services ..."
@@ -65,7 +82,12 @@ mount -t squasfs -o loop,ro /mnt/home/rootfs.sfs /mnt/ro
 # mount a writable file system
 echo -n " done.
 Setting up a writable system ..."
-mount -t tmpfs save /mnt/rw
+if [ -n "$home" ]
+then
+	mount "/dev/$home" /mnt/rw
+else
+	mount -t tmpfs save /mnt/rw
+fi
 
 # mount a layered file system
 echo -n " done.
