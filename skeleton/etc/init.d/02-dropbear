@@ -1,13 +1,12 @@
 #!/bin/sh
 
-# start Dropbear, with the keys under /run
+# start Dropbear
 echo -n "Starting Dropbear ..."
 
-mkdir /run/dropbear
-for i in rsa dss
+for i in rsa dss ecdsa
 do
-	dropbearkey -t $i -f /run/dropbear/${i}_key > /dev/null 2>&1
+	dropbearkey -t $i -f /etc/dropbear/${i}_key > /dev/null 2>&1
 done
-dropbear -d /run/dropbear/dss_key -r /run/dropbear/rsa_key
+dropbear
 
 echo " done."

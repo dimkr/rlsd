@@ -23,6 +23,7 @@ dropbear_build() {
 dropbear_package() {
 	$MAKE DESTDIR="$1" PROGRAMS="$PROGRAMS" MULTI=1 install
 	ln -s dropbearmulti "$1/bin/ssh"
+	install -d -m 644 "$1/etc/dropbear"
 	install -D -m 644 README "$1/usr/share/doc/dropbear/README"
 	install -m 644 LICENSE "$1/usr/share/doc/dropbear/LICENSE"
 }
