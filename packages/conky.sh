@@ -7,7 +7,7 @@ conky_build() {
 	cd conky-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/conky-bool.patch"
-	patch -p 1 < "$BASE_DIR/patches/conky-font.patch"
+	patch -p 1 < "$BASE_DIR/patches/conky-config.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

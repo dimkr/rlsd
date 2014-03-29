@@ -1,0 +1,45 @@
+diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
+--- conky-1.9.0-orig/data/Makefile.in	2014-03-29 12:21:35.042960261 +0300
++++ conky-1.9.0/data/Makefile.in	2014-03-29 12:22:27.336959324 +0300
+@@ -292,7 +292,7 @@ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ xsltproc_cmd = @xsltproc_cmd@
+ configdir = ${sysconfdir}/conky
+-dist_config_DATA = conky.conf conky_no_x11.conf
++dist_config_DATA = conky.conf
+ all: all-am
+ 
+ .SUFFIXES:
+diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
+--- conky-1.9.0-orig/data/conky.conf	2014-03-29 12:21:35.042960261 +0300
++++ conky-1.9.0/data/conky.conf	2014-03-29 12:51:48.502975815 +0300
+@@ -23,7 +23,7 @@
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #
+ 
+-alignment top_left
++alignment top_right
+ background no
+ border_width 1
+ cpu_avg_samples 2
+@@ -34,17 +34,16 @@ draw_borders no
+ draw_graph_borders yes
+ draw_outline no
+ draw_shades no
+-use_xft yes
+-xftfont DejaVu Sans Mono:size=12
++font *-terminus-medium-*-14-*
+ gap_x 5
+-gap_y 60
++gap_y 5
+ minimum_size 5 5
+ net_avg_samples 2
+ no_buffers yes
+ out_to_console no
+ out_to_stderr no
+ extra_newline no
+-own_window yes
++own_window no
+ own_window_class Conky
+ own_window_type desktop
+ stippled_borders 0
