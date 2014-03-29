@@ -6,15 +6,12 @@ gtk_build() {
 	tar -xzvf gtk+-$PACKAGE_VERSION.tar.gz
 	cd gtk+-$PACKAGE_VERSION
 
-	patch -p0 < ../gtk-aclocal-fixes.patch
+	patch -p 0 < ../gtk-aclocal-fixes.patch
 	cp /usr/share/libtool/config/config.guess .
 	cp /usr/share/libtool/config/config.sub .
-	patch -p0 < "$BASE_DIR/patches/gtk+-1.2.10.diff"
+	patch -p 0 < "$BASE_DIR/patches/gtk+-1.2.10.diff"
+	patch -p 1 < "$BASE_DIR/patches/gtk-luufs.patch"
 
-	echo '#!/bin/sh
-exec pkg-config "$@"' > glib-config
-	chmod 755 glib-config
-  	PATH="$(pwd):$PATH" \
 	./configure --host=$HOST \
 	            --target=$HOST \
 	            --prefix= \
