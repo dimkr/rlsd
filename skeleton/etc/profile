@@ -2,4 +2,5 @@ umask 022
 export PATH="/bin"
 export PS1='[\u@\w]\$ '
 export HISTFILE="$HOME/.ksh_history"
+export XINITRC="/etc/X11/xinitrc"
 [ -z "$(pidof xinit)" ] && xinit

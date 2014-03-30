@@ -38,7 +38,6 @@ DESKTOP_CORE="tinyxlib
               fontconfig
               libxft
               dejavu_fonts
-              ratpoison
               conky
               glib
               gtk
@@ -49,11 +48,13 @@ DESKTOP_CORE="tinyxlib
               calcoo
               guitar
               libpng
+              jwm
               libjpeg_turbo
               tiff
               gtksee
               gdk_pixbuf
-              rox"
+              rox
+              woof_ce_icons"
 CONSOLE_APPS="ncurses
               less
               vile

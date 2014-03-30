@@ -7,8 +7,7 @@ BASE_DIR="$(pwd)"
 BINARY_TARBALL_DIR="$BASE_DIR/built_packages"
 
 # uneeded files which should be removed from packages
-UNNEEDED_FILES="usr/share/pixmaps
-                usr/share/applications
+UNNEEDED_FILES="usr/share/applications
                 usr/share/info
                 usr/share/gtk-doc
                 lib/charset.alias

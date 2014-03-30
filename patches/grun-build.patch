@@ -1,0 +1,12 @@
+diff -rup grun-0.8.1-orig/Makefile.in grun-0.8.1/Makefile.in
+--- grun-0.8.1-orig/Makefile.in	2014-03-30 00:45:17.919977598 +0300
++++ grun-0.8.1/Makefile.in	2014-03-30 00:49:31.908973049 +0300
+@@ -555,7 +555,7 @@ info: info-am
+ 
+ info-am:
+ 
+-install-data-am: install-grundataDATA install-man
++install-data-am: install-man
+ 
+ install-exec-am: install-binPROGRAMS
+ 
