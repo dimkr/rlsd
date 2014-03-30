@@ -7,9 +7,9 @@ x11vnc_build() {
 	cd x11vnc-$PACKAGE_VERSION
 
 	./configure --host=$HOST \
+	            --prefix=/usr \
+	            --bindir=/bin \
 	            --datadir=/usr/share \
-	            --mandir=/usr/share/man \
-	            --prefix= \
 	            --without-xkeyboard \
 	            --without-avahi
 	$MAKE
