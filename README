@@ -34,7 +34,8 @@ Core components:
   - loksh (http://dimakrasner.com/loksh.html)
   - tinyxlib (https://github.com/iguleder/tinyxlib)
   - tinyxserver (https://github.com/iguleder/tinyxserver)
-  - Ratpoison (http://www.nongnu.org/ratpoison/)
+  - JWM (http://joewing.net/projects/jwm/)
+  - ROX-Filer (http://joewing.net/projects/jwm/)
   - GTK+ (http://www.gtk.org/)
 
 Missing features:
@@ -46,16 +47,14 @@ Building Lazyux
 ===============
 
 Although Lazyux can be built using any Linux distribution, it is actively tested
-and developed against Debian 7 (Wheezy).
+and developed against Debian 7 (Wheezy) and above.
 
-The following packages are required in order to build Lazyux in a clean Debian
-environment:
-  - git and unzip, to build lazy-utils
-  - nasm, to build libjpeg-turbo
-  - fontforge and libfont-ttf-perl, to build the DejaVu fonts
+In order to build Lazyux, first, install packages required for the building
+process:
+  apt-get install build-essential autoconf automake autotools-dev unzip flex \
+  bison git nasm fontforge libfont-ttf-perl xorriso squashfs-tools pkg-config
 
-Once the required packages are installed, build a bootable Lazyux image using
-the scripts:
+Then, build a bootable Lazyux image using the scripts:
   sh build_all.sh
   sh create_iso.sh
 
