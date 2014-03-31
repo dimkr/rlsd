@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.5.2"
+PACKAGE_VERSION="2.5.3"
 PACKAGE_SOURCES="http://download.savannah.gnu.org/releases/freetype/freetype-$PACKAGE_VERSION.tar.bz2"
 
 freetype_build() {
@@ -12,7 +12,8 @@ freetype_build() {
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --without-bzip2 \
-	            --without-png
+	            --without-png \
+	            --without-harfbuzz
 	$MAKE
 }
 
