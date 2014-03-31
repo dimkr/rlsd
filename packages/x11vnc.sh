@@ -10,6 +10,7 @@ x11vnc_build() {
 	            --prefix=/usr \
 	            --bindir=/bin \
 	            --datadir=/usr/share \
+		    --mandir=/usr/share/man \
 	            --without-xkeyboard \
 	            --without-avahi
 	$MAKE
