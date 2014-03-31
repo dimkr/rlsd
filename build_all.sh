@@ -43,6 +43,7 @@ DESKTOP_CORE="tinyxlib
               gtk
               lpackage
               aterm
+              grun
               gtkfind
               gtkedit
               calcoo
