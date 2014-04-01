@@ -7,6 +7,7 @@ xchat_build() {
 	cd xchat-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/xchat-root.patch"
+	patch -p 1 < "$BASE_DIR/patches/xchat-font.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
