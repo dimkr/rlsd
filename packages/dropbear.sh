@@ -16,7 +16,8 @@ dropbear_build() {
 	            --sbindir=/bin \
 	            --datarootdir=/usr/share \
 	            --enable-zlib \
-	            --disable-pam
+	            --disable-pam \
+	            --disable-lastlog
 	$MAKE PROGRAMS="$PROGRAMS" MULTI=1
 }
 
