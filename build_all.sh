@@ -32,6 +32,7 @@ CORE="linux_headers
       linux"
 DESKTOP_CORE="tinyxlib
               tinyxserver
+              xev
               terminus_font
               freetype
               libxml2
