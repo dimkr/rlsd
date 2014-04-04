@@ -14,7 +14,6 @@ CORE="linux_headers
       isolinux
       gnu_efi
       elilo
-      refind
       mandoc
       wget
       dropbear
@@ -35,11 +34,6 @@ DESKTOP_CORE="tinyxlib
               xev
               xmodmap
               terminus_font
-              freetype
-              libxml2
-              fontconfig
-              libxft
-              dejavu_fonts
               conky
               glib
               gtk
@@ -56,6 +50,7 @@ DESKTOP_CORE="tinyxlib
               tiff
               gtksee
               gdk_pixbuf
+              libxml2
               rox
               woof_ce_icons"
 CONSOLE_APPS="ncurses
