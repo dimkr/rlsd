@@ -6,6 +6,8 @@ terminus_font_build() {
 	tar -xzvf terminus-font-$PACKAGE_VERSION.tar.gz
 	cd terminus-font-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/terminus_font-gzip.patch"
+
 	sh configure --psfdir=/usr/share/fonts/console \
 	             --x11dir=/usr/share/fonts/misc
 	$MAKE

@@ -1,0 +1,85 @@
+diff -rup terminus-font-4.38-orig/Makefile terminus-font-4.38/Makefile
+--- terminus-font-4.38-orig/Makefile	2014-04-04 19:34:02.270981639 +0300
++++ terminus-font-4.38/Makefile	2014-04-04 19:36:33.581978929 +0300
+@@ -87,13 +87,13 @@ x11dir	= $(prefix)/share/fonts/terminus
+ 
+ install: $(PSF) $(PCF)
+ 	mkdir -p $(DESTDIR)$(psfdir)
+-	for i in $(PSF) ; do gzip -c $$i > $(DESTDIR)$(psfdir)/$$i.gz ; done
++	for i in $(PSF) ; do install -m 644 $$i $(DESTDIR)$(psfdir)/$$i ; done
+ 	mkdir -p $(DESTDIR)$(x11dir)
+-	for i in $(PCF) ; do gzip -c $$i > $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in $(PCF) ; do install -m 644 $$i $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ uninstall:
+-	for i in $(PSF) ; do rm -f $(DESTDIR)$(psfdir)/$$i.gz ; done
+-	for i in $(PCF) ; do rm -f $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in $(PSF) ; do rm -f $(DESTDIR)$(psfdir)/$$i ; done
++	for i in $(PCF) ; do rm -f $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ fontdir:
+ 	mkfontscale $(DESTDIR)$(x11dir)
+@@ -182,17 +182,17 @@ $(PSF_XOS4_2): ter-v%.psf : ter-u%.bdf $
+ 
+ install-psf: $(PSF)
+ 	mkdir -p $(DESTDIR)$(psfdir)
+-	for i in $(PSF) ; do gzip -c $$i > $(DESTDIR)$(psfdir)/$$i.gz ; done
++	for i in $(PSF) ; do install -m 644 $$i $(DESTDIR)$(psfdir)/$$i ; done
+ 
+ uninstall-psf:
+-	for i in $(PSF) ; do rm -f $(DESTDIR)$(psfdir)/$$i.gz ; done
++	for i in $(PSF) ; do rm -f $(DESTDIR)$(psfdir)/$$i ; done
+ 
+ install-psf-512: $(PSF_XOS4_2)
+ 	mkdir -p $(DESTDIR)$(psfdir)
+-	for i in $(PSF_XOS4_2) ; do gzip -c $$i > $(DESTDIR)$(psfdir)/$$i.gz ; done
++	for i in $(PSF_XOS4_2) ; do install -m 644 $$i $(DESTDIR)$(psfdir)/$$i ; done
+ 
+ uninstall-psf-512:
+-	for i in $(PSF_XOS4_2) ; do rm -f $(DESTDIR)$(psfdir)/$$i.gz ; done
++	for i in $(PSF_XOS4_2) ; do rm -f $(DESTDIR)$(psfdir)/$$i ; done
+ 
+ ref = $(psfdir)/README.terminus
+ 
+@@ -411,33 +411,33 @@ $(PCF_U_10646): ter-x%.pcf: ter-u%.bdf $
+ 
+ install-pcf: $(PCF)
+ 	mkdir -p $(DESTDIR)$(x11dir)
+-	for i in $(PCF) ; do gzip -c $$i > $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in $(PCF) ; do install -m 644 $$i $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ uninstall-pcf:
+-	for i in $(PCF) ; do rm -f $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in $(PCF) ; do rm -f $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ install-pcf-646: $(PCF_U_10646)
+ 	mkdir -p $(DESTDIR)$(x11dir)
+-	for i in $(PCF_U_10646) ; do gzip -c $$i > $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in $(PCF_U_10646) ; do install -m 644 $$i $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ uninstall-pcf-646:
+-	for i in $(PCF_U_10646) ; do rm -f $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in $(PCF_U_10646) ; do rm -f $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ cut12b_ = sed -e "s/ter-.12b\.pcf //g"
+ 
+ install-n12: $(PCF)
+ 	mkdir -p $(DESTDIR)$(x11dir)
+-	for i in `echo $(PCF) | $(cut12b_)` ; do ; gzip -c $$i > $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in `echo $(PCF) | $(cut12b_)` ; do ; install -m 644 $$i $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ uninstall-n12:
+-	for i in `echo $(PCF) | $(cut12b_)` ; do rm -f $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in `echo $(PCF) | $(cut12b_)` ; do rm -f $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ install-n12-646: $(PCF_U_10646)
+ 	mkdir -p $(DESTDIR)$(x11dir)
+-	for i in `echo $(PCF_U_10646) | $(cut12b_)` ; do gzip -c $$i > $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in `echo $(PCF_U_10646) | $(cut12b_)` ; do install -m 644 $$i $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ uninstall-n12-646:
+-	for i in `echo $(PCF_U_10646) | $(cut12b_)` ; do rm -f $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in `echo $(PCF_U_10646) | $(cut12b_)` ; do rm -f $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ clean:
+ 	rm -f *.psf *.raw *.pcf
