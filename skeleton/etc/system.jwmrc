@@ -3,63 +3,80 @@
 <JWM>
 
     <!-- The root menu. -->
-    <RootMenu onroot="12">
-        <Program icon="terminal.png" label="Terminal">xterm</Program>
-        <Menu icon="folder.png" label="Applications">
-            <Program icon="music.png" label="Audacious">audacious</Program>
-            <Program icon="calculator.png" label="Calculator">xcalc</Program>
-            <Program icon="gimp.png" label="Gimp">gimp</Program>
-            <Program icon="www.png" label="Iceweasel">iceweasel</Program>
-            <Program icon="editor.png" label="XEdit">xedit</Program>
+    <RootMenu height="32">
+        <Program icon="home.png" label="Home">rox</Program>
+        <Program icon="terminal.png" label="Terminal">xscreen</Program>
+        <Program icon="execute.png" label="Execute...">grun</Program>
+        <Menu icon="directory_execute.png" label="Applications">
+            <Program icon="edit.png" label="gtkedit">gtkedit</Program>
+            <Program icon="chat.png" label="X-Chat">xchat</Program>
+            <Program icon="mail.png" label="Sylpheed">sylpheed</Program>
+            <Program icon="audio.png" label="Xhippo">xhippo</Program>
+            <Program icon="paint.png" label="mtPaint">mtpaint</Program>
         </Menu>
-        <Menu icon="folder.png" label="Utilities">
-            <Program icon="font.png" label="Fonts">xfontsel</Program>
-            <Program icon="window.png" label="Window Properties">
-                xprop | xmessage -file -
-            </Program>
-        </Menu>
+        <Program icon="install.png" label="Manage applications">lpackage</Program>
         <Separator/>
-        <Program icon="lock.png" label="Lock">
-            xscreensaver-command -lock
-        </Program>
+        <Desktops icon="desktop.png"/>
         <Separator/>
-        <Restart label="Restart" icon="restart.png"/>
-        <Exit label="Exit" confirm="true" icon="quit.png"/>
+        <Restart label="Restart" icon="refresh.png"/>
+        <Exit label="Exit" confirm="false" icon="quit.png"/>
     </RootMenu>
 
     <!-- Options for program groups. -->
     <Group>
-        <Class>Pidgin</Class>
-        <Option>sticky</Option>
+        <Name>ROX-Filer</name>
+        <Option>icon:directory.png</Option>
     </Group>
     <Group>
-        <Name>xterm</Name>
-        <Option>vmax</Option>
+        <Name>aterm</Name>
         <Option>icon:terminal.png</Option>
     </Group>
     <Group>
-        <Name>xedit</Name>
-        <Option>icon:editor.png</Option>
+        <Name>gtkedit</Name>
+        <Option>icon:edit.png</Option>
     </Group>
     <Group>
-        <Name>xcalc</Name>
-        <Option>icon:calculator.png</Option>
+        <Name>lpackage</Name>
+        <Option>icon:install.png</Option>
+    </Group>
+    <Group>
+        <Name>dillo</Name>
+        <Option>icon:internet.png</Option>
+    </Group>
+    <Group>
+        <Name>xchat</Name>
+        <Option>icon:chat.png</Option>
+    </Group>
+    <Group>
+        <Name>sylpheed</Name>
+        <Option>icon:mail.png</Option>
+    </Group>
+    <Group>
+        <Name>xhippo</Name>
+        <Option>icon:audio.png</Option>
+    </Group>
+    <Group>
+        <Name>mtpaint</Name>
+        <Option>icon:paint.png</Option>
     </Group>
 
-    <!-- Tray at the bottom. -->
-    <Tray x="0" y="-1" height="32" autohide="false">
-
+    <!-- Trays at the bottom. -->
+    <Tray y="-1" height="64" border="0" halign="center" autohide="false">
         <TrayButton border="false" icon="puppy.png">root:1</TrayButton>
-        <TrayButton icon="desktop.png">showdesktop</TrayButton>
+        <TrayButton icon="home.png">exec:rox</TrayButton>
         <TrayButton icon="terminal.png">exec:aterm</TrayButton>
+        <TrayButton icon="edit.png">exec:gtkedit</TrayButton>
+        <TrayButton icon="install.png">exec:lpackage</TrayButton>
+        <TrayButton icon="internet.png">exec:dillo</TrayButton>
+        <TrayButton icon="chat.png">exec:xchat</TrayButton>
+        <TrayButton icon="mail.png">exec:sylpheed</TrayButton>
+        <TrayButton icon="audio.png">exec:xhippo</TrayButton>
+        <TrayButton icon="paint.png">exec:mtpaint</TrayButton>
+    </Tray>
 
-        <Pager labeled="true"/>
-
-        <TaskList maxwidth="256" border="false"/>
-
+    <Tray layout="vertical" halign="right" y="-1">
         <Dock/>
-        <Clock format="%H:%M">xclock</Clock>
-
+        <Clock format="%H:%M"/>
     </Tray>
 
     <!-- Visual Styles -->
@@ -115,6 +132,9 @@
         <Foreground>#dddddd</Foreground>
         <Background>#000000</Background>
     </PopupStyle>
+    <ClockStyle>
+        <Font>*-terminus-medium-*-32-*</Font>
+    </ClockStyle>
 
     <!-- Path where icons can be found.
          IconPath can be listed multiple times to allow searching
@@ -126,12 +146,12 @@
 
     <!-- Virtual Desktops -->
     <!-- Desktop tags can be contained within Desktops for desktop names. -->
-    <Desktops width="3" height="1">
+    <Desktops width="4" height="1">
         <!-- Default background. Note that a Background tag can be
               contained within a Desktop tag to give a specific background
               for that desktop.
          -->
-        <Background type="solid">#181515</Background>
+        <Background type="gradient">#010101:#181515</Background>
     </Desktops>
 
     <!-- Double click speed (in milliseconds) -->
@@ -153,7 +173,6 @@
     <ResizeMode coordinates="window">outline</ResizeMode>
 
     <!-- Startup commands -->
-    <StartupCommand>rox -p default</StartupCommand>
     <StartupCommand>conky</StartupCommand>
 
     <!-- Key bindings -->
