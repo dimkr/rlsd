@@ -189,18 +189,12 @@ then
 	done
 fi
 
+# remove font cache files
 if [ -d "$installation_prefix/usr/share/fonts" ]
 then
 	for i in "$installation_prefix/usr/share/fonts"/*
 	do
-		# remove font cache files
 		[ -f "$i/fonts.dir" ] && rm -f "$i/fonts.dir"
-
-		# decompress all fonts
-		for j in "$i"/*.gz
-		do
-			gunzip "$j"
-		done
 	done
 fi
 
