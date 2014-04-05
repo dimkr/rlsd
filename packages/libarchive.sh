@@ -16,6 +16,8 @@ libarchive_build() {
 
 libarchive_package() {
 	$MAKE DESTDIR="$1" install
+	ln -s bsdtar "$1/bin/tar"
+	ln -s bsdcpio "$1/bin/cpio"
 	install -D -m 644 README "$1/usr/share/doc/libarchive/README"
 	install -m 644 NEWS "$1/usr/share/doc/libarchive/NEWS"
 	install -m 644 COPYING "$1/usr/share/doc/libarchive/COPYING"
