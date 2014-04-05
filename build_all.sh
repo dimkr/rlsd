@@ -9,6 +9,7 @@ CORE="linux_headers
       loksh
       findutils
       xz_embedded
+      gzip
       lbzip2
       zlib
       libarchive
