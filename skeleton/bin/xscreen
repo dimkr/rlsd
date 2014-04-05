@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# xscreen: a wrapper for aterm and GNU Screen
-
-exec aterm -e screen

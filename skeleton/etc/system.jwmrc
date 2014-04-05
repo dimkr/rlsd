@@ -4,15 +4,49 @@
 
     <!-- The root menu. -->
     <RootMenu height="32">
-        <Program icon="home.png" label="Home">rox</Program>
-        <Program icon="terminal.png" label="Terminal">xscreen</Program>
         <Program icon="execute.png" label="Execute...">grun</Program>
         <Menu icon="directory_execute.png" label="Applications">
-            <Program icon="edit.png" label="gtkedit">gtkedit</Program>
-            <Program icon="chat.png" label="X-Chat">xchat</Program>
-            <Program icon="mail.png" label="Sylpheed">sylpheed</Program>
-            <Program icon="audio.png" label="Xhippo">xhippo</Program>
-            <Program icon="paint.png" label="mtPaint">mtpaint</Program>
+            <Menu icon="directory.png" label="File Management">
+                <Program icon="home.png" label="ROX-Filer">rox</Program>
+                <Program icon="cdrom.png" label="gtkcat">gtkcat</Program>
+                <Program icon="harddisk.png" label="gtkdiskfree">gtkdiskfree</Program>
+                <Program icon="harddisk.png" label="GDMap">gdmap</Program>
+                <Program icon="find.png" label="gtkfind">gtkfind</Program>
+                <Program icon="harddisk.png" label="ncdu">aterm -title ncdu -e ncdu</Program>
+                <Program icon="home.png" label="ytree">aterm -title ytree -e ytree</Program>
+                <Program icon="package_compressed.png" label="guiTAR">guitar</Program>
+            </Menu>
+            <Menu icon="edit.png" label="Editors">
+                <Program icon="edit.png" label="gtkedit">gtkedit</Program>
+                <Program icon="edit.png" label="Vile">aterm -title Vile -e vile</Program>
+                <Program icon="edit.png" label="GNU nano">aterm -title "GNU nano" -e nano</Program>
+            </Menu>
+            <Menu icon="internet.png" label="Network">
+                <Program icon="chat.png" label="X-Chat">xchat</Program>
+                <Program icon="mail.png" label="Sylpheed">sylpheed</Program>
+                <Program icon="internet.png" label="Dillo">dillo</Program>
+                <Program icon="file.png" label="guiftp">guiftp</Program>
+                <Program icon="desktop.png" label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
+                <Program icon="chat.png" label="ircii">aterm -title ircii -e irc</Program>
+                <Program icon="internet.png" label="Lynx">aterm -title Lynx -e lynx</Program>
+            </Menu>
+            <Menu icon="multimedia.png" label="Multimedia">
+                 <Program icon="audio.png" label="Xhippo">xhippo</Program>
+                <Program icon="edit_sound.png" label="mhWaveEdit">mhwaveedit</Program>
+            </Menu>
+            <Menu icon="graphics.png" label="Graphics">
+                <Program icon="paint.png" label="mtPaint">mtpaint</Program>
+                <Program icon="draw.png" label="gcolor">gcolor</Program>
+                <Program icon="image_viewer.png" label="GTK See">gtksee</Program>
+            </Menu>
+            <Menu icon="directory_execute.png" label="Utilities">
+                <Program icon="calendar.png" label="Calcurse">aterm -title Calcurse -e calcurse</Program>
+                <Program icon="select-font.png" label="gtkfontsel">gtkfontsel</Program>
+                <Program icon="notes.png" label="gtklepin">gtklepin</Program>
+                <Program icon="htop.png" label="htop">aterm -title htop -e htop</Program>
+               <Program icon="terminal.png" label="aterm">aterm</Program>
+               <Program icon="terminal.png" label="GNU Screen">aterm -title "GNU Screen" -e screen</Program>
+            </Menu>
         </Menu>
         <Program icon="install.png" label="Manage applications">lpackage</Program>
         <Separator/>
@@ -24,7 +58,7 @@
 
     <!-- Options for program groups. -->
     <Group>
-        <Name>ROX-Filer</name>
+        <Name>ROX-Filer</Name>
         <Option>icon:directory.png</Option>
     </Group>
     <Group>
@@ -61,7 +95,7 @@
     </Group>
 
     <!-- Trays at the bottom. -->
-    <Tray y="-1" height="64" border="0" halign="center" autohide="false">
+    <Tray y="-1" height="48" border="0" halign="center" autohide="false">
         <TrayButton border="false" icon="puppy.png">root:1</TrayButton>
         <TrayButton icon="home.png">exec:rox</TrayButton>
         <TrayButton icon="terminal.png">exec:aterm</TrayButton>
@@ -133,7 +167,7 @@
         <Background>#000000</Background>
     </PopupStyle>
     <ClockStyle>
-        <Font>*-terminus-medium-*-32-*</Font>
+        <Font>*-terminus-medium-*-24-*</Font>
     </ClockStyle>
 
     <!-- Path where icons can be found.
@@ -151,7 +185,7 @@
               contained within a Desktop tag to give a specific background
               for that desktop.
          -->
-        <Background type="gradient">#010101:#181515</Background>
+        <Background type="gradient">#000000:#111115</Background>
     </Desktops>
 
     <!-- Double click speed (in milliseconds) -->
@@ -202,6 +236,6 @@
     <Key mask="4" key="Down">minimize</Key>
     <Key mask="4" key="d">showdesktop</Key>
     <Key mask="4" key="r">exec:grun</Key>
-    <Key mask="4" key="t">exec:xscreen</Key>
-    <Key mask="A" key="Return">exec:xscreen</Key>
+    <Key mask="4" key="t">exec:aterm -title "GNU Screen" -e screen</Key>
+    <Key mask="A" key="Return">exec:aterm -title "GNU Screen" -e screen</Key>
 </JWM>
