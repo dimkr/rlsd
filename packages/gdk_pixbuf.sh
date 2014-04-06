@@ -9,6 +9,7 @@ gdk_pixbuf_build() {
 	patch -p 1 < ../gdk-pixbuf-libpng.patch
 	patch -p 0 < ../gdk-pixbuf-loaders.patch
 	patch -p 1 < "$BASE_DIR/patches/gdk-pixbuf-static.patch"
+	patch -p 1 < "$BASE_DIR/patches/gdk-pixbuf-config.patch"
 	sed s~'SUBDIRS = gdk-pixbuf demo doc'~'SUBDIRS = gdk-pixbuf doc'~ \
 	    -i Makefile.in
 	./configure --host=$HOST \

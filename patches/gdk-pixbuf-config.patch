@@ -1,0 +1,12 @@
+diff -rup gdk-pixbuf-0.22.0-orig/Makefile.in gdk-pixbuf-0.22.0/Makefile.in
+--- gdk-pixbuf-0.22.0-orig/Makefile.in	2014-04-06 23:47:50.762777819 +0300
++++ gdk-pixbuf-0.22.0/Makefile.in	2014-04-06 23:54:12.732770979 +0300
+@@ -115,7 +115,7 @@ SUBDIRS = gdk-pixbuf demo doc
+ 
+ bin_SCRIPTS = gdk-pixbuf-config
+ 
+-confexecdir = $(libdir)
++confexecdir = $(pkgdatadir)
+ confexec_DATA = \
+ 	gdk_pixbufConf.sh		\
+ 	gdk_pixbuf_xlibConf.sh		\

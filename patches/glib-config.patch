@@ -1,0 +1,45 @@
+diff -rup glib-1.2.10-orig/Makefile.am glib-1.2.10/Makefile.am
+--- glib-1.2.10-orig/Makefile.am	2014-04-06 23:34:16.138792407 +0300
++++ glib-1.2.10/Makefile.am	2014-04-06 23:43:51.079782111 +0300
+@@ -5,7 +5,7 @@ AUTOMAKE_OPTIONS = 1.4
+ 
+ SUBDIRS = . gmodule gthread docs tests
+ 
+-configincludedir = $(pkglibdir)/include
++configincludedir = $(includedir)/@PACKAGE@-@GLIB_MAJOR_VERSION@.@GLIB_MINOR_VERSION@
+ 
+ bin_SCRIPTS=glib-config
+ BUILT_SOURCES=glib-config
+diff -rup glib-1.2.10-orig/Makefile.in glib-1.2.10/Makefile.in
+--- glib-1.2.10-orig/Makefile.in	2014-04-06 23:34:16.138792407 +0300
++++ glib-1.2.10/Makefile.in	2014-04-06 23:43:56.839782008 +0300
+@@ -38,7 +38,7 @@ DESTDIR =
+ 
+ pkgdatadir = $(datadir)/@PACKAGE@
+ pkglibdir = $(libdir)/@PACKAGE@
+-pkgincludedir = $(includedir)/@PACKAGE@
++pkgincludedir = $(includedir)/@PACKAGE@-@GLIB_MAJOR_VERSION@.@GLIB_MINOR_VERSION@
+ 
+ top_builddir = .
+ 
+@@ -98,7 +98,7 @@ AUTOMAKE_OPTIONS = 1.4
+ 
+ SUBDIRS = . gmodule gthread docs tests
+ 
+-configincludedir = $(pkglibdir)/include
++configincludedir = $(includedir)/gliB
+ 
+ bin_SCRIPTS = glib-config
+ 
+diff -rup glib-1.2.10-orig/glib-config.in glib-1.2.10/glib-config.in
+--- glib-1.2.10-orig/glib-config.in	2014-04-06 23:34:16.130792407 +0300
++++ glib-1.2.10/glib-config.in	2014-04-06 23:37:43.392788696 +0300
+@@ -88,7 +88,7 @@ if test "$echo_cflags" = "yes"; then
+ 	if test "$lib_gthread" = "yes"; then
+ 		cflags="$cflags @G_THREAD_CFLAGS@"
+ 	fi
+-	echo -I@includedir@/glib-1.2 -I@libdir@/glib/include $includes $cflags
++	echo -I@includedir@/glib-1.2 $includes $cflags
+ fi
+ if test "$echo_libs" = "yes"; then
+ 	libsp=""
