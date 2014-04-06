@@ -10,7 +10,6 @@ gtk_build() {
 	cp /usr/share/libtool/config/config.guess .
 	cp /usr/share/libtool/config/config.sub .
 	patch -p 0 < "$BASE_DIR/patches/gtk+-1.2.10.diff"
-	patch -p 1 < "$BASE_DIR/patches/gtk-luufs.patch"
 	patch -p 1 < "$BASE_DIR/patches/gtk-font.patch"
 
 	./configure --host=$HOST \
