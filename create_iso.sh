@@ -2,6 +2,7 @@
 
 . ./config
 
+# programs present in the initramfs
 INITRAMFS_PROGRAMS="init
                     loksh
                     syslogd
@@ -14,6 +15,14 @@ INITRAMFS_PROGRAMS="init
                     klogecho
                     clear
                     cat"
+
+# files that should be removed from the root file system
+UNNEEDED_FILES="lib/*.o
+                lib/*.a
+                lib/*.ld
+                lib/pkgconfig
+                usr/include"
+
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"
@@ -64,6 +73,12 @@ mv "$root_fs/boot/bzImage" "$iso_root/"
 mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
+
+# remove unneeded files from the root file system
+for i in $UNNEEDED_FILES
+do
+	rm -rf "$root_fs"/$i
+done
 
 # generate font cache files
 for i in "$root_fs/usr/share/fonts"/*
