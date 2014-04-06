@@ -1,5 +1,5 @@
 PACKAGE_VERSION="1.0.2"
-PACKAGE_SOURCES="http://downloads.sourceforge.net/project/htop/htop/$PACKAGE_VERSION/htop-$PACKAGE_VERSION.tar.gz"
+PACKAGE_SOURCES="http://hisham.hm/htop/releases/$PACKAGE_VERSION/htop-$PACKAGE_VERSION.tar.gz"
 
 htop_build() {
 	[ -d htop-$PACKAGE_VERSION ] && rm -rf htop-$PACKAGE_VERSION
