@@ -6,6 +6,8 @@ libxml2_build() {
 	tar -xzvf libxml2-$PACKAGE_VERSION.tar.gz
 	cd libxml2-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/libxml2-config.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \

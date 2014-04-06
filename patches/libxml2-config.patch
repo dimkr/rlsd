@@ -1,0 +1,12 @@
+diff -rup libxml2-2.9.1-orig/Makefile.in libxml2-2.9.1/Makefile.in
+--- libxml2-2.9.1-orig/Makefile.in	2014-04-07 00:09:44.377754295 +0300
++++ libxml2-2.9.1/Makefile.in	2014-04-07 00:10:28.032753513 +0300
+@@ -741,7 +741,7 @@ runxmlconf_DEPENDENCIES = $(DEPS)
+ runxmlconf_LDADD = $(LDADDS)
+ CLEANFILES = runxmlconf.log test.out xml2Conf.sh *.gcda *.gcno *.res
+ DISTCLEANFILES = COPYING missing.lst
+-confexecdir = $(libdir)
++confexecdir = $(pkgdatadir)
+ confexec_DATA = xml2Conf.sh
+ CVS_EXTRA_DIST = 
+ EXTRA_DIST = xml2-config.in xml2Conf.sh.in libxml.spec.in libxml2.spec \
