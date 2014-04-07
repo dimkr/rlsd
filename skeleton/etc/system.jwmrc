@@ -133,7 +133,7 @@
     </WindowStyle>
     <TrayStyle>
         <Font>*-terminus-medium-*-14-*</Font>
-        <Background>#000000</Background>
+        <Background>#181515</Background>
         <Foreground>#dddddd</Foreground>
         <Opacity>1.0</Opacity>
     </TrayStyle>
@@ -185,7 +185,7 @@
               contained within a Desktop tag to give a specific background
               for that desktop.
          -->
-        <Background type="gradient">#000000:#111115</Background>
+        <Background type="solid">#181515</Background>
     </Desktops>
 
     <!-- Double click speed (in milliseconds) -->

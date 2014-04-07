@@ -11,6 +11,8 @@ jwm_build() {
 	            --datarootdir=/usr/share \
 	            --disable-jpeg \
 	            --disable-xrender \
+	            --disable-shape \
+	            --disable-xmu \
 	            --disable-nls
 	$MAKE
 }
