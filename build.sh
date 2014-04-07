@@ -14,7 +14,8 @@ UNNEEDED_FILES="usr/share/applications
                 etc/X11
                 usr/share/gnome
                 etc/init.d
-                etc/udev"
+                etc/udev
+                usr/share/aclocal"
 
 # include the configuration file
 . ./config
