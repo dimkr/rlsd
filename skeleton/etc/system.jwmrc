@@ -97,18 +97,18 @@
     <!-- Trays at the bottom. -->
     <Tray y="-1" height="48" border="0" halign="center" autohide="false">
         <TrayButton border="false" icon="puppy.png">root:1</TrayButton>
-        <TrayButton icon="home.png">exec:rox</TrayButton>
-        <TrayButton icon="terminal.png">exec:aterm</TrayButton>
-        <TrayButton icon="edit.png">exec:gtkedit</TrayButton>
-        <TrayButton icon="install.png">exec:lpackage</TrayButton>
-        <TrayButton icon="internet.png">exec:dillo</TrayButton>
-        <TrayButton icon="chat.png">exec:xchat</TrayButton>
-        <TrayButton icon="mail.png">exec:sylpheed</TrayButton>
-        <TrayButton icon="audio.png">exec:xhippo</TrayButton>
-        <TrayButton icon="paint.png">exec:mtpaint</TrayButton>
+        <TrayButton border="false" icon="home.png">exec:rox</TrayButton>
+        <TrayButton border="false" icon="terminal.png">exec:aterm</TrayButton>
+        <TrayButton border="false" icon="edit.png">exec:gtkedit</TrayButton>
+        <TrayButton border="false" icon="install.png">exec:lpackage</TrayButton>
+        <TrayButton border="false" icon="internet.png">exec:dillo</TrayButton>
+        <TrayButton border="false" icon="chat.png">exec:xchat</TrayButton>
+        <TrayButton border="false" icon="mail.png">exec:sylpheed</TrayButton>
+        <TrayButton border="false" icon="audio.png">exec:xhippo</TrayButton>
+        <TrayButton border="false" icon="paint.png">exec:mtpaint</TrayButton>
     </Tray>
 
-    <Tray layout="vertical" halign="right" y="-1">
+    <Tray layout="vertical" border="0" halign="right" y="-1">
         <Dock/>
         <Clock format="%H:%M"/>
     </Tray>
@@ -137,6 +137,9 @@
         <Foreground>#dddddd</Foreground>
         <Opacity>1.0</Opacity>
     </TrayStyle>
+    <TrayButtonStyle>
+        <ActiveBackground>#181515:#222222</ActiveBackground>
+    </TrayButtonStyle>
     <TaskListStyle>
         <Font>*-terminus-medium-*-14-*</Font>
         <ActiveForeground>#ffffff</ActiveForeground>
