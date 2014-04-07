@@ -6,8 +6,6 @@ xmodmap_build() {
 	tar -xjvf xmodmap-$PACKAGE_VERSION.tar.bz2
 	cd xmodmap-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/xmodmap-build.patch"
-
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \
