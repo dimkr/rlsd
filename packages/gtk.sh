@@ -1,15 +1,11 @@
-PACKAGE_VERSION="1.2.10"
-PACKAGE_SOURCES="http://ftp.gnome.org/pub/gnome/sources/gtk+/1.2/gtk+-$PACKAGE_VERSION.tar.gz https://projects.archlinux.org/svntogit/packages.git/plain/trunk/aclocal-fixes.patch?h=packages/gtk,gtk-aclocal-fixes.patch"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/gtk/archive/master.zip,gtk-$PACKAGE_VERSION.zip"
 
 gtk_build() {
-	[ -d gtk+-$PACKAGE_VERSION ] && rm -rf gtk+-$PACKAGE_VERSION
-	tar -xzvf gtk+-$PACKAGE_VERSION.tar.gz
-	cd gtk+-$PACKAGE_VERSION
+	[ -d gtk-master ] && rm -rf gtk-master
+	unzip gtk-$PACKAGE_VERSION.zip
+	cd gtk-master
 
-	patch -p 0 < ../gtk-aclocal-fixes.patch
-	cp /usr/share/libtool/config/config.guess .
-	cp /usr/share/libtool/config/config.sub .
-	patch -p 0 < "$BASE_DIR/patches/gtk+-1.2.10.diff"
 	patch -p 1 < "$BASE_DIR/patches/gtk-font.patch"
 
 	./configure --host=$HOST \
