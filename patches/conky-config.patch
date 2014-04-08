@@ -1,6 +1,6 @@
 diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
 --- conky-1.9.0-orig/data/Makefile.in	2014-04-07 21:34:44.073994285 +0300
-+++ conky-1.9.0/data/Makefile.in	2014-04-07 21:34:54.662994096 +0300
++++ conky-1.9.0/data/Makefile.in	2014-04-08 22:01:41.079843553 +0300
 @@ -292,7 +292,7 @@ top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
  xsltproc_cmd = @xsltproc_cmd@
@@ -12,8 +12,8 @@ diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
  .SUFFIXES:
 diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
 --- conky-1.9.0-orig/data/conky.conf	2014-04-07 21:34:44.073994285 +0300
-+++ conky-1.9.0/data/conky.conf	2014-04-07 21:38:40.454990052 +0300
-@@ -23,32 +23,31 @@
++++ conky-1.9.0/data/conky.conf	2014-04-08 22:02:02.036843178 +0300
+@@ -23,7 +23,7 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #
  
@@ -22,13 +22,7 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
  background no
  border_width 1
  cpu_avg_samples 2
--default_color white
--default_outline_color white
--default_shade_color white
-+default_color #dddddd
-+default_outline_color #dddddd
-+default_shade_color #dddddd
- draw_borders no
+@@ -34,32 +34,30 @@ draw_borders no
  draw_graph_borders yes
  draw_outline no
  draw_shades no
@@ -54,8 +48,11 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
  uppercase no
  use_spacer none
  show_graph_scale no
-@@ -58,8 +57,7 @@ TEXT
- ${scroll 16 $nodename - $sysname $kernel on $machine | }
+ show_graph_range no
+ 
+ TEXT
+-${scroll 16 $nodename - $sysname $kernel on $machine | }
++$nodename - $sysname $kernel on $machine
  $hr
  ${color grey}Uptime:$color $uptime
 -${color grey}Frequency (in MHz):$color $freq
