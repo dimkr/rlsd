@@ -1,15 +1,11 @@
-PACKAGE_VERSION="0.22.0"
-PACKAGE_SOURCES="http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/0.22/gdk-pixbuf-$PACKAGE_VERSION.tar.bz2 https://projects.archlinux.org/svntogit/community.git/plain/trunk/gdk-pixbuf-0.22.0.patch?h=packages/gdk-pixbuf,gdk-pixbuf-loaders.patch https://projects.archlinux.org/svntogit/community.git/plain/trunk/libpng15.patch?h=packages/gdk-pixbuf,gdk-pixbuf-libpng.patch"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/gdk-pixbuf/archive/master.zip,gdk-pixbuf-$PACKAGE_VERSION.zip"
 
 gdk_pixbuf_build() {
-	[ -d gdk-pixbuf-$PACKAGE_VERSION ] && rm -rf gdk-pixbuf-$PACKAGE_VERSION
-	tar -xjvf gdk-pixbuf-$PACKAGE_VERSION.tar.bz2
-	cd gdk-pixbuf-$PACKAGE_VERSION
+	[ -d gdk-pixbuf-master ] && rm -rf gdk-pixbuf-master
+	unzip gdk-pixbuf-$PACKAGE_VERSION.zip
+	cd gdk-pixbuf-master
 
-	patch -p 1 < ../gdk-pixbuf-libpng.patch
-	patch -p 0 < ../gdk-pixbuf-loaders.patch
-	patch -p 1 < "$BASE_DIR/patches/gdk-pixbuf-static.patch"
-	patch -p 1 < "$BASE_DIR/patches/gdk-pixbuf-config.patch"
 	sed s~'SUBDIRS = gdk-pixbuf demo doc'~'SUBDIRS = gdk-pixbuf doc'~ \
 	    -i Makefile.in
 	./configure --host=$HOST \

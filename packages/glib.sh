@@ -2,9 +2,9 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/iguleder/glib/archive/master.zip,glib-$PACKAGE_VERSION.zip"
 
 glib_build() {
-        [ -d glib-master ] && rm -rf glib-master
-        unzip glib-$PACKAGE_VERSION.zip
-        cd glib-master
+	[ -d glib-master ] && rm -rf glib-master
+	unzip glib-$PACKAGE_VERSION.zip
+	cd glib-master
 
 	autoreconf --force --install
 	CFLAGS="$CFLAGS -D_LARGEFILE64_SOURCE" \
