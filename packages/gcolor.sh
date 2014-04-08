@@ -6,6 +6,8 @@ gcolor_build() {
 	tar -xzvf gcolor-$PACKAGE_VERSION.tar.gz
 	cd gcolor-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/gcolor-title.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
