@@ -1,14 +1,12 @@
-PACKAGE_VERSION="1.8.9"
-PACKAGE_SOURCES="http://xchat.org/files/source/1.8/xchat-$PACKAGE_VERSION.tar.bz2"
+ACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/xchat/archive/master.zip,xchat-$PACKAGE_VERSION.zip"
 
 xchat_build() {
-	[ -d xchat-$PACKAGE_VERSION ] && rm -rf xchat-$PACKAGE_VERSION
-	tar -xjvf xchat-$PACKAGE_VERSION.tar.bz2
-	cd xchat-$PACKAGE_VERSION
+	[ -d xchat-master ] && rm -rf xchat-master
+	unzip xchat-$PACKAGE_VERSION.zip
+	cd xchat-master
 
-	patch -p 1 < "$BASE_DIR/patches/xchat-root.patch"
 	patch -p 1 < "$BASE_DIR/patches/xchat-font.patch"
-	patch -p 1 < "$BASE_DIR/patches/xchat-servers.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
