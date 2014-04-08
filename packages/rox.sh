@@ -7,10 +7,8 @@ rox_build() {
 	unzip rox-$PACKAGE_VERSION.zip
 	cd rox-master
 
-	patch -p 1 < "$BASE_DIR/patches/rox-aterm.patch"
-
 	cd ROX-Filer/src
-	XML_CONFIG="xml2-config" ./configure --host=$HOST --with-platform=$PLATFORM
+	./configure --host=$HOST --with-platform=$PLATFORM --with-xterm=aterm
 	$MAKE
 }
 
