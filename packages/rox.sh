@@ -1,15 +1,12 @@
-PACKAGE_VERSION="1.2.2"
-PACKAGE_SOURCES="http://downloads.sourceforge.net/project/rox/rox/$PACKAGE_VERSION/rox-$PACKAGE_VERSION.tgz"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/rox/archive/master.zip,rox-$PACKAGE_VERSION.zip"
 PLATFORM="$(uname -s)-$(uname -m)"
 
 rox_build() {
-	[ -d rox-$PACKAGE_VERSION ] && rm -rf rox-$PACKAGE_VERSION
-	tar -xzvf rox-$PACKAGE_VERSION.tgz
-	cd rox-$PACKAGE_VERSION
+	[ -d rox-master ] && rm -rf rox-master
+	unzip rox-$PACKAGE_VERSION.zip
+	cd rox-master
 
-	patch -p 1 < "$BASE_DIR/patches/rox-tooltips.patch"
-	patch -p 1 < "$BASE_DIR/patches/rox-libpng.patch"
-	patch -p 1 < "$BASE_DIR/patches/rox-root.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-aterm.patch"
 
 	cd ROX-Filer/src
