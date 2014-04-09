@@ -1,4 +1,4 @@
-ACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/iguleder/xchat/archive/master.zip,xchat-$PACKAGE_VERSION.zip"
 
 xchat_build() {
