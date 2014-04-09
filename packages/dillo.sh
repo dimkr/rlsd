@@ -1,13 +1,10 @@
-PACKAGE_VERSION="0.8.6"
-PACKAGE_SOURCES="http://www.dillo.org/download/dillo-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/dillo/archive/master.zip,dillo-$PACKAGE_VERSION.zip"
 
 dillo_build() {
-	[ -d dillo-$PACKAGE_VERSION ] && rm -rf dillo-$PACKAGE_VERSION
-	tar -xjvf dillo-$PACKAGE_VERSION.tar.bz2
-	cd dillo-$PACKAGE_VERSION
-
-	patch -p 1 < "$BASE_DIR/patches/dillo-musl.patch"
-	patch -p 1 < "$BASE_DIR/patches/dillo-linker.patch"
+	[ -d dillo-master ] && rm -rf dillo-master
+	unzip dillo-$PACKAGE_VERSION.zip
+	cd dillo-master
 
 	./configure --host=$HOST \
 	            --prefix= \
