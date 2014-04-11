@@ -56,7 +56,7 @@ DESKTOP_CORE="tinyxlib
               gdk_pixbuf
               libxml2
               rox
-              woof_ce_icons"
+              flattr_icons"
 CONSOLE_APPS="ncurses
               less
               vile

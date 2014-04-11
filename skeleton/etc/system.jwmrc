@@ -4,56 +4,57 @@
 
     <!-- The root menu. -->
     <RootMenu height="32">
-        <Program icon="execute.png" label="Execute...">grun</Program>
-        <Menu icon="directory_execute.png" label="Applications">
-            <Menu icon="directory.png" label="File Management">
-                <Program icon="home.png" label="ROX-Filer">rox</Program>
-                <Program icon="cdrom.png" label="gtkcat">gtkcat</Program>
-                <Program icon="harddisk.png" label="gtkdiskfree">gtkdiskfree</Program>
-                <Program icon="harddisk.png" label="GDMap">gdmap</Program>
-                <Program icon="find.png" label="gtkfind">gtkfind</Program>
-                <Program icon="harddisk.png" label="ncdu">aterm -title ncdu -e ncdu</Program>
-                <Program icon="home.png" label="ytree">aterm -title ytree -e ytree</Program>
-                <Program icon="package_compressed.png" label="guiTAR">guitar</Program>
+        <Program icon="gtk-execute.png" label="Execute...">grun</Program>
+        <Menu icon="application-x-executable.png" label="Applications">
+            <Menu icon="folder.png" label="File Management">
+                <Program label="ROX-Filer">rox</Program>
+                <Program label="gtkcat">gtkcat</Program>
+                <Program label="gtkdiskfree">gtkdiskfree</Program>
+                <Program label="GDMap">gdmap</Program>
+                <Program label="gtkfind">gtkfind</Program>
+                <Program label="ncdu">aterm -title ncdu -e ncdu</Program>
+                <Program label="ytree">aterm -title ytree -e ytree</Program>
+                <Program label="guiTAR">guitar</Program>
             </Menu>
-            <Menu icon="edit.png" label="Editors">
-                <Program icon="edit.png" label="gtkedit">gtkedit</Program>
-                <Program icon="edit.png" label="Vile">aterm -title Vile -e vile</Program>
-                <Program icon="edit.png" label="GNU nano">aterm -title "GNU nano" -e nano</Program>
+            <Menu icon="folder-documents.png" label="Editors">
+                <Program label="gtkedit">gtkedit</Program>
+                <Program label="Vile">aterm -title Vile -e vile</Program>
+                <Program label="GNU nano">aterm -title "GNU nano" -e nano</Program>
             </Menu>
-            <Menu icon="internet.png" label="Network">
-                <Program icon="chat.png" label="X-Chat">xchat</Program>
-                <Program icon="mail.png" label="Sylpheed">sylpheed</Program>
-                <Program icon="internet.png" label="Dillo">dillo</Program>
-                <Program icon="file.png" label="guiftp">guiftp</Program>
-                <Program icon="desktop.png" label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
-                <Program icon="chat.png" label="ircii">aterm -title ircii -e irc</Program>
-                <Program icon="internet.png" label="Lynx">aterm -title Lynx -e lynx</Program>
+            <Menu icon="folder-remote.png" label="Network">
+                <Program label="X-Chat">xchat</Program>
+                <Program label="Sylpheed">sylpheed</Program>
+                <Program label="Dillo">dillo</Program>
+                <Program label="guiftp">guiftp</Program>
+                <Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
+                <Program label="ircII">aterm -title ircII -e irc</Program>
+                <Program label="Lynx">aterm -title Lynx -e lynx</Program>
             </Menu>
-            <Menu icon="multimedia.png" label="Multimedia">
-                 <Program icon="audio.png" label="Xhippo">xhippo</Program>
-                <Program icon="edit_sound.png" label="mhWaveEdit">mhwaveedit</Program>
+            <Menu icon="folder-music.png" label="Multimedia">
+                <Program label="Xhippo">xhippo</Program>
+                <Program label="mhWaveEdit">mhwaveedit</Program>
             </Menu>
-            <Menu icon="graphics.png" label="Graphics">
-                <Program icon="paint.png" label="mtPaint">mtpaint</Program>
-                <Program icon="draw.png" label="gcolor">gcolor</Program>
-                <Program icon="image_viewer.png" label="GTK See">gtksee</Program>
+            <Menu icon="folder-images.png" label="Graphics">
+                <Program label="mtPaint">mtpaint</Program>
+                <Program label="gcolor">gcolor</Program>
+                <Program label="GTK See">gtksee</Program>
             </Menu>
-            <Menu icon="directory_execute.png" label="Utilities">
-                <Program icon="calendar.png" label="Calcurse">aterm -title Calcurse -e calcurse</Program>
-                <Program icon="select-font.png" label="gtkfontsel">gtkfontsel</Program>
-                <Program icon="notes.png" label="gtklepin">gtklepin</Program>
-                <Program icon="htop.png" label="htop">aterm -title htop -e htop</Program>
-               <Program icon="terminal.png" label="aterm">aterm</Program>
-               <Program icon="terminal.png" label="GNU Screen">aterm -title "GNU Screen" -e screen</Program>
+            <Menu icon="folder.png" label="Utilities">
+                <Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
+                <Program label="gcalendar">gcalendar</Program>
+                <Program label="gtkfontsel">gtkfontsel</Program>
+                <Program label="gtklepin">gtklepin</Program>
+                <Program label="htop">aterm -title htop -e htop</Program>
+                <Program label="aterm">aterm</Program>
+                <Program label="GNU Screen">aterm -title "GNU Screen" -e screen</Program>
             </Menu>
         </Menu>
-        <Program icon="install.png" label="Manage applications">lpackage</Program>
+        <Program icon="system-software-install.png" label="Manage applications">lpackage</Program>
         <Separator/>
         <Desktops icon="desktop.png"/>
         <Separator/>
-        <Restart label="Restart" icon="refresh.png"/>
-        <Exit label="Exit" confirm="false" icon="quit.png"/>
+        <Restart label="Restart" icon="system-restart.png"/>
+        <Exit label="Exit" confirm="false" icon="exit.png"/>
     </RootMenu>
 
     <!-- Options for program groups. -->
@@ -67,50 +68,59 @@
     </Group>
     <Group>
         <Name>gtkedit</Name>
-        <Option>icon:edit.png</Option>
+        <Option>icon:text-editor.png</Option>
     </Group>
     <Group>
         <Name>lpackage</Name>
-        <Option>icon:install.png</Option>
+        <Option>icon:system-software-install.png</Option>
     </Group>
     <Group>
         <Name>dillo</Name>
-        <Option>icon:internet.png</Option>
+        <Option>icon:emblem-web.png</Option>
+        <Option>maximized</option>
     </Group>
     <Group>
         <Name>xchat</Name>
-        <Option>icon:chat.png</Option>
+        <Option>icon:empathy.png</Option>
     </Group>
     <Group>
         <Name>sylpheed</Name>
         <Option>icon:mail.png</Option>
+        <Option>maximized</Option>
     </Group>
     <Group>
         <Name>xhippo</Name>
-        <Option>icon:audio.png</Option>
+        <Option>icon:multimedia-audio-player.png</Option>
     </Group>
     <Group>
         <Name>mtpaint</Name>
-        <Option>icon:paint.png</Option>
+        <Option>icon:gimp.png</Option>
+        <Option>maximized</Option>
+    </Group>
+    <Group>
+        <Name>calcoo</Name>
+        <Option>icon:calc.png</Option>
+        <Option>sticky</Option>
     </Group>
 
     <!-- Trays at the bottom. -->
     <Tray y="-1" height="48" border="0" halign="center" autohide="false">
-        <TrayButton border="false" icon="puppy.png">root:1</TrayButton>
-        <TrayButton border="false" icon="home.png">exec:rox</TrayButton>
-        <TrayButton border="false" icon="terminal.png">exec:aterm</TrayButton>
-        <TrayButton border="false" icon="edit.png">exec:gtkedit</TrayButton>
-        <TrayButton border="false" icon="install.png">exec:lpackage</TrayButton>
-        <TrayButton border="false" icon="internet.png">exec:dillo</TrayButton>
-        <TrayButton border="false" icon="chat.png">exec:xchat</TrayButton>
+        <TrayButton border="false" icon="gtk-execute.png">root:1</TrayButton>
+        <TrayButton border="false" icon="folder-home.png">exec:rox</TrayButton>
+        <TrayButton border="false" icon="terminal.png">exec:aterm -title "GNU Screen" -e screen</TrayButton>
+        <TrayButton border="false" icon="text-editor.png">exec:gtkedit</TrayButton>
+        <TrayButton border="false" icon="system-software-install.png">exec:lpackage</TrayButton>
+        <TrayButton border="false" icon="emblem-web.png">exec:dillo</TrayButton>
+        <TrayButton border="false" icon="empathy.png">exec:xchat</TrayButton>
         <TrayButton border="false" icon="mail.png">exec:sylpheed</TrayButton>
-        <TrayButton border="false" icon="audio.png">exec:xhippo</TrayButton>
-        <TrayButton border="false" icon="paint.png">exec:mtpaint</TrayButton>
+        <TrayButton border="false" icon="multimedia-audio-player.png">exec:xhippo</TrayButton>
+        <TrayButton border="false" icon="gimp.png">exec:mtpaint</TrayButton>
+        <TrayButton border="false" icon="calc.png">exec:calcoo</TrayButton>
     </Tray>
 
     <Tray layout="vertical" border="0" halign="right" y="-1">
         <Dock/>
-        <Clock format="%H:%M"/>
+        <Clock format="%H:%M">gcalendar</Clock>
     </Tray>
 
     <!-- Visual Styles -->
@@ -211,6 +221,12 @@
 
     <!-- Startup commands -->
     <StartupCommand>conky</StartupCommand>
+
+    <!-- Title buttons -->
+    <ButtonClose>/usr/share/jwm/close.xpm</ButtonClose>
+    <ButtonMax>/usr/share/jwm/maximize.xpm</ButtonMax>
+    <ButtonMaxActive>/usr/share/jwm/maximize.xpm</ButtonMaxActive>
+    <ButtonMin>/usr/share/jwm/minimize.xpm</ButtonMin>
 
     <!-- Key bindings -->
     <Key key="Up">up</Key>
