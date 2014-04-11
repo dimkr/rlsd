@@ -68,6 +68,7 @@ CONSOLE_APPS="ncurses
               calcurse
               ncdu
               nano
+              shed
               bwm_ng"
 GRAPHICAL_APPS="beaver
                 gdmap
