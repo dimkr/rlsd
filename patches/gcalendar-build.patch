@@ -1,0 +1,12 @@
+diff -rup gcalendar-0.6.0-orig/Makefile.in gcalendar-0.6.0/Makefile.in
+--- gcalendar-0.6.0-orig/Makefile.in	2014-04-11 15:38:13.424904291 +0300
++++ gcalendar-0.6.0/Makefile.in	2014-04-11 15:38:20.148904171 +0300
+@@ -93,7 +93,7 @@ CC = @CC@
+ CCDEPMODE = @CCDEPMODE@
+ CFLAGS = @CFLAGS@
+ CPP = @CPP@
+-CPPFLAGS = @CPPFLAGS@ -I/usr/include
++CPPFLAGS = @CPPFLAGS@
+ CYGPATH_W = @CYGPATH_W@
+ DEFS = @DEFS@
+ DEPDIR = @DEPDIR@

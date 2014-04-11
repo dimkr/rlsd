@@ -46,6 +46,7 @@ DESKTOP_CORE="tinyxlib
               gtkfind
               gtkedit
               calcoo
+              gcalendar
               guitar
               libpng
               jwm
