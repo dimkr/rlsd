@@ -8,6 +8,7 @@ CORE="linux_headers
       lazy_utils
       loksh
       findutils
+      lok
       xz_embedded
       gzip
       lbzip2
