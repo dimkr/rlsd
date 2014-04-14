@@ -54,7 +54,7 @@
         <Desktops icon="desktop.png"/>
         <Separator/>
         <Restart label="Restart" icon="system-restart.png"/>
-        <Exit label="Exit" confirm="false" icon="exit.png"/>
+        <Exit label="Exit" icon="exit.png"/>
     </RootMenu>
 
     <!-- Options for program groups. -->
