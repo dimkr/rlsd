@@ -1,0 +1,61 @@
+diff -rup GtkDialog1-1.3-orig/src/attributes.c GtkDialog1-1.3/src/attributes.c
+--- GtkDialog1-1.3-orig/src/attributes.c	2014-04-15 15:02:43.831992034 +0300
++++ GtkDialog1-1.3/src/attributes.c	2014-04-15 15:03:06.515991628 +0300
+@@ -26,7 +26,7 @@ AttributeSet *attributeset_new(void)
+ 	new_set = g_malloc(sizeof(AttributeSet));
+ 	new_set->n_attr = ATTRNUMBER;
+ 	new_set->attr = g_malloc(sizeof(GList *) * ATTRNUMBER);
+-	new_set->_pointer = g_malloc(sizeof(int) * ATTRNUMBER);
++	new_set->_pointer = g_malloc(sizeof(GList *) * ATTRNUMBER);
+ 	for (n = 0; n < ATTRNUMBER; ++n) {
+ 		new_set->attr[n] = NULL;
+ 		new_set->_pointer[n] = NULL;
+diff -rup GtkDialog1-1.3-orig/src/compat.c GtkDialog1-1.3/src/compat.c
+--- GtkDialog1-1.3-orig/src/compat.c	2014-04-15 15:02:43.831992034 +0300
++++ GtkDialog1-1.3/src/compat.c	2014-04-15 15:04:10.085990489 +0300
+@@ -64,7 +64,7 @@ GtkWidget *xpm_label_box( GtkWidget *par
+ 	GtkWidget *label;
+ 	GtkWidget *pixmapwid;
+ 	GdkPixmap *pixmap;
+-	GdkBitmap *mask;
++	GdkBitmap *mask = NULL;
+ 	GdkColormap *colormap;
+ 	GdkPixbuf *pixbuf, *normal_pixbuf;
+ 	FILE *file = NULL;
+@@ -172,8 +172,8 @@ GtkWidget *gtk_button_new_from_stock (ch
+ 	GtkWidget *icon = NULL; 
+ 	GtkWidget *label = NULL;
+ 	const char **xpm = NULL;
+-	GdkPixmap *pixmap;
+-	GdkBitmap *mask;
++	GdkPixmap *pixmap = NULL;
++	GdkBitmap *mask = NULL;
+ 	GdkPixbuf *pixbuf, *normal_pixbuf;	
+ 
+ 	if ( !strcmp(stock_id, GTK_STOCK_YES) ) {
+diff -rup GtkDialog1-1.3-orig/src/main.c GtkDialog1-1.3/src/main.c
+--- GtkDialog1-1.3-orig/src/main.c	2014-04-15 15:02:43.831992034 +0300
++++ GtkDialog1-1.3/src/main.c	2014-04-15 15:06:09.712988347 +0300
+@@ -236,6 +236,8 @@ int getnextchar(void)
+ 
+ int main(int argc, char *argv[])
+ {
++	const char *rcfile;
++
+ #ifdef DEBUG
+ 	fprintf(stderr, "%s: Starting.\n", __func__);
+ 	fflush(stderr);
+@@ -243,8 +245,11 @@ int main(int argc, char *argv[])
+ 	setlocale(LC_ALL, "");
+ 	
+ 	/* rcfile can be passed as an environmental variable */
+-	if (fopen(getenv("RCFILE"), "r")) { 
+-		gtk_rc_parse( getenv("RCFILE") ); 
++	rcfile = getenv("RCFILE");
++	if (NULL != rcfile) {
++		if (fopen(rcfile, "r")) { 
++			gtk_rc_parse(rcfile);
++		}
+ 	} else {
+ 		/* Or use the users' rcfile if available */
+ 		if (fopen("~/.gtkrc", "r")) { 

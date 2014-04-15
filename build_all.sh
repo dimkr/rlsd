@@ -56,6 +56,7 @@ DESKTOP_CORE="tinyxlib
               gdk_pixbuf
               libxml2
               rox
+              gtkdialog1
               flattr_icons"
 CONSOLE_APPS="ncurses
               less
