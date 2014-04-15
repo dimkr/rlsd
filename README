@@ -53,7 +53,7 @@ In order to build Lazyux, first, install packages required for the building
 process:
   apt-get install build-essential autoconf automake autotools-dev \
   autoconf-archive unzip flex bison git nasm xorriso squashfs-tools pkg-config \
-  librsvg2-bin file subversion
+  librsvg2-bin file subversion bc xfonts-utils
 
 Then, build a bootable Lazyux image using the scripts:
   sh build_all.sh
