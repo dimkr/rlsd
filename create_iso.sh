@@ -21,7 +21,9 @@ UNNEEDED_FILES="lib/*.o
                 lib/*.a
                 lib/*.ld
                 lib/pkgconfig
-                usr/include"
+                usr/include
+                bin/*-config
+                usr/share/man/man1/*-config.1"
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
