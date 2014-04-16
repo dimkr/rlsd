@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.0.0"
+PACKAGE_VERSION="1.1.0"
 PACKAGE_SOURCES="http://www.musl-libc.org/releases/musl-$PACKAGE_VERSION.tar.gz"
 
 musl_build() {
