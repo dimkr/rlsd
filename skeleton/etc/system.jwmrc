@@ -53,6 +53,7 @@
         <Separator/>
         <Desktops icon="desktop.png"/>
         <Separator/>
+        <Program icon="system-suspend.png" label="Suspend">suspend</Program>
         <Restart label="Restart" icon="system-restart.png"/>
         <Exit label="Exit" icon="exit.png"/>
     </RootMenu>
