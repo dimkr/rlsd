@@ -4,7 +4,7 @@
 
 # programs present in the initramfs
 INITRAMFS_PROGRAMS="init
-                    loksh
+                    ksh
                     syslogd
                     logd
                     mkdir
