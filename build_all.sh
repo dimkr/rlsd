@@ -9,6 +9,7 @@ CORE="linux_headers
       lobsder
       loksh
       findutils
+      minised
       lok
       xz_embedded
       gzip
