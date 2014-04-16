@@ -6,6 +6,7 @@
 CORE="linux_headers
       musl
       lazy_utils
+      lobsder
       loksh
       findutils
       lok

@@ -6,7 +6,7 @@ lok_build() {
 	unzip lok-$PACKAGE_VERSION.zip
 	cd lok-master
 
-	make
+	$MAKE
 }
 
 lok_package() {
