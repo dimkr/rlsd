@@ -5,6 +5,7 @@
 # available package groups
 CORE="linux_headers
       musl
+      fuse
       lazy_utils
       findutils
       xz_embedded
@@ -27,8 +28,6 @@ CORE="linux_headers
       tinyalsa
       tinyunmute
       mpg123
-      fuse
-      luufs
       linux"
 DESKTOP_CORE="tinyxlib
               tinyxserver

@@ -10,7 +10,7 @@ INITRAMFS_PROGRAMS="init
                     mkdir
                     mount
                     umount
-                    luufs
+                    mergedirs
                     sleep
                     klogecho
                     clear

@@ -93,7 +93,7 @@ fi
 echo -n " done.
 Setting up a layered file system ..."
 
-luufs /mnt/union
+mergedirs /mnt/ro /mnt/rw /mnt/union
 
 # bind the existing virtual file system and mount additional ones
 echo -n " done.

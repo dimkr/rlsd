@@ -1,7 +1,12 @@
 #!/bin/ksh
 
+# unmount the union file system
+echo -n "Unmounting the layered file system ..."
+umount /mnt/union
+
 # unmount all virtual file systems
-echo -n "Unmounting virtual file systems ..."
+echo -n "done.
+Unmounting virtual file systems ..."
 
 umount /dev/pts
 umount /dev/shm
