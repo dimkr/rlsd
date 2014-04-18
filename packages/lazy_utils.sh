@@ -6,9 +6,9 @@ lazy_utils_build() {
 	unzip lazy-utils-$PACKAGE_VERSION.zip
 	cd lazy-utils-master
 
-	sh ./build.sh
+	$MAKE
 }
 
 lazy_utils_package() {
-	sh ./install.sh "$1"
+	$MAKE DESTDIR="$1" install
 }

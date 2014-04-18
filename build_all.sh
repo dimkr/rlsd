@@ -6,11 +6,7 @@
 CORE="linux_headers
       musl
       lazy_utils
-      lobsder
-      loksh
       findutils
-      minised
-      lok
       xz_embedded
       gzip
       lbzip2
