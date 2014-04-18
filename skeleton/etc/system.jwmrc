@@ -78,7 +78,6 @@
     <Group>
         <Name>dillo</Name>
         <Option>icon:emblem-web.png</Option>
-        <Option>maximized</option>
     </Group>
     <Group>
         <Name>xchat</Name>
@@ -87,7 +86,6 @@
     <Group>
         <Name>sylpheed</Name>
         <Option>icon:mail.png</Option>
-        <Option>maximized</Option>
     </Group>
     <Group>
         <Name>xhippo</Name>
@@ -96,7 +94,6 @@
     <Group>
         <Name>mtpaint</Name>
         <Option>icon:gimp.png</Option>
-        <Option>maximized</Option>
     </Group>
     <Group>
         <Name>calcoo</Name>
@@ -104,22 +101,15 @@
         <Option>sticky</Option>
     </Group>
 
-    <!-- Trays at the bottom. -->
-    <Tray y="-1" height="48" border="0" halign="center" autohide="false">
-        <TrayButton border="false" icon="gtk-execute.png">root:1</TrayButton>
-        <TrayButton border="false" icon="folder-home.png">exec:rox</TrayButton>
+    <!-- Tray at the bottom. -->
+    <Tray y="-1" height="32" border="0">
+        <TrayButton icon="up.png">root:1</TrayButton>
+        <TrayButton border="false" icon="desktop.png">showdesktop</TrayButton>
+        <TrayButton border="false" icon="folder.png">exec:rox</TrayButton>
         <TrayButton border="false" icon="terminal.png">exec:aterm -title "GNU Screen" -e screen</TrayButton>
-        <TrayButton border="false" icon="text-editor.png">exec:gtkedit</TrayButton>
-        <TrayButton border="false" icon="system-software-install.png">exec:lpackage</TrayButton>
-        <TrayButton border="false" icon="emblem-web.png">exec:dillo</TrayButton>
-        <TrayButton border="false" icon="empathy.png">exec:xchat</TrayButton>
-        <TrayButton border="false" icon="mail.png">exec:sylpheed</TrayButton>
-        <TrayButton border="false" icon="multimedia-audio-player.png">exec:xhippo</TrayButton>
-        <TrayButton border="false" icon="gimp.png">exec:mtpaint</TrayButton>
-        <TrayButton border="false" icon="calc.png">exec:calcoo</TrayButton>
-    </Tray>
-
-    <Tray layout="vertical" border="0" halign="right" y="-1">
+        <TrayButton border="false" icon="gtk-execute.png">exec:grun</TrayButton>
+        <Pager/>
+        <TaskList/>
         <Dock/>
         <Clock format="%H:%M">gcalendar</Clock>
     </Tray>
@@ -144,7 +134,7 @@
     </WindowStyle>
     <TrayStyle>
         <Font>*-terminus-medium-*-14-*</Font>
-        <Background>#181515</Background>
+        <Background>#000000</Background>
         <Foreground>#dddddd</Foreground>
         <Opacity>1.0</Opacity>
     </TrayStyle>
@@ -162,7 +152,7 @@
         <Outline>#000000</Outline>
         <Text>#dddddd</Text>
         <Foreground>#333333</Foreground>
-        <Background>#181515</Background>
+        <Background>#111111</Background>
         <ActiveForeground>#555555</ActiveForeground>
         <ActiveBackground>#333333</ActiveBackground>
     </PagerStyle>
@@ -194,7 +184,7 @@
 
     <!-- Virtual Desktops -->
     <!-- Desktop tags can be contained within Desktops for desktop names. -->
-    <Desktops width="4" height="1">
+    <Desktops width="2" height="2">
         <!-- Default background. Note that a Background tag can be
               contained within a Desktop tag to give a specific background
               for that desktop.
