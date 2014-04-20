@@ -8,9 +8,9 @@ CORE="linux_headers
       fuse
       lazy_utils
       findutils
-      xz_embedded
       gzip
       lbzip2
+      xz
       zlib
       libarchive
       isolinux
