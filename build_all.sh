@@ -81,6 +81,7 @@ GRAPHICAL_APPS="beaver
                 alsa_lib
                 mhwaveedit
                 giflib
+                gifsicle
                 mtpaint
                 dillo
                 sylpheed
