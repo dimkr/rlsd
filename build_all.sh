@@ -10,6 +10,7 @@ CORE="linux_headers
       findutils
       bc
       diffutils
+      patch
       gzip
       lbzip2
       xz
