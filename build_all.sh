@@ -56,6 +56,7 @@ DESKTOP_CORE="tinyxlib
               gtkdialog1
               flattr_icons"
 CONSOLE_APPS="ncurses
+              dialog
               less
               vile
               screen
