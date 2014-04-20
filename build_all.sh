@@ -9,6 +9,7 @@ CORE="linux_headers
       lazy_utils
       findutils
       bc
+      diffutils
       gzip
       lbzip2
       xz
