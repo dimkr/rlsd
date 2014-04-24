@@ -12,6 +12,7 @@ tiff_build() {
 	            --bindir=/bin \
 	            --libdir=/lib \
 	            $CONFIGURE_LIBRARY_FLAGS \
+	            --disable-lzma \
 	            --disable-cxx
 	$MAKE
 }
