@@ -1,0 +1,35 @@
+diff -rup squashfs4.2-orig/squashfs-tools/mksquashfs.c squashfs4.2/squashfs-tools/mksquashfs.c
+--- squashfs4.2-orig/squashfs-tools/mksquashfs.c	2014-04-21 18:41:21.417964856 +0300
++++ squashfs4.2/squashfs-tools/mksquashfs.c	2014-04-21 18:46:36.513959214 +0300
+@@ -4363,7 +4363,7 @@ int excluded(struct pathnames *paths, ch
+ 				regexec(path->name[i].preg, name, (size_t) 0,
+ 					NULL, 0) == 0 :
+ 				fnmatch(path->name[i].name, name,
+-					FNM_PATHNAME|FNM_PERIOD|FNM_EXTMATCH) ==
++					FNM_PATHNAME|FNM_PERIOD) ==
+ 					 0;
+ 
+ 			if(match && path->name[i].paths == NULL) {
+diff -rup squashfs4.2-orig/squashfs-tools/pseudo.c squashfs4.2/squashfs-tools/pseudo.c
+--- squashfs4.2-orig/squashfs-tools/pseudo.c	2014-04-21 18:41:21.416964856 +0300
++++ squashfs4.2/squashfs-tools/pseudo.c	2014-04-21 18:45:46.462960110 +0300
+@@ -27,6 +27,7 @@
+ #include <unistd.h>
+ #include <stdio.h>
+ #include <fcntl.h>
++#include <sys/stat.h>
+ #include <errno.h>
+ #include <string.h>
+ #include <stdlib.h>
+diff -rup squashfs4.2-orig/squashfs-tools/unsquashfs.c squashfs4.2/squashfs-tools/unsquashfs.c
+--- squashfs4.2-orig/squashfs-tools/unsquashfs.c	2014-04-21 18:41:21.416964856 +0300
++++ squashfs4.2/squashfs-tools/unsquashfs.c	2014-04-21 18:47:09.650958620 +0300
+@@ -1204,7 +1204,7 @@ int matches(struct pathnames *paths, cha
+ 			int match = use_regex ?
+ 				regexec(path->name[i].preg, name, (size_t) 0,
+ 				NULL, 0) == 0 : fnmatch(path->name[i].name,
+-				name, FNM_PATHNAME|FNM_PERIOD|FNM_EXTMATCH) ==
++				name, FNM_PATHNAME|FNM_PERIOD) ==
+ 				0;
+ 			if(match && path->name[i].paths == NULL)
+ 				/*

@@ -15,6 +15,7 @@ CORE="linux_headers
       lbzip2
       xz
       zlib
+      squashfs_tools
       libarchive
       isolinux
       gnu_efi
