@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.0.2"
+PACKAGE_VERSION="1.0.3"
 PACKAGE_SOURCES="http://hisham.hm/htop/releases/$PACKAGE_VERSION/htop-$PACKAGE_VERSION.tar.gz"
 
 htop_build() {
@@ -18,7 +18,7 @@ htop_build() {
 htop_package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/htop/README"
-	install -D -m 644 NEWS "$1/usr/share/doc/htop/NEWS"
-	install -D -m 644 AUTHORS "$1/usr/share/doc/htop/AUTHORS"
-	install -D -m 644 COPYING "$1/usr/share/doc/htop/COPYING"
+	install -m 644 NEWS "$1/usr/share/doc/htop/NEWS"
+	install -m 644 AUTHORS "$1/usr/share/doc/htop/AUTHORS"
+	install -m 644 COPYING "$1/usr/share/doc/htop/COPYING"
 }
