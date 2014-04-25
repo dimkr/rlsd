@@ -17,6 +17,7 @@
                 <Program label="guiTAR">guitar</Program>
             </Menu>
             <Menu icon="folder-documents.png" label="Editors">
+                <Program label="Beaver">beaver</Program>
                 <Program label="gtkedit">gtkedit</Program>
                 <Program label="Vile">aterm -title Vile -e vile</Program>
                 <Program label="GNU nano">aterm -title "GNU nano" -e nano</Program>

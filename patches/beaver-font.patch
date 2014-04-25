@@ -1,0 +1,12 @@
+diff -rup beaver-master-orig/src/main.c beaver-master/src/main.c
+--- beaver-master-orig/src/main.c	2014-04-25 19:00:56.663977263 +0300
++++ beaver-master/src/main.c	2014-04-25 19:01:27.656976708 +0300
+@@ -130,7 +130,7 @@ int main (int argc, char *argv[])
+ 	  "[Editor]\n"
+ 	  "Wordfile = ", ConfDir,  PATH_SEP_STRING, "wordfile.txt"
+ 	  "\n"
+-	  "Font = fixed"
++	  "Font = *-terminus-medium-*-14-*"
+ 	  "\n"
+ 	  "BGRed = 65535\n"
+ 	  "BGBlue = 65535\n"

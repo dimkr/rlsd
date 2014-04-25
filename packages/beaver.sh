@@ -1,10 +1,14 @@
-PACKAGE_VERSION="0.2.7"
-PACKAGE_SOURCES="http://download.savannah.gnu.org/releases/beaver/archive/beaver-$PACKAGE_VERSION.tar.gz"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/beaver/archive/master.zip,beaver-$PACKAGE_VERSION.zip"
 
 beaver_build() {
-	[ -d beaver-$PACKAGE_VERSION ] && rm -rf beaver-$PACKAGE_VERSION
-	tar -xzvf beaver-$PACKAGE_VERSION.tar.gz
-	cd beaver-$PACKAGE_VERSION/src
+	[ -d beaver-master ] && rm -rf beaver-master
+	unzip beaver-$PACKAGE_VERSION.zip
+	cd beaver-master
+
+	patch -p 1 < "$BASE_DIR/patches/beaver-font.patch"
+
+	cd src
 
 	sed -e s~'CC      = .*'~"CC      = $CC"~ \
 	    -e s~'DESTDIR = .*'~'DESTDIR ?= /'~ \
