@@ -16,7 +16,8 @@ libxml2_build() {
 	            --without-debug \
 	            --without-python \
 	            --without-threads \
-	            --without-modules
+	            --without-modules \
+	            --without-lzma
 	$MAKE
 }
 
