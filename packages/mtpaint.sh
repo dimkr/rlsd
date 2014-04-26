@@ -16,7 +16,7 @@ mtpaint_build() {
 	            gtkcolsel \
 	            thread \
 	            cflags \
-	            gif \
+	            GIF \
 	            jpeg \
 	            tiff \
 	            man
