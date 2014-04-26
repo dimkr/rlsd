@@ -42,7 +42,7 @@ iso: $(PACKAGES)
 # core
 musl: linux_headers
 fuse: musl
-lazy_utils: musl fuse
+lazy_utils: musl zlib fuse
 
 # console tools
 $(CONSOLE_TOOLS): musl
