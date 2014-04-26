@@ -24,6 +24,7 @@ UNNEEDED_FILES="usr/share/applications
 export AR
 export CFLAGS="$CFLAGS -I$SYSROOT/usr/include"
 export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
+export PKG_CONFIG="$BASE_DIR/pkg-config"
 export PKG_CONFIG_PATH="$SYSROOT/lib/pkgconfig"
 export PKG_CONFIG_LIBDIR="/lib/pkgconfig"
 export MAKE="make -j $(cat /proc/cpuinfo | grep ^processor | wc -l)"
