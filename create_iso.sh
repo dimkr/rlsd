@@ -58,16 +58,13 @@ cp -ar "$BASE_DIR/skeleton"/* "$root_fs"
 
 # create a 4 MB, FAT12 UEFI boot image, for UEFI boot
 dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=4
-mkfs.vfat -F 12 -n "LAZYUX" "$iso_root/efiboot.img"
-mount_point="$(mktemp -d)"
-mount -o loop -t vfat "$iso_root/efiboot.img" "$mount_point"
-mkdir -p "$mount_point/EFI/BOOT"
-mv "$root_fs/boot/elilo.efi" "$mount_point/EFI/BOOT/BOOTX64.EFI"
-mv "$root_fs/boot/elilo.conf" "$mount_point/EFI/BOOT/"
-cp "$root_fs/boot/bzImage" "$mount_point/EFI/BOOT/"
-cp "$iso_root/initrd.xz" "$mount_point/EFI/BOOT/"
-umount "$mount_point"
-rmdir "$mount_point"
+/sbin/mkfs.vfat -F 12 -n "LAZYUX" "$iso_root/efiboot.img"
+mmd -i "$iso_root/efiboot.img" "EFI"
+mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
+mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/elilo.efi" "::EFI/BOOT/BOOTX64.EFI"
+mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/elilo.conf" "::EFI/BOOT/"
+mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
+mcopy -i "$iso_root/efiboot.img" "$iso_root/initrd.xz" "::EFI/BOOT/"
 
 # put the kernel, the boot loader and its configuration file in the image root,
 # for BIOS boot
