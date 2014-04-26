@@ -56,8 +56,7 @@ process:
   librsvg2-bin file subversion bc xfonts-utils dosfstools
 
 Then, build a bootable Lazyux image using the scripts:
-  sh build_all.sh
-  sh create_iso.sh
+  make
 
 Credits and Legal Information
 =============================
