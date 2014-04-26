@@ -9,7 +9,7 @@ NETWORK_TOOLS = dhcpcd rfkill iw wpa_supplicant
 COMPRESSION = gzip lbzip2 xz libarchive squashfs_tools
 SERVERS = dropbear bftpd
 AUDIO = mpg123 tinyunmute
-NCURSES_APPS = dialog less bwm_ng htop vile screen ytree lynx ircrii calcurse \
+NCURSES_APPS = dialog less bwm_ng htop vile screen ytree lynx ircii calcurse \
                ncdu nano shed
 X = tinyxlib tinyxserver
 X_TOOLS = xev xmodmap
@@ -74,6 +74,7 @@ $(NCURSES_APPS): musl ncurses
 
 # X
 $(X): musl
+tinyxserver: zlib
 
 # X tools
 $(X_TOOLS): tinyxlib
@@ -84,6 +85,8 @@ libpng: zlib
 jwm: libpng flattr_icons
 terminus_font:
 conky: terminus_font
+libjpeg_turbo: musl
+x11vnc: libjpeg_turbo
 
 # GTK+ applications
 glib: musl
@@ -95,15 +98,13 @@ giflib: musl
 
 gifsicle: giflib
 
-libjpeg_turbo: musl
-
-mtpaint: libjpeg_turbo libpng gifsicle
+mtpaint: libjpeg_turbo libpng tiff gifsicle
 
 alsa_lib: musl
 
 mhwaveedit: alsa_lib
 
-tiff: musl
+tiff: musl zlib libjpeg_turbo
 
 gdk_pixbuf: libjpeg_turbo libpng tiff
 
