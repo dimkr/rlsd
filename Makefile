@@ -22,6 +22,7 @@ GTK_APPS = guitar gtksee rox gtkdialog1 beaver gdmap xchat xhippo guiftp \
 # internal definitions #
 ########################
 
+SYSROOT ?= $(shell pwd)/sysroot
 PACKAGES = $(CORE) $(CONSOLE_TOOLS) $(BOOT_LOADERS) $(NETWORK_TOOLS) \
            $(COMPRESSION) $(SERVERS) $(AUDIO) $(NCURSES_APPS) $(X) $(X_TOOLS) \
            $(X_APPS) $(GTK_APPS)
@@ -29,10 +30,10 @@ PACKAGES = $(CORE) $(CONSOLE_TOOLS) $(BOOT_LOADERS) $(NETWORK_TOOLS) \
 all: iso
 
 iso: $(PACKAGES)
-	./create_iso.sh
+	SYSROOT="$(SYSROOT)" ./scripts/create_iso
 
 %:
-	./build.sh $@
+	SYSROOT="$(SYSROOT)" ./scripts/build_package $@
 
 ########################
 # package dependnecies #
