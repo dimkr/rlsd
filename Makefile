@@ -3,7 +3,7 @@
 ##################
 
 CORE = musl lazy_utils linux
-CONSOLE_TOOLS = mandoc wget findutils bc diffutils patch
+CONSOLE_TOOLS = mandoc wget findutils bc diffutils patch sqlite3
 BOOT_LOADERS = isolinux elilo
 NETWORK_TOOLS = dhcpcd rfkill iw wpa_supplicant curl
 COMPRESSION = gzip lbzip2 xz libarchive squashfs_tools
