@@ -5,7 +5,7 @@
 CORE = musl lazy_utils linux
 CONSOLE_TOOLS = mandoc wget findutils bc diffutils patch
 BOOT_LOADERS = isolinux elilo
-NETWORK_TOOLS = dhcpcd rfkill iw wpa_supplicant
+NETWORK_TOOLS = dhcpcd rfkill iw wpa_supplicant curl
 COMPRESSION = gzip lbzip2 xz libarchive squashfs_tools
 SERVERS = dropbear bftpd
 AUDIO = mpg123 tinyunmute
@@ -58,6 +58,7 @@ elilo: gnu_efi
 
 # network tools
 $(NETWORK_TOOLS): musl
+curl: zlib
 libnl_tiny: musl
 iw wpa_supplicant: libnl_tiny
 
