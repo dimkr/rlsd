@@ -2,11 +2,11 @@
 # built packages #
 ##################
 
-CORE = musl lazy_utils linux
-CONSOLE_TOOLS = mandoc wget findutils bc diffutils patch sqlite3
+CORE = musl lazy_utils packdude linux
+CONSOLE_TOOLS = mandoc wget findutils bc diffutils patch
 BOOT_LOADERS = isolinux elilo
-NETWORK_TOOLS = dhcpcd rfkill iw wpa_supplicant curl
-COMPRESSION = gzip lbzip2 xz libarchive squashfs_tools
+NETWORK_TOOLS = dhcpcd rfkill iw wpa_supplicant
+COMPRESSION = gzip lbzip2 xz squashfs_tools
 SERVERS = dropbear bftpd
 AUDIO = mpg123 tinyunmute
 NCURSES_APPS = dialog less bwm_ng htop vile screen ytree lynx ircii calcurse \
@@ -43,14 +43,18 @@ iso: $(PACKAGES)
 musl: linux_headers
 fuse: musl
 lazy_utils: musl zlib fuse
+zlib: musl
+lbzip2: musl
+xz: musl
+libarchive: zlib lbzip2 xz
+curl: zlib
+packdude: libarchive sqlite3 curl
 
 # console tools
 $(CONSOLE_TOOLS): musl
 
 # compression
 $(COMPRESSION): musl
-zlib: musl
-libarchive: zlib lbzip2 xz
 
 # boot loaders
 gnu_efi: musl
@@ -58,7 +62,6 @@ elilo: gnu_efi
 
 # network tools
 $(NETWORK_TOOLS): musl
-curl: zlib
 libnl_tiny: musl
 iw wpa_supplicant: libnl_tiny
 
