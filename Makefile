@@ -48,7 +48,7 @@ lbzip2: musl
 xz: musl
 libarchive: zlib lbzip2 xz
 curl: zlib
-packdude: libarchive sqlite3 curl
+packdude: libarchive sqlite curl
 
 # console tools
 $(CONSOLE_TOOLS): musl
