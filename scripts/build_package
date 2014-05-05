@@ -79,12 +79,15 @@ fi
 # make sure the package name is valid
 if [ ! -e ./packages/$1.sh ]
 then
-    echo "Invalid package name"
+    echo "Invalid package name: $1"
     exit 1
 fi
 
 # include the build script
 . ./packages/$1.sh
+
+# if the binary package exists already, do nothing
+[ -f "$BINARY_TARBALL_DIR/$1-$PACKAGE_VERSION.txz" ] && exit 0
 
 # create a directory for the package sources
 mkdir -p ./sources/$1
