@@ -16,7 +16,7 @@ X_TOOLS = xev xmodmap
 X_APPS = jwm aterm conky x11vnc
 GTK_APPS = guitar gtksee rox gtkdialog1 beaver gdmap xchat xhippo guiftp \
            gtklepin gtkfontsel gcolor gtkcat gtkdiskfree dillo sylpheed \
-           mhwaveedit mtpaint grun lpackage gtkfind gtkedit calcoo gcalendar
+           mhwaveedit mtpaint grun gtkfind gtkedit calcoo gcalendar
 
 ########################
 # internal definitions #
