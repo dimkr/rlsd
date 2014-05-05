@@ -1,15 +1,16 @@
-PACKAGE_VERSION="4.2.0"
-PACKAGE_SOURCES="http://mirror.rackdc.com/savannah//screen/screen-$PACKAGE_VERSION.tar.gz"
+PACKAGE_VERSION="4.0.3"
+PACKAGE_SOURCES="http://ftp.gnu.org/gnu/screen/screen-$PACKAGE_VERSION.tar.gz"
 
 screen_build() {
 	[ -d screen-$PACKAGE_VERSION ] && rm -rf screen-$PACKAGE_VERSION
 	tar -xzvf screen-$PACKAGE_VERSION.tar.gz
 	cd screen-$PACKAGE_VERSION
 
-	./autogen.sh
 	./configure --host=$HOST \
 	            --prefix= \
-	            --datarootdir=/usr/share \
+	            --datadir=/usr/share \
+	            --infodir=/usr/share/info \
+	            --mandir=/usr/share/man \
 	            --disable-socket-dir \
 	            --disable-pam \
 	            --disable-locale \
