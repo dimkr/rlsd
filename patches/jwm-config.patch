@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-05-08 00:16:17.614998878 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-05-08 00:16:23.572998771 +0300
-@@ -3,134 +3,189 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-05-09 19:14:01.536999936 +0300
++++ jwm-2.2.2/example.jwmrc	2014-05-09 19:14:16.729999664 +0300
+@@ -3,116 +3,83 @@
  <JWM>
  
      <!-- The root menu. -->
@@ -19,129 +19,57 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -            <Program icon="window.png" label="Window Properties">
 -                xprop | xmessage -file -
 -            </Program>
+-        </Menu>
 +    <RootMenu height="32">
-+        <Program icon="gtk-execute.png" label="Execute...">grun</Program>
-+        <Menu icon="application-x-executable.png" label="Applications">
-+            <Menu icon="folder.png" label="File Management">
-+                <Program label="ROX-Filer">rox</Program>
-+                <Program label="gtkcat">gtkcat</Program>
-+                <Program label="gtkdiskfree">gtkdiskfree</Program>
-+                <Program label="GDMap">gdmap</Program>
-+                <Program label="gtkfind">gtkfind</Program>
-+                <Program label="ncdu">aterm -title ncdu -e ncdu</Program>
-+                <Program label="ytree">aterm -title ytree -e ytree</Program>
-+                <Program label="guiTAR">guitar</Program>
-+            </Menu>
-+            <Menu icon="folder-documents.png" label="Editors">
-+                <Program label="Beaver">beaver</Program>
-+                <Program label="gtkedit">gtkedit</Program>
-+                <Program label="Vile">aterm -title Vile -e vile</Program>
-+                <Program label="GNU nano">aterm -title "GNU nano" -e nano</Program>
-+            </Menu>
-+            <Menu icon="folder-remote.png" label="Network">
-+                <Program label="X-Chat">xchat</Program>
-+                <Program label="Sylpheed">sylpheed</Program>
-+                <Program label="Dillo">dillo</Program>
-+                <Program label="guiftp">guiftp</Program>
-+                <Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
-+                <Program label="ircII">aterm -title ircII -e irc</Program>
-+                <Program label="Lynx">aterm -title Lynx -e lynx</Program>
-+            </Menu>
-+            <Menu icon="folder-music.png" label="Multimedia">
-+                <Program label="Xhippo">xhippo</Program>
-+                <Program label="mhWaveEdit">mhwaveedit</Program>
-+            </Menu>
-+            <Menu icon="folder-images.png" label="Graphics">
-+                <Program label="mtPaint">mtpaint</Program>
-+                <Program label="gcolor">gcolor</Program>
-+                <Program label="GTK See">gtksee</Program>
-+            </Menu>
-+            <Menu icon="folder.png" label="Utilities">
-+                <Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
-+                <Program label="gcalendar">gcalendar</Program>
-+                <Program label="gtkfontsel">gtkfontsel</Program>
-+                <Program label="gtklepin">gtklepin</Program>
-+                <Program label="htop">aterm -title htop -e htop</Program>
-+                <Program label="aterm">aterm</Program>
-+                <Program label="GNU Screen">aterm -title "GNU Screen" -e screen</Program>
-+            </Menu>
-         </Menu>
++        <Program label="Execute...">grun</Program>
++        <Program label="Find...">gtkfind</Program>
++        <Program label="Browse Files">rox</Program>
++        <Program label="Terminal">aterm -title Terminal -e screen</Program>
          <Separator/>
 -        <Program icon="lock.png" label="Lock">
 -            xscreensaver-command -lock
 -        </Program>
-+        <Desktops icon="desktop.png"/>
++        <Desktops/>
          <Separator/>
 -        <Restart label="Restart" icon="restart.png"/>
 -        <Exit label="Exit" confirm="true" icon="quit.png"/>
-+        <Program icon="system-suspend.png" label="Suspend">suspend</Program>
-+        <Restart label="Restart" icon="system-restart.png"/>
-+        <Exit label="Exit" icon="exit.png"/>
++        <Program label="Suspend">suspend</Program>
++        <Restart label="Restart"/>
++        <Exit label="Exit"/>
      </RootMenu>
  
-     <!-- Options for program groups. -->
-     <Group>
+-    <!-- Options for program groups. -->
+-    <Group>
 -        <Class>Pidgin</Class>
 -        <Option>sticky</Option>
-+        <Name>ROX-Filer</Name>
-+        <Option>icon:directory.png</Option>
-     </Group>
-     <Group>
+-    </Group>
+-    <Group>
 -        <Name>xterm</Name>
 -        <Option>vmax</Option>
-+        <Name>aterm</Name>
-         <Option>icon:terminal.png</Option>
-     </Group>
-     <Group>
+-        <Option>icon:terminal.png</Option>
+-    </Group>
+-    <Group>
 -        <Name>xedit</Name>
 -        <Option>icon:editor.png</Option>
-+        <Name>gtkedit</Name>
-+        <Option>icon:text-editor.png</Option>
-+    </Group>
-+    <Group>
-+        <Name>dillo</Name>
-+        <Option>icon:emblem-web.png</Option>
-+    </Group>
-+    <Group>
-+        <Name>xchat</Name>
-+        <Option>icon:empathy.png</Option>
-+    </Group>
-+    <Group>
-+        <Name>sylpheed</Name>
-+        <Option>icon:mail.png</Option>
-+    </Group>
-+    <Group>
-+        <Name>xhippo</Name>
-+        <Option>icon:multimedia-audio-player.png</Option>
-+    </Group>
-+    <Group>
-+        <Name>mtpaint</Name>
-+        <Option>icon:gimp.png</Option>
-     </Group>
-     <Group>
+-    </Group>
+-    <Group>
 -        <Name>xcalc</Name>
 -        <Option>icon:calculator.png</Option>
-+        <Name>calcoo</Name>
-+        <Option>icon:calc.png</Option>
-+        <Option>sticky</Option>
-     </Group>
- 
+-    </Group>
+-
      <!-- Tray at the bottom. -->
 -    <Tray x="0" y="-1" height="32" autohide="false">
 -
 -        <TrayButton label="JWM">root:1</TrayButton>
--        <TrayButton label="_">showdesktop</TrayButton>
++    <Tray y="-1" height="32" border="1">
++        <TrayButton label="Menu">root:1</TrayButton>
+         <TrayButton label="_">showdesktop</TrayButton>
 -
 -        <Pager labeled="true"/>
 -
 -        <TaskList maxwidth="256"/>
 -
-+    <Tray y="-1" height="32" border="0">
-+        <TrayButton icon="up.png">root:1</TrayButton>
-+        <TrayButton border="false" icon="desktop.png">showdesktop</TrayButton>
-+        <TrayButton border="false" icon="folder.png">exec:rox</TrayButton>
-+        <TrayButton border="false" icon="terminal.png">exec:aterm -title "GNU Screen" -e screen</TrayButton>
-+        <TrayButton border="false" icon="gtk-execute.png">exec:grun</TrayButton>
++        <TrayButton label="*">exec:grun</TrayButton>
 +        <Pager/>
 +        <TaskList/>
          <Dock/>
@@ -154,27 +82,27 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      <WindowStyle>
 -        <Font>FreeSans-9:bold</Font>
 -        <Width>4</Width>
-+        <Font>*-terminus-medium-*-14-*</Font>
+-        <Height>20</Height>
++        <Font>*-fixed-medium-*-14-*</Font>
 +        <Width>3</Width>
-         <Height>20</Height>
++        <Height>22</Height>
          <Active>
 -            <Text>#FFFFFF</Text>
 -            <Title>#CC7700:#884400</Title>
 -            <Outline>#000000</Outline>
-+            <Text>#dddddd</Text>
-+            <Title>#333333</Title>
-+            <Outline>#111111</Outline>
-             <Opacity>1.0</Opacity>
+-            <Opacity>1.0</Opacity>
++            <Text>#111111</Text>
++            <Title>#999999</Title>
++            <Outline>#333333</Outline>
          </Active>
          <Inactive>
 -            <Text>#FFFFFF</Text>
 -            <Title>#333333:#111111</Title>
 -            <Outline>#000000</Outline>
 -            <Opacity>0.5:0.9:0.1</Opacity>
-+            <Text>#dddddd</Text>
-+            <Title>#000000</Title>
++            <Text>#333333</Text>
++            <Title>#b6b8b0</Title>
 +            <Outline>#333333</Outline>
-+            <Opacity>1.0</Opacity>
          </Inactive>
      </WindowStyle>
      <TrayStyle>
@@ -182,13 +110,16 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Background>#111111</Background>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Opacity>0.75</Opacity>
-+        <Font>*-terminus-medium-*-14-*</Font>
-+        <Background>#000000</Background>
-+        <Foreground>#dddddd</Foreground>
-+        <Opacity>1.0</Opacity>
++        <Font>*-fixed-medium-*-14-*</Font>
++        <Background>#b6b8b0</Background>
++        <Foreground>#111111</Foreground>
      </TrayStyle>
 +    <TrayButtonStyle>
-+        <ActiveBackground>#181515:#222222</ActiveBackground>
++        <Font>*-fixed-medium-*-14-*</Font>
++        <Foreground>#111111</Foreground>
++        <Background>#b6b8b0:#dddddd</Background>
++        <ActiveForeground>black</ActiveForeground>
++        <ActiveBackground>#FFFFFF:#A4A4A4</ActiveBackground>
 +    </TrayButtonStyle>
      <TaskListStyle>
 -        <Font>FreeSans-12:bold</Font>
@@ -196,23 +127,23 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <ActiveBackground>#111111:#333333</ActiveBackground>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Background>#333333:#111111</Background>
-+        <Font>*-terminus-medium-*-14-*</Font>
-+        <ActiveForeground>#ffffff</ActiveForeground>
-+        <ActiveBackground>#555555</ActiveBackground>
-+        <Foreground>#dddddd</Foreground>
-+        <Background>#333333</Background>
++        <Font>*-fixed-medium-*-14-*</Font>
++        <ActiveForeground>#111111</ActiveForeground>
++        <ActiveBackground>#999999:#cccccc</ActiveBackground>
++	<Background>#b6b8b0:#dddddd</Background>
      </TaskListStyle>
      <PagerStyle>
-         <Outline>#000000</Outline>
+-        <Outline>#000000</Outline>
 -        <Text>#FFFFFF</Text>
 -        <Foreground>#444444</Foreground>
-+        <Text>#dddddd</Text>
-+        <Foreground>#333333</Foreground>
-         <Background>#111111</Background>
+-        <Background>#111111</Background>
 -        <ActiveForeground>#CC7700</ActiveForeground>
 -        <ActiveBackground>#884400</ActiveBackground>
-+        <ActiveForeground>#555555</ActiveForeground>
-+        <ActiveBackground>#333333</ActiveBackground>
++       <Outline>black</Outline>
++       <Foreground>#333333</Foreground>
++       <Background>#2A2936</Background>
++       <ActiveForeground>#666666</ActiveForeground>
++       <ActiveBackground>#263A60</ActiveBackground>
      </PagerStyle>
      <MenuStyle>
 -        <Font>FreeSans-11</Font>
@@ -221,28 +152,25 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <ActiveForeground>#FFFFFF</ActiveForeground>
 -        <ActiveBackground>#CC7700:#884400</ActiveBackground>
 -        <Opacity>0.85</Opacity>
-+        <Font>*-terminus-medium-*-14-*</Font>
-+        <Foreground>#dddddd</Foreground>
-+        <Background>#000000</Background>
-+        <ActiveForeground>#dddddd</ActiveForeground>
-+        <ActiveBackground>#333333</ActiveBackground>
-+        <Opacity>1.0</Opacity>
++        <Font>*-fixed-medium-*-14-*</Font>
++        <Foreground>#111111</Foreground>
++        <Background>#DCDAD5</Background>
++        <ActiveForeground>#111111</ActiveForeground>
++        <ActiveBackground>#b6b8b0:#dddddd</ActiveBackground>
      </MenuStyle>
      <PopupStyle>
 -        <Font>FreeSans-10</Font>
-+        <Font>*-terminus-medium-*-14-*</Font>
-         <Outline>#000000</Outline>
+-        <Outline>#000000</Outline>
 -        <Foreground>#000000</Foreground>
 -        <Background>#999999</Background>
-+        <Foreground>#dddddd</Foreground>
-+        <Background>#000000</Background>
++        <Font>*-fixed-medium-*-14-*</Font>
++        <Outline>#333333</Outline>
++        <Foreground>#111111</Foreground>
++        <Background>#b6b8b0</Background>
      </PopupStyle>
-+    <ClockStyle>
-+        <Font>*-terminus-medium-*-24-*</Font>
-+    </ClockStyle>
  
      <!-- Path where icons can be found.
-          IconPath can be listed multiple times to allow searching
+@@ -120,7 +87,7 @@
           for icons in multiple paths.
        -->
      <IconPath>
@@ -251,19 +179,16 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </IconPath>
  
      <!-- Virtual Desktops -->
-     <!-- Desktop tags can be contained within Desktops for desktop names. -->
--    <Desktops width="2" height="1">
-+    <Desktops width="2" height="2">
-         <!-- Default background. Note that a Background tag can be
+@@ -130,7 +97,7 @@
                contained within a Desktop tag to give a specific background
                for that desktop.
           -->
 -        <Background type="image">$HOME/images/bg.jpg</Background>
-+        <Background type="solid">#181515</Background>
++        <Background type="gradient">#263a44:#263a60</Background>
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +195,25 @@
+@@ -140,16 +107,19 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -284,16 +209,10 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +    <!-- Startup commands -->
 +    <StartupCommand>conky</StartupCommand>
-+
-+    <!-- Title buttons -->
-+    <ButtonClose>/usr/share/jwm/close.xpm</ButtonClose>
-+    <ButtonMax>/usr/share/jwm/maximize.xpm</ButtonMax>
-+    <ButtonMaxActive>/usr/share/jwm/maximize.xpm</ButtonMaxActive>
-+    <ButtonMin>/usr/share/jwm/minimize.xpm</ButtonMin>
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -167,11 +231,17 @@
+@@ -167,11 +137,17 @@
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>
      <Key mask="A" key="F1">root:1</Key>
@@ -309,6 +228,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +    <Key mask="4" key="Down">minimize</Key>
 +    <Key mask="4" key="d">showdesktop</Key>
 +    <Key mask="4" key="r">exec:grun</Key>
-+    <Key mask="4" key="t">exec:aterm -title "GNU Screen" -e screen</Key>
-+    <Key mask="A" key="Return">exec:aterm -title "GNU Screen" -e screen</Key>
++    <Key mask="4" key="t">exec:aterm -title Terminal -e screen</Key>
++    <Key mask="A" key="Return">exec:aterm -title Terminal -e screen</Key>
  </JWM>

@@ -6,7 +6,7 @@ diff -rup gtk+-1.2.10-orig/gtk/gtkstyle.c gtk+-1.2.10/gtk/gtkstyle.c
      {
        default_font =
 -	gdk_font_load ("-adobe-helvetica-medium-r-normal--*-120-*-*-*-*-iso8859-1");
-+	gdk_font_load ("*-terminus-medium-*-14-*");
++	gdk_font_load ("*-fixed-medium-*-14-*");
        if (!default_font)
  	default_font = gdk_font_load ("fixed");
        if (!default_font)

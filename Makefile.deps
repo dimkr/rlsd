@@ -6,7 +6,7 @@ bftpd: musl zlib
 bwm_ng: musl ncurses
 calcoo: musl gtk
 calcurse: musl ncurses
-conky: musl tinyxlib terminus_font
+conky: musl tinyxlib
 curl: musl zlib
 dhcpcd: musl
 dialog: musl ncurses
@@ -14,9 +14,10 @@ diffutils: musl
 dillo: musl gtk
 dropbear: musl zlib
 elilo: musl gnu_efi
+evilwm: musl tinyxlib
 findutils: musl
-flattr_icons: 
 fuse: musl
+gbase: musl gtk
 gcalendar: musl gtk
 gcolor: musl gtk
 gdk_pixbuf: musl libpng libjpeg_turbo tiff
@@ -26,7 +27,7 @@ gifsicle: musl giflib
 glib: musl
 gnu_efi: musl
 grun: musl gtk
-gtk: musl tinyxlib glib terminus_font
+gtk: musl tinyxlib glib
 gtkcat: musl gtk
 gtkdialog1: musl gtk gdk_pixbuf
 gtkdiskfree: musl gtk
@@ -42,7 +43,7 @@ htop: musl ncurses
 ircii: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
-jwm: musl tinyxlib libpng flattr_icons
+jwm: musl tinyxlib libpng
 lazy_utils: musl zlib fuse
 lbzip2: musl
 less: musl ncurses
@@ -71,7 +72,6 @@ shed: musl ncurses
 sqlite: musl
 squashfs_tools: musl zlib xz
 sylpheed: musl gtk
-terminus_font: 
 tiff: musl zlib libjpeg_turbo
 tinyalsa: musl
 tinyunmute: musl tinyalsa

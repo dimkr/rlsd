@@ -6,7 +6,7 @@ diff -rup beaver-master-orig/src/main.c beaver-master/src/main.c
  	  "Wordfile = ", ConfDir,  PATH_SEP_STRING, "wordfile.txt"
  	  "\n"
 -	  "Font = fixed"
-+	  "Font = *-terminus-medium-*-14-*"
++	  "Font = *-fixed-medium-*-14-*"
  	  "\n"
  	  "BGRed = 65535\n"
  	  "BGBlue = 65535\n"

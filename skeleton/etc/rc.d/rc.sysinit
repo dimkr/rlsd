@@ -118,10 +118,10 @@ mkdir /mnt/rw/var
 mkdir /mnt/rw/var/cache
 mount -B /mnt/rw/var/cache /mnt/union/var/cache
 
-# copy the package installation data database to the writeable layer, to
-# allow the installation of packages
-mkdir /mnt/rw/var/packdude
-cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
+# copy the package installation data database to the writeable layer, to allow
+# the installation of packages
+[ ! -f /mnt/rw/var/packdude/data.sqlite3 ] && \
+          cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
 
 echo " done."
 

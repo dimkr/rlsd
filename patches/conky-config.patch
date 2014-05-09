@@ -1,6 +1,6 @@
 diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
---- conky-1.9.0-orig/data/Makefile.in	2014-04-07 21:34:44.073994285 +0300
-+++ conky-1.9.0/data/Makefile.in	2014-04-08 22:01:41.079843553 +0300
+--- conky-1.9.0-orig/data/Makefile.in	2014-05-09 12:09:12.861993931 +0300
++++ conky-1.9.0/data/Makefile.in	2014-05-09 12:09:23.331993744 +0300
 @@ -292,7 +292,7 @@ top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
  xsltproc_cmd = @xsltproc_cmd@
@@ -11,8 +11,8 @@ diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
  
  .SUFFIXES:
 diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
---- conky-1.9.0-orig/data/conky.conf	2014-04-07 21:34:44.073994285 +0300
-+++ conky-1.9.0/data/conky.conf	2014-04-08 22:02:02.036843178 +0300
+--- conky-1.9.0-orig/data/conky.conf	2014-05-09 12:09:12.861993931 +0300
++++ conky-1.9.0/data/conky.conf	2014-05-09 12:09:31.383993599 +0300
 @@ -23,7 +23,7 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #
@@ -28,7 +28,7 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
  draw_shades no
 -use_xft yes
 -xftfont DejaVu Sans Mono:size=12
-+font *-terminus-medium-*-14-*
++font *-fixed-medium-*-14-*
  gap_x 5
 -gap_y 60
 +gap_y 5

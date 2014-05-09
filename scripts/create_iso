@@ -56,7 +56,7 @@ PACKAGES="linux
           screen
           nano
           tinyxserver
-          jwm
+          evilwm
           aterm
           conky
           rox

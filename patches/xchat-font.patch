@@ -7,8 +7,8 @@ diff -rup xchat-1.8.9-orig/src/common/cfgfiles.c xchat-1.8.9/src/common/cfgfiles
  
 -#define DEF_FONT "-b&h-lucidatypewriter-medium-r-normal-*-*-120-*-*-m-*-*-*"
 -#define DEF_FONT_JCODE "-*-fixed-medium-r-normal-*-14-*-*-*-c-*-*-*"
-+#define DEF_FONT "*-terminus-medium-*-14-*"
-+#define DEF_FONT_JCODE "*-terminus-medium-*-14-*"
++#define DEF_FONT "*-fixed-medium-*-14-*"
++#define DEF_FONT_JCODE "*-fixed-medium-*-14-*"
  #define DEF_FONT_WIN32 "-*-Fixedsys-normal-r-normal-*-15-*-*-*-m-*-iso8859-1"
  
  void
