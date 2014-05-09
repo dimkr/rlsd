@@ -1,16 +1,19 @@
 diff -rup evilwm-1.1.0-orig/evilwm.h evilwm-1.1.0/evilwm.h
 --- evilwm-1.1.0-orig/evilwm.h	2014-05-09 23:50:41.909715370 +0300
-+++ evilwm-1.1.0/evilwm.h	2014-05-09 23:56:49.143708793 +0300
-@@ -41,7 +41,7 @@ typedef struct {
++++ evilwm-1.1.0/evilwm.h	2014-05-10 00:32:18.846670654 +0300
+@@ -41,16 +41,16 @@ typedef struct {
  
  /* default settings */
  
 -#define DEF_FONT        "variable"
+-#define DEF_FG          "goldenrod"
+-#define DEF_BG          "grey50"
 +#define DEF_FONT        "*-fixed-medium-*-14-*"
- #define DEF_FG          "goldenrod"
- #define DEF_BG          "grey50"
++#define DEF_FG          "grey80"
++#define DEF_BG          "grey40"
  #define DEF_BW          1
-@@ -50,7 +50,7 @@ typedef struct {
+ #define DEF_FC          "blue"
+ #define SPACE           3
  #ifdef DEBIAN
  #define DEF_TERM        "x-terminal-emulator"
  #else
