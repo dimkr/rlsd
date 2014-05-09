@@ -3,8 +3,8 @@
 # the base directory
 BASE_DIR="$(pwd)"
 
-# the directory for built packages tarballs
-BINARY_TARBALL_DIR="$BASE_DIR/built_packages"
+# the directory for built packages
+REPO_DIR="$BASE_DIR/repo"
 
 # uneeded files which should be removed from packages
 UNNEEDED_FILES="usr/share/applications
@@ -28,6 +28,7 @@ export PKG_CONFIG="$BASE_DIR/pkg-config"
 export PKG_CONFIG_PATH="$SYSROOT/lib/pkgconfig"
 export PKG_CONFIG_LIBDIR="/lib/pkgconfig"
 export MAKE="make -j $(cat /proc/cpuinfo | grep ^processor | wc -l)"
+export ARCH
 export KARCH
 export BASE_DIR
 export SYSROOT
@@ -84,10 +85,11 @@ then
 fi
 
 # include the build script
+export PACKAGE_ARCH="$ARCH"
 . ./packages/$1.sh
 
 # if the binary package exists already, do nothing
-[ -f "$BINARY_TARBALL_DIR/$1-$PACKAGE_VERSION.txz" ] && exit 0
+[ -f "$REPO_DIR/$1-$PACKAGE_VERSION.dude" ] && exit 0
 
 # create a directory for the package sources
 mkdir -p ./sources/$1
@@ -203,10 +205,11 @@ then
 	done
 fi
 
-# create a tarball from the built package
-[ ! -d "$BINARY_TARBALL_DIR" ] && mkdir -p "$BINARY_TARBALL_DIR"
-tar -C "$installation_prefix" -c . | xz -9 -e \
-                                 > "$BINARY_TARBALL_DIR/$1-$PACKAGE_VERSION.txz"
+# create a packdude package from the built package
+package_tar="$(mktemp -u)"
+tar -C "$installation_prefix" -c . > "$package_tar"
+[ ! -d "$REPO_DIR" ] && mkdir -p "$REPO_DIR"
+dudepack "$package_tar" "$REPO_DIR/$1-$PACKAGE_VERSION.dude"
 
 # remove the temporary installation directory
 rm -rf "$installation_prefix"
@@ -216,4 +219,10 @@ rm -rf "$installation_prefix"
 
 # install the package into the file system root
 cd "$SYSROOT"
-tar -xJvf "$BINARY_TARBALL_DIR/$1-$PACKAGE_VERSION.txz"
+tar -xvf "$package_tar"
+rm -f "$package_tar"
+
+# generate a package entry
+dependencies="$(grep ^$1: "$BASE_DIR/Makefile.deps" | cut -f 2 -d : | cut -c 2-)"
+[ -z "$dependencies" ] && dependencies="-"
+echo "$1,$PACKAGE_VERSION,$1-$PACKAGE_VERSION.dude,$PACKAGE_ARCH,$dependencies" >> "$REPO_DIR/repo.csv"

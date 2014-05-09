@@ -6,6 +6,8 @@ jwm_build() {
 	tar -xJvf jwm-$PACKAGE_VERSION.tar.xz
 	cd jwm-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/jwm-config.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

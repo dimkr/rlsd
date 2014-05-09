@@ -1,0 +1,90 @@
+alsa_lib: musl
+aterm: musl tinyxlib
+bc: musl
+beaver: musl gtk
+bftpd: musl zlib
+bwm_ng: musl ncurses
+calcoo: musl gtk
+calcurse: musl ncurses
+conky: musl tinyxlib terminus_font
+curl: musl zlib
+dhcpcd: musl
+dialog: musl ncurses
+diffutils: musl
+dillo: musl gtk
+dropbear: musl zlib
+elilo: musl gnu_efi
+findutils: musl
+flattr_icons: 
+fuse: musl
+gcalendar: musl gtk
+gcolor: musl gtk
+gdk_pixbuf: musl libpng libjpeg_turbo tiff
+gdmap: musl gtk
+giflib: musl
+gifsicle: musl giflib
+glib: musl
+gnu_efi: musl
+grun: musl gtk
+gtk: musl tinyxlib glib terminus_font
+gtkcat: musl gtk
+gtkdialog1: musl gtk gdk_pixbuf
+gtkdiskfree: musl gtk
+gtkedit: musl gtk
+gtkfind: musl findutils gtk
+gtkfontsel: musl gtk
+gtklepin: musl gtk
+gtksee: musl gtk gdk_pixbuf
+guiftp: musl gtk
+guitar: musl gtk libarchive
+gzip: musl
+htop: musl ncurses
+ircii: musl ncurses
+isolinux: 
+iw: musl libnl_tiny
+jwm: musl tinyxlib libpng flattr_icons
+lazy_utils: musl zlib fuse
+lbzip2: musl
+less: musl ncurses
+libarchive: musl zlib lbzip2 xz
+libjpeg_turbo: musl
+libnl_tiny: musl
+libpng: musl zlib
+libxml2: musl
+linux: 
+linux_headers: 
+lynx: musl ncurses
+mandoc: musl
+mhwaveedit: musl gtk alsa_lib
+mpg123: musl tinyalsa
+mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
+musl: linux_headers
+nano: musl ncurses
+ncdu: musl ncurses
+ncurses: musl
+packdude: musl libarchive sqlite curl
+patch: musl
+rfkill: musl
+rox: musl gtk gdk_pixbuf libxml2
+screen: musl ncurses
+shed: musl ncurses
+sqlite: musl
+squashfs_tools: musl zlib xz
+sylpheed: musl gtk
+terminus_font: 
+tiff: musl zlib libjpeg_turbo
+tinyalsa: musl
+tinyunmute: musl tinyalsa
+tinyxlib: musl
+tinyxserver: musl zlib
+vile: musl ncurses
+wget: musl
+wpa_supplicant: musl libnl_tiny
+x11vnc: musl tinyxlib libjpeg_turbo
+xchat: musl gtk
+xev: musl tinyxlib
+xhippo: musl gtk mpg123
+xmodmap: musl tinyxlib
+xz: musl
+ytree: musl ncurses
+zlib: musl

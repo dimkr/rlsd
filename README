@@ -55,7 +55,17 @@ process:
   autoconf-archive unzip flex bison git nasm xorriso squashfs-tools pkg-config \
   librsvg2-bin file subversion bc xfonts-utils dosfstools mtools
 
-Then, build a bootable Lazyux image:
+Once all packages are installed, install packdude
+(http://lazyux.dimakrasner.com/packdude.html).
+
+The whole building process is divided into two parts. The first one is the
+building of the entire Lazyux package repository:
+  make packages
+
+The entire Lazyux repository will be placed under the "repo" directory.
+
+The second part is the construction of a bootable Lazyux image, using the
+packages in the repository:
   make
 
 Credits and Legal Information

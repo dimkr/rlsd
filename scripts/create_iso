@@ -2,43 +2,106 @@
 
 . ./config
 
-# programs present in the initramfs
-INITRAMFS_PROGRAMS="init
-                    ksh
-                    syslogd
-                    logd
-                    mkdir
-                    mount
-                    umount
-                    mergedirs
-                    sleep
-                    klogecho
-                    clear
-                    cat"
+# files present in the initramfs
+INITRAMFS_FILES="bin/init
+                 bin/ksh
+                 bin/syslogd
+                 bin/logd
+                 bin/mkdir
+                 bin/cp
+                 bin/mount
+                 bin/umount
+                 bin/mergedirs
+                 bin/sleep
+                 bin/klogecho
+                 bin/clear
+                 bin/cat
+                 etc/rc.d/rc.sysinit
+                 etc/rc.d/rc.shutdown"
 
-# files that should be removed from the root file system
-UNNEEDED_FILES="lib/*.o
-                lib/*.a
-                lib/*.ld
-                lib/pkgconfig
-                usr/include
-                bin/*-config
-                usr/share/man/man1/*-config.1"
+# directories present in the initramfs
+INITRAMFS_DIRECTORIES="run
+                       etc/rc.d
+                       bin
+                       var/log
+                       proc
+                       dev
+                       mnt/home
+                       mnt/rw
+                       mnt/union
+                       mnt/ro
+                       sys"
+
+# package present in the root file system
+PACKAGES="linux
+          lazy_utils
+          packdude
+          mandoc
+          isolinux
+          elilo
+          dhcpcd
+          rfkill
+          iw
+          wpa_supplicant
+          gzip
+          lbzip2
+          xz
+          libarchive
+          packdude
+          dropbear
+          bftpd
+          tinyunmute
+          less
+          htop
+          screen
+          nano
+          tinyxserver
+          jwm
+          aterm
+          conky
+          rox
+          gtkdialog1
+          xchat
+          grun
+          gtkfind
+          gtkedit
+          calcoo
+          gcalendar"
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"
 
+# initialize the root file system with the skeleton
+root_fs="$(mktemp -d -u)"
+cp -ar "$BASE_DIR/skeleton" "$root_fs"
+
+# install the packages
+mkdir -p "$root_fs/var/packdude/archive"
+for package in $PACKAGES
+do
+	packdude -i $package -p "$root_fs"
+done
+
+# empty the package archive
+rm -f "$root_fs/var/packdude/archive"/*
+
+# remove the package database
+rm -f "$root_fs/var/packdude/repo.sqlite3"
+
 # create a temporary directory for the initramfs contents
 initramfs_root="$(mktemp -d -u)"
 
-# copy the initramfs skeleton
-cp -r initramfs-skeleton "$initramfs_root"
-
-# add required programs to the initramfs
-for i in $INITRAMFS_PROGRAMS
+# create the initramfs directories
+for directory in $INITRAMFS_DIRECTORIES
 do
-	cp "$SYSROOT/bin/$i" "$initramfs_root/bin"
+	mkdir -p "$initramfs_root/$directory"
+done
+
+# add required programs and scripts to the initramfs
+for i in $INITRAMFS_FILES
+do
+	cp "$root_fs/$i" "$initramfs_root/$i"
 done
 
 # create a temporary directory for the extracted ISO image contents
@@ -50,11 +113,6 @@ find -name .gitignore -delete
 chown -R 0:0 .
 find . | cpio -o -H newc | xz -9 -e --check=none > "$iso_root/initrd.xz"
 rm -rf "$initramfs_root"
-
-# add the skeleton to the root file system
-root_fs="$(mktemp -d -u)"
-cp -ar "$SYSROOT" "$root_fs"
-cp -ar "$BASE_DIR/skeleton"/* "$root_fs"
 
 # create a 4 MB, FAT12 UEFI boot image, for UEFI boot
 dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=4
@@ -73,12 +131,6 @@ mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 
-# remove unneeded files from the root file system
-for i in $UNNEEDED_FILES
-do
-	rm -rf "$root_fs"/$i
-done
-
 # generate font cache files
 for i in "$root_fs/usr/share/fonts"/*
 do
@@ -86,12 +138,6 @@ do
 	mkfontscale
 	mkfontdir
 done
-
-# list all files under the root file system, to register it as a package
-find "$root_fs" -name .gitignore -delete
-mkdir "$root_fs/var/pkg/system"
-find "$root_fs" | sed s~"$root_fs"~~g > "$root_fs/var/pkg/system/contents"
-chmod 400 "$root_fs/var/pkg/system/contents"
 
 # generate the root file system image
 chown -R 0:0 "$root_fs"
@@ -104,6 +150,7 @@ mksquashfs "$root_fs" \
 rm -rf "$root_fs"
 
 # generate an ISO image
+cd "$BASE_DIR"
 xorriso -as mkisofs \
         -iso-level 3 \
         -full-iso9660-filenames \

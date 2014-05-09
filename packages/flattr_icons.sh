@@ -1,5 +1,6 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/NitruxSA/flattr-icons/archive/master.zip,flattr-icons-$PACKAGE_VERSION.zip"
+PACKAGE_ARCH="all"
 
 flattr_icons_build() {
 	[ -d flattr-icons-master ] && rm -rf flattr-icons-master
