@@ -5,68 +5,98 @@
 |_____\__,_/___|\__, |\__,_/_/\_\
                 |___/
 
-Lazyux is an ultra-minimalistic, no-frills, graphical, embedded-like
-distribution of Linux-libre (http://linux-libre.fsfla.org/) in constant
-development.
+Lazyux is an ultra-minimalistic, experimental, retro-like distribution of
+Linux-libre (http://linux-libre.fsfla.org/).
 
-About Lazyux
-============
+It tries to revive good, old applications from the days of Puppy Linux 1.x-2.x
+(http://www.puppylinux.org) and Damn Small Linux
+(http://www.damnsmalllinux.org/), by porting them so they work well on a modern,
+x86_64 base, hunting down bug after bug.
 
-Core values:
-  - Simplicity and transparency
-  - Unobtrusiveness
-  - Freedom and sharing of knowledge
-  - Cooperation with upstream projects, for the benefit of others
+In addition, Lazyux contains some user-mode components ported over from OpenBSD
+(http://www.openbsd.org/) and NetBSD (http://www.netbsd.org/).
 
-Features:
-  - Supports x86_64, both BIOS and UEFI
-  - Small and extremely lightweight
-  - Graphical, with a keyboard-centric interface
-  - Statically-linked
-  - Built automatically and quickly
-  - Familiar: Unix-like and written in C
+Features
+========
+
+  - Extremely lightweight
+  - Ships as a small "core", but extensible through a fast package manager
+  - Can run "live" or as a "frugal" system
+  - Robust - uses a tough, writable layered file system
+  - Targets only x86_64 (both BIOS and UEFI systems)
+  - Statically-linked, for increased portability and security
+  - Built quickly, through a parallel, automatic process
+  - Written in C (no C++ code)
   - Permissively-licensed
 
-Core components:
+The Lazyux Spirit
+=================
+
+  - Straight-forward and unobtrusive
+  - Simple and transparent: no bloat or too much abstraction
+  - No fear of getting one's hands dirty
+  - Freedom; both code and the knowledge behind it are freely available
+  - Cooperation with upstream projects, for the benefit of others
+
+Core Components
+===============
+
+Lazyux tries to provide a lightweight, uncluttered, keyboard-centric interface
+suitable for serious work.
+
+It does so by including the following packages:
   - Linux-libre (http://linux-libre.fsfla.org/)
   - musl (http://www.musl-libc.org/)
-  - lazy-utils (http://dimakrasner.com/lazy_utils.html)
-  - loksh (http://dimakrasner.com/loksh.html)
+  - lazy-utils (http://lazyux.dimakrasner.com/lazy_utils.html)
   - tinyxlib (https://github.com/iguleder/tinyxlib)
   - tinyxserver (https://github.com/iguleder/tinyxserver)
-  - JWM (http://joewing.net/projects/jwm/)
-  - ROX-Filer (http://joewing.net/projects/jwm/)
+  - evilwm (http://www.6809.org.uk/evilwm/)
+  - ROX-Filer (http://rox.sourceforge.net/)
   - GTK+ (http://www.gtk.org/)
 
-Missing features:
-  - Network tools (i.e route, ifconfig)
-  - A firewall
-  - Patches for common crashes in applications
+Challenges
+==========
 
-Building Lazyux
-===============
+  - Since Lazyux includes modern libraries, some old applications to have to be
+    fixed to deal with 5 to 15 years of API breakage in their dependencies.
+  - Lots of old applcations abuse pointers, assume all integers are 32-bit wide
+    or make silly assumptions that do not apply to a 64-bit environment.
+  - Usually, old applications from the late 90's or early 2000's assume they
+    build and run against glibc (https://www.gnu.org/software/libc/), while
+    Lazyux uses musl (http://www.musl-libc.org/).
+  - Old Autoconf (https://www.gnu.org/software/autoconf/) files and various
+    *-config tools from the era before pkg-config
+    (http://pkg-config.freedesktop.org/) make it harder and harder to build
+    packages, as they become older.
+
+Build-time Requirements
+=======================
 
 Although Lazyux can be built using any Linux distribution, it is actively tested
 and developed against Debian 7 (Wheezy) and above.
 
-In order to build Lazyux, first, install packages required for the building
-process:
+Building Lazyux requires packdude (http://lazyux.dimakrasner.com/packdude.html).
+
+In addition, some packages are required:
   apt-get install build-essential autoconf automake autotools-dev \
   autoconf-archive unzip flex bison git nasm xorriso squashfs-tools pkg-config \
-  librsvg2-bin file subversion bc xfonts-utils dosfstools mtools
+  file subversion bc xfonts-utils dosfstools mtools
 
-Once all packages are installed, install packdude
-(http://lazyux.dimakrasner.com/packdude.html).
+Building Lazyux
+===============
 
-The whole building process is divided into two parts. The first one is the
-building of the entire Lazyux package repository:
+In order to build a usable, bootable Lazyux image, run:
+  make iso
+
+The generated image will be placed in the working directory.
+
+Building Packages
+=================
+
+In order to build the entire Lazyux package repository, run:
   make packages
 
-The entire Lazyux repository will be placed under the "repo" directory.
-
-The second part is the construction of a bootable Lazyux image, using the
-packages in the repository:
-  make
+The built package repository will be placed under the "repo" directory.
 
 Credits and Legal Information
 =============================
