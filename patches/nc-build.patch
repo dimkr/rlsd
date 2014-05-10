@@ -1,0 +1,30 @@
+diff -rup nc110-orig/Makefile nc110/Makefile
+--- nc110-orig/Makefile	1996-03-20 06:16:06.000000000 +0300
++++ nc110/Makefile	2014-05-10 12:30:54.776989581 +0300
+@@ -9,13 +9,13 @@
+ # pick gcc if you'd rather , and/or do -g instead of -O if debugging
+ # debugging
+ # DFLAGS = -DTEST -DDEBUG
+-CFLAGS = -O
++CFLAGS ?= -O
+ XFLAGS = 	# xtra cflags, set by systype targets
+ XLIBS =		# xtra libs if necessary?
+ # -Bstatic for sunos,  -static for gcc, etc.  You want this, trust me.
+-STATIC =
+-CC = cc $(CFLAGS)
+-LD = $(CC) -s	# linker; defaults to stripped executables
++STATIC ?=
++CC ?= cc $(CFLAGS)
++LD ?= $(CC) 	# linker
+ o = o		# object extension
+ 
+ ALL = nc
+@@ -67,7 +67,7 @@ aix:
+ 	make -e $(ALL) $(MFLAGS) XFLAGS='-DAIX'
+ 
+ linux:
+-	make -e $(ALL) $(MFLAGS) XFLAGS='-DLINUX' STATIC=-static
++	make -e $(ALL) $(MFLAGS) XFLAGS='-DLINUX' STATIC=$(STATIC)
+ 
+ # irix 5.2, dunno 'bout earlier versions.  If STATIC='-non_shared' doesn't
+ # work for you, null it out and yell at SGI for their STUPID default

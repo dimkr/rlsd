@@ -61,6 +61,7 @@ mpg123: musl tinyalsa
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
 nano: musl ncurses
+nc: musl
 ncdu: musl ncurses
 ncurses: musl
 packdude: musl libarchive sqlite curl

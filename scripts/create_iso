@@ -50,6 +50,7 @@ PACKAGES="linux
           packdude
           dropbear
           bftpd
+          nc
           tinyunmute
           less
           htop
