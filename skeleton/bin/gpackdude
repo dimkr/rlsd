@@ -1,0 +1,96 @@
+#!/bin/sh
+
+# gpackdude: a graphical frontend for packdude
+
+_list_avail_packages() {
+	# if the repository database does not exist, do nothing
+	[ ! -f /var/packdude/repo.sqlite3 ] && return
+
+	# obtain the list of installed packages
+	inst_packages="$(sqlite3 /var/packdude/data.sqlite3 \
+                             'select name from packages')"
+
+	# if a package is installed, do not show it
+	sqlite3 /var/packdude/repo.sqlite3 'select name, version from packages' |
+	while read line
+	do
+		name="${line%\|*}"
+		installed=0
+		for i in $inst_packages
+		do
+			if [ "$i" = "$name" ]
+			then
+				installed=1
+				break
+			fi
+		done
+
+		[ 0 -eq $installed ] && echo "	<item>$line</item>"
+	done
+}
+
+_list_inst_packages() {
+	# show all installed packages
+	sqlite3 /var/packdude/data.sqlite3 'select name, version from packages' |
+	while read line
+	do
+		echo "	<item>$line</item>"
+	done
+}
+
+_choose_package() {
+	echo "
+<window title="packdude">
+	<tree selection-mode=\"1\">
+	<label>Name | Version</label>
+	<height>500</height>
+	<width>250</width>
+"
+	if [ "install" = "$1" ]
+	then
+		_list_avail_packages
+	else
+		_list_inst_packages
+	fi
+
+	echo "	<variable>choice</variable>
+	<action>exit="ok"</action>
+	</tree>
+</window>"
+}
+
+eval $(echo "<window title=\"packdude\">
+	<hbox>
+		<button>
+			<label>Install a package</label>
+			<action>EXIT=install</action>
+		</button>
+		<button>
+			<label>Remove a package</label>
+			<action>EXIT=remove</action>
+		</button>
+	</hbox>
+</window>" | gtkdialog1 -s)
+if [ "install" != "$EXIT" ] && [ "remove" != "$EXIT" ]
+then
+	exit 1
+fi
+
+# let the user choose one package
+action="$EXIT"
+eval $(_choose_package "$EXIT" | gtkdialog1 -s)
+[ "ok" != "$EXIT" ] && exit 1
+
+# install or remove the chosen package
+case "$action" in
+	install)
+		flag="i"
+		;;
+	remove)
+		flag="r"
+		;;
+esac
+exec aterm -title packdude -e sh -c "packdude -$flag $choice; \
+                                     [ 0 -eq \$? ] && exit; \
+                                     echo 'Press any key to close'; \
+                                     read dummy"
