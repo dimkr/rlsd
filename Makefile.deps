@@ -27,7 +27,6 @@ gifsicle: musl giflib
 glib: musl
 gnu_efi: musl
 grun: musl gtk
-gtk: musl tinyxlib glib
 gtkcat: musl gtk
 gtkdialog1: musl gtk gdk_pixbuf
 gtkdiskfree: musl gtk
@@ -35,6 +34,7 @@ gtkedit: musl gtk
 gtkfind: musl findutils gtk
 gtkfontsel: musl gtk
 gtklepin: musl gtk
+gtk: musl tinyxlib glib
 gtksee: musl gtk gdk_pixbuf
 guiftp: musl gtk
 guitar: musl gtk libarchive
@@ -61,9 +61,10 @@ mpg123: musl tinyalsa
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
 nano: musl ncurses
-nc: musl
 ncdu: musl ncurses
+nc: musl
 ncurses: musl
+ogg122: musl tinyalsa
 packdude: musl libarchive sqlite curl
 patch: musl
 rfkill: musl
@@ -84,7 +85,7 @@ wpa_supplicant: musl libnl_tiny
 x11vnc: musl tinyxlib libjpeg_turbo
 xchat: musl gtk
 xev: musl tinyxlib
-xhippo: musl gtk mpg123
+xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib
 xz: musl
 ytree: musl ncurses

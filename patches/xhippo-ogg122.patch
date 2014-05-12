@@ -1,0 +1,16 @@
+diff -rup xhippo-3.5-orig/xhippo.config xhippo-3.5/xhippo.config
+--- xhippo-3.5-orig/xhippo.config	2014-05-12 14:57:18.132255060 -0400
++++ xhippo-3.5/xhippo.config	2014-05-12 14:59:08.324256847 -0400
+@@ -30,10 +30,8 @@ type:avi:mplayer -really-quiet -vo null
+ type:mpg:mplayer -really-quiet -vo null
+ type:mpeg:mplayer -really-quiet -vo null
+ type:ogm:mplayer -really-quiet -vo null
+-# Some versions of ogg123 apparently need to be run with stdin connected
+-# to /dev/null.
+-type:ogg:ogg123:i
+-# Use this instead if you're having trouble with ogg123 not exiting correctly.
++type:ogg:ogg122:i
++# Use this instead if you're having trouble with ogg122 not exiting correctly.
+ #type:ogg:mplayer -really-quiet -vo null
+ type:sid:sidplay -f44100 -16 -s
+ type:spx:speexdec

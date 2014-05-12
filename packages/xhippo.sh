@@ -6,6 +6,8 @@ xhippo_build() {
 	tar -xzvf xhippo-$PACKAGE_VERSION.tar.gz
 	cd xhippo-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/xhippo-ogg122.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --infodir=/usr/share/info \
