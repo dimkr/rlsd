@@ -15,6 +15,7 @@ dillo: musl gtk
 dropbear: musl zlib
 elilo: musl gnu_efi
 evilwm: musl tinyxlib
+ffmpeg: musl zlib alsa_lib
 findutils: musl
 fuse: musl
 gbase: musl gtk
@@ -27,6 +28,7 @@ gifsicle: musl giflib
 glib: musl
 gnu_efi: musl
 grun: musl gtk
+gtk: musl tinyxlib glib
 gtkcat: musl gtk
 gtkdialog1: musl gtk gdk_pixbuf
 gtkdiskfree: musl gtk
@@ -34,7 +36,6 @@ gtkedit: musl gtk
 gtkfind: musl findutils gtk
 gtkfontsel: musl gtk
 gtklepin: musl gtk
-gtk: musl tinyxlib glib
 gtksee: musl gtk gdk_pixbuf
 guiftp: musl gtk
 guitar: musl gtk libarchive
@@ -61,8 +62,8 @@ mpg123: musl tinyalsa
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
 nano: musl ncurses
-ncdu: musl ncurses
 nc: musl
+ncdu: musl ncurses
 ncurses: musl
 ogg122: musl tinyalsa
 packdude: musl libarchive sqlite curl

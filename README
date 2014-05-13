@@ -80,7 +80,7 @@ Building Lazyux requires packdude (http://lazyux.dimakrasner.com/packdude.html).
 In addition, some packages are required:
   apt-get install build-essential autoconf automake autotools-dev \
   autoconf-archive unzip flex bison git nasm xorriso squashfs-tools pkg-config \
-  file subversion bc xfonts-utils dosfstools mtools
+  file subversion bc xfonts-utils dosfstools mtools yasm
 
 Building Lazyux
 ===============
