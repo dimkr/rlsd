@@ -1,0 +1,36 @@
+This is alsa-lib-portable-mutex.patch by rofl0r, rebased.
+
+diff -rup alsa-lib-1.0.27.2-orig/src/conf.c alsa-lib-1.0.27.2/src/conf.c
+--- alsa-lib-1.0.27.2-orig/src/conf.c	2014-05-15 00:56:09.286909559 +0300
++++ alsa-lib-1.0.27.2/src/conf.c	2014-05-15 00:57:56.996907630 +0300
+@@ -427,8 +427,8 @@ beginning:</P>
+ #ifndef DOC_HIDDEN
+ 
+ #ifdef HAVE_LIBPTHREAD
+-static pthread_mutex_t snd_config_update_mutex =
+-				PTHREAD_MUTEX_INITIALIZER;
++static pthread_mutex_t snd_config_update_mutex;
++static pthread_once_t snd_config_update_mutex_once = PTHREAD_ONCE_INIT;
+ #endif
+ 
+ struct _snd_config {
+@@ -472,8 +472,19 @@ typedef struct {
+ 
+ #ifdef HAVE_LIBPTHREAD
+ 
++static void snd_config_init_mutex(void)
++{
++	pthread_mutexattr_t attr;
++
++	pthread_mutexattr_init(&attr);
++	pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
++	pthread_mutex_init(&snd_config_update_mutex, &attr);
++	pthread_mutexattr_destroy(&attr);
++}
++
+ static inline void snd_config_lock(void)
+ {
++	pthread_once(&snd_config_update_mutex_once, snd_config_init_mutex);
+ 	pthread_mutex_lock(&snd_config_update_mutex);
+ }
+ 
