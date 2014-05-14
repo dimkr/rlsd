@@ -10,10 +10,11 @@ ffmpeg_build() {
 	            --bindir=/bin \
 	            --libdir=/lib \
 	            --shlibdir=/lib \
+	            --enable-gpl \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --enable-small \
-	            --disable-ffplay \
 	            --disable-ffserver \
+	            --enable-postproc \
 	            --disable-network \
 	            --cc="$CC" \
 	            --ld="$CC" \

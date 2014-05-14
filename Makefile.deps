@@ -15,7 +15,7 @@ dillo: musl gtk
 dropbear: musl zlib
 elilo: musl gnu_efi
 evilwm: musl tinyxlib
-ffmpeg: musl zlib alsa_lib
+ffmpeg: musl zlib alsa_lib sdl
 findutils: musl
 fuse: musl
 gbase: musl gtk
@@ -71,6 +71,7 @@ patch: musl
 rfkill: musl
 rox: musl gtk gdk_pixbuf libxml2
 screen: musl ncurses
+sdl: musl tinyxlib alsa_lib
 shed: musl ncurses
 sqlite: musl
 squashfs_tools: musl zlib xz
