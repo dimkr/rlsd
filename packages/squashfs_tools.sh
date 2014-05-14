@@ -1,4 +1,4 @@
-PACKAGE_VERSION="4.2"
+PACKAGE_VERSION="4.3"
 PACKAGE_SOURCES="http://sourceforge.net/projects/squashfs/files/squashfs/squashfs$PACKAGE_VERSION/squashfs$PACKAGE_VERSION.tar.gz"
 
 squashfs_tools_build() {
