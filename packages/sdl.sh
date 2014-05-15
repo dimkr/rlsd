@@ -14,8 +14,11 @@ sdl_build() {
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --disable-loadso \
 	            --disable-oss \
-	            --disable-audiod-dummy \
+	            --enable-alsa \
+	            --disable-dummyaudio \
+	            --enable-video-x11 \
 	            --disable-video-dummy \
+	            --enable-video-fbcon \
 	            --disable-sdl-dlopen
 	$MAKE
 }
