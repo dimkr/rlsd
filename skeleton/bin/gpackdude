@@ -3,16 +3,15 @@
 # gpackdude: a graphical frontend for packdude
 
 _list_avail_packages() {
-	# if the repository database does not exist, do nothing
-	[ ! -f /var/packdude/repo.sqlite3 ] && return
-
 	# obtain the list of installed packages
-	inst_packages="$(sqlite3 /var/packdude/data.sqlite3 \
-                             'select name from packages')"
+	inst_packages=""
+	for package in $(packdude -q | cut -f 1 -d \|)
+	do
+		inst_packages="$inst_packages ${package%\|*}"
+	done
 
-	# if a package is installed, do not show it
-	sqlite3 /var/packdude/repo.sqlite3 'select name, version from packages' |
-	while read line
+	# list available packages
+	packdude -l | while read line
 	do
 		name="${line%\|*}"
 		installed=0
@@ -25,14 +24,14 @@ _list_avail_packages() {
 			fi
 		done
 
+		# if a package is installed, ignore it
 		[ 0 -eq $installed ] && echo "	<item>$line</item>"
 	done
 }
 
 _list_inst_packages() {
 	# show all installed packages
-	sqlite3 /var/packdude/data.sqlite3 'select name, version from packages' |
-	while read line
+	packdude -q | while read line
 	do
 		echo "	<item>$line</item>"
 	done
