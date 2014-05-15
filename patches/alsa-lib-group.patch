@@ -1,0 +1,12 @@
+diff -rup alsa-lib-1.0.27.2-orig/src/conf/alsa.conf alsa-lib-1.0.27.2/src/conf/alsa.conf
+--- alsa-lib-1.0.27.2-orig/src/conf/alsa.conf	2014-05-15 22:33:24.386939338 +0300
++++ alsa-lib-1.0.27.2/src/conf/alsa.conf	2014-05-15 23:15:21.747974234 +0300
+@@ -73,7 +73,7 @@ defaults.pcm.nonblock 1
+ defaults.pcm.compat 0
+ defaults.pcm.minperiodtime 5000		# in us
+ defaults.pcm.ipc_key 5678293
+-defaults.pcm.ipc_gid audio
++defaults.pcm.ipc_gid root
+ defaults.pcm.ipc_perm 0660
+ defaults.pcm.dmix.max_periods 0
+ defaults.pcm.dmix.rate 48000

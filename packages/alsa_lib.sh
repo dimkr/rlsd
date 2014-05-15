@@ -7,7 +7,9 @@ alsa_lib_build() {
 	cd alsa-lib-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/alsa-lib-musl.patch"
+	patch -p 1 < "$BASE_DIR/patches/alsa-lib-wordexp.patch"
 	patch -p 1 < "$BASE_DIR/patches/alsa-lib-mutex.patch"
+	patch -p 1 < "$BASE_DIR/patches/alsa-lib-group.patch"
 
 	CFLAGS="-D_POSIX_C_SOURCE=200809L $CFLAGS" \
 	./configure --host=$HOST \
