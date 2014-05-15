@@ -40,7 +40,11 @@ export LC_ALL="C"
 if [ 1 -eq $STATIC ] && [ -d "$SYSROOT/lib/pkgconfig" ] && [ ! -f pkg-config ]
 then
 	echo "#!/bin/sh
-exec $(which pkg-config) --static \"\$@\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~g -e s~'-I/usr'~\"-I$SYSROOT/usr\"~g -e s~'-I/lib'~\"-I$SYSROOT/lib\"~g" > pkg-config
+output=\"\$($(which pkg-config) --static \"\$@\")\"
+code=\$?
+[ 0 -ne \$code ] && exit \$code
+echo \"\$output\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~g -e s~'-I/usr'~\"-I$SYSROOT/usr\"~g -e s~'-I/lib'~\"-I$SYSROOT/lib\"~g
+exit 0" > pkg-config
 	chmod 755 pkg-config
 fi
 
