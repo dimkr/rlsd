@@ -62,6 +62,7 @@ PACKAGES="linux
           conky
           rox
           gtkdialog1
+          lynx
           xchat
           grun
           gtkfind
