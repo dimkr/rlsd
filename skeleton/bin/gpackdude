@@ -43,7 +43,7 @@ _choose_package() {
 	<tree selection-mode=\"1\">
 	<label>Name | Version | Description</label>
 	<height>500</height>
-	<width>250</width>
+	<width>600</width>
 "
 	if [ "install" = "$1" ]
 	then
