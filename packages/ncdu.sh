@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.10"
 PACKAGE_SOURCES="http://dev.yorhel.nl/download/ncdu-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A disk usage analyzer"
 
 ncdu_build() {
 	[ -d ncdu-$PACKAGE_VERSION ] && rm -rf ncdu-$PACKAGE_VERSION

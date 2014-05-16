@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.2.15"
 PACKAGE_SOURCES="http://libsdl.org/release/SDL-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A graphics, audio and input abstraction layer library"
 
 sdl_build() {
 	[ -d SDL-$PACKAGE_VERSION ] && rm -rf SDL-$PACKAGE_VERSION

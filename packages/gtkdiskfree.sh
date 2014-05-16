@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.6.5"
 PACKAGE_SOURCES="http://ftp.nluug.nl/pub/os/Linux/distr/amigolinux/download/Applications/Misc/gtkdiskfree-$PACKAGE_VERSION/gtkdiskfree-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A disk usage analyzer"
 
 gtkdiskfree_build() {
 	[ -d gtkdiskfree-$PACKAGE_VERSION ] && rm -rf gtkdiskfree-$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/iguleder/gdk-pixbuf/archive/master.zip,gdk-pixbuf-$PACKAGE_VERSION.zip"
+PACKAGE_DESC="An image loading library"
 
 gdk_pixbuf_build() {
 	[ -d gdk-pixbuf-master ] && rm -rf gdk-pixbuf-master

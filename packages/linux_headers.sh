@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2.6.32.61"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu1/linux-libre-$PACKAGE_VERSION-gnu1.tar.xz"
+PACKAGE_DESC="Kernel API headers"
 
 linux_headers_build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION

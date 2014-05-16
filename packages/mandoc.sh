@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.12.3"
 PACKAGE_SOURCES="http://mdocml.bsd.lv/snapshots/mdocml-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A man page formatting tool"
 
 mandoc_build() {
 	[ -d mdocml-$PACKAGE_VERSION ] && rm -rf mdocml-$PACKAGE_VERSION

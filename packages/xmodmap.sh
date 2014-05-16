@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.0.8"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/app/xmodmap-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A X11 keyboard map manipulation tool"
 
 xmodmap_build() {
 	[ -d xmodmap-$PACKAGE_VERSION ] && rm -rf xmodmap-$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/tinyalsa/tinyalsa/archive/master.zip,tinyalsa-$PACKAGE_VERSION.zip"
+PACKAGE_DESC="Core audio library"
 
 tinyalsa_build() {
 	[ -d tinyalsa-master ] && rm -rf tinyalsa-master

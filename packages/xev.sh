@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.1.0"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/app/xev-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A X11 events inspection tool"
 
 xev_build() {
 	[ -d xev-$PACKAGE_VERSION ] && rm -rf xev-$PACKAGE_VERSION

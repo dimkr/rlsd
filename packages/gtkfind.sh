@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.1"
 PACKAGE_SOURCES="http://distro.ibiblio.org/amigolinux/download/Applications/Search/gtkfind-$PACKAGE_VERSION/gtkfind-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A file search tool"
 
 gtkfind_build() {
 	[ -d gtkfind-$PACKAGE_VERSION ] && rm -rf gtkfind-$PACKAGE_VERSION

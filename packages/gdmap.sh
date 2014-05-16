@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.2"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/gdmap/gdmap/$PACKAGE_VERSION/gdmap-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A disk usage visualizer"
 
 gdmap_build() {
 	[ -d gdmap-$PACKAGE_VERSION ] && rm -rf gdmap-$PACKAGE_VERSION

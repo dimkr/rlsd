@@ -229,4 +229,4 @@ rm -f "$package_tar"
 # generate a package entry
 dependencies="$(grep ^$1: "$BASE_DIR/Makefile.deps" | cut -f 2 -d : | cut -c 2-)"
 [ -z "$dependencies" ] && dependencies="-"
-echo "$1,$PACKAGE_VERSION,$1-$PACKAGE_VERSION.dude,$PACKAGE_ARCH,$dependencies" >> "$REPO_DIR/repo.csv"
+echo "$1,$PACKAGE_VERSION,$PACKAGE_DESC,$1-$PACKAGE_VERSION.dude,$PACKAGE_ARCH,$dependencies" >> "$REPO_DIR/repo.csv"

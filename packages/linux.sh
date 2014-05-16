@@ -1,6 +1,7 @@
 PACKAGE_VERSION="3.10.40"
 PACKAGE_MAJOR_VERSION="3.10"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz"
+PACKAGE_DESC="An operating system kernel"
 
 linux_build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="4.3"
 PACKAGE_SOURCES="http://sourceforge.net/projects/squashfs/files/squashfs/squashfs$PACKAGE_VERSION/squashfs$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="SquashFS file system manipulation tools"
 
 squashfs_tools_build() {
 	[ -d squashfs$PACKAGE_VERSION ] && rm -rf squashfs$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.0.6"
 PACKAGE_SOURCES="http://sylpheed.sraoss.jp/sylpheed/v1.0/sylpheed-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="An e-mail client"
 
 sylpheed_build() {
 	[ -d sylpheed-$PACKAGE_VERSION ] && rm -rf sylpheed-$PACKAGE_VERSION

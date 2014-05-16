@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2014.63"
 PACKAGE_SOURCES="https://matt.ucc.asn.au/dropbear/releases/dropbear-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A SSH server and client"
 
 PROGRAMS="dropbear dbclient dropbearkey scp"
 

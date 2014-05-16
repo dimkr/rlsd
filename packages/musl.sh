@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.1.0"
 PACKAGE_SOURCES="http://www.musl-libc.org/releases/musl-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A C library"
 
 musl_build() {
 	[ -d musl-$PACKAGE_VERSION ] && rm -rf musl-$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/iguleder/gtk/archive/master.zip,gtk-$PACKAGE_VERSION.zip"
+PACKAGE_DESC="A graphical toolkit"
 
 gtk_build() {
 	[ -d gtk-master ] && rm -rf gtk-master

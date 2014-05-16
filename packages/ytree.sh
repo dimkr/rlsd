@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.97"
 PACKAGE_SOURCES="http://www.han.de/~werner/ytree-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A file manager"
 
 ytree_build() {
 	[ -d ytree-$PACKAGE_VERSION ] && rm -rf ytree-$PACKAGE_VERSION

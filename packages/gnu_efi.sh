@@ -1,5 +1,6 @@
 PACKAGE_VERSION="3.0u"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/gnu-efi/gnu-efi_$PACKAGE_VERSION.orig.tar.gz"
+PACKAGE_DESC="A common functions library for UEFI applications"
 
 gnu_efi_build() {
 	[ -d gnu-efi-3.0 ] && rm -rf gnu-efi-3.0

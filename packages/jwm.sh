@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2.2.2"
 PACKAGE_SOURCES="http://joewing.net/projects/jwm/releases/jwm-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="A window manager"
 
 jwm_build() {
 	[ -d jwm-$PACKAGE_VERSION ] && rm -rf jwm-$PACKAGE_VERSION

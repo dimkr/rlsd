@@ -1,5 +1,6 @@
 PACKAGE_VERSION="4.07"
 PACKAGE_SOURCES="https://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="A BIOS boot loader for ISO9660 file systems"
 
 isolinux_build() {
 	[ -d syslinux-$PACKAGE_VERSION ] && rm -rf syslinux-$PACKAGE_VERSION

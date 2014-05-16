@@ -1,5 +1,6 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/wjaguar/mtPaint/archive/master.zip,mtpaint-$PACKAGE_VERSION.zip"
+PACKAGE_DESC="An image editor"
 
 mtpaint_build() {
 	[ -d mtPaint-master ] && rm -rf mtPaint-master

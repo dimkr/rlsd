@@ -1,5 +1,6 @@
 PACKAGE_VERSION="20131230"
 PACKAGE_SOURCES="http://ircii.warped.com/ircii-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="An IRC client"
 
 ircii_build() {
 	[ -d ircii-$PACKAGE_VERSION ] && rm -rf ircii-$PACKAGE_VERSION

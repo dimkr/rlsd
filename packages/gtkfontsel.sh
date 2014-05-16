@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.1"
 PACKAGE_SOURCES="http://distro.ibiblio.org/amigolinux/download/Applications/Graphics/gtkfontsel-$PACKAGE_VERSION/gtkfontsel-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A font chooser"
 
 gtkfontsel_build() {
 	[ -d gtkfontsel-$PACKAGE_VERSION ] && rm -rf gtkfontsel-$PACKAGE_VERSION

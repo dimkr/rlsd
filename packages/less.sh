@@ -1,5 +1,6 @@
 PACKAGE_VERSION="458"
 PACKAGE_SOURCES="http://www.greenwoodsoftware.com/less/less-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A file viewer"
 
 less_build() {
 	[ -d less-$PACKAGE_VERSION ] && rm -rf less-$PACKAGE_VERSION

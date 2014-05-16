@@ -1,5 +1,6 @@
 PACKAGE_VERSION="3.2.3"
 PACKAGE_SOURCES="http://roy.marples.name/downloads/dhcpcd/dhcpcd-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A DHCP client"
 
 dhcpcd_build() {
 	[ -d dhcpcd-$PACKAGE_VERSION ] && rm -rf dhcpcd-$PACKAGE_VERSION

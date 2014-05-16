@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.6.0"
 PACKAGE_SOURCES="http://distro.ibiblio.org/amigolinux/download/Applications/Misc/gcalendar-$PACKAGE_VERSION/gcalendar-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A calendar"
 
 gcalendar_build() {
 	[ -d gcalendar-$PACKAGE_VERSION ] && rm -rf gcalendar-$PACKAGE_VERSION

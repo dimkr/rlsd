@@ -1,5 +1,6 @@
 PACKAGE_VERSION="5.9"
 PACKAGE_SOURCES="http://ftp.gnu.org/pub/gnu/ncurses/ncurses-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A terminal handling library"
 
 ncurses_build() {
 	[ -d ncurses-$PACKAGE_VERSION ] && rm -rf ncurses-$PACKAGE_VERSION

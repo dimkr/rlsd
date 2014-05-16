@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.3"
 PACKAGE_SOURCES="http://distro.ibiblio.org/amigolinux/download/AmigoProjects/GtkDialog1/GtkDialog1-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A tool for displaying graphical dialogs through shell scripts"
 
 gtkdialog1_build() {
 	[ -d GtkDialog1-$PACKAGE_VERSION ] && rm -rf GtkDialog1-$PACKAGE_VERSION

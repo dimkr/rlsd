@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.8.1"
 PACKAGE_SOURCES="http://distro.ibiblio.org/amigolinux/download/DeskTop/Launchers/grun-$PACKAGE_VERSION/grun-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="An application launcher"
 
 grun_build() {
 	[ -d grun-$PACKAGE_VERSION ] && rm -rf grun-$PACKAGE_VERSION

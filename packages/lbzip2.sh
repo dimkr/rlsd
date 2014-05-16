@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2.5"
 PACKAGE_SOURCES="http://archive.lbzip2.org/lbzip2-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="Compression tools"
 
 lbzip2_build() {
 	[ -d lbzip2-$PACKAGE_VERSION ] && rm -rf lbzip2-$PACKAGE_VERSION

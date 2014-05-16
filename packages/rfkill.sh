@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.5"
 PACKAGE_SOURCES="https://www.kernel.org/pub/software/network/rfkill/rfkill-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="A tool for disabling network interfaces"
 
 rfkill_build() {
 	[ -d rfkill-$PACKAGE_VERSION ] && rm -rf rfkill-$PACKAGE_VERSION

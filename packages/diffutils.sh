@@ -1,5 +1,6 @@
 PACKAGE_VERSION="3.3"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/diffutils/diffutils-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="Patch creation and file comparison tools"
 
 diffutils_build() {
 	[ -d diffutils-$PACKAGE_VERSION ] && rm -rf diffutils-$PACKAGE_VERSION

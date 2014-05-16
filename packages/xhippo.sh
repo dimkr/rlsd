@@ -1,5 +1,6 @@
 PACKAGE_VERSION="3.5"
 PACKAGE_SOURCES="ftp://ftp.gnu.org/gnu/xhippo/xhippo-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="An audio player"
 
 xhippo_build() {
 	[ -d xhippo-$PACKAGE_VERSION ] && rm -rf xhippo-$PACKAGE_VERSION

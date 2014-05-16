@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.0.3"
 PACKAGE_SOURCES="http://hisham.hm/htop/releases/$PACKAGE_VERSION/htop-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A process viewer"
 
 htop_build() {
 	[ -d htop-$PACKAGE_VERSION ] && rm -rf htop-$PACKAGE_VERSION

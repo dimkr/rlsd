@@ -1,5 +1,6 @@
 PACKAGE_VERSION="3.1.2"
 PACKAGE_SOURCES="http://www.libarchive.org/downloads/libarchive-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="An archive handling library"
 
 libarchive_build() {
 	[ -d libarchive-$PACKAGE_VERSION ] && rm -rf libarchive-$PACKAGE_VERSION

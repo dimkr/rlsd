@@ -1,5 +1,6 @@
 PACKAGE_VERSION="3.16"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/elilo/elilo/elilo-$PACKAGE_VERSION/elilo-$PACKAGE_VERSION-all.tar.gz"
+PACKAGE_DESC="A UEFI boot loader"
 
 elilo_build() {
 	[ -d elilo-$PACKAGE_VERSION-source ] && rm -rf elilo-$PACKAGE_VERSION-source

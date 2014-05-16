@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.0.1"
 PACKAGE_SOURCES="ftp://ftp.afterstep.org/apps/aterm/aterm-1.0.1.tar.bz2"
+PACKAGE_DESC="Terminal emulator"
 
 aterm_build() {
 	[ -d aterm-$PACKAGE_VERSION ] && rm -rf aterm-$PACKAGE_VERSION

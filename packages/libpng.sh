@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.6.10"
 PACKAGE_SOURCES="http://prdownloads.sourceforge.net/libpng/libpng-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="A library for handling PNG images"
 
 libpng_build() {
 	[ -d libpng-$PACKAGE_VERSION ] && rm -rf libpng-$PACKAGE_VERSION

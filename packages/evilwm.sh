@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.1.0"
 PACKAGE_SOURCES="http://www.6809.org.uk/evilwm/evilwm-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A window manager"
 
 evilwm_build() {
 	[ -d evilwm-$PACKAGE_VERSION ] && rm -rf evilwm-$PACKAGE_VERSION

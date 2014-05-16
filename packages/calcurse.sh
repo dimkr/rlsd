@@ -1,5 +1,6 @@
 PACKAGE_VERSION="3.1.4"
 PACKAGE_SOURCES="http://calcurse.org/files/calcurse-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A personal organizer"
 
 calcurse_build() {
 	[ -d calcurse-$PACKAGE_VERSION ] && rm -rf calcurse-$PACKAGE_VERSION

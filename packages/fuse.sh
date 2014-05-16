@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2.9.3"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/fuse/fuse-2.X/$PACKAGE_VERSION/fuse-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="An interface for user-mode file systems"
 
 fuse_build() {
 	[ -d fuse-$PACKAGE_VERSION ] && rm -rf fuse-$PACKAGE_VERSION

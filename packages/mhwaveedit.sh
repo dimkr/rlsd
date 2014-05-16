@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.4.23"
 PACKAGE_SOURCES="http://download.gna.org/mhwaveedit/mhwaveedit-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="An audio recording and editing tool"
 
 mhwaveedit_build() {
 	[ -d mhwaveedit-$PACKAGE_VERSION ] && rm -rf mhwaveedit-$PACKAGE_VERSION

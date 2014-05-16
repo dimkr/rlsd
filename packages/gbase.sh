@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.5"
 PACKAGE_SOURCES="http://fluxcode.net/files/gbase-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A base converter"
 
 gbase_build() {
 	[ -d gbase-$PACKAGE_VERSION ] && rm -rf gbase-$PACKAGE_VERSION

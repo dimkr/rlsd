@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2.9.1"
 PACKAGE_SOURCES="ftp://ftp.xmlsoft.org/libxml2/libxml2-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A XML parsing library"
 
 libxml2_build() {
 	[ -d libxml2-$PACKAGE_VERSION ] && rm -rf libxml2-$PACKAGE_VERSION

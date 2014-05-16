@@ -1,5 +1,6 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/iguleder/tinyxserver/archive/master.zip,tinyxserver-$PACKAGE_VERSION.zip"
+PACKAGE_DESC="A display server"
 
 tinyxserver_build() {
 	[ -d tinyxserver-master ] && rm -rf tinyxserver-master

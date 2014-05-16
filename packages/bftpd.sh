@@ -1,5 +1,6 @@
 PACKAGE_VERSION="4.2"
 PACKAGE_SOURCES="http://sourceforge.net/projects/bftpd/files/bftpd/bftpd-$PACKAGE_VERSION/bftpd-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="An FTP server"
 
 bftpd_build() {
 	[ -d bftpd ] && rm -rf bftpd

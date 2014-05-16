@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.9.13"
 PACKAGE_SOURCES="http://sourceforge.net/projects/libvncserver/files/x11vnc/$PACKAGE_VERSION/x11vnc-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A VNC server"
 
 x11vnc_build() {
 	[ -d x11vnc-$PACKAGE_VERSION ] && rm -rf x11vnc-$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.0.27.2"
 PACKAGE_SOURCES="ftp://ftp.alsa-project.org/pub/lib/alsa-lib-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="Core audio library"
 
 alsa_lib_build() {
 	[ -d alsa-lib-$PACKAGE_VERSION ] && rm -rf alsa-lib-$PACKAGE_VERSION

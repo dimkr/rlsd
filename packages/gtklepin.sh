@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.2"
 PACKAGE_SOURCES="http://ordiluc.net/gtklepin/gtklepin-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A note taking application"
 
 gtklepin_build() {
 	[ -d gtklepin-$PACKAGE_VERSION ] && rm -rf gtklepin-$PACKAGE_VERSION

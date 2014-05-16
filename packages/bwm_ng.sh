@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.6"
 PACKAGE_SOURCES="http://www.gropp.org/bwm-ng/bwm-ng-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A network monitor"
 
 bwm_ng_build() {
 	[ -d bwm-ng-$PACKAGE_VERSION ] && rm -rf bwm-ng-$PACKAGE_VERSION

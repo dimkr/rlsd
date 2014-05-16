@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.2.8"
 PACKAGE_SOURCES="http://zlib.net/zlib-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A compression library"
 
 zlib_build() {
 	[ -d zlib-$PACKAGE_VERSION ] && rm -rf zlib-$PACKAGE_VERSION

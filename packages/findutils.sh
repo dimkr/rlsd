@@ -1,5 +1,6 @@
 PACKAGE_VERSION="4.4.2"
 PACKAGE_SOURCES="http://ftp.gnu.org/pub/gnu/findutils/findutils-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="File search tools"
 
 findutils_build() {
 	[ -d findutils-$PACKAGE_VERSION ] && rm -rf findutils-$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.9.0"
 PACKAGE_SOURCES="http://sourceforge.net/projects/conky/files/conky/$PACKAGE_VERSION/conky-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A system monitor"
 
 conky_build() {
 	[ -d conky-$PACKAGE_VERSION ] && rm -rf conky-$PACKAGE_VERSION

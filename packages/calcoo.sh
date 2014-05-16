@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.3.15"
 PACKAGE_SOURCES="http://sourceforge.net/projects/calcoo/files/calcoo/$PACKAGE_VERSION/calcoo-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A calculator"
 
 calcoo_build() {
 	[ -d calcoo-$PACKAGE_VERSION ] && rm -rf calcoo-$PACKAGE_VERSION

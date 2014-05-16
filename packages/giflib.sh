@@ -1,5 +1,6 @@
 PACKAGE_VERSION="4.2.3"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/giflib/giflib-4.x/giflib-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A library for handling of GIF images"
 
 giflib_build() {
 	[ -d giflib-$PACKAGE_VERSION ] && rm -rf giflib-$PACKAGE_VERSION

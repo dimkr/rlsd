@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2.2.6"
 PACKAGE_SOURCES="http://www.nano-editor.org/dist/v2.2/nano-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A text editor"
 
 nano_build() {
 	[ -d nano-$PACKAGE_VERSION ] && rm -rf nano-$PACKAGE_VERSION

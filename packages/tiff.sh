@@ -1,5 +1,6 @@
 PACKAGE_VERSION="4.0.3"
 PACKAGE_SOURCES="ftp://ftp.remotesensing.org/pub/libtiff/tiff-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A library for handling TIFF images"
 
 tiff_build() {
 	[ -d tiff-$PACKAGE_VERSION ] && rm -rf tiff-$PACKAGE_VERSION

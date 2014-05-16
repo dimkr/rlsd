@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.1"
 PACKAGE_SOURCES="http://www.ne.jp/asahi/linux/timecop/software/gtkcat-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A disk cataloger"
 
 gtkcat_build() {
 	[ -d gtkcat-$PACKAGE_VERSION ] && rm -rf gtkcat-$PACKAGE_VERSION

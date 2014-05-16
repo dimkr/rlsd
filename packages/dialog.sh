@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.2-20140219"
 PACKAGE_SOURCES="ftp://invisible-island.net/dialog/dialog-$PACKAGE_VERSION.tgz"
+PACKAGE_DESC="A tool for displaying dialogs through shell scripts"
 
 dialog_build() {
 	[ -d dialog-$PACKAGE_VERSION ] && rm -rf dialog-$PACKAGE_VERSION

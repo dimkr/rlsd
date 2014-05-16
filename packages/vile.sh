@@ -1,5 +1,6 @@
 PACKAGE_VERSION="9.8"
 PACKAGE_SOURCES="ftp://invisible-island.net/vile/vile-$PACKAGE_VERSION.tgz"
+PACKAGE_DESC="A text editor"
 
 vile_build() {
 	[ -d vile-$PACKAGE_VERSION ] && rm -rf vile-$PACKAGE_VERSION

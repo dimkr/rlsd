@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.1"
 PACKAGE_SOURCES="http://ordiluc.net/guiftp/guiftp-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DESC="A FTP client"
 
 guiftp_build() {
 	[ -d guiftp-$PACKAGE_VERSION ] && rm -rf guiftp-$PACKAGE_VERSION

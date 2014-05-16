@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.1.4"
 PACKAGE_SOURCES="http://ibiblio.org/pub/linux/utils/compress/guiTAR-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="An archive manager"
 
 guitar_build() {
 	[ -d guiTAR-$PACKAGE_VERSION ] && rm -rf guiTAR-$PACKAGE_VERSION

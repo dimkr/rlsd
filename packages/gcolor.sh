@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.4"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/gcolor/gcolor/$PACKAGE_VERSION/gcolor-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A color chooser"
 
 gcolor_build() {
 	[ -d gcolor-$PACKAGE_VERSION ] && rm -rf gcolor-$PACKAGE_VERSION

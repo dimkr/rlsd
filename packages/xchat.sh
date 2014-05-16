@@ -1,5 +1,6 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/iguleder/xchat/archive/master.zip,xchat-$PACKAGE_VERSION.zip"
+PACKAGE_DESC="An IRC client"
 
 xchat_build() {
 	[ -d xchat-master ] && rm -rf xchat-master

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.82"
 PACKAGE_SOURCES="http://www.lcdf.org/gifsicle/gifsicle-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A GIF image manipulation tool"
 
 gifsicle_build() {
 	[ -d gifsicle-$PACKAGE_VERSION ] && rm -rf gifsicle-$PACKAGE_VERSION

@@ -1,5 +1,6 @@
 PACKAGE_VERSION="0.6.0b-1"
 PACKAGE_SOURCES="http://sourceforge.net/projects/gtksee.berlios/files/gtksee-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="An image viewer"
 
 gtksee_build() {
 	[ -d gtksee-$PACKAGE_VERSION ] && rm -rf gtksee-$PACKAGE_VERSION

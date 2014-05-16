@@ -1,5 +1,6 @@
 PACKAGE_VERSION="2.7.1"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/patch/patch-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="A file patching tool"
 
 patch_build() {
 	[ -d patch-$PACKAGE_VERSION ] && rm -rf patch-$PACKAGE_VERSION

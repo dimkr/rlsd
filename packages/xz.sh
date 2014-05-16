@@ -1,5 +1,6 @@
 PACKAGE_VERSION="5.0.5"
 PACKAGE_SOURCES="http://tukaani.org/xz/xz-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="Compression tools"
 
 xz_build() {
 	[ -d xz-$PACKAGE_VERSION ] && rm -rf xz-$PACKAGE_VERSION

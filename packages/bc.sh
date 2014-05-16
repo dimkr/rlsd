@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.06"
 PACKAGE_SOURCES="http://ftp.gnu.org/pub/gnu/bc/bc-$PACKAGE_VERSION.tar.gz"
+PACKAGE_DESC="A numeric processing language"
 
 bc_build() {
 	[ -d bc-$PACKAGE_VERSION ] && rm -rf bc-$PACKAGE_VERSION

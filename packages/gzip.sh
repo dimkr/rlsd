@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.6"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/gzip/gzip-$PACKAGE_VERSION.tar.xz"
+PACKAGE_DESC="Compression tools"
 
 gzip_build() {
 	[ -d gzip-$PACKAGE_VERSION ] && rm -rf gzip-$PACKAGE_VERSION
