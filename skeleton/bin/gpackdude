@@ -5,9 +5,9 @@
 _list_avail_packages() {
 	# obtain the list of installed packages
 	inst_packages=""
-	for package in $(packdude -q | cut -f 1 -d \|)
+	packdude -q | while read line
 	do
-		inst_packages="$inst_packages ${package%\|*}"
+		inst_packages="$inst_packages ${line%\|*}"
 	done
 
 	# list available packages
