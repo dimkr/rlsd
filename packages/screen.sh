@@ -23,6 +23,7 @@ screen_build() {
 }
 
 screen_package() {
+	mkdir -p "$1/bin"
 	$MAKE DESTDIR="$1" install
 	rm -f "$1/bin/screen"
 	mv "$1/bin/screen-$PACKAGE_VERSION" "$1/bin/screen"

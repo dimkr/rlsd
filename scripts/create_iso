@@ -54,7 +54,6 @@ PACKAGES="linux
           tinyunmute
           less
           htop
-          screen
           nano
           tinyxserver
           evilwm
