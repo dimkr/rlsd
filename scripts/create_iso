@@ -89,7 +89,10 @@ done
 rm -f "$root_fs/var/packdude/archive"/*
 
 # remove the package database
-rm -f "$root_fs/var/packdude/repo.sqlite3"
+rm -f "$root_fs/var/packdude"/repo-*.sqlite3
+
+# remove packdude's lock file
+rm -f "$root_fs/var/packdude/lock"
 
 # create a temporary directory for the initramfs contents
 initramfs_root="$(mktemp -d -u)"
