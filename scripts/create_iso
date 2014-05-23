@@ -72,6 +72,7 @@ PACKAGES="linux
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"
+REPO="http://127.0.0.1"
 
 # initialize the root file system with the skeleton
 root_fs="$(mktemp -d -u)"
@@ -81,7 +82,7 @@ cp -ar "$BASE_DIR/skeleton" "$root_fs"
 mkdir -p "$root_fs/var/packdude/archive"
 for package in $PACKAGES
 do
-	packdude -i $package -p "$root_fs"
+	packdude -i $package -p "$root_fs" -u "$REPO"
 done
 
 # empty the package archive

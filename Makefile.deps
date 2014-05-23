@@ -66,7 +66,7 @@ nc: musl
 ncdu: musl ncurses
 ncurses: musl
 ogg122: musl tinyalsa
-packdude: musl libarchive sqlite curl
+packdude: musl zlib libarchive sqlite curl
 patch: musl
 rfkill: musl
 rox: musl gtk gdk_pixbuf libxml2
