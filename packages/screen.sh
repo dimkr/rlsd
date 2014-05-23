@@ -1,11 +1,13 @@
 PACKAGE_VERSION="4.0.3"
-PACKAGE_SOURCES="http://ftp.gnu.org/gnu/screen/screen-$PACKAGE_VERSION.tar.gz"
+PACKAGE_SOURCES="http://ftp.gnu.org/gnu/screen/screen-$PACKAGE_VERSION.tar.gz https://raw.githubusercontent.com/sabotage-linux/sabotage/master/KEEP/screen-execvpe.patch"
 PACKAGE_DESC="A terminal multiplexer"
 
 screen_build() {
 	[ -d screen-$PACKAGE_VERSION ] && rm -rf screen-$PACKAGE_VERSION
 	tar -xzvf screen-$PACKAGE_VERSION.tar.gz
 	cd screen-$PACKAGE_VERSION
+
+	patch -p 1 < ../screen-execvpe.patch
 
 	./configure --host=$HOST \
 	            --prefix= \
