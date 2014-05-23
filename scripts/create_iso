@@ -72,7 +72,7 @@ PACKAGES="linux
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"
-REPO="http://127.0.0.1"
+REPO="http://repo.dimakrasner.com:1024"
 
 # initialize the root file system with the skeleton
 root_fs="$(mktemp -d -u)"

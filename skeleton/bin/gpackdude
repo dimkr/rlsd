@@ -2,9 +2,6 @@
 
 # gpackdude: a graphical frontend for packdude
 
-# the repository URL
-REPO="http://repo.dimakrasner.com:1024"
-
 _list_avail_packages() {
 	# obtain the list of installed packages
 	inst_packages=""
@@ -14,7 +11,7 @@ _list_avail_packages() {
 	done
 
 	# list available packages
-	packdude -l -u "$REPO" | while read line
+	packdude -l | while read line
 	do
 		name="${line%%\|*}"
 		installed=0
@@ -92,7 +89,7 @@ case "$action" in
 		flag="r"
 		;;
 esac
-exec aterm -title packdude -e sh -c "packdude -$flag \"$choice\" -u \"$REPO\"; \
+exec aterm -title packdude -e sh -c "packdude -$flag \"$choice\"; \
                                      [ 0 -eq \$? ] && exit; \
                                      echo 'Press any key to close'; \
                                      read dummy"
