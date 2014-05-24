@@ -3,6 +3,7 @@ aterm: musl tinyxlib
 bc: musl
 beaver: musl gtk
 bftpd: musl zlib
+binutils: musl
 bwm_ng: musl ncurses
 calcoo: musl gtk
 calcurse: musl ncurses
