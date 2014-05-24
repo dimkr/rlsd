@@ -79,14 +79,11 @@ root_fs="$(mktemp -d -u)"
 cp -ar "$BASE_DIR/skeleton" "$root_fs"
 
 # install the packages
-mkdir -p "$root_fs/var/packdude/archive"
+mkdir -p "$root_fs/var/packdude"
 for package in $PACKAGES
 do
 	packdude -i $package -p "$root_fs" -u "$REPO"
 done
-
-# empty the package archive
-rm -f "$root_fs/var/packdude/archive"/*
 
 # remove the package database
 rm -f "$root_fs/var/packdude"/repo-*.sqlite3
