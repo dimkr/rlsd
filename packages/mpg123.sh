@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.19.0"
+PACKAGE_VERSION="1.20.0"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/mpg123/mpg123/$PACKAGE_VERSION/mpg123-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A MP3 player"
 
