@@ -82,7 +82,7 @@ cp -ar "$BASE_DIR/skeleton" "$root_fs"
 mkdir -p "$root_fs/var/packdude"
 for package in $PACKAGES
 do
-	packdude -i $package -p "$root_fs" -u "$REPO"
+	packdude -i $package -n -p "$root_fs" -u "$REPO"
 done
 
 # remove the package database

@@ -33,6 +33,14 @@ _list_inst_packages() {
 	# show all installed packages
 	packdude -q | while read line
 	do
+		echo "  <item>$line</item>"
+	done
+}
+
+_list_removable_packages() {
+	# show all removable packages
+	packdude -c | while read line
+	do
 		echo "	<item>$line</item>"
 	done
 }
@@ -45,12 +53,17 @@ _choose_package() {
 	<height>500</height>
 	<width>600</width>
 "
-	if [ "install" = "$1" ]
-	then
-		_list_avail_packages
-	else
-		_list_inst_packages
-	fi
+	case "$1" in
+		install)
+			_list_avail_packages
+			;;
+		remove)
+			_list_removable_packages
+			;;
+		list)
+			_list_inst_packages
+			;;
+	esac
 
 	echo "	<variable>choice</variable>
 	<action>exit="ok"</action>
@@ -68,16 +81,20 @@ eval $(echo "<window title=\"packdude\">
 			<label>Remove a package</label>
 			<action>EXIT=remove</action>
 		</button>
+		<button>
+			<label>View installed packages</label>
+			<action>EXIT=list</action>
+		</button>
 	</hbox>
 </window>" | gtkdialog1 -s)
-if [ "install" != "$EXIT" ] && [ "remove" != "$EXIT" ]
+if [ "install" != "$EXIT" ] && [ "remove" != "$EXIT" ] && [ "list" != "$EXIT" ]
 then
 	exit 1
 fi
 
 # let the user choose one package
 action="$EXIT"
-eval $(_choose_package "$EXIT" | gtkdialog1 -s)
+eval $(_choose_package "$action" | gtkdialog1 -s)
 [ "ok" != "$EXIT" ] && exit 1
 
 # install or remove the chosen package
@@ -85,8 +102,14 @@ case "$action" in
 	install)
 		flag="i"
 		;;
+
 	remove)
 		flag="r"
+		;;
+
+	# when listing installed packages, stop here
+	list)
+		exit 0
 		;;
 esac
 exec aterm -title packdude -e sh -c "packdude -$flag \"$choice\"; \
