@@ -82,6 +82,7 @@ tinyalsa: musl
 tinyunmute: musl tinyalsa
 tinyxlib: musl
 tinyxserver: musl zlib
+useatbelt: musl linux
 vile: musl ncurses
 wget: musl
 wpa_supplicant: musl libnl_tiny
