@@ -35,6 +35,7 @@ INITRAMFS_DIRECTORIES="run
 # package present in the root file system
 PACKAGES="linux
           lazy_utils
+          useatbelt
           packdude
           mandoc
           isolinux

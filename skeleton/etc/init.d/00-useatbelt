@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# start useatbelt
+echo -n "Starting useatbelt ..."
+
+useatbeltd
+
+echo " done."
