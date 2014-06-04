@@ -3,6 +3,7 @@
 # unmount the union file system
 echo -n "Unmounting the layered file system ..."
 umount /mnt/union
+losetup -d /dev/loop0
 
 # unmount all virtual file systems
 echo -n "done.

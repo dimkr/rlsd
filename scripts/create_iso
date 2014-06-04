@@ -3,17 +3,18 @@
 . ./config
 
 # files present in the initramfs
-INITRAMFS_FILES="bin/init
+INITRAMFS_FILES="bin/toybox
+                 bin/init
                  bin/ksh
                  bin/syslogd
-                 bin/logd
+                 bin/klogd
                  bin/mkdir
                  bin/cp
+                 bin/losetup
                  bin/mount
                  bin/umount
-                 bin/mergedirs
+                 bin/luufs
                  bin/sleep
-                 bin/klogecho
                  bin/clear
                  bin/cat
                  etc/rc.d/rc.sysinit
@@ -21,6 +22,7 @@ INITRAMFS_FILES="bin/init
 
 # directories present in the initramfs
 INITRAMFS_DIRECTORIES="run
+                       tmp
                        etc/rc.d
                        bin
                        var/log
@@ -34,8 +36,11 @@ INITRAMFS_DIRECTORIES="run
 
 # package present in the root file system
 PACKAGES="linux
+          toybox
           lazy_utils
-          useatbelt
+          loksh
+          lok
+          luufs
           packdude
           mandoc
           isolinux

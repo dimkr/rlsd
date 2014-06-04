@@ -46,7 +46,7 @@ ircii: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
 jwm: musl tinyxlib libpng
-lazy_utils: musl zlib fuse
+lazy_utils: musl
 lbzip2: musl
 less: musl ncurses
 libarchive: musl zlib lbzip2 xz
@@ -56,6 +56,9 @@ libpng: musl zlib
 libxml2: musl
 linux: 
 linux_headers: 
+lok: musl
+loksh: musl
+luufs: musl zlib fuse
 lynx: musl ncurses
 mandoc: musl
 mhwaveedit: musl gtk alsa_lib
@@ -82,7 +85,7 @@ tinyalsa: musl
 tinyunmute: musl tinyalsa
 tinyxlib: musl
 tinyxserver: musl zlib
-useatbelt: musl linux
+toybox: musl
 vile: musl ncurses
 wget: musl
 wpa_supplicant: musl libnl_tiny

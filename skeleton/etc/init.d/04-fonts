@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# update the font cache
-echo -n "Updating the font cache ..."
-
-fc-cache -f -s
-
-echo " done."

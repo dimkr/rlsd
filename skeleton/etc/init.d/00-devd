@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# run depmod, to create a cache of available kernel modules
+echo -n "Running depmod ..."
+
+depmod
+
+# start devd
+echo -n " done.
+Starting devd ..."
+
+devd
+
+echo " done."

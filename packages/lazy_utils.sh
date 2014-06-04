@@ -11,5 +11,5 @@ lazy_utils_build() {
 }
 
 lazy_utils_package() {
-	$MAKE DESTDIR="$1" install
+	$MAKE DESTDIR="$1" SBIN_DIR="/bin" install
 }

@@ -31,10 +31,10 @@ eval $(gtkdialog1 --program=INTERFACE_DIALOG)
 [ -z "$interface" ] && exit 1
 
 # disable the interface, to reset its counters
-ifdown $interface
+ifconfig $interface down
 
 # bring up the interface again, to allow scanning
-ifup $interface
+ifconfig $interface up
 
 # let the user choose the wireless network
 WIRELESS_DIALOG='<window title="Wireless Network Configuration">
@@ -63,7 +63,7 @@ eval $(gtkdialog1 --program=WIRELESS_DIALOG)
 # if no network was chosen, disable the interface and exit
 if [ -z "$ssid" ]
 then
-	ifdown $interface
+	ifconfig $interface down
 	exit 1
 fi
 
