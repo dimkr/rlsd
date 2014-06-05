@@ -32,7 +32,7 @@ export ARCH
 export KARCH
 export BASE_DIR
 export SYSROOT
-export PATH="$BASE_DIR:$PATH"
+export PATH="$BASE_DIR:/opt/cross/$ARCH-linux-musl/bin:$PATH"
 export LANG="C"
 export LC_ALL="C"
 
