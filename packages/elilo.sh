@@ -13,7 +13,6 @@ elilo_build() {
 	    -e s~'^GNUEFILIB  = /usr/lib$'~"GNUEFILIB  = $SYSROOT/lib"~ \
 	    -e s~'^EFILIB\t   = /usr/lib$'~"EFILIB	   = $SYSROOT/lib"~ \
 	    -e s~'^EFICRT0\t   = /usr/lib$'~"EFICRT0	   = $SYSROOT/lib"~ \
-	    -e s~'-fno-stack-protector'~'-DGNU_EFI_USE_MS_ABI &'~ \
 	    -i Make.defaults
 
 	$MAKE CC="$CC"
