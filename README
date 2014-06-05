@@ -106,6 +106,57 @@ In order to build the entire Lazyux package repository, run:
 
 The built package repository will be placed under the "repo" directory.
 
+FAQ
+===
+  
+  What does 'Lazyux' mean?
+  ------------------------
+
+Lazyux is called that way because it's lazy - it tries to accomplish its goals
+using simple methods, instead of putting much effort for little benefit. For
+example, it does not implement its own window manager.
+
+The "ux" suffix is there because Lazyux is a Unix-like operating system.
+
+  What makes Lazyux different?
+  ----------------------------
+
+Lazyux packs a unique blend of simplicity, suckless (http://suckless.org/)
+spirit, cutting-edge and nostalgic applications, in a small and elegant package.
+
+  Why is Lazyux statically-linked?
+  --------------------------------
+
+  - To simplify the file system structure.
+  - To improve security.
+  - To improve the startup time of processes.
+  - To improve portability: static linking makes it easy to use packages built
+    for Lazyux on other distributions.
+
+  Can Lazyux build itself?
+  ------------------------
+
+No. Lazyux is not designed to be self-hosting.
+
+  Why isn't Lazyux self-hosting?
+  ------------------------------
+
+Lazyux tries to focus on one thing and it well. Other distributions provide
+a great development environment and there's no reason to reinvent the wheel for
+zero additional value.
+
+  Why does Lazyux build using the old GCC 4.2.1?
+  ----------------------------------------------
+
+  - This version supports x86_64 and therefore satisfies the needs of Lazyux.
+  - Almost every new version of GCC breaks something.
+  - Using an older compiler version makes Lazyux faster to build.
+  - Some old packages in Lazyux are incompatible with newer versions of GCC, so
+    using an old version saves some work.
+  - This version has been used in the *BSD world for a long time, so it should
+    be easier to migrate from it to anther compiler favored by *BSD, compared to
+    a later version of GCC.
+
 Credits and Legal Information
 =============================
 
