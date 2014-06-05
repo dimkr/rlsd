@@ -14,7 +14,7 @@ It tries to revive good, old applications from the days of Puppy Linux 1.x-2.x
 x86_64 base, hunting down bug after bug.
 
 In addition, Lazyux contains some user-mode components ported over from OpenBSD
-(http://www.openbsd.org/) and NetBSD (http://www.netbsd.org/).
+(http://www.openbsd.org/).
 
 Features
 ========
@@ -47,7 +47,10 @@ suitable for serious work.
 It does so by including the following packages:
   - Linux-libre (http://linux-libre.fsfla.org/)
   - musl (http://www.musl-libc.org/)
-  - lazy-utils (http://lazyux.dimakrasner.com/lazy_utils.html)
+  - toybox (www.landley.net/toybox/)
+  - lazy-utils (https://github.com/iguleder/lazy-utils)
+  - loksh (https://github.com/iguleder/loksh)
+  - luufs (https://github.com/iguleder/luufs)
   - tinyxlib (https://github.com/iguleder/tinyxlib)
   - tinyxserver (https://github.com/iguleder/tinyxserver)
   - evilwm (http://www.6809.org.uk/evilwm/)
