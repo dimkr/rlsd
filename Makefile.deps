@@ -12,7 +12,7 @@ curl: musl zlib
 dhcpcd: musl
 dialog: musl ncurses
 diffutils: musl
-dillo: musl libpng libjpeg_turbo gtk
+dillo: musl libpng libjpeg_turbo gtk wget
 dropbear: musl zlib
 elilo: musl gnu_efi
 evilwm: musl tinyxlib
