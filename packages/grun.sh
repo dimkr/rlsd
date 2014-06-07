@@ -14,6 +14,7 @@ grun_build() {
 
 grun_package() {
 	$MAKE DESTDIR="$1" install
+	install -D -m 644 grun2.xpm "$1/usr/share/pixmaps/grun.xpm"
 	install -D -m 644 README "$1/usr/share/doc/grun/README"
 	install -m 644 NEWS "$1/usr/share/doc/grun/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/grun/ChangeLog"
