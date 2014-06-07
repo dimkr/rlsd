@@ -14,6 +14,7 @@ sylpheed_build() {
 
 sylpheed_package() {
 	$MAKE DESTDIR="$1" install
+	install -D -m 644 sylpheed.png "$1/usr/share/pixmaps/sylpheed.png"
 	install -D -m 644 README "$1/usr/share/doc/sylpheed/README"
 	install -m 644 NEWS "$1/usr/share/doc/sylpheed/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/sylpheed/ChangeLog"
