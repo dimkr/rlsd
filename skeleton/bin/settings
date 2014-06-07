@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# settings: a frontend for all configuration wizards
+
+eval $(echo '<window>
+	<hbox>
+		<vbox>
+			<button>
+				<label>Wireless Wizard</label>
+				<action>EXIT=wifi-wizard</action>
+			</button>
+			<button>
+				<label>Package Manager</label>
+				<action>EXIT=gpackdude</action>
+			</button>
+		</vbox>
+	</hbox>
+</window>' | gtkdialog1 -s)
+
+[ "abort" = "$EXIT" ] && exit 1
+
+exec "$EXIT"
