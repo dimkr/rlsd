@@ -2,30 +2,44 @@
 
 # wifi-wizard: a wirless network configuration wizard
 
-# let the user choose the interface
+# list all wireless interfaces
 cd /sys/class/net
-INTERFACE_DIALOG='<window title="Wireless Network Configuration">
-	<vbox>
-		<text><label>Choose a network interface:</label></text>
-		<combobox>
-			<variable>interface</variable>'
-
+interfaces=""
+count=0
 for i in *
 do
 	case "$i" in
 		wlan*)
-				INTERFACE_DIALOG="$INTERFACE_DIALOG <item>$i</item>"
+				interfaces="$interfaces $i"
+				count=$((1 + $count))
 				;;
 	esac
 done
 
-export INTERFACE_DIALOG="$INTERFACE_DIALOG
-		</combobox>
-		<button ok></button>
-	</vbox>
-</window>"
+# let the user choose the interface
+if [ 1 -eq $count ]
+then
+	interface="$interfaces"
+else
+	INTERFACE_DIALOG='<window title="Wireless Network Configuration">
+		<vbox>
+			<text><label>Choose a network interface:</label></text>
+			<combobox>
+				<variable>interface</variable>'
 
-eval $(gtkdialog1 --program=INTERFACE_DIALOG)
+	for i in $interfaces
+	do
+		INTERFACE_DIALOG="$INTERFACE_DIALOG <item>$i</item>"
+	done
+
+	export INTERFACE_DIALOG="$INTERFACE_DIALOG
+			</combobox>
+			<button ok></button>
+		</vbox>
+	</window>"
+
+	eval $(gtkdialog1 --program=INTERFACE_DIALOG)
+fi
 
 # if no interface was chosen, exit
 [ -z "$interface" ] && exit 1
