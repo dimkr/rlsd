@@ -67,13 +67,7 @@ PACKAGES="linux
           conky
           rox
           gtkdialog1
-          lynx
-          xchat
-          grun
-          gtkfind
-          gtkedit
-          calcoo
-          gcalendar"
+          dillo"
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
