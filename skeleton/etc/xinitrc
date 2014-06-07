@@ -1,4 +1,14 @@
 #!/bin/sh
 
-conky &
-exec evilwm
+# if JWM is present, run it - startup applications are configured using
+# StartupCommand tags in the configuration file
+if [ -f /bin/jwm ]
+then
+	exec jwm
+else
+	# otherwise, run startup applications and start evilwm
+	conky &
+	rox -p default &
+	firstrun &
+	exec evilwm
+fi
