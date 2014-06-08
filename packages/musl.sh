@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.1.1"
+PACKAGE_VERSION="1.1.2"
 PACKAGE_SOURCES="http://www.musl-libc.org/releases/musl-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A C library"
 
@@ -12,7 +12,7 @@ musl_build() {
 	            --host=$HOST \
 	            --disable-debug \
 	            --enable-gcc-wrapper \
-	            $CONFIGURE_LIBRARY_FLAGS
+	            --enable-shared
 	$MAKE
 }
 
