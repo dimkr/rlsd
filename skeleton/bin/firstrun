@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# firstrun: a first-run dialog
+
+# if the lock file exists, do nothing
+[ -f /etc/firstrun.lck ] && exit
+
+# create the lock file
+touch /etc/firstrun.lck
+
+# show a greeting
+exec dillo -f http://lazyux.dimakrasner.com
