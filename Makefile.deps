@@ -31,7 +31,7 @@ gnu_efi: musl
 grun: musl gtk
 gtk: musl tinyxlib glib
 gtkcat: musl gtk
-gtkdialog1: musl gtk gdk_pixbuf
+gtkdialog1: musl gtk findutils gdk_pixbuf
 gtkdiskfree: musl gtk
 gtkedit: musl gtk
 gtkfind: musl findutils gtk
