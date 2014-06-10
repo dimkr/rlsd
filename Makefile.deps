@@ -65,6 +65,7 @@ luufs: musl zlib fuse
 lynx: musl ncurses
 mandoc: musl
 mhwaveedit: musl gtk alsa_lib
+mowitz: musl tinyxlib
 mpg123: musl tinyalsa
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
@@ -80,6 +81,7 @@ rox: musl gtk gdk_pixbuf libxml2
 screen: musl ncurses
 sdl: musl tinyxlib alsa_lib
 shed: musl ncurses
+siag: musl mowitz
 sqlite: musl
 squashfs_tools: musl zlib xz
 sylpheed: musl gtk

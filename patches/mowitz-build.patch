@@ -1,0 +1,21 @@
+diff -rup Mowitz-0.3.1-orig/doc/Makefile.am Mowitz-0.3.1/doc/Makefile.am
+--- Mowitz-0.3.1-orig/doc/Makefile.am	2014-06-10 23:34:32.549966556 +0300
++++ Mowitz-0.3.1/doc/Makefile.am	2014-06-10 23:35:32.131965489 +0300
+@@ -1,4 +1,4 @@
+-docdir = $(prefix)/doc/Mowitz
++docdir = $(datadir)/doc/Mowitz
+ 
+ doc_DATA = Filesel.html \
+ 	ListTree.HISTORY ListTree.README ListTree.gif \
+diff -rup Mowitz-0.3.1-orig/doc/Makefile.in Mowitz-0.3.1/doc/Makefile.in
+--- Mowitz-0.3.1-orig/doc/Makefile.in	2014-06-10 23:34:32.549966556 +0300
++++ Mowitz-0.3.1/doc/Makefile.in	2014-06-10 23:38:39.755962129 +0300
+@@ -88,7 +88,7 @@ RC = @RC@
+ STRIP = @STRIP@
+ VERSION = @VERSION@
+ 
+-docdir = $(prefix)/doc/Mowitz
++docdir = $(datadir)/doc/Mowitz
+ 
+ doc_DATA = Filesel.html 	ListTree.HISTORY ListTree.README ListTree.gif 	ListTree.html ListTreeProg.html ListTreeTitle.gif 	TreeFSel.gif new.gif 	Slider.README Slider.man
+ 
