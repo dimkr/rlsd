@@ -80,6 +80,7 @@ shed: musl ncurses
 sqlite: musl
 squashfs_tools: musl zlib xz
 sylpheed: musl gtk
+ted: musl zlib libpng libjpeg_turbo tiff gtk
 tiff: musl zlib libjpeg_turbo
 tinyalsa: musl
 tinyunmute: musl tinyalsa
