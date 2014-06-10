@@ -43,7 +43,7 @@ then
 output=\"\$($(which pkg-config) --static \"\$@\")\"
 code=\$?
 [ 0 -ne \$code ] && exit \$code
-echo -n \"\$output\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~g -e s~'-I/usr'~\"-I$SYSROOT/usr\"~g -e s~'-I/lib'~\"-I$SYSROOT/lib\"~g
+echo -n \"\$output\" | sed -e s~'-L/lib'~\"-L$SYSROOT/lib\"~g -e s~'-I/usr'~\"-I$SYSROOT/usr\"~g -e s~'-I/lib'~\"-I$SYSROOT/lib\"~g -e s~'^/usr/share'~\"$SYSROOT/usr/share\"~g
 exit 0" > pkg-config
 	chmod 755 pkg-config
 fi

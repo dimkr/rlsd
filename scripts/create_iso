@@ -62,6 +62,8 @@ PACKAGES="linux
           htop
           nano
           tinyxserver
+          font_adobe_75dpi
+          font_adobe_100dpi
           evilwm
           aterm
           conky

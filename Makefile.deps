@@ -18,6 +18,9 @@ elilo: musl gnu_efi
 evilwm: musl tinyxlib
 ffmpeg: musl zlib alsa_lib sdl
 findutils: musl
+font_adobe_100dpi: font_util
+font_adobe_75dpi: font_util
+font_util: musl
 fuse: musl
 gbase: musl gtk
 gcalendar: musl gtk
@@ -80,7 +83,7 @@ shed: musl ncurses
 sqlite: musl
 squashfs_tools: musl zlib xz
 sylpheed: musl gtk
-ted: musl zlib libpng libjpeg_turbo tiff gtk
+ted: musl zlib libpng libjpeg_turbo tiff gtk font_adobe_75dpi font_adobe_100dpi
 tiff: musl zlib libjpeg_turbo
 tinyalsa: musl
 tinyunmute: musl tinyalsa
