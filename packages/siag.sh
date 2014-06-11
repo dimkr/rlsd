@@ -1,6 +1,6 @@
 PACKAGE_VERSION="3.6.1"
 PACKAGE_SOURCES="http://fossies.org/linux/misc/siag-$PACKAGE_VERSION.tar.gz"
-PACKAGE_DESC="A spreadsheet"
+PACKAGE_DESC="An office suite"
 
 siag_build() {
 	[ -d siag-$PACKAGE_VERSION ] && rm -rf siag-$PACKAGE_VERSION
