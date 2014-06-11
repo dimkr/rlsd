@@ -8,6 +8,7 @@ mowitz_build() {
 	cd Mowitz-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/mowitz-build.patch"
+	patch -p 1 < "$BASE_DIR/patches/mowitz-tinyxlib.patch"
 
 	make clean
 	./configure --host=$HOST \

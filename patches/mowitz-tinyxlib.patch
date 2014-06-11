@@ -1,0 +1,32 @@
+diff -rup Mowitz-0.3.1-orig/Mowitz/MwNws.c Mowitz-0.3.1/Mowitz/MwNws.c
+--- Mowitz-0.3.1-orig/Mowitz/MwNws.c	2014-06-11 21:04:10.963928672 +0300
++++ Mowitz-0.3.1/Mowitz/MwNws.c	2014-06-11 21:04:26.628928392 +0300
+@@ -663,7 +663,7 @@ static void ChangeManaged();
+ static XtGeometryResult QueryGeometry();
+ 
+ #define SuperClass (&wmShellClassRec)
+-externaldef(vendorshellclassrec) VendorShellClassRec vendorShellClassRec = {
++externaldef(vendorshellclassrec) VendorShellClassRec m_vendorShellClassRec = {
+   {
+     /* superclass	  */	(WidgetClass)SuperClass,
+     /* class_name	  */	"VendorShell",
+@@ -712,8 +712,8 @@ externaldef(vendorshellclassrec) VendorS
+   }
+ };
+ 
+-externaldef(vendorshellwidgetclass) WidgetClass vendorShellWidgetClass =
+-	(WidgetClass) (&vendorShellClassRec);
++externaldef(vendorshellwidgetclass) WidgetClass m_vendorShellWidgetClass =
++	(WidgetClass) (&m_vendorShellClassRec);
+ 
+ static void VendorShellClassInitialize()
+ {
+@@ -792,7 +792,7 @@ void _InitializeWidgetSet ()
+ 
+     if (firsttime) {
+         firsttime = 0;
+-        XtInitializeWidgetClass (vendorShellWidgetClass);
++        XtInitializeWidgetClass (m_vendorShellWidgetClass);
+     }
+ }
+ /***************************************************************************/
