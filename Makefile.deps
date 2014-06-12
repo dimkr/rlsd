@@ -17,6 +17,7 @@ dropbear: musl zlib
 elilo: musl gnu_efi
 evilwm: musl tinyxlib
 ffmpeg: musl zlib alsa_lib sdl
+file: musl zlib
 findutils: musl
 font_adobe_100dpi: font_util
 font_adobe_75dpi: font_util
@@ -77,7 +78,7 @@ ogg122: musl tinyalsa
 packdude: musl zlib libarchive sqlite curl
 patch: musl
 rfkill: musl
-rox: musl gtk gdk_pixbuf libxml2
+rox: musl file gtk gdk_pixbuf libxml2
 screen: musl ncurses
 sdl: musl tinyxlib alsa_lib
 shed: musl ncurses
