@@ -103,6 +103,7 @@ xchat: musl gtk
 xev: musl tinyxlib
 xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib
+xorriso: musl zlib
 xz: musl
 ytree: musl ncurses
 zlib: musl
