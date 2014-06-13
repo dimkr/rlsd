@@ -1,4 +1,4 @@
-PACKAGE_VERSION="5.18"
+PACKAGE_VERSION="5.19"
 PACKAGE_SOURCES="ftp://ftp.astron.com/pub/file/file-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A file type guessing tool"
 
