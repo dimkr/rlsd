@@ -9,6 +9,7 @@ gtk_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/gtk-font.patch"
 
+	LIBS="$(pkg-config --libs xt)" \
 	./configure --host=$HOST \
 	            --target=$HOST \
 	            --prefix= \
