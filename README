@@ -72,39 +72,40 @@ Challenges
     (http://pkg-config.freedesktop.org/) make it harder and harder to build
     packages, as they become older.
 
-Build Environment
-=================
+Building from Source
+====================
 
-Although Lazyux can be built using any Linux distribution, it is actively tested
-and developed against Debian 7 (Wheezy) and above.
+Lazyux is cross-compiled through Ubuntu (http://www.ubuntu.com/) 14.04 x86_64.
 
-Building Lazyux requires packdude (http://lazyux.dimakrasner.com/packdude.html) and
-a cross-toolchain built using musl-cross (https://github.com/iguleder/musl-cross).
-
-In addition, some packages are required:
-  apt-get install build-essential autoconf automake autotools-dev \
+First, install required packages:
+  sudo apt-get install build-essential autoconf automake autotools-dev \
   autoconf-archive unzip flex bison git nasm squashfs-tools pkg-config \
-  file subversion bc xfonts-utils dosfstools mtools yasm
+  file subversion bc xfonts-utils dosfstools mtools yasm libarchive-dev \
+  libcurl4-gnutls-dev sqlite3-dev xorriso
 
-Also, building a bootable Lazyux images requires xorriso
-(http://libburnia-project.org/) 1.3.x. The version included in Debian Wheezy is
-older, so a newer version has to be installed manually.
+Then, build and install packdude (https://github.com/iguleder/packdude):
+  git clone https://github.com/iguleder/packdude.git
+  cd packdude
+  make
+  sudo make install
+  cd ..
 
-Building Lazyux
-===============
+Build a cross-compiler using musl-cross (https://github.com/iguleder/musl-cross):
+  git clone https://github.com/iguleder/musl-cross.git
+  cd musl-cross
+  sudo ./build.sh
+  cd ..
 
-In order to build a usable, bootable Lazyux image, run:
-  make iso
-
-The generated image will be placed in the working directory.
-
-Building Packages
-=================
-
-In order to build the entire Lazyux package repository, run:
+Build the entire Lazyux package repository:
+  git clone https://github.com/iguleder/lazyux.git lazyux
+  cd lazyux
   make packages
 
-The built package repository will be placed under the "repo" directory.
+Finally, generate a bootable Lazyux image:
+  make iso
+
+It is possible to generate a Lazyux image without building all its packages
+first. In this case, packages will be downloaded from the official repository.
 
 FAQ
 ===
