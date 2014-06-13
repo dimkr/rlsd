@@ -74,7 +74,15 @@ PACKAGES="linux
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="lazyux-$VERSION.iso"
-REPO="http://repo.dimakrasner.com:1024"
+
+# if all packages were built locally, use the build output
+if [ -d "$BASE_DIR/repo" ]
+then
+	repo="file://$BASE_DIR/repo"
+else
+	# otherwise, use the upstream repository
+	repo="http://repo.dimakrasner.com:1024"
+fi
 
 # initialize the root file system with the skeleton
 root_fs="$(mktemp -d -u)"
@@ -84,7 +92,7 @@ cp -ar "$BASE_DIR/skeleton" "$root_fs"
 mkdir -p "$root_fs/var/packdude"
 for package in $PACKAGES
 do
-	packdude -i $package -n -p "$root_fs" -u "$REPO"
+	packdude -i $package -n -p "$root_fs" -u "$repo"
 done
 
 # remove the package database
