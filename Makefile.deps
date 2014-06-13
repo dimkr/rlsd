@@ -83,6 +83,7 @@ rox: musl file gtk gdk_pixbuf libxml2
 screen: musl ncurses
 sdl: musl tinyxlib alsa_lib
 shed: musl ncurses
+shutbox: musl gtk
 siag: musl mowitz
 sqlite: musl
 squashfs_tools: musl zlib xz
