@@ -1,0 +1,31 @@
+diff -rup ghostscript-9.14-orig/configure.ac ghostscript-9.14/configure.ac
+--- ghostscript-9.14-orig/configure.ac	2014-06-13 21:09:38.819988256 +0300
++++ ghostscript-9.14/configure.ac	2014-06-13 21:22:42.679974218 +0300
+@@ -1537,12 +1537,11 @@ if test x$no_x != xyes; then
+ 
+         AC_CHECK_LIB(X11,XOpenDisplay)
+         AC_CHECK_LIB(Xext,XdbeQueryExtension)
+-        AC_CHECK_LIB(Xt,XtAppCreateShell)
+ 
+         LDFLAGS="$SAVELDFLAGS"
+         LIBS="$SAVELIBS"
+ 
+-        if test "$ac_cv_lib_Xt_XtAppCreateShell" = yes; then
++        if true; then
+                 X11DEVS="x11 x11alpha x11cmyk x11mono x11_ x11alt_ x11cmyk2 x11cmyk4 x11cmyk8 x11rg16x x11rg32x x11gray2 x11gray4"
+                 X_DEVS=$X11DEVS
+                 # the makefile wants a list of just the library names in X_LIBS
+diff -rup ghostscript-9.14-orig/devices/gdevx.h ghostscript-9.14/devices/gdevx.h
+--- ghostscript-9.14-orig/devices/gdevx.h	2014-06-13 21:09:38.634988259 +0300
++++ ghostscript-9.14/devices/gdevx.h	2014-06-13 21:11:50.136985904 +0300
+@@ -197,8 +197,8 @@ typedef struct gx_device_X_s {
+  * DRAW_TEXT assumes xdev->text.{item,char}_count > 0.
+  */
+ #define DRAW_TEXT(xdev)\
+-   XDrawText(xdev->dpy, xdev->dest, xdev->gc, xdev->text.origin.x,\
+-             xdev->text.origin.y, xdev->text.items, xdev->text.item_count)
++   XDrawString(xdev->dpy, xdev->dest, xdev->gc, xdev->text.origin.x,\
++               xdev->text.origin.y, xdev->text.items, xdev->text.item_count)
+ 
+ } gx_device_X;
+ #define private_st_device_X()	/* in gdevx.c */\

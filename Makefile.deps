@@ -28,6 +28,7 @@ gcalendar: musl gtk
 gcolor: musl gtk
 gdk_pixbuf: musl libpng libjpeg_turbo tiff
 gdmap: musl gtk
+ghostscript: musl zlib libjpeg_turbo tiff tinyxlib
 giflib: musl
 gifsicle: musl giflib
 glib: musl
