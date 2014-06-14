@@ -1,0 +1,18 @@
+diff -rup xasteroids-orig/Makefile xasteroids/Makefile
+--- xasteroids-orig/Makefile	2014-06-14 22:11:39.879949340 +0300
++++ xasteroids/Makefile	2014-06-14 22:12:00.641948968 +0300
+@@ -1,10 +1,10 @@
+ #CC = gcc -Wall
+-CC = cc
+-CFLAGS = -O
++CC ?= cc
++CFLAGS ?= -O
+ #INCLUDES = -I/usr/local/include
+-INCLUDES = -I/util/X11/include
++INCLUDES ?= -I/util/X11/include
+ #LDFLAGS = -s -L/usr/local/lib
+-LDFLAGS = -s -L/util/X11/lib
++LDFLAGS ?= -s -L/util/X11/lib
+ LIBS = -lm -lX11
+ TARGET = xast
+ SRCS = xast.c
