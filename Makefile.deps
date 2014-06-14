@@ -21,6 +21,8 @@ file: musl zlib
 findutils: musl
 font_adobe_100dpi: font_util
 font_adobe_75dpi: font_util
+font_bh_100dpi: font_util
+font_bh_75dpi: font_util
 font_util: musl
 fuse: musl
 gbase: musl gtk
