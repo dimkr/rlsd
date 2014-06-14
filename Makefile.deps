@@ -36,7 +36,7 @@ gifsicle: musl giflib
 glib: musl
 gnu_efi: musl
 grun: musl gtk
-gtk: musl tinyxlib glib
+gtk: musl tinyxlib glib font_bh_75dpi font_bh_100dpi
 gtkcat: musl gtk
 gtkdialog1: musl gtk findutils gdk_pixbuf
 gtkdiskfree: musl gtk
@@ -52,7 +52,7 @@ htop: musl ncurses
 ircii: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
-jwm: musl tinyxlib libpng
+jwm: musl tinyxlib libpng font_adobe_75dpi font_adobe_100dpi
 lazy_utils: musl
 lbzip2: musl
 less: musl ncurses

@@ -1,19 +1,7 @@
-diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
---- conky-1.9.0-orig/data/Makefile.in	2014-05-09 12:09:12.861993931 +0300
-+++ conky-1.9.0/data/Makefile.in	2014-05-09 12:09:23.331993744 +0300
-@@ -292,7 +292,7 @@ top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
- xsltproc_cmd = @xsltproc_cmd@
- configdir = ${sysconfdir}/conky
--dist_config_DATA = conky.conf conky_no_x11.conf
-+dist_config_DATA = conky.conf
- all: all-am
- 
- .SUFFIXES:
 diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
---- conky-1.9.0-orig/data/conky.conf	2014-05-09 12:09:12.861993931 +0300
-+++ conky-1.9.0/data/conky.conf	2014-05-09 12:09:31.383993599 +0300
-@@ -23,7 +23,7 @@
+--- conky-1.9.0-orig/data/conky.conf	2014-06-14 13:32:26.873920382 +0300
++++ conky-1.9.0/data/conky.conf	2014-06-14 14:24:24.607995010 +0300
+@@ -23,55 +23,54 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #
  
@@ -22,16 +10,23 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
  background no
  border_width 1
  cpu_avg_samples 2
-@@ -34,32 +34,30 @@ draw_borders no
+ default_color white
+-default_outline_color white
+-default_shade_color white
++default_outline_color red
++default_shade_color black
+ draw_borders no
  draw_graph_borders yes
  draw_outline no
- draw_shades no
+-draw_shades no
 -use_xft yes
 -xftfont DejaVu Sans Mono:size=12
-+font *-fixed-medium-*-14-*
- gap_x 5
+-gap_x 5
 -gap_y 60
-+gap_y 5
++draw_shades yes
++font fixed
++gap_x 12
++gap_y 12
  minimum_size 5 5
  net_avg_samples 2
  no_buffers yes
@@ -44,7 +39,7 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
  own_window_type desktop
  stippled_borders 0
 -update_interval 1.0
-+update_interval 10.0
++update_interval 5.0
  uppercase no
  use_spacer none
  show_graph_scale no
@@ -52,25 +47,41 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
  
  TEXT
 -${scroll 16 $nodename - $sysname $kernel on $machine | }
-+$nodename - $sysname $kernel on $machine
- $hr
+-$hr
++${color blue}$hr
++${color grey}Processes:$color $processes
  ${color grey}Uptime:$color $uptime
 -${color grey}Frequency (in MHz):$color $freq
 -${color grey}Frequency (in GHz):$color $freq_g
-+${color grey}Frequency:$color $freq_g GHz
- ${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
- ${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
- ${color grey}CPU Usage:$color $cpu% ${cpubar 4}
-@@ -67,11 +65,10 @@ ${color grey}Processes:$color $processes
- $hr
- ${color grey}File systems:
-  / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+-${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+-${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
+-${color grey}CPU Usage:$color $cpu% ${cpubar 4}
+-${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+-$hr
+-${color grey}File systems:
+- / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
 -${color grey}Networking:
 -Up:$color ${upspeed eth0} ${color grey} - Down:$color ${downspeed eth0}
- $hr
- ${color grey}Name              PID   CPU%   MEM%
- ${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
- ${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
- ${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
- ${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
-+${color lightgrey} ${top name 5} ${top pid 5} ${top cpu 5} ${top mem 5}
+-$hr
+-${color grey}Name              PID   CPU%   MEM%
+-${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+-${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+-${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+-${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
++${color grey}CPU Usage:$color $cpu%
++         ${color grey}${cpubar 3}
++${color grey}RAM Usage:$color $mem/$memmax - $memperc%
++         ${color grey}${membar 3}
++${color grey}Swap Used:$color $swap/$swapmax - $swapperc%
++         ${color grey}${swapbar 3}
++${color grey}File Systems:
++/          $color${fs_free /}/${fs_size /}
++         ${color grey}${fs_bar 3 /}
++/home      $color${fs_free /home}/${fs_size /home}
++         ${color grey}${fs_bar 3 /home}
++${color red}$hr
++${color grey}Uptime:    $color $uptime
++${color #ddd}Battery:   $color ${battery}
++${color green}$hr$color
++$sysname $kernel on $machine
++${color grey}Host: $color$nodename

@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-06-07 13:42:54.458895963 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-06-07 13:46:13.324892402 +0300
-@@ -3,116 +3,81 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-06-14 16:05:46.138949156 +0300
++++ jwm-2.2.2/example.jwmrc	2014-06-14 16:06:28.013948406 +0300
+@@ -3,116 +3,151 @@
  <JWM>
  
      <!-- The root menu. -->
@@ -20,23 +20,58 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -                xprop | xmessage -file -
 -            </Program>
 -        </Menu>
-+    <RootMenu height="32">
-+        <Program label="Execute...">grun</Program>
-+        <Program label="Find...">gtkfind</Program>
-+        <Program label="Browse Files">rox</Program>
-+        <Program label="Terminal">aterm</Program>
-         <Separator/>
+-        <Separator/>
 -        <Program icon="lock.png" label="Lock">
 -            xscreensaver-command -lock
 -        </Program>
-+        <Desktops/>
++    <RootMenu>
++        <Program label="Settings">settings</Program>
++	<Menu label="File managers" labeled="true">
++	        <Program label="ROX-Filer">rox</Program>
++	        <Program label="ytree">aterm -title ytree -e ytree</Program>
++	        <Program label="guiTAR">guitar</Program>
++	        <Program label="gtkcat">gtkcat</Program>
++	</Menu>
++	<Separator/>
++
++	<Menu label="Games" labeled="true">
++	        <Program label="Shut the Box">shutbox</Program>
++	</Menu>
++
++	<Menu label="Multimedia" labeled="true">
++	        <Program label="xhippo">xhippo</Program>
++	        <Program label="mtPaint">mtpaint</Program>
++	        <Program label="GTK See">gtksee</Program>
++	        <Program label="mhWaveEdit">mhwaveedit</Program>
++	        <Program label="gcolor">gcolor</Program>
++	</Menu>
++
++	<Menu label="Net" labeled="true">
++		<Menu label="Browsers">
++		        <Program label="Dillo">dillo</Program>
++		        <Program label="Lynx">aterm -title Lynx -e lynx</Program>
++		</Menu>
++	        <Program label="Sylpheed">sylpheed</Program>
++	        <Program label="X-Chat">xchat</Program>
++	        <Program label="ircII">aterm -title ircII -e irc</Program>
++	        <Program label="guiftp">guiftp</Program>
++	</Menu>
++
++	<Menu label="Office" labeled="true">
++	        <Program label="Ted">Ted</Program>
++	        <Program label="Siag">siag</Program>
++	        <Program label="Calcoo">calcoo</Program>
++	        <Program label="bc">aterm -title bc -e bc</Program>
++	        <Program label="gcalendar">gcalendar</Program>
++	        <Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
++	        <Program label="gtklepin">gtklepin</Program>
++	        <Program label="gbase">gbase</Program>
++	</Menu>
++
          <Separator/>
 -        <Restart label="Restart" icon="restart.png"/>
 -        <Exit label="Exit" confirm="true" icon="quit.png"/>
-+        <Program label="Suspend">suspend</Program>
-+        <Restart label="Restart"/>
-+        <Exit label="Exit"/>
-     </RootMenu>
+-    </RootMenu>
  
 -    <!-- Options for program groups. -->
 -    <Group>
@@ -56,51 +91,86 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Name>xcalc</Name>
 -        <Option>icon:calculator.png</Option>
 -    </Group>
--
-     <!-- Tray at the bottom. -->
++	<Menu label="Editors">
++	        <Program label="Beaver">beaver</Program>
++	        <Program label="gtkedit">gtkedit</Program>
++	        <Program label="Vile">aterm -title Vile -e vile</Program>
++	        <Program label="nano">aterm -title nano -e nano</Program>
++	</Menu>
++
++	<Menu label="System">
++	        <Program label="Settings">settings</Program>
++	        <Program label="gtkdiskfree">gtkdiskfree</Program>
++	        <Program label="GDMap">gdmap</Program>
++	        <Program label="htop">aterm -title htop -e htop</Program>
++	        <Program label="ncdu">aterm -title ncdu -e ncdu</Program>
++	        <Program label="gtkfontsel">gtkfontsel</Program>
++	        <Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
++	</Menu>
++
++	<Menu label="XShells">
++	        <Program label="aterm">aterm</Program>
++	        <Program label="Screen">aterm -title Screen -e screen</Program>
++	</Menu>
+ 
+-    <!-- Tray at the bottom. -->
 -    <Tray x="0" y="-1" height="32" autohide="false">
--
++        <Separator/>
+ 
 -        <TrayButton label="JWM">root:1</TrayButton>
 -        <TrayButton label="_">showdesktop</TrayButton>
--
++        <Program label="Help">dillo /usr/share/doc/lazyux/getting_started.html</Program>
++        <Program label="Find">gtkfind</Program>
++        <Program label="Run Command">grun</Program>
+ 
 -        <Pager labeled="true"/>
--
++        <Separator/>
+ 
 -        <TaskList maxwidth="256"/>
--
-+    <Tray y="-1" height="28" border="1">
-+        <TrayButton label="Menu" icon="mini-dog.xpm">root:1</TrayButton>
++	<Menu label="Exit">
++	        <Restart label="Restart"/>
++ 		<Exit label="Exit to prompt"/>
++		<Program label="Suspend">suspend</Program>
++		<Program label="Reboot">reboot</Program>
++		<Program label="Power off">poweroff</Program>
++	</Menu>
++    </RootMenu>
+ 
++    <!-- Tray at the bottom. -->
++    <Tray y="-1" height="24" border="1">
++        <TrayButton label="Lazyux">root:1</TrayButton>
 +        <Pager/>
 +        <TaskList/>
          <Dock/>
 -        <Clock>xclock</Clock>
 -
-+        <Clock format="%H:%M">gcalendar</Clock>
++        <Clock>gcalendar</Clock>
      </Tray>
  
      <!-- Visual Styles -->
      <WindowStyle>
 -        <Font>FreeSans-9:bold</Font>
 -        <Width>4</Width>
--        <Height>20</Height>
-+        <Font>*-fixed-medium-*-14-*</Font>
++        <Font>-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*</Font>
 +        <Width>3</Width>
-+        <Height>22</Height>
+         <Height>20</Height>
          <Active>
 -            <Text>#FFFFFF</Text>
 -            <Title>#CC7700:#884400</Title>
-+            <Text>#ffffff</Text>
-+            <Title>#4a5963</Title>
-             <Outline>#000000</Outline>
+-            <Outline>#000000</Outline>
 -            <Opacity>1.0</Opacity>
++            <Text>white</Text>
++            <Title>#5983e0</Title>
++            <Outline>black</Outline>
          </Active>
          <Inactive>
 -            <Text>#FFFFFF</Text>
 -            <Title>#333333:#111111</Title>
 -            <Outline>#000000</Outline>
 -            <Opacity>0.5:0.9:0.1</Opacity>
-+            <Text>#000000</Text>
-+            <Title>#e7e7e9</Title>
-+            <Outline>#666666</Outline>
++            <Text>black</Text>
++            <Title>#bbbbbb</Title>
++            <Outline>black</Outline>
          </Inactive>
      </WindowStyle>
      <TrayStyle>
@@ -108,16 +178,15 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Background>#111111</Background>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Opacity>0.75</Opacity>
-+        <Font>*-fixed-medium-*-14-*</Font>
-+        <Background>#e7e7e7</Background>
-+        <Foreground>#000000</Foreground>
++        <Font>-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*</Font>
++        <Background>#bbbbbb</Background>
++        <Foreground>black</Foreground>
      </TrayStyle>
 +    <TrayButtonStyle>
-+        <Font>*-fixed-medium-*-14-*</Font>
-+        <Foreground>#000000</Foreground>
-+        <Background>#e7e7e7</Background>
-+        <ActiveForeground>#000000</ActiveForeground>
-+        <ActiveBackground>#8c9aa5</ActiveBackground>
++        <Foreground>black</Foreground>
++        <Background>#bbbbbb</Background>
++        <ActiveForeground>black</ActiveForeground>
++        <ActiveBackground>#5983e0</ActiveBackground>
 +    </TrayButtonStyle>
      <TaskListStyle>
 -        <Font>FreeSans-12:bold</Font>
@@ -125,10 +194,9 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <ActiveBackground>#111111:#333333</ActiveBackground>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Background>#333333:#111111</Background>
-+        <Font>*-fixed-medium-*-14-*</Font>
-+        <ActiveForeground>#000000</ActiveForeground>
-+        <ActiveBackground>#8c9aa5</ActiveBackground>
-+	<Background>#e7e7e7</Background>
++        <ActiveForeground>black</ActiveForeground>
++        <ActiveBackground>#5983e0</ActiveBackground>
++	<Background>#bbbbbb</Background>
      </TaskListStyle>
      <PagerStyle>
 -        <Outline>#000000</Outline>
@@ -138,10 +206,10 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <ActiveForeground>#CC7700</ActiveForeground>
 -        <ActiveBackground>#884400</ActiveBackground>
 +       <Outline>black</Outline>
-+       <Foreground>#ffffff</Foreground>
-+       <Background>#8c8a8d</Background>
-+       <ActiveForeground>#8c9aad</ActiveForeground>
-+       <ActiveBackground>#4a5963</ActiveBackground>
++       <Foreground>#bbbbbb</Foreground>
++       <Background>#336699</Background>
++       <ActiveForeground>#5983e0</ActiveForeground>
++       <ActiveBackground>#dcdad5</ActiveBackground>
      </PagerStyle>
      <MenuStyle>
 -        <Font>FreeSans-11</Font>
@@ -150,23 +218,25 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <ActiveForeground>#FFFFFF</ActiveForeground>
 -        <ActiveBackground>#CC7700:#884400</ActiveBackground>
 -        <Opacity>0.85</Opacity>
-+        <Font>*-fixed-medium-*-14-*</Font>
-+        <Foreground>#000000</Foreground>
-+        <Background>#e7e7e7</Background>
-+        <ActiveForeground>#ffffff</ActiveForeground>
-+        <ActiveBackground>#394952</ActiveBackground>
++        <Font>-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*</Font>
++        <Foreground>black</Foreground>
++        <Background>#bbbbbb</Background>
++        <ActiveForeground>white</ActiveForeground>
++        <ActiveBackground>#5983e0</ActiveBackground>
      </MenuStyle>
      <PopupStyle>
 -        <Font>FreeSans-10</Font>
-+        <Font>*-fixed-medium-*-14-*</Font>
-         <Outline>#000000</Outline>
-         <Foreground>#000000</Foreground>
+-        <Outline>#000000</Outline>
+-        <Foreground>#000000</Foreground>
 -        <Background>#999999</Background>
-+        <Background>#b6b8b0</Background>
++        <Font>-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*</Font>
++        <Outline>black</Outline>
++        <Foreground>black</Foreground>
++        <Background>yellow</Background>
      </PopupStyle>
  
      <!-- Path where icons can be found.
-@@ -120,7 +85,7 @@
+@@ -120,17 +155,17 @@
           for icons in multiple paths.
        -->
      <IconPath>
@@ -175,16 +245,19 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </IconPath>
  
      <!-- Virtual Desktops -->
-@@ -130,7 +95,7 @@
+     <!-- Desktop tags can be contained within Desktops for desktop names. -->
+-    <Desktops width="2" height="1">
++    <Desktops width="4" height="1">
+         <!-- Default background. Note that a Background tag can be
                contained within a Desktop tag to give a specific background
                for that desktop.
           -->
 -        <Background type="image">$HOME/images/bg.jpg</Background>
-+        <Background type="solid">#333333</Background>
++        <Background type="solid">#336699</Background>
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +105,21 @@
+@@ -140,16 +175,21 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -210,7 +283,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -167,11 +137,17 @@
+@@ -167,11 +207,17 @@
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>
      <Key mask="A" key="F1">root:1</Key>

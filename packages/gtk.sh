@@ -8,6 +8,7 @@ gtk_build() {
 	cd gtk-master
 
 	patch -p 1 < "$BASE_DIR/patches/gtk-font.patch"
+	patch -p 1 < "$BASE_DIR/patches/gtk-theme.patch"
 
 	LIBS="$(pkg-config --libs xt)" \
 	./configure --host=$HOST \

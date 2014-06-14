@@ -62,14 +62,47 @@ PACKAGES="linux
           htop
           nano
           tinyxserver
-          font_adobe_75dpi
-          font_adobe_100dpi
-          evilwm
+          jwm
           aterm
           conky
           rox
           gtkdialog1
-          dillo"
+          dillo
+          ytree
+          guitar
+          gtkcat
+          shutbox
+          xhippo
+          mtpaint
+          gtksee
+          mhwaveedit
+          gcolor
+          lynx
+          sylpheed
+          xchat
+          ircii
+          guiftp
+          ted
+          siag
+          calcoo
+          bc
+          gcalendar
+          calcurse
+          gtklepin
+          gbase
+          beaver
+          gtkedit
+          vile
+          nano
+          gtkdiskfree
+          gdmap
+          htop
+          ncdu
+          gtkfontsel
+          x11vnc
+          screen
+          gtkfind
+          grun"
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
