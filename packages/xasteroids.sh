@@ -16,7 +16,7 @@ xasteroids_build() {
 }
 
 xasteroids_package() {
-	install -D -m 755 xast "$1/bin/xaos"
+	install -D -m 755 xast "$1/bin/xast"
 	install -D -m 644 xast.man "$1/usr/share/man/man6/xast.6"
 	install -D -m 644 README "$1/usr/share/doc/xasteroids/README"
 	install -m 644 xasteroids/COPYING "$1/usr/share/doc/xasteroids/COPYING"
