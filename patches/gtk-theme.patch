@@ -23,7 +23,7 @@ diff -rupN gtk-master-orig/gtk/gtkrc gtk-master/gtk/gtkrc
 +	fg[SELECTED] = "#e8e8e8"
 +	base[SELECTED] = "#486591"
 +
-+	font = "-*-lucida-medium-r-*-*-10-*-*-*-*-*-*-*"
++	font = "-*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*"
 +}
 +
 +style "menu" {
