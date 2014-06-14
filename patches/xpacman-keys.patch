@@ -1,0 +1,12 @@
+diff -rup xpacman-orig/xpacman.c xpacman/xpacman.c
+--- xpacman-orig/xpacman.c	2014-06-14 19:57:10.776700508 +0300
++++ xpacman/xpacman.c	2014-06-14 19:58:13.868699379 +0300
+@@ -200,7 +200,7 @@ int main(int argc, char *argv[]) {
+   KeySym key; /* key symbol for decoding key events */
+   XComposeStatus compose; /* needed for decoding key events */
+   /* player`s keys */
+-  char upkey='\'',rightkey='z',downkey='/',leftkey='x',quitkey='q'; 
++  char upkey='w',rightkey='a',downkey='s',leftkey='d',quitkey='q'; 
+   int count; /* counter for arg parsing loop */
+   int rate=15;
+   int wait;

@@ -1,0 +1,12 @@
+diff -rup xpacman-orig/xpacman.c xpacman/xpacman.c
+--- xpacman-orig/xpacman.c	2014-06-14 19:57:10.776700508 +0300
++++ xpacman/xpacman.c	2014-06-14 19:57:20.722700330 +0300
+@@ -85,7 +85,7 @@ void draw_y_line(XImage *,int,int,int,in
+ void update_image_from_map(Window ,GC),update_image(Window, GC);
+ void setup_map_memory(void),free_memory(void),print_usage(void);
+ void reset_display_map(void),setup_maze(void);
+-void maze_draw(int,int,int,int),draw_maze_point(int,int,enum mtype);
++void maze_draw(int,int,int,int),draw_maze_point(int,int,enum dtype);
+ void draw_maze_edges(void),draw_x_line(XImage *,int,int,int,int);
+ void setup_pill(XImage *),add_pills(int,int),setup_pacmen(void);
+ void setup_pacmanu(void),setup_pacman(XImage *),plot_pacman(Window,GC);
