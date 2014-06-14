@@ -9,6 +9,8 @@ jwm_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/jwm-config.patch"
 
+	export LIBS="$(pkg-config --libs xext xfixes xpm x11 xmu xrender)"
+	LDFLAGS="$LDFLAGS $LIBS" \
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
