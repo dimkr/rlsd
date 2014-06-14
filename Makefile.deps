@@ -107,6 +107,7 @@ xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib
 xorriso: musl zlib
 xpacman: musl tinyxlib
+xsoldier: musl tinyxlib
 xz: musl
 ytree: musl ncurses
 zlib: musl

@@ -1,0 +1,52 @@
+diff -rup xsoldier-1.8-orig/Makefile.am xsoldier-1.8/Makefile.am
+--- xsoldier-1.8-orig/Makefile.am	2014-06-14 21:38:22.339985112 +0300
++++ xsoldier-1.8/Makefile.am	2014-06-14 21:39:08.308984289 +0300
+@@ -68,9 +68,9 @@ AM_CFLAGS = $(X_CFLAGS) $(SDL_CFLAGS) $(
+ 
+ install-exec-local:
+ # install pixmap
+-	$(mkinstalldirs) $(DESTDIR)$(datadir)/games/xsoldier/
++	$(mkinstalldirs) $(DESTDIR)$(datadir)/xsoldier/
+ 	$(INSTALL_DATA) pixmap/*.xpm \
+-  $(DESTDIR)$(datadir)/games/xsoldier/
++  $(DESTDIR)$(datadir)/xsoldier/
+ # install score file
+ 	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/games/xsoldier/
+ 	test -e $(DESTDIR)$(localstatedir)/games/xsoldier/xsoldier.scores \
+@@ -79,8 +79,8 @@ install-exec-local:
+ 
+ uninstall-local:
+ # uninstall pixmap
+-	-rm -f $(DESTDIR)$(datadir)/games/xsoldier/*.xpm
+-	-rmdir $(DESTDIR)$(datadir)/games/xsoldier/
++	-rm -f $(DESTDIR)$(datadir)/xsoldier/*.xpm
++	-rmdir $(DESTDIR)$(datadir)/xsoldier/
+ # uninstall score file
+ 	-rm -f $(DESTDIR)$(localstatedir)/games/xsoldier/xsoldier.scores
+ 	-rmdir $(DESTDIR)$(localstatedir)/games/xsoldier/
+diff -rup xsoldier-1.8-orig/Makefile.in xsoldier-1.8/Makefile.in
+--- xsoldier-1.8-orig/Makefile.in	2014-06-14 21:38:22.339985112 +0300
++++ xsoldier-1.8/Makefile.in	2014-06-14 21:39:28.550983926 +0300
+@@ -778,9 +778,9 @@ uninstall-man: uninstall-man6
+ 
+ install-exec-local:
+ # install pixmap
+-	$(mkinstalldirs) $(DESTDIR)$(datadir)/games/xsoldier/
++	$(mkinstalldirs) $(DESTDIR)$(datadir)/xsoldier/
+ 	$(INSTALL_DATA) pixmap/*.xpm \
+-  $(DESTDIR)$(datadir)/games/xsoldier/
++  $(DESTDIR)$(datadir)/xsoldier/
+ # install score file
+ 	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/games/xsoldier/
+ 	test -e $(DESTDIR)$(localstatedir)/games/xsoldier/xsoldier.scores \
+@@ -789,8 +789,8 @@ install-exec-local:
+ 
+ uninstall-local:
+ # uninstall pixmap
+-	-rm -f $(DESTDIR)$(datadir)/games/xsoldier/*.xpm
+-	-rmdir $(DESTDIR)$(datadir)/games/xsoldier/
++	-rm -f $(DESTDIR)$(datadir)/xsoldier/*.xpm
++	-rmdir $(DESTDIR)$(datadir)/xsoldier/
+ # uninstall score file
+ 	-rm -f $(DESTDIR)$(localstatedir)/games/xsoldier/xsoldier.scores
+ 	-rmdir $(DESTDIR)$(localstatedir)/games/xsoldier/
