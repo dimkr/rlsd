@@ -9,6 +9,8 @@ rox_build() {
 	unzip rox-$PACKAGE_VERSION.zip
 	cd rox-master
 
+	patch -p 1 < "$BASE_DIR/patches/rox-pinboard.patch"
+
 	cd ROX-Filer/src
 	./configure --host=$HOST --with-platform=$PLATFORM --with-xterm=aterm
 	$MAKE
