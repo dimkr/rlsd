@@ -101,6 +101,7 @@ vile: musl ncurses
 wget: musl
 wpa_supplicant: musl libnl_tiny
 x11vnc: musl tinyxlib libjpeg_turbo
+xaos: musl libpng tinyxlib
 xasteroids: musl tinyxlib
 xchat: musl gtk
 xev: musl tinyxlib
