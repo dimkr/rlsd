@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-06-14 16:05:46.138949156 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-06-14 16:06:28.013948406 +0300
-@@ -3,116 +3,151 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-06-14 17:10:14.579879880 +0300
++++ jwm-2.2.2/example.jwmrc	2014-06-14 17:17:19.818872264 +0300
+@@ -3,116 +3,161 @@
  <JWM>
  
      <!-- The root menu. -->
@@ -106,6 +106,16 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	        <Program label="ncdu">aterm -title ncdu -e ncdu</Program>
 +	        <Program label="gtkfontsel">gtkfontsel</Program>
 +	        <Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
++		<Menu label="Daemons">
++			<Menu label="Dropbear">
++	        		<Program label="Start">sh /etc/init.d/02-dropbear</Program>
++	        		<Program label="Stop">killall dropbear</Program>
++			</Menu>
++			<Menu label="bftpd">
++	        		<Program label="Start">sh /etc/init.d/03-bftpd</Program>
++	        		<Program label="Stop">killall bftpd</Program>
++			</Menu>
++		</Menu>
 +	</Menu>
 +
 +	<Menu label="XShells">
@@ -236,7 +246,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </PopupStyle>
  
      <!-- Path where icons can be found.
-@@ -120,17 +155,17 @@
+@@ -120,17 +165,17 @@
           for icons in multiple paths.
        -->
      <IconPath>
@@ -257,7 +267,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +175,21 @@
+@@ -140,16 +185,21 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -283,7 +293,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -167,11 +207,17 @@
+@@ -167,11 +217,17 @@
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>
      <Key mask="A" key="F1">root:1</Key>

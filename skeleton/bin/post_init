@@ -2,10 +2,10 @@
 
 # post_init: a system initialization script for the layered file system
 
-# update cache and start all daemons
+# start all daemons
 for i in /etc/init.d/*
 do
-	$i
+	[ -x "$i" ] && $i
 done
 
 # show a login prompt
