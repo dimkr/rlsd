@@ -72,11 +72,15 @@ PACKAGES="linux
           guitar
           gtkcat
           shutbox
+          xpacman
+          xsoldier
+          xasteroids
           xhippo
           mtpaint
           gtksee
           mhwaveedit
           gcolor
+          xaos
           lynx
           sylpheed
           xchat
@@ -90,6 +94,7 @@ PACKAGES="linux
           calcurse
           gtklepin
           gbase
+          gv
           beaver
           gtkedit
           vile
@@ -102,11 +107,13 @@ PACKAGES="linux
           x11vnc
           screen
           gtkfind
-          grun"
+          grun
+          ffmpeg
+          xorriso"
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
-ISO_NAME="lazyux-$VERSION.iso"
+ISO_NAME="dslr-$VERSION.iso"
 
 # if all packages were built locally, use the build output
 if [ -d "$BASE_DIR/repo" ]
@@ -161,7 +168,7 @@ rm -rf "$initramfs_root"
 
 # create a 4 MB, FAT12 UEFI boot image, for UEFI boot
 dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=4
-/sbin/mkfs.vfat -F 12 -n "LAZYUX" "$iso_root/efiboot.img"
+/sbin/mkfs.vfat -F 12 -n "DSLR" "$iso_root/efiboot.img"
 mmd -i "$iso_root/efiboot.img" "EFI"
 mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
 mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/elilo.efi" "::EFI/BOOT/BOOTX64.EFI"
@@ -199,8 +206,8 @@ cd "$BASE_DIR"
 xorriso -as mkisofs \
         -iso-level 3 \
         -full-iso9660-filenames \
-        -volid "LAZYUX_$VERSION" \
-        -appid "Lazyux $VERSION" \
+        -volid "DSLR $VERSION" \
+        -appid "DSLR $VERSION" \
         -eltorito-boot isolinux.bin \
         -eltorito-catalog boot.cat \
         -no-emul-boot -boot-load-size 4 -boot-info-table \

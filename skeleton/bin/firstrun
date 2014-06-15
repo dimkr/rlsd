@@ -9,4 +9,4 @@
 touch /etc/firstrun.lck
 
 # show a greeting
-exec dillo /usr/share/doc/lazyux/getting_started.html
+exec dillo /usr/share/doc/dslr/getting_started.html

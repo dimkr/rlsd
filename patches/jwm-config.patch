@@ -134,7 +134,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
 -        <TrayButton label="JWM">root:1</TrayButton>
 -        <TrayButton label="_">showdesktop</TrayButton>
-+        <Program label="Help">dillo /usr/share/doc/lazyux/getting_started.html</Program>
++        <Program label="Help">dillo /usr/share/doc/dslr/getting_started.html</Program>
 +        <Program label="Find">gtkfind</Program>
 +        <Program label="Run Command">grun</Program>
  
@@ -153,7 +153,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
 +    <!-- Tray at the bottom. -->
 +    <Tray y="-1" height="24" border="1">
-+        <TrayButton label="Lazyux">root:1</TrayButton>
++        <TrayButton label="DSLR">root:1</TrayButton>
 +        <Pager/>
 +        <TaskList/>
          <Dock/>
