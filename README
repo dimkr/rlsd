@@ -1,81 +1,26 @@
- _
-| |    __ _ _____   _ _   ___  __
-| |   / _` |_  / | | | | | \ \/ /
-| |__| (_| |/ /| |_| | |_| |>  <
-|_____\__,_/___|\__, |\__,_/_/\_\
-                |___/
+     _     _
+  __| |___| |_ __
+ / _` / __| | '__|
+| (_| \__ \ | |
+ \__,_|___/_|_|
 
-Lazyux is an ultra-minimalistic, experimental, retro-like distribution of
-Linux-libre (http://linux-libre.fsfla.org/).
+DSLR is a small, "live", 64-bit Linux-libre (http://linux-libre.fsfla.org/)
+distribution in the spirit of Damn Small Linux (http://www.damnsmalllinux.org/),
+targeted at advanced users. It's a lightweight operating system that comes
+pre-loaded with many useful applications and breaths new life into nostalgic
+applications and old hardware.
 
-It tries to revive good, old applications from the days of Puppy Linux 1.x-2.x
-(http://www.puppylinux.org) and Damn Small Linux
-(http://www.damnsmalllinux.org/), by porting them so they work well on a modern,
-x86_64 base, hunting down bug after bug.
+DSLR revives classic applications like Ted (http://www.nllgg.nl/Ted/) 2.17 and
+Dillo (http://www.dillo.org/) 0.8.6, by porting them so they run against today's
+musl (http://www.musl-libc.org/) and Linux (https://www.kernel.org/) 3.x, on
+x86_64. This blend of good, old applications, a recent base and 64-bit support
+is unique to DSLR and makes it extremely fast.
 
-In addition, Lazyux contains some user-mode components ported over from OpenBSD
-(http://www.openbsd.org/).
-
-Features
+Building
 ========
 
-  - Extremely lightweight
-  - Ships as a small "core", but extensible through a fast package manager
-  - Can run "live" or as a "frugal" system
-  - Robust - uses a tough, writable layered file system
-  - Targets only x86_64 (both BIOS and UEFI systems)
-  - Statically-linked, for increased portability and security
-  - Built quickly, through a parallel, automatic process
-  - Written in C (no C++ code)
-  - Permissively-licensed
-
-The Lazyux Spirit
-=================
-
-  - Straight-forward and unobtrusive
-  - Simple and transparent: no bloat or too much abstraction
-  - No fear of getting one's hands dirty
-  - Freedom; both code and the knowledge behind it are freely available
-  - Cooperation with upstream projects, for the benefit of others
-
-Core Components
-===============
-
-Lazyux tries to provide a lightweight, uncluttered, keyboard-centric interface
-suitable for serious work.
-
-It does so by including the following packages:
-  - Linux-libre (http://linux-libre.fsfla.org/)
-  - musl (http://www.musl-libc.org/)
-  - toybox (www.landley.net/toybox/)
-  - lazy-utils (https://github.com/iguleder/lazy-utils)
-  - loksh (https://github.com/iguleder/loksh)
-  - luufs (https://github.com/iguleder/luufs)
-  - tinyxlib (https://github.com/iguleder/tinyxlib)
-  - tinyxserver (https://github.com/iguleder/tinyxserver)
-  - evilwm (http://www.6809.org.uk/evilwm/)
-  - ROX-Filer (http://rox.sourceforge.net/)
-  - GTK+ (http://www.gtk.org/)
-
-Challenges
-==========
-
-  - Since Lazyux includes modern libraries, some old applications to have to be
-    fixed to deal with 5 to 15 years of API breakage in their dependencies.
-  - Lots of old applcations abuse pointers, assume all integers are 32-bit wide
-    or make silly assumptions that do not apply to a 64-bit environment.
-  - Usually, old applications from the late 90's or early 2000's assume they
-    build and run against glibc (https://www.gnu.org/software/libc/), while
-    Lazyux uses musl (http://www.musl-libc.org/).
-  - Old Autoconf (https://www.gnu.org/software/autoconf/) files and various
-    *-config tools from the era before pkg-config
-    (http://pkg-config.freedesktop.org/) make it harder and harder to build
-    packages, as they become older.
-
-Building from Source
-====================
-
-Lazyux is cross-compiled through Ubuntu (http://www.ubuntu.com/) 14.04 x86_64.
+DSLR is built from source. It is cross-compiled through Ubuntu
+(http://www.ubuntu.com/) 14.04 x86_64.
 
 First, install required packages:
   sudo apt-get install build-essential autoconf automake autotools-dev \
@@ -96,74 +41,32 @@ Build a cross-compiler using musl-cross (https://github.com/iguleder/musl-cross)
   sudo ./build.sh
   cd ..
 
-Build the entire Lazyux package repository:
-  git clone https://github.com/iguleder/lazyux.git lazyux
-  cd lazyux
+Build the entire DSLR package repository:
+  git clone https://github.com/iguleder/dslr.git
+  cd dslr
   make packages
 
-Finally, generate a bootable Lazyux image:
+Finally, generate a bootable DSLR image:
   make iso
 
-It is possible to generate a Lazyux image without building all its packages
+It is possible to generate a DSLR image without building all its packages
 first. In this case, packages will be downloaded from the official repository.
-
-FAQ
-===
-  
-  What does 'Lazyux' mean?
-  ------------------------
-
-Lazyux is called that way because it's lazy - it tries to accomplish its goals
-using simple methods, instead of putting much effort for little benefit. For
-example, it does not implement its own window manager.
-
-The "ux" suffix is there because Lazyux is a Unix-like operating system.
-
-  What makes Lazyux different?
-  ----------------------------
-
-Lazyux packs a unique blend of simplicity, suckless (http://suckless.org/)
-spirit, cutting-edge and nostalgic applications, in a small and elegant package.
-
-  Why is Lazyux statically-linked?
-  --------------------------------
-
-  - To simplify the file system structure.
-  - To improve security.
-  - To improve the startup time of processes.
-  - To improve portability: static linking makes it easy to use packages built
-    for Lazyux on other distributions.
-
-  Can Lazyux build itself?
-  ------------------------
-
-No. Lazyux is not designed to be self-hosting.
-
-  Why isn't Lazyux self-hosting?
-  ------------------------------
-
-Lazyux tries to do one thing and do it well. Other distributions provide a great
-development environment and there's no reason to reinvent the wheel for zero
-additional value.
-
-  Why does Lazyux build using the old GCC 4.2.1?
-  ----------------------------------------------
-
-  - This version supports x86_64 and therefore satisfies the needs of Lazyux.
-  - Almost every new version of GCC breaks something.
-  - Using an older compiler version makes Lazyux faster to build.
-  - Some old packages in Lazyux are incompatible with newer versions of GCC, so
-    using an old version saves some work.
-  - This version has been used in the *BSD world for a long time, so it should
-    be easier to migrate from it to another compiler favored by *BSD, compared to
-    a later version of GCC.
 
 Credits and Legal Information
 =============================
 
-While the packages and patches included in Lazyux are licensed under various
-licenses, Lazyux itself is licensed under a 2-clause BSD license, see COPYING
-for the license text. For a list of its authors and contributors, see AUTHORS
-and THANKS.
+DSLR consists of many packages; each has its own license, detailed under DSLR's
+/usr/share/doc.
+
+The artwork of included in DSLR was taken from Damn Small Linux
+(http://www.damnsmalllinux.org/) and falls under the terms of the GPLv2
+(https://www.gnu.org/licenses/gpl-2.0.html) license.
+
+The icons included in DSLR's file system skeleton were taken from the
+public-domain Tango Desktop Project (http://tango.freedesktop.org/).
+
+The rest of DSLR (its build system, file system skeleton, etc') is free and
+unencumbered software released into the public domain; see COPYING for the
+license text.
 
 The ASCII art logo at the top was made using FIGlet (http://www.figlet.org/).
