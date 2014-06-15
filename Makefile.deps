@@ -47,6 +47,7 @@ gtklepin: musl gtk
 gtksee: musl gtk gdk_pixbuf
 guiftp: musl gtk
 guitar: musl gtk libarchive
+gv: musl libxaw3d ghostscript
 gzip: musl
 htop: musl ncurses
 ircii: musl ncurses
@@ -60,6 +61,7 @@ libarchive: musl zlib lbzip2 xz
 libjpeg_turbo: musl
 libnl_tiny: musl
 libpng: musl zlib
+libxaw3d: musl tinyxlib
 libxml2: musl
 linux: 
 linux_headers: 
