@@ -1,6 +1,6 @@
 diff -rup xsoldier-1.8-orig/Makefile.am xsoldier-1.8/Makefile.am
---- xsoldier-1.8-orig/Makefile.am	2014-06-14 21:38:22.339985112 +0300
-+++ xsoldier-1.8/Makefile.am	2014-06-14 21:39:08.308984289 +0300
+--- xsoldier-1.8-orig/Makefile.am	2014-06-15 21:45:37.148855675 +0300
++++ xsoldier-1.8/Makefile.am	2014-06-15 21:45:43.836855556 +0300
 @@ -68,9 +68,9 @@ AM_CFLAGS = $(X_CFLAGS) $(SDL_CFLAGS) $(
  
  install-exec-local:
@@ -25,8 +25,8 @@ diff -rup xsoldier-1.8-orig/Makefile.am xsoldier-1.8/Makefile.am
  	-rm -f $(DESTDIR)$(localstatedir)/games/xsoldier/xsoldier.scores
  	-rmdir $(DESTDIR)$(localstatedir)/games/xsoldier/
 diff -rup xsoldier-1.8-orig/Makefile.in xsoldier-1.8/Makefile.in
---- xsoldier-1.8-orig/Makefile.in	2014-06-14 21:38:22.339985112 +0300
-+++ xsoldier-1.8/Makefile.in	2014-06-14 21:39:28.550983926 +0300
+--- xsoldier-1.8-orig/Makefile.in	2014-06-15 21:45:37.147855676 +0300
++++ xsoldier-1.8/Makefile.in	2014-06-15 21:45:43.836855556 +0300
 @@ -778,9 +778,9 @@ uninstall-man: uninstall-man6
  
  install-exec-local:
@@ -50,3 +50,15 @@ diff -rup xsoldier-1.8-orig/Makefile.in xsoldier-1.8/Makefile.in
  # uninstall score file
  	-rm -f $(DESTDIR)$(localstatedir)/games/xsoldier/xsoldier.scores
  	-rmdir $(DESTDIR)$(localstatedir)/games/xsoldier/
+diff -rup xsoldier-1.8-orig/xsoldier.h xsoldier-1.8/xsoldier.h
+--- xsoldier-1.8-orig/xsoldier.h	2014-06-15 21:45:37.144855676 +0300
++++ xsoldier-1.8/xsoldier.h	2014-06-15 21:46:11.752855056 +0300
+@@ -33,7 +33,7 @@ typedef unsigned long Pixel;
+ #define WAIT 35000
+ #endif /* WAIT */
+ 
+-#define PIXMAP DATADIR "/games/xsoldier/"
++#define PIXMAP DATADIR "/xsoldier/"
+ #define SCORE LOCALSTATEDIR "/games/xsoldier/"
+ #define SCOREFILE "xsoldier.scores"
+ 
