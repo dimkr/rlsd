@@ -1,6 +1,6 @@
 PACKAGE_VERSION="0.4"
 PACKAGE_SOURCES="http://sourceforge.net/projects/shutthebox/files/shutthebox/$PACKAGE_VERSION/shutbox-$PACKAGE_VERSION.tar.gz"
-PACKAGE_DESC="A dice ame"
+PACKAGE_DESC="A dice game"
 
 shutbox_build() {
 	[ -d shutbox-$PACKAGE_VERSION ] && rm -rf shutbox-$PACKAGE_VERSION
