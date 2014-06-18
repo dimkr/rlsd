@@ -7,7 +7,6 @@ sdl_build() {
 	tar -xzvf SDL-$PACKAGE_VERSION.tar.gz
 	cd SDL-$PACKAGE_VERSION
 
-	CFLAGS="-D_POSIX_SOURCE $CFLAGS" \
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \

@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.0.27.2"
+PACKAGE_VERSION="1.0.28"
 PACKAGE_SOURCES="ftp://ftp.alsa-project.org/pub/lib/alsa-lib-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="Core audio library"
 
@@ -7,11 +7,6 @@ alsa_lib_build() {
 	tar -xjvf alsa-lib-$PACKAGE_VERSION.tar.bz2
 	cd alsa-lib-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/alsa-lib-musl.patch"
-	patch -p 1 < "$BASE_DIR/patches/alsa-lib-wordexp.patch"
-	patch -p 1 < "$BASE_DIR/patches/alsa-lib-mutex.patch"
-
-	CFLAGS="-D_POSIX_C_SOURCE=200809L $CFLAGS" \
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

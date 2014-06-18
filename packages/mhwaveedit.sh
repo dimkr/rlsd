@@ -8,7 +8,6 @@ mhwaveedit_build() {
 	cd mhwaveedit-$PACKAGE_VERSION
 
 	patch -p1 < "$BASE_DIR/patches/mhwaveedit-musl.patch"
-	CFLAGS="-D_POSIX_C_SOURCE=200809L $CFLAGS" \
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
