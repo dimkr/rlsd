@@ -1,11 +1,9 @@
 #!/bin/sh
 
-# post_init: a system initialization script for the layered file system
-
 # start all daemons
 for i in /etc/init.d/*
 do
-	[ -x "$i" ] && $i
+	[ -x "$i" ] && $i start
 done
 
 # show a login prompt

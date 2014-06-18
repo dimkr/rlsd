@@ -112,4 +112,4 @@ mount -B /tmp /mnt/union/tmp
 echo " done."
 
 # continue the boot process inside the layered file system
-exec /mnt/ro/bin/chroot /mnt/union /bin/post_init
+exec /mnt/ro/bin/chroot /mnt/union /etc/rc.d/rc.unioninit

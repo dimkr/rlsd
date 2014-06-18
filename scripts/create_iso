@@ -55,7 +55,6 @@ PACKAGES="linux
           libarchive
           packdude
           dropbear
-          bftpd
           nc
           tinyunmute
           less

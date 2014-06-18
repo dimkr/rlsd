@@ -1,0 +1,17 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		# start tftpd, in a restricted root directory
+		echo -n "Starting tftpd ..."
+		mount -t tmpfs -o mode=644,noexec,nosuid,nodev,size=10% tftp /srv/tftp
+		tftpd
+		echo " done."
+		;;
+
+	stop)
+		# stop tftpd and unmount its root
+		killall tftpd
+		umount /srv/tftp
+		;;
+esac

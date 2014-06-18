@@ -1,5 +1,11 @@
 #!/bin/ksh
 
+# stop all daemons
+for i in /etc/init.d/*
+do
+        [ -x "$i" ] && $i stop 2>/dev/null
+done
+
 # unmount the union file system
 echo -n "Unmounting the layered file system ..."
 umount /mnt/union

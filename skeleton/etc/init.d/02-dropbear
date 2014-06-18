@@ -1,12 +1,23 @@
 #!/bin/sh
 
-# start Dropbear
-echo -n "Starting Dropbear ..."
+case "$1" in
+	start)
+		echo -n "Starting Dropbear ..."
 
-for i in rsa dss ecdsa
-do
-	dropbearkey -t $i -f /etc/dropbear/dropbear_${i}_host_key > /dev/null 2>&1
-done
-dropbear
+		# generate encryption keys
+		for i in rsa dss ecdsa
+		do
+			[ -f /etc/dropbear/dropbear_${i}_host_key ] && continue
+			dropbearkey -t $i -f /etc/dropbear/dropbear_${i}_host_key > /dev/null 2>&1
+		done
 
-echo " done."
+		# start Dropbear
+		dropbear
+
+		echo " done."
+		;;
+
+	stop)
+		killall dropbear
+		;;
+esac

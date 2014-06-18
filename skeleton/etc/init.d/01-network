@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ "start" != "$1" ] && exit
+
 # set the hostname
 echo -n "Setting the hostname ..."
 

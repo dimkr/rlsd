@@ -10,12 +10,12 @@ else
 	dropbear="false"
 fi
 
-# check whether bftpd is running
-if [ -n "$(pidof bftpd)" ]
+# check whether tftpd is running
+if [ -n "$(pidof tftpd)" ]
 then
-	bftpd="true"
+	tftpd="true"
 else
-	bftpd="false"
+	tftpd="false"
 fi
 
 eval $(echo "<window>
@@ -40,10 +40,10 @@ eval $(echo "<window>
 					<action>EXIT=dropbear</action>
 				</checkbox>
 				<checkbox>
-					<label>bftpd</label>
-					<default>$bftpd</default>
-					<variable>bftpd</variable>
-					<action>EXIT=bftpd</action>
+					<label>tftpd</label>
+					<default>$tftpd</default>
+					<variable>tftpd</variable>
+					<action>EXIT=tftpd</action>
 				</checkbox>
 			</vbox>
 		</hbox>
@@ -54,18 +54,18 @@ case "$EXIT" in
 	dropbear)
 		if [ "true" = "$dropbear" ]
 		then
-			sh /etc/init.d/02-dropbear
+			sh /etc/init.d/02-dropbear start
 		else
-			killall dropbear
+			sh /etc/init.d/02-dropbear stop
 		fi
 		;;
 
-	bftpd)
-		if [ "true" = "$bftpd" ]
+	tftpd)
+		if [ "true" = "$tftpd" ]
 		then
-			sh /etc/init.d/03-bftpd
+			sh /etc/init.d/03-tftpd start
 		else
-			killall bftpd
+			sh /etc/init.d/03-tftpd stop
 		fi
 		;;
 
