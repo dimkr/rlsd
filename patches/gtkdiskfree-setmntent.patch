@@ -1,0 +1,163 @@
+diff -rup gtkdiskfree-1.6.5-orig/src/diskfree.c gtkdiskfree-1.6.5/src/diskfree.c
+--- gtkdiskfree-1.6.5-orig/src/diskfree.c	2014-06-22 14:18:56.937970989 +0300
++++ gtkdiskfree-1.6.5/src/diskfree.c	2014-06-22 14:24:40.558964836 +0300
+@@ -552,25 +552,26 @@ list_filesystems (void)
+     put the mount point as information.
+   */
+   file = setmntent(FSTAB_FILESYSTEMS, "r");
+-  
+-  while ((mnt = getmntent(file)) != NULL)
+-    {
+-      if (strcmp(mnt->mnt_dir, "swap") != 0)
+-	{
+-	  filesystem_t *fil;
+-	  
+-	  fil = g_malloc(sizeof(filesystem_t));
+-	  fil->line = clist_find_line(mnt->mnt_dir);
+-	  fil->mounted = 0;
+-	  fil->file[MOUNT_POINT_COLUMN] = g_strdup(mnt->mnt_dir);
+-	  fil->file[CAPACITY_COLUMN] = g_strdup("");
+-	
+-	  list = g_list_append(list, fil);
+-	}
+-    } 
+-  endmntent(file);
+-  free(mnt);
+-  
++  if (NULL != file) { 
++    while ((mnt = getmntent(file)) != NULL)
++      {
++        if (strcmp(mnt->mnt_dir, "swap") != 0)
++  	{
++  	  filesystem_t *fil;
++  	  
++  	  fil = g_malloc(sizeof(filesystem_t));
++  	  fil->line = clist_find_line(mnt->mnt_dir);
++  	  fil->mounted = 0;
++  	  fil->file[MOUNT_POINT_COLUMN] = g_strdup(mnt->mnt_dir);
++  	  fil->file[CAPACITY_COLUMN] = g_strdup("");
++  	
++  	  list = g_list_append(list, fil);
++  	}
++      } 
++    endmntent(file);
++    free(mnt);
++  }
++ 
+   /*
+     We get now the mounted filesystems with
+     the /etc/mtab file. For each we see if
+@@ -579,35 +580,36 @@ list_filesystems (void)
+     we put theirs values.
+   */
+   file = setmntent(MTAB_FILESYSTEMS, "r");
+-  
+-  while ((mnt = getmntent(file)) != NULL)
+-    {
+-      list = g_list_first(list);
+-      sear = list;
+-      while (sear)
+-	{
+-	  if (list_search(((filesystem_t *)sear->data), mnt->mnt_dir))
+-	    {
+-	      list_mounted_filesystem(mnt, ((filesystem_t *)(sear->data)));
+-	      break;
+-	    }
+-	  sear = sear->next;
+-	}
+-      if (sear == NULL)
+-	{
+-	  filesystem_t *fil;
+-	  
+-	  fil = g_malloc(sizeof(filesystem_t));
+-	  fil->line = clist_find_line(mnt->mnt_dir);
+-	  fil->file[MOUNT_POINT_COLUMN] = g_strdup(mnt->mnt_dir);
+-	  fil->file[CAPACITY_COLUMN] = g_strdup("");
+-	  list_mounted_filesystem(mnt, fil);
+-	  list = g_list_append(list, fil);
+-	}
+-      sear = NULL;
+-    }
+-  endmntent(file);
+-  free(mnt);
++  if (NULL != file) { 
++    while ((mnt = getmntent(file)) != NULL)
++      {
++        list = g_list_first(list);
++        sear = list;
++        while (sear)
++  	{
++  	  if (list_search(((filesystem_t *)sear->data), mnt->mnt_dir))
++  	    {
++  	      list_mounted_filesystem(mnt, ((filesystem_t *)(sear->data)));
++  	      break;
++  	    }
++  	  sear = sear->next;
++  	}
++        if (sear == NULL)
++  	{
++  	  filesystem_t *fil;
++  	  
++  	  fil = g_malloc(sizeof(filesystem_t));
++  	  fil->line = clist_find_line(mnt->mnt_dir);
++  	  fil->file[MOUNT_POINT_COLUMN] = g_strdup(mnt->mnt_dir);
++  	  fil->file[CAPACITY_COLUMN] = g_strdup("");
++  	  list_mounted_filesystem(mnt, fil);
++  	  list = g_list_append(list, fil);
++  	}
++        sear = NULL;
++      }
++    endmntent(file);
++    free(mnt);
++  }
+   
+   /*
+     We search all not mounted filesystems
+@@ -617,26 +619,27 @@ list_filesystems (void)
+     in the list.
+   */
+   file = setmntent(FSTAB_FILESYSTEMS, "r");
+-  
+-  while ((mnt = getmntent(file)) != NULL)
+-    {
+-      list = g_list_first(list);
+-      sear = list;
+-      
+-      while (sear)
+-	{
+-	  if (list_search(((filesystem_t *)sear->data), mnt->mnt_dir) &&
+-	      !((filesystem_t *)sear->data)->mounted)
+-	    {
+-	      list_not_mounted_filesystem(mnt, (filesystem_t *)sear->data);
+-	      break;
+-	    }
+-	  sear = sear->next;
+-	}
+-      sear = NULL;
+-    }
+-  endmntent(file);
+-  free(mnt);
++  if (NULL != file) { 
++    while ((mnt = getmntent(file)) != NULL)
++      {
++        list = g_list_first(list);
++        sear = list;
++        
++        while (sear)
++  	{
++  	  if (list_search(((filesystem_t *)sear->data), mnt->mnt_dir) &&
++  	      !((filesystem_t *)sear->data)->mounted)
++  	    {
++  	      list_not_mounted_filesystem(mnt, (filesystem_t *)sear->data);
++  	      break;
++  	    }
++  	  sear = sear->next;
++  	}
++        sear = NULL;
++      }
++    endmntent(file);
++    free(mnt);
++  }
+   
+   /*
+     We set the STATUS case of all lines to

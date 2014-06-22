@@ -8,6 +8,7 @@ gtkdiskfree_build() {
 	cd gtkdiskfree-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/gtkdiskfree-build.patch"
+	patch -p 1 < "$BASE_DIR/patches/gtkdiskfree-setmntent.patch"
 
 	./configure --host=$HOST --prefix= --datadir=/usr/share --disable-nls
 	$MAKE
