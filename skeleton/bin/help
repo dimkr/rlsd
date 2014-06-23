@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# help: a help page
+
+exec dillo /usr/share/doc/dslr/getting_started.html

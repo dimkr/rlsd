@@ -1,6 +1,6 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-06-14 21:03:09.660998483 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-06-15 19:38:03.685992734 +0300
+--- jwm-2.2.2-orig/example.jwmrc	2014-06-23 20:55:10.112984185 +0300
++++ jwm-2.2.2/example.jwmrc	2014-06-23 20:55:22.195983968 +0300
 @@ -3,116 +3,166 @@
  <JWM>
  
@@ -24,7 +24,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Program icon="lock.png" label="Lock">
 -            xscreensaver-command -lock
 -        </Program>
-+    <RootMenu>
++    <RootMenu onroot="3">
 +        <Program label="Settings">settings</Program>
 +	<Menu label="File managers" labeled="true">
 +	        <Program label="ROX-Filer">rox</Program>
@@ -134,7 +134,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
 -        <TrayButton label="JWM">root:1</TrayButton>
 -        <TrayButton label="_">showdesktop</TrayButton>
-+        <Program label="Help">dillo /usr/share/doc/dslr/getting_started.html</Program>
++        <Program label="Help">help</Program>
 +        <Program label="Find">gtkfind</Program>
 +        <Program label="Run Command">grun</Program>
  
@@ -153,7 +153,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
 +    <!-- Tray at the bottom. -->
 +    <Tray y="-1" height="24" border="1">
-+        <TrayButton label="DSLR">root:1</TrayButton>
++        <TrayButton label="DSLR">root:3</TrayButton>
 +        <Pager/>
 +        <TaskList/>
          <Dock/>
@@ -272,7 +272,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +190,21 @@
+@@ -140,16 +190,20 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -294,11 +294,10 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +    <!-- Startup commands -->
 +    <StartupCommand>conky</StartupCommand>
 +    <StartupCommand>rox -p default</StartupCommand>
-+    <StartupCommand>firstrun</StartupCommand>
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -167,11 +222,17 @@
+@@ -167,11 +221,17 @@
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>
      <Key mask="A" key="F1">root:1</Key>
