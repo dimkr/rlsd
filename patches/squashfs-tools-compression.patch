@@ -1,6 +1,6 @@
-diff -rup squashfs4.2-orig/squashfs-tools/lzma_xz_wrapper.c squashfs4.2/squashfs-tools/lzma_xz_wrapper.c
---- squashfs4.2-orig/squashfs-tools/lzma_xz_wrapper.c	2014-04-21 18:41:21.416964856 +0300
-+++ squashfs4.2/squashfs-tools/lzma_xz_wrapper.c	2014-04-24 23:14:55.211966920 +0300
+diff -rup squashfs4.3-orig/squashfs-tools/lzma_xz_wrapper.c squashfs4.3/squashfs-tools/lzma_xz_wrapper.c
+--- squashfs4.3-orig/squashfs-tools/lzma_xz_wrapper.c	2014-06-23 19:13:19.521980345 +0300
++++ squashfs4.3/squashfs-tools/lzma_xz_wrapper.c	2014-06-23 19:13:29.146980173 +0300
 @@ -32,7 +32,7 @@
  #define LZMA_UNCOMP_SIZE 8
  #define LZMA_HEADER_SIZE (LZMA_PROPS_SIZE + LZMA_UNCOMP_SIZE)
@@ -10,3 +10,15 @@ diff -rup squashfs4.2-orig/squashfs-tools/lzma_xz_wrapper.c squashfs4.2/squashfs
  #define MEMLIMIT (32 * 1024 * 1024)
  
  static int lzma_compress(void *dummy, void *dest, void *src,  int size,
+diff -rup squashfs4.3-orig/squashfs-tools/xz_wrapper.c squashfs4.3/squashfs-tools/xz_wrapper.c
+--- squashfs4.3-orig/squashfs-tools/xz_wrapper.c	2014-06-23 19:13:19.522980345 +0300
++++ squashfs4.3/squashfs-tools/xz_wrapper.c	2014-06-23 19:13:44.010979906 +0300
+@@ -446,7 +446,7 @@ static int xz_compress(void *strm, void
+ 	for(i = 0; i < stream->filters; i++) {
+ 		struct filter *filter = &stream->filter[i];
+ 
+-        	if(lzma_lzma_preset(&stream->opt, LZMA_PRESET_DEFAULT))
++        	if(lzma_lzma_preset(&stream->opt, (9 | LZMA_PRESET_EXTREME)))
+                 	goto failed;
+ 
+ 		stream->opt.dict_size = stream->dictionary_size;
