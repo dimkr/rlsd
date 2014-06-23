@@ -205,7 +205,7 @@ cd "$BASE_DIR"
 xorriso -as mkisofs \
         -iso-level 3 \
         -full-iso9660-filenames \
-        -volid "DSLR $VERSION" \
+        -volid "DSLR_$VERSION" \
         -appid "DSLR $VERSION" \
         -eltorito-boot isolinux.bin \
         -eltorito-catalog boot.cat \
