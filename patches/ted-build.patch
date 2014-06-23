@@ -6,7 +6,7 @@ diff -rup ted-master-orig/Ted/tedConfig.h.in ted-master/Ted/tedConfig.h.in
  
  #   ifndef	DOCUMENT_DIR
 -#	define	DOCUMENT_DIR	PKGDIR "/Ted/"
-+#	define	DOCUMENT_DIR	"/usr/share/ted/"
++#	define	DOCUMENT_DIR	"/usr/share/ted/Ted/"
  #   endif
  
  /************************************************************************/
