@@ -1,0 +1,14 @@
+diff -rup gcalendar-0.6.0-orig/gtkcalendar.c gcalendar-0.6.0/gtkcalendar.c
+--- gcalendar-0.6.0-orig/gtkcalendar.c	2014-06-23 19:49:59.100992924 +0300
++++ gcalendar-0.6.0/gtkcalendar.c	2014-06-23 19:51:03.262991775 +0300
+@@ -27,8 +27,8 @@
+ #include "gtkcalendar.h"
+ #include "lib_date.h"
+ 
+-#define HELVETICA_10_FONT  "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+-#define FIXED_10_FONT      "-b&h-lucidatypewriter-medium-r-normal-*-10-*-*-*-*-*-*-*"
++#define HELVETICA_10_FONT  "-*-lucida-bold-r-*-*-10-*-*-*-*-*-*-*"
++#define FIXED_10_FONT      "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+ 
+ 
+ #define CALENDAR_MARGIN          4
