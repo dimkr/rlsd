@@ -21,22 +21,22 @@ if [ 1 -eq $count ]
 then
 	interface="$interfaces"
 else
-	INTERFACE_DIALOG='<window title="Wireless Network Configuration">
-		<vbox>
-			<text><label>Choose a network interface:</label></text>
-			<combobox>
-				<variable>interface</variable>'
+	INTERFACE_DIALOG='<wtitle>Wireless Network Configuration</wtitle>
+<vbox>
+	<text><label>Choose a network interface:</label></text>
+	<combobox>
+		<variable>interface</variable>'
 
 	for i in $interfaces
 	do
-		INTERFACE_DIALOG="$INTERFACE_DIALOG <item>$i</item>"
+		INTERFACE_DIALOG="$INTERFACE_DIALOG
+		<item>$i</item>"
 	done
 
 	export INTERFACE_DIALOG="$INTERFACE_DIALOG
-			</combobox>
-			<button ok></button>
-		</vbox>
-	</window>"
+	</combobox>
+	<button ok></button>
+</vbox>"
 
 	eval $(gtkdialog1 --program=INTERFACE_DIALOG)
 fi
@@ -51,7 +51,7 @@ ifconfig $interface down
 ifconfig $interface up
 
 # let the user choose the wireless network
-WIRELESS_DIALOG='<window title="Wireless Network Configuration">
+WIRELESS_DIALOG='<wtitle>Wireless Network Configuration</wtitle>
 <vbox>
 	<text><label>Choose a wireless network:</label></text>
 	<combobox>
@@ -59,18 +59,18 @@ WIRELESS_DIALOG='<window title="Wireless Network Configuration">
 
 for i in $(iw $interface scan | grep SSID: | awk '{print $2}')
 do
-	WIRELESS_DIALOG="$WIRELESS_DIALOG <item>$i</item>"
+	WIRELESS_DIALOG="$WIRELESS_DIALOG
+		<item>$i</item>"
 done
 
 export WIRELESS_DIALOG="$WIRELESS_DIALOG
-		</combobox>
-		<hbox>
-			<text><label>Passphrase:</label></text>
-			<entry><variable>passphrase</variable></entry>
-		</hbox>
-		<button ok></button>
-	</vbox>
-</window>"
+	</combobox>
+	<hbox>
+		<text><label>Passphrase:</label></text>
+		<entry><variable>passphrase</variable></entry>
+	</hbox>
+	<button ok></button>
+</vbox>"
 
 eval $(gtkdialog1 --program=WIRELESS_DIALOG)
 

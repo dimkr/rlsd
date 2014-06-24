@@ -47,11 +47,11 @@ _list_removable_packages() {
 
 _choose_package() {
 	echo "
-<window title="packdude">
-	<tree selection-mode=\"1\">
-	<label>Name | Version | Description</label>
-	<height>500</height>
-	<width>600</width>
+<wtitle>Package Manager</wtitle>
+<tree selection-mode=\"1\">
+<label>Name | Version | Description</label>
+<height>500</height>
+<width>600</width>
 "
 	case "$1" in
 		install)
@@ -66,27 +66,25 @@ _choose_package() {
 	esac
 
 	echo "	<variable>choice</variable>
-	<action>exit="ok"</action>
-	</tree>
-</window>"
+<action>exit="ok"</action>
+</tree>"
 }
 
-eval $(echo "<window title=\"packdude\">
-	<hbox>
-		<button>
-			<label>Install a package</label>
-			<action>EXIT=install</action>
-		</button>
-		<button>
-			<label>Remove a package</label>
-			<action>EXIT=remove</action>
-		</button>
-		<button>
-			<label>View installed packages</label>
-			<action>EXIT=list</action>
-		</button>
-	</hbox>
-</window>" | gtkdialog1 -s)
+eval $(echo "<wtitle>Package Manager</wtitle>
+<hbox>
+	<button>
+		<label>Install a package</label>
+		<action>EXIT=install</action>
+	</button>
+	<button>
+		<label>Remove a package</label>
+		<action>EXIT=remove</action>
+	</button>
+	<button>
+		<label>View installed packages</label>
+		<action>EXIT=list</action>
+	</button>
+</hbox>" | gtkdialog1 -s)
 if [ "install" != "$EXIT" ] && [ "remove" != "$EXIT" ] && [ "list" != "$EXIT" ]
 then
 	exit 1

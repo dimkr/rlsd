@@ -18,37 +18,36 @@ else
 	tftpd="false"
 fi
 
-eval $(echo "<window>
+eval $(echo "<wtitle>Settings</wtitle>
+<hbox>
 	<hbox>
-		<hbox>
-			<vbox>
-				<button>
-					<label>Wireless Wizard</label>
-					<action>EXIT=wifi-wizard</action>
-				</button>
-				<button>
-					<label>Package Manager</label>
-					<action>EXIT=gpackdude</action>
-				</button>
-			</vbox>
-			<vseparator></vseparator>
-			<vbox>
-				<checkbox>
-					<label>Dropbear</label>
-					<default>$dropbear</default>
-					<variable>dropbear</variable>
-					<action>EXIT=dropbear</action>
-				</checkbox>
-				<checkbox>
-					<label>tftpd</label>
-					<default>$tftpd</default>
-					<variable>tftpd</variable>
-					<action>EXIT=tftpd</action>
-				</checkbox>
-			</vbox>
-		</hbox>
+		<vbox>
+			<button>
+				<label>Wireless Wizard</label>
+				<action>EXIT=wifi-wizard</action>
+			</button>
+			<button>
+				<label>Package Manager</label>
+				<action>EXIT=gpackdude</action>
+			</button>
+		</vbox>
+		<vseparator></vseparator>
+		<vbox>
+			<checkbox>
+				<label>Dropbear</label>
+				<default>$dropbear</default>
+				<variable>dropbear</variable>
+				<action>EXIT=dropbear</action>
+			</checkbox>
+			<checkbox>
+				<label>tftpd</label>
+				<default>$tftpd</default>
+				<variable>tftpd</variable>
+				<action>EXIT=tftpd</action>
+			</checkbox>
+		</vbox>
 	</hbox>
-</window>" | gtkdialog1 -s)
+</hbox>" | gtkdialog1 -s)
 
 case "$EXIT" in
 	dropbear)
