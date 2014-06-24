@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.2.3"
+PACKAGE_VERSION="2.2.4"
 PACKAGE_SOURCES="http://www.ffmpeg.org/releases/ffmpeg-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A complete multimedia solution"
 
@@ -20,7 +20,7 @@ ffmpeg_build() {
 	            --cc="$CC" \
 	            --ld="$CC" \
 	            --cpu="$ARCH" \
-	            --extra-cflags="-D_POSIX_SOURCE $CFLAGS" \
+	            --extra-cflags="$CFLAGS" \
 	            --extra-ldflags="$LDFLAGS" \
 	            --disable-debug
 	$MAKE
