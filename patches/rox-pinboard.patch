@@ -52,7 +52,7 @@ diff -rup rox-master-orig/ROX-Filer/src/pinboard.c rox-master/ROX-Filer/src/pinb
 +		pinboard_pin("/bin/Ted", "Ted", 64 + x, 180 + y);
 +		set_icon_path("/bin/Ted", "/usr/share/pixmaps/Ted.png");
 +		pinboard_pin("/bin/siag", "Siag", 128 + x, 180 + y);
-+		set_icon_path("/bin/siag", "/usr/share/siag/common/bitmaps/siag.xpm");
++		set_icon_path("/bin/siag", "/usr/share/pixmaps/spreadsheet.xpm");
 +		pinboard_pin("/bin/xhippo", "xhippo", 196 + x, 180 + y);
 +		set_icon_path("/bin/xhippo", "/usr/share/pixmaps/audio.xpm");
 +	}
