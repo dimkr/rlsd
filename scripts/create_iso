@@ -190,6 +190,12 @@ do
 	mkfontdir
 done
 
+# add DSLR's documentation
+install -m 644 "$BASE_DIR/README" "$root_fs/usr/share/doc/dslr/README"
+install -m 644 "$BASE_DIR/AUTHORS" "$root_fs/usr/share/doc/dslr/AUTHORS"
+install -m 644 "$BASE_DIR/THANKS" "$root_fs/usr/share/doc/dslr/THANKS"
+install -m 644 "$BASE_DIR/COPYING" "$root_fs/usr/share/doc/dslr/COPYING"
+
 # generate the root file system image
 chown -R 0:0 "$root_fs"
 mksquashfs "$root_fs" \
