@@ -1,11 +1,12 @@
-PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/wjaguar/mtPaint/archive/master.zip,mtpaint-$PACKAGE_VERSION.zip"
+PACKAGE_VERSION="3.44.73"
+COMMIT="3368929b5c44fd62e04219c6d2a5054b6b5e678f"
+PACKAGE_SOURCES="https://github.com/wjaguar/mtPaint/archive/$COMMIT.zip,mtpaint-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="An image editor"
 
 mtpaint_build() {
-	[ -d mtPaint-master ] && rm -rf mtPaint-master
+	[ -d mtPaint-$COMMIT ] && rm -rf mtPaint-$COMMIT
 	unzip mtpaint-$PACKAGE_VERSION.zip
-	cd mtPaint-master
+	cd mtPaint-$COMMIT
 
 	patch -p1 < "$BASE_DIR/patches/mtpaint-gtk1.patch"
 
