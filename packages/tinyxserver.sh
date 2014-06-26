@@ -17,7 +17,8 @@ tinyxserver_build() {
 	$MAKE CC="$CC" \
 	      EXTRA_CFLAGS="$CFLAGS" \
 	      LDFLAGS="$LDFLAGS" \
-	      FONTDIR="/usr/share/fonts"
+	      FONTDIR="/usr/share/fonts" \
+	      Xfbdev xinit
 }
 
 tinyxserver_package() {
