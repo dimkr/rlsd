@@ -14,6 +14,7 @@ INITRAMFS_FILES="bin/toybox
                  bin/mount
                  bin/umount
                  bin/luufs
+                 bin/fusermount
                  bin/sleep
                  bin/clear
                  bin/cat
@@ -160,8 +161,8 @@ iso_root="$(mktemp -d)"
 
 # generate a compressed initramfs
 cd "$initramfs_root"
-find -name .gitignore -delete
 chown -R 0:0 .
+chmod 1777 tmp
 find . | cpio -o -H newc | xz -9 -e --check=none > "$iso_root/initrd.xz"
 rm -rf "$initramfs_root"
 
@@ -182,6 +183,9 @@ mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 
+# remove all .gitignore files
+find "$root_fs" -name .gitignore -delete
+
 # generate font cache files
 for i in "$root_fs/usr/share/fonts"/*
 do
@@ -198,6 +202,9 @@ install -m 644 "$BASE_DIR/COPYING" "$root_fs/usr/share/doc/dslr/COPYING"
 
 # generate the root file system image
 chown -R 0:0 "$root_fs"
+chown 1000:1000 "$root_fs/home/someone"
+chmod 755 "$root_fs/home/someone"
+chmod 1777 "$root_fs/tmp"
 mksquashfs "$root_fs" \
            "$iso_root/rootfs.sfs" \
            -comp xz \

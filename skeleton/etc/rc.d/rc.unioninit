@@ -6,6 +6,6 @@ do
 	[ -x "$i" ] && $i start
 done
 
-# show a login prompt
+# automatically log in as root
 cat /etc/issue
-exec cttyhack login
+exec login -f root

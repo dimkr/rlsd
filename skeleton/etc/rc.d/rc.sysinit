@@ -95,7 +95,7 @@ fi
 echo -n " done.
 Setting up a layered file system ..."
 
-luufs /mnt/ro /mnt/rw /mnt/union
+luufs -o allow_other,default_permissions /mnt/ro /mnt/rw /mnt/union
 mount -B /proc /mnt/union/proc
 mount -B /sys /mnt/union/sys
 mount -R /dev /mnt/union/dev
