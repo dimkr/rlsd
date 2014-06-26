@@ -4,4 +4,12 @@ export PS1='[\u@\w]\$ '
 export HISTFILE="$HOME/.ksh_history"
 export REPO="http://repo.dimakrasner.com:1024"
 export XINITRC="/etc/xinitrc"
-[ -z "$(pidof xinit)" ] && xinit
+if [ -z "$(pidof xinit)" ]
+then
+	for i in 1 2 3 4 5 6 7 8 9 10
+	do
+		xinit
+		[ 0 -eq $? ] && break
+		sleep 1
+	done
+fi
