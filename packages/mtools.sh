@@ -7,6 +7,9 @@ mtools_build() {
 	tar -xjvf mtools-$PACKAGE_VERSION.tar.bz2
 	cd mtools-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/mtools-musl.patch"
+
+	autoconf
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
