@@ -108,8 +108,7 @@ PACKAGES="linux
           screen
           gtkfind
           grun
-          ffmpeg
-          xorriso"
+          ffmpeg"
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"

@@ -1,0 +1,173 @@
+diff -rup mkfontscale-1.1.1-orig/configure.ac mkfontscale-1.1.1/configure.ac
+--- mkfontscale-1.1.1-orig/configure.ac	2014-06-27 10:04:36.287960776 +0300
++++ mkfontscale-1.1.1/configure.ac	2014-06-27 10:09:55.453955060 +0300
+@@ -53,7 +53,7 @@ if test "x$with_bzip2" = xyes; then
+ fi
+ 
+ # Checks for pkg-config packages
+-PKG_CHECK_MODULES(MKFONTSCALE, fontenc freetype2)
++PKG_CHECK_MODULES(MKFONTSCALE, fontenc)
+ PKG_CHECK_MODULES(X11, xproto)
+ 
+ dnl Allow checking code with lint, sparse, etc.
+diff -rup mkfontscale-1.1.1-orig/mkfontscale.c mkfontscale-1.1.1/mkfontscale.c
+--- mkfontscale-1.1.1-orig/mkfontscale.c	2014-06-27 10:04:36.287960776 +0300
++++ mkfontscale-1.1.1/mkfontscale.c	2014-06-27 10:20:26.435943760 +0300
+@@ -35,6 +35,7 @@
+ 
+ #include <X11/Xos.h>
+ #include <X11/fonts/fontenc.h>
++#if 0
+ #include <ft2build.h>
+ #include FT_FREETYPE_H
+ #include FT_SFNT_NAMES_H
+@@ -43,6 +44,7 @@
+ #include FT_TYPE1_TABLES_H
+ #include FT_BDF_H
+ #include FT_XFREE86_H
++#endif
+ 
+ #include "list.h"
+ #include "hash.h"
+@@ -91,16 +93,11 @@ static const char *outfilename;
+ #define countof(_a) (sizeof(_a)/sizeof((_a)[0]))
+ 
+ static int doDirectory(const char*, int, ListPtr);
+-static int checkEncoding(FT_Face face, char *encoding_name);
+-static int checkExtraEncoding(FT_Face face, char *encoding_name, int found);
+-static int find_cmap(int type, int pid, int eid, FT_Face face);
+ static const char* notice_foundry(const char *notice);
+ static const char* vendor_foundry(const signed char *vendor);
+ static int readFontScale(HashTablePtr entries, char *dirname);
+-ListPtr makeXLFD(char *filename, FT_Face face, int);
+ static int readEncodings(ListPtr encodings, char *dirname);
+ 
+-static FT_Library ft_library;
+ static float bigEncodingFuzz = 0.02;
+ 
+ static int relative;
+@@ -127,7 +124,6 @@ int
+ main(int argc, char **argv)
+ {
+     int argn;
+-    FT_Error ftrc;
+     int rc, ll = 0;
+     char prefix[NPREFIX];
+ 
+@@ -251,12 +247,6 @@ main(int argc, char **argv)
+             outfilename = "fonts.scale";
+     }
+ 
+-    ftrc = FT_Init_FreeType(&ft_library);
+-    if(ftrc) {
+-        fprintf(stderr, "Could not initialise FreeType library: %d\n", ftrc);
+-        exit(1);
+-    }
+-
+     ll = listLength(encodingsToDo);
+ 
+     if (argn == argc)
+@@ -269,6 +259,7 @@ main(int argc, char **argv)
+     return 0;
+ }
+ 
++#if 0
+ static int
+ getNameHelper(FT_Face face, int nid, int pid, int eid,
+               FT_SfntName *name_return)
+@@ -350,6 +341,7 @@ getName(FT_Face face, int nid)
+ 
+     return NULL;
+ }
++#endif
+ 
+ static const char*
+ os2Weight(int weight)
+@@ -501,6 +493,7 @@ safe(const char* s)
+     return t;
+ }
+ 
++#if 0
+ ListPtr
+ makeXLFD(char *filename, FT_Face face, int isBitmap)
+ {
+@@ -678,6 +671,7 @@ makeXLFD(char *filename, FT_Face face, i
+     }
+     return xlfd;
+ }
++#endif
+ 
+ static int
+ readFontScale(HashTablePtr entries, char *dirname)
+@@ -763,8 +757,6 @@ doDirectory(const char *dirname_given, i
+     FILE *fontscale, *encfile;
+     DIR *dirp;
+     struct dirent *entry;
+-    FT_Error ftrc;
+-    FT_Face face;
+     ListPtr encoding, xlfd, lp;
+     HashTablePtr entries;
+     HashBucketPtr *array;
+@@ -867,6 +859,7 @@ doDirectory(const char *dirname_given, i
+         if(rc < 0)
+             goto done;
+ 
++#if 0
+         if(rc == 0) {
+             ftrc = FT_New_Face(ft_library, filename, 0, &face);
+             if(ftrc)
+@@ -904,6 +897,7 @@ doDirectory(const char *dirname_given, i
+                 }
+             }
+         }
++#endif
+ 
+         if(xlfd_name) {
+             /* We know it's a bitmap font, and we know its XLFD */
+@@ -923,6 +917,7 @@ doDirectory(const char *dirname_given, i
+             }
+         }
+ 
++#if 0
+         if(!have_face) {
+             ftrc = FT_New_Face(ft_library, filename, 0, &face);
+             if(ftrc)
+@@ -942,9 +937,11 @@ doDirectory(const char *dirname_given, i
+ 
+         if(xlfd == NULL)
+             xlfd = makeXLFD(entry->d_name, face, isBitmap);
++#endif
+ 
+         found = 0;
+ 
++#if 0
+         for(lp = xlfd; lp; lp = lp->next) {
+             char buf[MAXFONTNAMELEN];
+             for(encoding = encodings; encoding; encoding = encoding->next) {
+@@ -965,9 +962,8 @@ doDirectory(const char *dirname_given, i
+                 }
+             }
+         }
++#endif
+     done:
+-        if(have_face)
+-            FT_Done_Face(face);
+         deepDestroyList(xlfd);
+         xlfd = NULL;
+         free(filename);
+@@ -1018,6 +1014,7 @@ doDirectory(const char *dirname_given, i
+                          ((c) >= 0x7F && (c) <= 0xA0) || \
+                          (c) == 0xAD || (c) == 0xF71B)
+ 
++#if 0
+ static int
+ checkEncoding(FT_Face face, char *encoding_name)
+ {
+@@ -1231,6 +1228,7 @@ checkExtraEncoding(FT_Face face, char *e
+         return 0;
+     }
+ }
++#endif
+ 
+ static const char*
+ notice_foundry(const char *notice)

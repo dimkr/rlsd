@@ -13,6 +13,7 @@ dhcpcd: musl
 dialog: musl ncurses
 diffutils: musl
 dillo: musl libpng libjpeg_turbo gtk wget
+dosfstools: musl
 dropbear: musl zlib
 elilo: musl gnu_efi
 evilwm: musl tinyxlib
@@ -58,6 +59,7 @@ lazy_utils: musl
 lbzip2: musl
 less: musl ncurses
 libarchive: musl zlib lbzip2 xz
+libfontenc: musl zlib tinyxlib
 libjpeg_turbo: musl
 libnl_tiny: musl
 libpng: musl zlib
@@ -69,10 +71,14 @@ lok: musl
 loksh: musl
 luufs: musl zlib fuse
 lynx: musl ncurses
+make: musl
 mandoc: musl
 mhwaveedit: musl gtk alsa_lib
+mkfontdir: mkfontscale
+mkfontscale: musl zlib tinyxlib libfontenc
 mowitz: musl tinyxlib
 mpg123: musl tinyalsa
+mtools: musl
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
 nano: musl ncurses
