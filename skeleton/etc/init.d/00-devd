@@ -2,10 +2,10 @@
 
 [ "start" != "$1" ] && exit
 
-# run depmod, to create a cache of available kernel modules
-echo -n "Running depmod ..."
+# start modprobed 
+echo -n "Starting modprobed ..."
 
-depmod
+modprobed
 
 # start devd
 echo -n " done.

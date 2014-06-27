@@ -1,0 +1,115 @@
+#!/bin/ksh
+
+# set the executable search path
+export PATH="/bin"
+
+# clear the screen from boot loader or early kernel messages
+clear
+
+# mount virtual file systems
+echo -n "Mounting virtual file systems ..."
+
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mount -t tmpfs run /run
+mount -t tmpfs -o mode=600,size=25% log /var/log
+mount -t tmpfs -o mode=777,noexec,nosuid,nodev,size=25% tmp /tmp
+mkdir /dev/pts
+mount -t devpts -o mode=620 pts /dev/pts
+mkdir /run/shm /dev/shm
+mount -B /run/shm /dev/shm
+
+# read the kernel command-line
+home=""
+for i in $(cat /proc/cmdline)
+do
+	case "$i" in
+		home=*)
+			home="${i#*=}"
+			;;
+		sleep=*)
+			interval="${i#*=}"
+			echo -n " done.
+Waiting for $interval seconds ..."
+			sleep $interval
+			;;
+	esac
+done
+
+# start logging daemons
+echo -n " done.
+Starting logging services ..."
+
+syslogd
+klogd
+
+# find the home partition
+echo -n " done.
+Searching for the home partition ..."
+cd /sys/class/block
+is_found=0
+for i in 1 2 3 4 5
+do
+	for partition in *
+	do
+		mount -o ro /dev/$partition /mnt/home
+		if [ 0 -eq $? ]
+		then
+			if [ -f /mnt/home/bzImage ] && \
+			   [ -f /mnt/home/initrd.xz ] && \
+			   [ -f /mnt/home/rootfs.sfs ]
+			then
+				is_found=1
+				break
+			fi
+			umount /mnt/home
+		fi
+	done
+	[ 1 -eq $is_found ] && break
+	sleep 5
+done
+if [ 0 -eq $is_found ]
+then
+	echo "failure."
+	exit
+fi
+
+# mount the root file system image
+echo -n " done.
+Mounting the root file system ..."
+losetup -r /dev/loop0 /mnt/home/rootfs.sfs
+mount -t squashfs -o ro /dev/loop0 /mnt/ro
+
+# mount a writable file system
+echo -n " done.
+Setting up a writable system ..."
+if [ -n "$home" ]
+then
+	mount "/dev/$home" /mnt/rw
+else
+	mount -t tmpfs save /mnt/rw
+fi
+
+# mount a layered file system
+echo -n " done.
+Setting up a layered file system ..."
+
+luufs -o allow_other,default_permissions /mnt/ro /mnt/rw /mnt/union
+mount -B /proc /mnt/union/proc
+mount -B /sys /mnt/union/sys
+mount -R /dev /mnt/union/dev
+mount -B /run /mnt/union/run
+mount -B /mnt/union/run /mnt/union/var/run
+mount -B /var/log /mnt/union/var/log
+mount -B /tmp /mnt/union/tmp
+
+# copy the package installation data database to the writeable layer, to allow
+# the installation of packages
+[ ! -f /mnt/rw/var/packdude/data.sqlite3 ] && \
+          cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
+
+echo " done."
+
+# continue the boot process inside the layered file system
+exec /mnt/ro/bin/chroot /mnt/union /etc/rc.d/rc.sysinit
