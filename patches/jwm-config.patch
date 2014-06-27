@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-06-24 19:08:54.642999361 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-06-24 19:09:05.916999159 +0300
-@@ -3,116 +3,166 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-06-27 22:45:21.570805740 +0300
++++ jwm-2.2.2/example.jwmrc	2014-06-27 22:50:29.972800217 +0300
+@@ -3,116 +3,168 @@
  <JWM>
  
      <!-- The root menu. -->
@@ -105,6 +105,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +	<Menu label="System">
 +	        <Program label="Settings">settings</Program>
++	        <Program label="System Log">aterm -title "System Log" -e less /var/log/messages</Program>
 +	        <Program label="gtkdiskfree">gtkdiskfree</Program>
 +	        <Program label="GDMap">gdmap</Program>
 +	        <Program label="htop">aterm -title htop -e htop</Program>
@@ -137,6 +138,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +        <Program label="Help">help</Program>
 +        <Program label="Find">gtkfind</Program>
 +        <Program label="Run Command">grun</Program>
++        <Program label="Run Restricted">odus grun</Program>
  
 -        <Pager labeled="true"/>
 +        <Separator/>
@@ -251,7 +253,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </PopupStyle>
  
      <!-- Path where icons can be found.
-@@ -120,17 +170,17 @@
+@@ -120,17 +172,17 @@
           for icons in multiple paths.
        -->
      <IconPath>
@@ -272,7 +274,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +190,20 @@
+@@ -140,16 +192,20 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -297,7 +299,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -166,12 +220,18 @@
+@@ -166,12 +222,18 @@
      <Key mask="A" key="Tab">nextstacked</Key>
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>
