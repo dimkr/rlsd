@@ -18,7 +18,7 @@ INITRAMFS_FILES="bin/toybox
                  bin/sleep
                  bin/clear
                  bin/cat
-                 etc/rc.d/rc.sysinit
+                 etc/rc.d/rc.initramfs
                  etc/rc.d/rc.shutdown"
 
 # directories present in the initramfs
@@ -201,9 +201,13 @@ install -m 644 "$BASE_DIR/COPYING" "$root_fs/usr/share/doc/dslr/COPYING"
 
 # generate the root file system image
 chown -R 0:0 "$root_fs"
+find "$root_fs" -type d | while read directory
+do
+	chmod 755 "$directory"
+done
+chmod 700 "$root_fs/root"
 chown 1000:1000 "$root_fs/home/someone"
 chmod 755 "$root_fs/home/someone"
-chmod 1777 "$root_fs/tmp"
 mksquashfs "$root_fs" \
            "$iso_root/rootfs.sfs" \
            -comp xz \

@@ -12,9 +12,9 @@ echo -n "Mounting virtual file systems ..."
 mount -t proc proc /proc
 mount -t sysfs sys /sys
 mount -t devtmpfs dev /dev
-mount -t tmpfs run /run
-mount -t tmpfs -o mode=600,size=25% log /var/log
-mount -t tmpfs -o mode=777,noexec,nosuid,nodev,size=25% tmp /tmp
+mount -t tmpfs -o mode=700,size=5% run /run
+mount -t tmpfs -o mode=755,size=20% log /var/log
+mount -t tmpfs -o mode=1777,noexec,nosuid,nodev,size=25% tmp /tmp
 mkdir /dev/pts
 mount -t devpts -o mode=620 pts /dev/pts
 mkdir /run/shm /dev/shm
