@@ -1,0 +1,16 @@
+diff -rup emelfm-0.9.2-orig/emelfm.c emelfm-0.9.2/emelfm.c
+--- emelfm-0.9.2-orig/emelfm.c	2014-06-28 18:19:05.152791493 +0300
++++ emelfm-0.9.2/emelfm.c	2014-06-28 18:27:43.497998505 +0300
+@@ -260,10 +260,10 @@ main(int argc, char *argv[])
+     cfg.command_history_max_length = 10;
+     cfg.scrollbar_pos = GTK_CORNER_TOP_LEFT;
+     strncpy(cfg.list_font,
+-            "-*-helvetica-medium-r-normal-*-*-120-*-*-p-*-*",
++            "-*-helvetica-medium-r-normal-*-*-12-*-*-p-*-*",
+             sizeof(cfg.list_font));
+     strncpy(cfg.output_font,
+-            "-*-courier-medium-r-normal-*-*-120-*-*-*-*-*",
++            "-*-courier-medium-r-normal-*-*-12-*-*-*-*-*",
+             sizeof(cfg.output_font));
+     strncpy(cfg.xterm_command, "xterm", sizeof(cfg.xterm_command));
+     chdir(getenv("HOME"));

@@ -1,14 +1,15 @@
-PACKAGE_VERSION="0.9.2"
-PACKAGE_SOURCES="http://emelfm.sourceforge.net/emelfm-$PACKAGE_VERSION.tar.gz"
+PACKAGE_VERSION="git$(date +%d%m%Y)"
+PACKAGE_SOURCES="https://github.com/iguleder/emelfm/archive/master.zip,emelfm-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A two-pane file manager"
 
 emelfm_build() {
-	[ -d emelfm-$PACKAGE_VERSION ] && rm -rf emelfm-$PACKAGE_VERSION
-	tar -xzvf emelfm-$PACKAGE_VERSION.tar.gz
-	cd emelfm-$PACKAGE_VERSION
-
+	[ -d emelfm-master ] && rm -rf emelfm-master
+	unzip emelfm-$PACKAGE_VERSION.zip
+	cd emelfm-master
+	
 	patch -p 1 < "$BASE_DIR/patches/emelfm-build.patch"
 	patch -p 1 < "$BASE_DIR/patches/emelfm-aterm.patch"
+	patch -p 1 < "$BASE_DIR/patches/emelfm-font.patch"
 	$MAKE
 }
 
