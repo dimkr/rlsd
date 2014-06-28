@@ -3,7 +3,7 @@ HOST="$ARCH-musl-linux"
 CC="$HOST-gcc"
 AR="$HOST-ar"
 CFLAGS="-mtune=generic -Os -ffunction-sections -fdata-sections -fomit-frame-pointer -fPIC -pipe"
-LDFLAGS="-fPIC -Wl,-gc-sections"
+LDFLAGS="-fPIC -Wl,-gc-sections -Wl,--sort-common"
 STRIP="$HOST-strip"
 KARCH="x86_64"
 STATIC=1
