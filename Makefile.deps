@@ -25,10 +25,12 @@ font_adobe_100dpi: font_util
 font_adobe_75dpi: font_util
 font_bh_100dpi: font_util
 font_bh_75dpi: font_util
+font_bh_lucidatypewriter_100dpi: font_util
+font_bh_lucidatypewriter_75dpi: font_util
 font_util: musl
 fuse: musl
 gbase: musl gtk
-gcalendar: musl gtk
+gcalendar: musl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
 gcolor: musl gtk
 gdk_pixbuf: musl libpng libjpeg_turbo tiff
 gdmap: musl gtk
@@ -112,7 +114,7 @@ wpa_supplicant: musl libnl_tiny
 x11vnc: musl tinyxlib libjpeg_turbo
 xaos: musl libpng tinyxlib
 xasteroids: musl tinyxlib
-xchat: musl gtk
+xchat: musl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
 xev: musl tinyxlib
 xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib

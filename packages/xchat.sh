@@ -7,7 +7,6 @@ xchat_build() {
 	unzip xchat-$PACKAGE_VERSION.zip
 	cd xchat-master
 
-	patch -p 1 < "$BASE_DIR/patches/xchat-font.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \

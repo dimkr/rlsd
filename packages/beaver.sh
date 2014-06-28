@@ -7,8 +7,6 @@ beaver_build() {
 	unzip beaver-$PACKAGE_VERSION.zip
 	cd beaver-master
 
-	patch -p 1 < "$BASE_DIR/patches/beaver-font.patch"
-
 	cd src
 
 	sed -e s~'CC      = .*'~"CC      = $CC"~ \
