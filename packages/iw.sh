@@ -8,7 +8,9 @@ iw_build() {
 	cd iw-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/iw-libnl_tiny.patch"
-	CFLAGS="-D_GNU_SOURCE $CFLAGS" $MAKE
+	CFLAGS="-D_GNU_SOURCE $CFLAGS" \
+	LDFLAGS="$(echo $LDFLAGS | sed s~'-Wl,-gc-sections'~~)" \
+	$MAKE
 }
 
 iw_package() {
