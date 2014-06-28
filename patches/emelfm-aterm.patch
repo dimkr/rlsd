@@ -1,0 +1,21 @@
+diff -rup emelfm-0.9.2-orig/emelfm.c emelfm-0.9.2/emelfm.c
+--- emelfm-0.9.2-orig/emelfm.c	2014-06-28 15:55:35.567945674 +0300
++++ emelfm-0.9.2/emelfm.c	2014-06-28 15:56:28.602944725 +0300
+@@ -265,7 +265,7 @@ main(int argc, char *argv[])
+     strncpy(cfg.output_font,
+             "-*-courier-medium-r-normal-*-*-120-*-*-*-*-*",
+             sizeof(cfg.output_font));
+-    strncpy(cfg.xterm_command, "xterm", sizeof(cfg.xterm_command));
++    strncpy(cfg.xterm_command, "aterm", sizeof(cfg.xterm_command));
+     chdir(getenv("HOME"));
+     getcwd(app.left_view.dir, PATH_MAX);
+     strncpy(app.right_view.dir, app.left_view.dir, PATH_MAX);
+@@ -345,7 +345,7 @@ main(int argc, char *argv[])
+     add_toolbar_button("du", "PLUGIN:Disk Usage", _("Disk Usage of selected files"), TRUE);
+     add_toolbar_button("df", "df", _("Available disk space"), FALSE);
+     add_toolbar_button("free", "free", _("Memory information"), FALSE);
+-    add_toolbar_button("X", "xterm &", _("Open an Xterm"), FALSE);
++    add_toolbar_button("X", "aterm &", _("Open an Xterm"), FALSE);
+     add_toolbar_button("su",
+                     _("su %{Enter Command:}; echo \"done. Press Enter\"; read"),
+                     _("Execute a command as root"), FALSE);

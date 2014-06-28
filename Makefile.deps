@@ -16,6 +16,7 @@ dillo: musl libpng libjpeg_turbo gtk wget
 dosfstools: musl
 dropbear: musl zlib
 elilo: musl gnu_efi
+emelfm: musl gtk
 evilwm: musl tinyxlib
 ffmpeg: musl zlib alsa_lib sdl
 file: musl zlib

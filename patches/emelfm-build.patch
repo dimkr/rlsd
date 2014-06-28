@@ -1,0 +1,50 @@
+diff -rup emelfm-0.9.2-orig/Makefile emelfm-0.9.2/Makefile
+--- emelfm-0.9.2-orig/Makefile	2014-06-28 15:55:35.566945674 +0300
++++ emelfm-0.9.2/Makefile	2014-06-28 15:55:45.168945502 +0300
+@@ -16,7 +16,7 @@ OBJS = emelfm.o window.o filelist.o menu
+ .c.o:
+ 	$(CC) $(CFLAGS) -c $<
+ 
+-all: emelfm plugins nls
++all: emelfm nls
+ 
+ emelfm: $(OBJS)
+ 	$(CC) $(OBJS) -o emelfm $(LDFLAGS)
+@@ -32,13 +32,13 @@ plugins: emelfm
+ nls: emelfm
+ 	[ -z $(NLS) ] || (cd po; make)
+ 
+-install: emelfm plugins nls
++install: emelfm nls
+ 	install -c -s -m 755 emelfm $(BIN_DIR)/emelfm
+ 	install -d $(DOC_DIR)
+ 	for file in `ls docs/`; do \
+ 		install -c -m 644 docs/$$file $(DOC_DIR); \
+ 	done
+-	cd plugins; make install
++	# cd plugins; make install
+ 	[ -z $(NLS) ] || LOCALEDIR=$(LOCALEDIR) cd po; make install
+ 
+ uninstall:
+diff -rup emelfm-0.9.2-orig/Makefile.common emelfm-0.9.2/Makefile.common
+--- emelfm-0.9.2-orig/Makefile.common	2014-06-28 15:55:35.568945674 +0300
++++ emelfm-0.9.2/Makefile.common	2014-06-28 15:55:45.169945502 +0300
+@@ -1,13 +1,13 @@
+-PREFIX = /usr/local
++PREFIX = 
+ BIN_DIR = $(PREFIX)/bin
+ LOCALEDIR = $(PREFIX)/share/locale
+-PLUGINS_DIR = $(PREFIX)/share/emelfm/plugins
+-DOC_DIR = $(PREFIX)/share/emelfm/docs
++PLUGINS_DIR = $(PREFIX)/lib/emelfm/plugins
++DOC_DIR = $(PREFIX)/usr/share/doc/emelfm
+ 
+-NLS = -DENABLE_NLS
++NLS =
+ GTK_INCLUDE = `gtk-config --cflags`
+ GTK_LIB = `gtk-config --libs`
+ GLIB_LIB = `glib-config --libs gthread`
+-CC = gcc -O2 -Wall
++CC ?= 
+ #CC = gcc -g -Wall
+ 

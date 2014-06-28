@@ -68,6 +68,7 @@ PACKAGES="linux
           rox
           gtkdialog1
           dillo
+          emelfm
           ytree
           guitar
           gtkcat

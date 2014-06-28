@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-06-27 22:45:21.570805740 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-06-27 22:50:29.972800217 +0300
-@@ -3,116 +3,168 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-06-28 15:50:45.307950872 +0300
++++ jwm-2.2.2/example.jwmrc	2014-06-28 15:51:18.137950284 +0300
+@@ -3,116 +3,169 @@
  <JWM>
  
      <!-- The root menu. -->
@@ -27,6 +27,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +    <RootMenu onroot="3">
 +        <Program label="Settings">settings</Program>
 +	<Menu label="File managers" labeled="true">
++	        <Program label="emelFM">emelfm</Program>
 +	        <Program label="ROX-Filer">rox</Program>
 +	        <Program label="ytree">aterm -title ytree -e ytree</Program>
 +	        <Program label="guiTAR">guitar</Program>
@@ -253,7 +254,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </PopupStyle>
  
      <!-- Path where icons can be found.
-@@ -120,17 +172,17 @@
+@@ -120,17 +173,17 @@
           for icons in multiple paths.
        -->
      <IconPath>
@@ -274,7 +275,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +192,20 @@
+@@ -140,16 +193,20 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -299,7 +300,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -166,12 +222,18 @@
+@@ -166,12 +223,18 @@
      <Key mask="A" key="Tab">nextstacked</Key>
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>
