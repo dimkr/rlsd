@@ -1,0 +1,14 @@
+diff -rup dillo-master-orig/dillorc dillo-master/dillorc
+--- dillo-master-orig/dillorc	2014-06-28 13:55:54.022844628 +0300
++++ dillo-master/dillorc	2014-06-28 13:58:37.665841698 +0300
+@@ -123,8 +123,8 @@ contrast_visited_color=YES
+ # small  :  very nice! (it's "medium" without icon titles)
+ # medium :  nice!
+ # large  :  Traditional
+-panel_size=medium
+-small_icons=NO
++panel_size=tiny
++small_icons=YES
+ 
+ # Here you can choose to hide some widgets of the dillo panel...
+ #show_back=NO

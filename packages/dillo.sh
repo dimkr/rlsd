@@ -7,6 +7,8 @@ dillo_build() {
 	unzip dillo-$PACKAGE_VERSION.zip
 	cd dillo-master
 
+	patch -p 1 < "$BASE_DIR/patches/dillo-toolbar.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
