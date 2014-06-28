@@ -1,7 +1,7 @@
-diff -rup linux-3.10.29-orig/init/main.c linux-3.10.29/init/main.c
---- linux-3.10.29-orig/init/main.c	2014-02-13 18:08:50.389169208 +0200
-+++ linux-3.10.29/init/main.c	2014-02-13 18:13:00.965175919 +0200
-@@ -155,7 +155,7 @@ static int __init set_reset_devices(char
+diff -rup linux-3.12.23/init/main.c /tmp/linux-3.12.23/init/main.c
+--- linux-3.12.23/init/main.c	2014-06-23 11:30:54.000000000 +0300
++++ /tmp/linux-3.12.23/init/main.c	2014-06-28 12:37:25.180928955 +0300
+@@ -157,7 +157,7 @@ static int __init set_reset_devices(char
  __setup("reset_devices", set_reset_devices);
  
  static const char * argv_init[MAX_INIT_ARGS+2] = { "init", NULL, };
@@ -10,7 +10,7 @@ diff -rup linux-3.10.29-orig/init/main.c linux-3.10.29/init/main.c
  static const char *panic_later, *panic_param;
  
  extern const struct obs_kernel_param __setup_start[], __setup_end[];
-@@ -840,10 +840,7 @@ static int __ref kernel_init(void *unuse
+@@ -843,10 +843,7 @@ static int __ref kernel_init(void *unuse
  		pr_err("Failed to execute %s.  Attempting defaults...\n",
  			execute_command);
  	}
@@ -22,7 +22,7 @@ diff -rup linux-3.10.29-orig/init/main.c linux-3.10.29/init/main.c
  		return 0;
  
  	panic("No init found.  Try passing init= option to kernel. "
-@@ -893,7 +890,7 @@ static noinline void __init kernel_init_
+@@ -896,7 +893,7 @@ static noinline void __init kernel_init_
  	 */
  
  	if (!ramdisk_execute_command)
@@ -31,9 +31,9 @@ diff -rup linux-3.10.29-orig/init/main.c linux-3.10.29/init/main.c
  
  	if (sys_access((const char __user *) ramdisk_execute_command, 0) != 0) {
  		ramdisk_execute_command = NULL;
-diff -rup linux-3.10.29-orig/kernel/kmod.c linux-3.10.29/kernel/kmod.c
---- linux-3.10.29-orig/kernel/kmod.c	2014-02-13 18:08:48.897169169 +0200
-+++ linux-3.10.29/kernel/kmod.c	2014-02-13 18:13:00.965175919 +0200
+diff -rup linux-3.12.23/kernel/kmod.c /tmp/linux-3.12.23/kernel/kmod.c
+--- linux-3.12.23/kernel/kmod.c	2014-06-23 11:30:54.000000000 +0300
++++ /tmp/linux-3.12.23/kernel/kmod.c	2014-06-28 12:37:25.181928955 +0300
 @@ -67,11 +67,11 @@ static DECLARE_RWSEM(umhelper_sem);
  /*
  	modprobe_path is set via /proc/sys.

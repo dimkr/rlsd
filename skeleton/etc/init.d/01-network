@@ -2,14 +2,8 @@
 
 [ "start" != "$1" ] && exit
 
-# set the hostname
-echo -n "Setting the hostname ..."
-
-hostname $(cat /etc/hostname)
-
 # configure network interfaces
-echo -n " done.
-Configuring networking ..."
+echo -n "Configuring networking ..."
 
 ifconfig lo 127.0.0.1 up
 route add -net 127.0.0.0 netmask 255.0.0.0 dev lo

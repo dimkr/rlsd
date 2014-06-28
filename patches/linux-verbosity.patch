@@ -1,7 +1,7 @@
-diff -rup linux-3.10.29-orig/kernel/printk.c linux-3.10.29/kernel/printk.c
---- linux-3.10.29-orig/kernel/printk.c	2014-02-13 18:08:48.901169169 +0200
-+++ linux-3.10.29/kernel/printk.c	2014-02-13 18:09:25.949170160 +0200
-@@ -56,7 +56,7 @@
+diff -rup /tmp/linux-3.12.23/kernel/printk/printk.c linux-3.12.23/kernel/printk/printk.c
+--- /tmp/linux-3.12.23/kernel/printk/printk.c	2014-06-28 12:36:42.901929712 +0300
++++ linux-3.12.23/kernel/printk/printk.c	2014-06-28 12:41:42.418924348 +0300
+@@ -59,7 +59,7 @@
  
  /* We show everything that is MORE important than this.. */
  #define MINIMUM_CONSOLE_LOGLEVEL 1 /* Minimum loglevel we let people use */
