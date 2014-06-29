@@ -26,7 +26,7 @@ First, install required packages:
   sudo apt-get install build-essential autoconf automake autotools-dev \
   autoconf-archive unzip flex bison git nasm squashfs-tools pkg-config \
   file subversion bc xfonts-utils dosfstools mtools yasm libarchive-dev \
-  libcurl4-gnutls-dev libsqlite3-dev xorriso
+  libcurl4-gnutls-dev libsqlite3-dev xorriso wget
 
 Then, build and install packdude (https://github.com/iguleder/packdude):
   git clone https://github.com/iguleder/packdude.git
