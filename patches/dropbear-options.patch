@@ -1,0 +1,42 @@
+diff -rup dropbear-2014.63-orig/options.h dropbear-2014.63/options.h
+--- dropbear-2014.63-orig/options.h	2014-07-02 20:52:09.766965942 +0300
++++ dropbear-2014.63/options.h	2014-07-02 20:53:21.256964662 +0300
+@@ -264,7 +264,7 @@ much traffic. */
+ /* The command to invoke for xauth when using X11 forwarding.
+  * "-q" for quiet */
+ #ifndef XAUTH_COMMAND
+-#define XAUTH_COMMAND "/usr/bin/X11/xauth -q"
++#define XAUTH_COMMAND "/bin/xauth -q"
+ #endif
+ 
+ /* if you want to enable running an sftp server (such as the one included with
+@@ -276,7 +276,7 @@ much traffic. */
+ 
+ /* This is used by the scp binary when used as a client binary. If you're
+  * not using the Dropbear client, you'll need to change it */
+-#define _PATH_SSH_PROGRAM "/usr/bin/dbclient"
++#define _PATH_SSH_PROGRAM "/bin/dbclient"
+ 
+ /* Whether to log commands executed by a client. This only logs the 
+  * (single) command sent to the server, not what a user did in a 
+@@ -313,7 +313,7 @@ be overridden at runtime with -I. 0 disa
+ #define DEFAULT_IDLE_TIMEOUT 0
+ 
+ /* The default path. This will often get replaced by the shell */
+-#define DEFAULT_PATH "/usr/bin:/bin"
++#define DEFAULT_PATH "/bin"
+ 
+ /* Some other defines (that mostly should be left alone) are defined
+  * in sysoptions.h */
+diff -rup dropbear-2014.63-orig/sysoptions.h dropbear-2014.63/sysoptions.h
+--- dropbear-2014.63-orig/sysoptions.h	2014-07-02 20:52:09.752965943 +0300
++++ dropbear-2014.63/sysoptions.h	2014-07-02 20:54:09.399963800 +0300
+@@ -7,7 +7,7 @@
+ #define DROPBEAR_VERSION "2014.63"
+ #endif
+ 
+-#define LOCAL_IDENT "SSH-2.0-dropbear_" DROPBEAR_VERSION
++#define LOCAL_IDENT "SSH-2.0-None"
+ #define PROGNAME "dropbear"
+ 
+ /* Spec recommends after one hour or 1 gigabyte of data. One hour

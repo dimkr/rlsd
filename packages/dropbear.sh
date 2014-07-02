@@ -9,9 +9,7 @@ dropbear_build() {
 	tar -xjvf dropbear-$PACKAGE_VERSION.tar.bz2
 	cd dropbear-$PACKAGE_VERSION
 
-	sed s~'^#define LOCAL_IDENT .*'~'#define LOCAL_IDENT "SSH-2.0-None"'~ \
-	    -i sysoptions.h
-
+	patch -p 1 < "$BASE_DIR/patches/dropbear-options.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --sbindir=/bin \
