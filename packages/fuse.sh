@@ -14,7 +14,8 @@ fuse_build() {
 	            --bindir=/bin \
 	            --libdir=/lib \
 	            $CONFIGURE_LIBRARY_FLAGS \
-	            --disable-example
+	            --disable-example \
+	            --disable-mtab
 	$MAKE
 }
 
