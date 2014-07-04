@@ -96,7 +96,6 @@ echo -n " done.
 Setting up a layered file system ..."
 
 luufs -o allow_other,default_permissions /mnt/ro /mnt/rw /mnt/union
-mount -B /proc /mnt/union/proc
 mount -B /sys /mnt/union/sys
 mount -R /dev /mnt/union/dev
 mount -B /run /mnt/union/run
@@ -122,5 +121,13 @@ echo " done."
 [ ! -f /mnt/rw/var/packdude/data.sqlite3 ] && \
           cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
 
-# continue the boot process inside the layered file system
-exec /mnt/ro/bin/chroot /mnt/union /etc/rc.d/rc.sysinit
+# continue the boot process inside the layered file system, in a container
+contain /mnt/union /etc/rc.d/rc.sysinit
+case $? in
+	2)
+		poweroff
+		;;
+	*)
+		reboot
+		;;
+esac
