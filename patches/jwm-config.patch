@@ -115,12 +115,12 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	        <Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
 +		<Menu label="Daemons">
 +			<Menu label="Dropbear">
-+	        		<Program label="Start">sh /etc/init.d/02-dropbear start</Program>
-+	        		<Program label="Stop">sh /etc/init.d/02-dropbear stop</Program>
++	        		<Program label="Start">sh /etc/init.d/dropbear start</Program>
++	        		<Program label="Stop">sh /etc/init.d/dropbear stop</Program>
 +			</Menu>
 +			<Menu label="tftpd">
-+	        		<Program label="Start">sh /etc/init.d/03-tftpd start</Program>
-+	        		<Program label="Stop">sh /etc/init.d/03-tftpd stop</Program>
++	        		<Program label="Start">sh /etc/init.d/tftpd start</Program>
++	        		<Program label="Stop">sh /etc/init.d/tftpd stop</Program>
 +			</Menu>
 +		</Menu>
 +	</Menu>

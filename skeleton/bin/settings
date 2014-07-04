@@ -53,18 +53,18 @@ case "$EXIT" in
 	dropbear)
 		if [ "true" = "$dropbear" ]
 		then
-			sh /etc/init.d/02-dropbear start
+			sh /etc/init.d/dropbear start
 		else
-			sh /etc/init.d/02-dropbear stop
+			sh /etc/init.d/dropbear stop
 		fi
 		;;
 
 	tftpd)
 		if [ "true" = "$tftpd" ]
 		then
-			sh /etc/init.d/03-tftpd start
+			sh /etc/init.d/tftpd start
 		else
-			sh /etc/init.d/03-tftpd stop
+			sh /etc/init.d/tftpd stop
 		fi
 		;;
 

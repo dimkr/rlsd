@@ -2,54 +2,6 @@
 
 # wifi-wizard: a wirless network configuration wizard
 
-# list all wireless interfaces
-cd /sys/class/net
-interfaces=""
-count=0
-for i in *
-do
-	case "$i" in
-		wlan*)
-				interfaces="$interfaces $i"
-				count=$((1 + $count))
-				;;
-	esac
-done
-
-# let the user choose the interface
-if [ 1 -eq $count ]
-then
-	interface="$interfaces"
-else
-	INTERFACE_DIALOG='<wtitle>Wireless Network Configuration</wtitle>
-<vbox>
-	<text><label>Choose a network interface:</label></text>
-	<combobox>
-		<variable>interface</variable>'
-
-	for i in $interfaces
-	do
-		INTERFACE_DIALOG="$INTERFACE_DIALOG
-		<item>$i</item>"
-	done
-
-	export INTERFACE_DIALOG="$INTERFACE_DIALOG
-	</combobox>
-	<button ok></button>
-</vbox>"
-
-	eval $(gtkdialog1 --program=INTERFACE_DIALOG)
-fi
-
-# if no interface was chosen, exit
-[ -z "$interface" ] && exit 1
-
-# disable the interface, to reset its counters
-ifconfig $interface down
-
-# bring up the interface again, to allow scanning
-ifconfig $interface up
-
 # let the user choose the wireless network
 WIRELESS_DIALOG='<wtitle>Wireless Network Configuration</wtitle>
 <vbox>
@@ -57,7 +9,7 @@ WIRELESS_DIALOG='<wtitle>Wireless Network Configuration</wtitle>
 	<combobox>
 		<variable>ssid</variable>'
 
-for i in $(iw $interface scan | grep SSID: | awk '{print $2}')
+for i in $(iw wlan0 scan | grep SSID: | awk '{print $2}')
 do
 	WIRELESS_DIALOG="$WIRELESS_DIALOG
 		<item>$i</item>"
@@ -73,28 +25,11 @@ export WIRELESS_DIALOG="$WIRELESS_DIALOG
 </vbox>"
 
 eval $(gtkdialog1 --program=WIRELESS_DIALOG)
-
-# if no network was chosen, disable the interface and exit
-if [ -z "$ssid" ]
-then
-	ifconfig $interface down
-	exit 1
-fi
+[ -z "$ssid" ] && exit 1
 
 # generate a wpa_supplicant configuration file
 wpa_passphrase $ssid $passphrase > /etc/wpa_supplicant.conf
 
-# stop dhcpcd
-dhcpcd -k $interface
-
-# stop wpa_supplicant
-[ -f /run/wpa_supplicant.pid ] && kill $(cat /run/wpa_supplicant.pid)
-
-# run wpa_supplicant
-wpa_supplicant -B \
-               -i$interface \
-               -c/etc/wpa_supplicant.conf \
-               -P/run/wpa_supplicant.pid
-
-# run dhcpcd
-dhcpcd -L $interface
+# restart networking
+/etc/init.d/network stop
+/etc/init.d/network start
