@@ -18,6 +18,9 @@ INITRAMFS_FILES="bin/toybox
                  bin/sleep
                  bin/clear
                  bin/cat
+                 bin/modprobed
+                 bin/devd
+                 bin/modprobe
                  etc/rc.d/rc.initramfs
                  etc/rc.d/rc.shutdown"
 
@@ -33,7 +36,8 @@ INITRAMFS_DIRECTORIES="run
                        mnt/rw
                        mnt/union
                        mnt/ro
-                       sys"
+                       sys
+                       lib/modules"
 
 # package present in the root file system
 PACKAGES="linux
