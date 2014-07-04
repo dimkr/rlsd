@@ -8,4 +8,4 @@ done
 
 # automatically log in as root
 cat /etc/issue
-exec login -f root
+exec cttyhack login -f root
