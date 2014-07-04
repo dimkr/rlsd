@@ -9,7 +9,7 @@ case "$1" in
 		route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
 
 		# turn on the wireless interface
-		ifconfig wlan0 up
+		ifconfig wlan0 up > /dev/null 2>&1
 
 		if [ -f /etc/wpa_supplicant.conf ]
 		then
@@ -38,7 +38,7 @@ case "$1" in
 		fi
 
 		# bring down the wireless interface
-		ifconfig wlan0 down
+		ifconfig wlan0 down > /dev/null 2>&1
 
 		# disable the loopback interface
 		ifconfig lo down
