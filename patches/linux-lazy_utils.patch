@@ -1,7 +1,7 @@
-diff -rup linux-3.12.23/init/main.c /tmp/linux-3.12.23/init/main.c
---- linux-3.12.23/init/main.c	2014-06-23 11:30:54.000000000 +0300
-+++ /tmp/linux-3.12.23/init/main.c	2014-06-28 12:37:25.180928955 +0300
-@@ -157,7 +157,7 @@ static int __init set_reset_devices(char
+diff -rup linux-3.14-orig/init/main.c linux-3.14/init/main.c
+--- linux-3.14-orig/init/main.c	2014-07-04 16:50:23.427724172 +0300
++++ linux-3.14/init/main.c	2014-07-04 16:58:09.385715827 +0300
+@@ -159,7 +159,7 @@ static int __init set_reset_devices(char
  __setup("reset_devices", set_reset_devices);
  
  static const char * argv_init[MAX_INIT_ARGS+2] = { "init", NULL, };
@@ -10,19 +10,19 @@ diff -rup linux-3.12.23/init/main.c /tmp/linux-3.12.23/init/main.c
  static const char *panic_later, *panic_param;
  
  extern const struct obs_kernel_param __setup_start[], __setup_end[];
-@@ -843,10 +843,7 @@ static int __ref kernel_init(void *unuse
- 		pr_err("Failed to execute %s.  Attempting defaults...\n",
- 			execute_command);
+@@ -868,10 +868,7 @@ static int __ref kernel_init(void *unuse
+ 		pr_err("Failed to execute %s (error %d).  Attempting defaults...\n",
+ 			execute_command, ret);
  	}
--	if (!run_init_process("/sbin/init") ||
--	    !run_init_process("/etc/init") ||
--	    !run_init_process("/bin/init") ||
--	    !run_init_process("/bin/sh"))
-+	if (!run_init_process("/bin/init"))
+-	if (!try_to_run_init_process("/sbin/init") ||
+-	    !try_to_run_init_process("/etc/init") ||
+-	    !try_to_run_init_process("/bin/init") ||
+-	    !try_to_run_init_process("/bin/sh"))
++	if (!try_to_run_init_process("/bin/init"))
  		return 0;
  
- 	panic("No init found.  Try passing init= option to kernel. "
-@@ -896,7 +893,7 @@ static noinline void __init kernel_init_
+ 	panic("No working init found.  Try passing init= option to kernel. "
+@@ -921,7 +918,7 @@ static noinline void __init kernel_init_
  	 */
  
  	if (!ramdisk_execute_command)
@@ -31,9 +31,9 @@ diff -rup linux-3.12.23/init/main.c /tmp/linux-3.12.23/init/main.c
  
  	if (sys_access((const char __user *) ramdisk_execute_command, 0) != 0) {
  		ramdisk_execute_command = NULL;
-diff -rup linux-3.12.23/kernel/kmod.c /tmp/linux-3.12.23/kernel/kmod.c
---- linux-3.12.23/kernel/kmod.c	2014-06-23 11:30:54.000000000 +0300
-+++ /tmp/linux-3.12.23/kernel/kmod.c	2014-06-28 12:37:25.181928955 +0300
+diff -rup linux-3.14-orig/kernel/kmod.c linux-3.14/kernel/kmod.c
+--- linux-3.14-orig/kernel/kmod.c	2014-07-04 16:49:38.495724976 +0300
++++ linux-3.14/kernel/kmod.c	2014-07-04 16:57:07.340716938 +0300
 @@ -67,11 +67,11 @@ static DECLARE_RWSEM(umhelper_sem);
  /*
  	modprobe_path is set via /proc/sys.

@@ -1,6 +1,6 @@
-diff -rup /tmp/linux-3.12.23/mm/vmscan.c linux-3.12.23/mm/vmscan.c
---- /tmp/linux-3.12.23/mm/vmscan.c	2014-06-28 12:36:47.425929631 +0300
-+++ linux-3.12.23/mm/vmscan.c	2014-06-28 12:39:52.140926323 +0300
+diff -rup linux-3.14-orig/mm/vmscan.c linux-3.14/mm/vmscan.c
+--- linux-3.14-orig/mm/vmscan.c	2014-07-04 16:50:21.578724205 +0300
++++ linux-3.14/mm/vmscan.c	2014-07-04 16:51:54.823722535 +0300
 @@ -129,7 +129,7 @@ struct scan_control {
  /*
   * From 0 .. 100.  Higher means more swappy.

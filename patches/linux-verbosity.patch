@@ -1,6 +1,6 @@
-diff -rup /tmp/linux-3.12.23/kernel/printk/printk.c linux-3.12.23/kernel/printk/printk.c
---- /tmp/linux-3.12.23/kernel/printk/printk.c	2014-06-28 12:36:42.901929712 +0300
-+++ linux-3.12.23/kernel/printk/printk.c	2014-06-28 12:41:42.418924348 +0300
+diff -rup linux-3.14-orig/kernel/printk/printk.c linux-3.14/kernel/printk/printk.c
+--- linux-3.14-orig/kernel/printk/printk.c	2014-07-04 16:49:38.523724976 +0300
++++ linux-3.14/kernel/printk/printk.c	2014-07-04 16:54:00.109720291 +0300
 @@ -59,7 +59,7 @@
  
  /* We show everything that is MORE important than this.. */
