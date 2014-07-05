@@ -1,0 +1,67 @@
+diff -rup xchat-master-orig/src/common/xchat.c xchat-master/src/common/xchat.c
+--- xchat-master-orig/src/common/xchat.c	2014-07-04 20:59:07.100884079 +0300
++++ xchat-master/src/common/xchat.c	2014-07-05 12:23:16.965947995 +0300
+@@ -891,11 +891,6 @@ save_away_message (struct server *serv,
+ 	"NAME Trace\n"				"CMD /quote TRACE %s\n\n"\
+ 	"NAME UserHost\n"			"CMD /quote USERHOST %s\n\n"\
+ 	"NAME ENDSUB\n"			"CMD \n\n"\
+-	"NAME SUB\n"				"CMD External\n\n"\
+-	"NAME Traceroute\n"		"CMD !rxvt -e /bin/sh -c \"/usr/sbin/traceroute %h ; sleep 30\"\n\n"\
+-	"NAME Ping\n"				"CMD !rxvt -e /bin/sh -c \"ping -c 4 %h ; sleep 30\"\n\n"\
+-	"NAME Telnet\n"			"CMD !rxvt -e telnet %h\n\n"\
+-	"NAME ENDSUB\n"			"CMD \n\n"\
+ 	"NAME Open Query\n"		"CMD /query %s\n\n")
+ 
+ #define defaultconf_buttons _( \
+@@ -970,8 +965,8 @@ save_away_message (struct server *serv,
+ 	"NAME TOGGLE Mail Checker\n"		"CMD mail_check\n\n"\
+    "NAME ENDSUB\n"				"CMD \n\n"\
+ 	"NAME SUB\n"					"CMD External\n\n"\
+-   "NAME Run XMMS\n"				"CMD !xmms\n\n"\
+-	"NAME Run RXVT\n"				"CMD !rxvt\n\n"\
++   "NAME Run xhippo\n"				"CMD !xhippo\n\n"\
++	"NAME Run aterm\n"				"CMD !aterm\n\n"\
+    "NAME ENDSUB\n"				"CMD \n\n")
+ 
+ #ifdef WIN32
+@@ -979,38 +974,8 @@ save_away_message (struct server *serv,
+ 	"NAME Connect as IRC server\n"		"CMD /newserver %s\n\n"
+ #else
+ #define defaultconf_urlhandlers _( \
+-	"NAME SUB\n"								"CMD Netscape...\n\n"\
+-   	"NAME Open in existing\n"			"CMD !netscape -remote 'openURL(%s)'\n\n"\
+-   	"NAME Open in new window\n"		"CMD !netscape -remote 'openURL(%s,new-window)'\n\n"\
+-   	"NAME Run new Netscape\n"			"CMD !netscape %s\n\n"\
+-	"NAME ENDSUB\n"							"CMD \n\n"\
+-	"NAME SUB\n"								"CMD Mozilla...\n\n"\
+-   	"NAME Open in existing\n"			"CMD !mozilla -remote 'openURL(%s)'\n\n"\
+-   	"NAME Open in new window\n"		"CMD !mozilla -remote 'openURL(%s,new-window)'\n\n"\
+-   	"NAME Run new Mozilla\n"			"CMD !mozilla %s\n\n"\
+-	"NAME ENDSUB\n"							"CMD \n\n"\
+-	"NAME SUB\n"								"CMD Galeon...\n\n"\
+-		"NAME Open in existing\n"			"CMD !galeon -x '%s'\n\n"\
+-   	"NAME Open in new window\n"		"CMD !galeon -w '%s'\n\n"\
+-   	"NAME Open in new tab\n"			"CMD !galeon -n '%s'\n\n"\
+-		"NAME Run new Galeon\n"				"CMD !galeon '%s'\n\n"\
+-	"NAME ENDSUB\n"							"CMD \n\n"\
+-	"NAME SUB\n"								"CMD Opera...\n\n"\
+-   	"NAME Open in existing\n"			"CMD !opera -remote 'openURL(%s)'\n\n"\
+-   	"NAME Open in new window\n"		"CMD !opera -remote 'openURL(%s,new-window)'\n\n"\
+-   	"NAME Run new Opera\n"				"CMD !opera %s\n\n"\
+-	"NAME ENDSUB\n"							"CMD \n\n"\
+-	"NAME SUB\n"								"CMD Send URL to...\n\n"\
+-   	"NAME Gnome URL Handler\n"			"CMD !gnome-moz-remote %s\n\n"\
+-   	"NAME Lynx\n"							"CMD !rxvt -e lynx %s\n\n"\
+-   	"NAME Links\n"							"CMD !rxvt -e links %s\n\n"\
+-   	"NAME w3m\n"							"CMD !rxvt -e w3m %s\n\n"\
+-   	"NAME NcFTP\n" 						"CMD !rxvt -e ncftp %s\n\n"\
+-   	"NAME gFTP\n"							"CMD !gftp %s\n\n"\
+-		"NAME Konqueror\n"					"CMD !konqueror %s\n\n"\
+-		"NAME Telnet\n"						"CMD !rxvt -e telnet %s\n\n"\
+-		"NAME Ping\n"							"CMD !rxvt -e ping -c 4 %s\n\n"\
+-	"NAME ENDSUB\n"							"CMD \n\n"\
++   	"NAME Dillo\n"				"CMD !dillo '%s'\n\n"\
++   	"NAME Lynx\n"				"CMD !aterm -title Lynx -e lynx '%s'\n\n"\
+ 	"NAME Connect as IRC server\n"		"CMD /newserver %s\n\n")
+ #endif
+ 
