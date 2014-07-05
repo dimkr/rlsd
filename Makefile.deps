@@ -1,5 +1,6 @@
 alsa_lib: musl
 aterm: musl tinyxlib
+axtls: musl
 bc: musl
 beaver: musl gtk
 bftpd: musl zlib
@@ -12,7 +13,7 @@ curl: musl zlib
 dhcpcd: musl
 dialog: musl ncurses
 diffutils: musl
-dillo: musl libpng libjpeg_turbo gtk wget
+dillo: musl libpng libjpeg_turbo gtk axtls wget
 dosfstools: musl
 dropbear: musl zlib
 elilo: musl gnu_efi

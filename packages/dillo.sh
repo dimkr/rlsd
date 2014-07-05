@@ -13,6 +13,7 @@ dillo_build() {
 	            --prefix= \
 	            --datadir=/usr/share \
 	            --enable-ipv6 \
+	            --enable-axtls \
 	            --disable-dlgui
 	$MAKE
 }
