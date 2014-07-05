@@ -21,6 +21,9 @@ INITRAMFS_FILES="bin/toybox
                  bin/modprobed
                  bin/devd
                  bin/modprobe
+                 bin/contain
+                 bin/poweroff
+                 bin/reboot
                  etc/rc.d/rc.initramfs
                  etc/rc.d/rc.shutdown"
 
