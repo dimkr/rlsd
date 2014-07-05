@@ -9,7 +9,7 @@ bwm_ng: musl ncurses
 calcoo: musl gtk
 calcurse: musl ncurses
 conky: musl tinyxlib
-curl: musl zlib
+curl: musl zlib axtls
 dhcpcd: musl
 dialog: musl ncurses
 diffutils: musl

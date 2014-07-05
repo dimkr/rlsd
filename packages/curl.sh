@@ -13,7 +13,8 @@ curl_build() {
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --disable-debug \
-	            --enable-ipv6
+	            --enable-ipv6 \
+	            --with-axtls
 	$MAKE
 }
 
