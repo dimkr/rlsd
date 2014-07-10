@@ -29,6 +29,7 @@ font_bh_75dpi: font_util
 font_bh_lucidatypewriter_100dpi: font_util
 font_bh_lucidatypewriter_75dpi: font_util
 font_util: musl
+freedoom:
 fuse: musl
 gbase: musl gtk
 gcalendar: musl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
@@ -92,10 +93,13 @@ ncurses: musl
 ogg122: musl tinyalsa
 packdude: musl zlib libarchive sqlite curl
 patch: musl
+prboom: musl sdl sdl_mixer sdl_net freedoom
 rfkill: musl
 rox: musl file gtk gdk_pixbuf libxml2
 screen: musl ncurses
 sdl: musl tinyxlib alsa_lib
+sdl_mixer: musl tinyxlib alsa_lib sdl
+sdl_net: musl tinyxlib alsa_lib sdl
 shed: musl ncurses
 shutbox: musl gtk
 siag: musl mowitz

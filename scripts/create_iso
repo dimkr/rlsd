@@ -79,6 +79,7 @@ PACKAGES="linux
           ytree
           guitar
           gtkcat
+          prboom
           shutbox
           xpacman
           xsoldier

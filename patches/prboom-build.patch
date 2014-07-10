@@ -1,0 +1,49 @@
+diff -rup prboom-2.5.0-orig/configure prboom-2.5.0/configure
+--- prboom-2.5.0-orig/configure	2014-07-10 22:20:22.249977234 +0300
++++ prboom-2.5.0/configure	2014-07-10 22:24:24.338972899 +0300
+@@ -3648,7 +3648,7 @@ _ACEOF
+   echo '    the source to insert the relevant pragmas so structures are packed.'
+ fi
+ 
+-CFLAGS_OPT="-O2 -fomit-frame-pointer"
++CFLAGS_OPT=""
+ 
+ 
+ NEW_CFLAGS="$CFLAGS"
+diff -rup prboom-2.5.0-orig/src/Makefile.am prboom-2.5.0/src/Makefile.am
+--- prboom-2.5.0-orig/src/Makefile.am	2014-07-10 22:20:22.261977234 +0300
++++ prboom-2.5.0/src/Makefile.am	2014-07-10 22:21:45.334975746 +0300
+@@ -8,7 +8,7 @@
+ 
+ SUBDIRS = SDL POSIX MAC
+ 
+-gamesdir=$(prefix)/games
++gamesdir=$(bindir)
+ games_PROGRAMS = prboom prboom-game-server
+ 
+ CFLAGS = @CFLAGS@ @SDL_CFLAGS@
+diff -rup prboom-2.5.0-orig/src/Makefile.in prboom-2.5.0/src/Makefile.in
+--- prboom-2.5.0-orig/src/Makefile.in	2014-07-10 22:20:22.259977234 +0300
++++ prboom-2.5.0/src/Makefile.in	2014-07-10 22:21:29.669976027 +0300
+@@ -246,7 +246,7 @@ target_vendor = @target_vendor@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ SUBDIRS = SDL POSIX MAC
+-gamesdir = $(prefix)/games
++gamesdir = $(bindir)
+ prboom_game_server_SOURCES = d_server.c protocol.h
+ prboom_game_server_LDADD = POSIX/libposixdoom.a SDL/i_network.o @NET_LIBS@ @SDL_LIBS@
+ COMMON_SRC = \
+diff -rup prboom-2.5.0-orig/src/SDL/i_system.c prboom-2.5.0/src/SDL/i_system.c
+--- prboom-2.5.0-orig/src/SDL/i_system.c	2014-07-10 22:20:22.293977233 +0300
++++ prboom-2.5.0/src/SDL/i_system.c	2014-07-10 22:20:47.941976774 +0300
+@@ -345,9 +345,6 @@ char* I_FindFile(const char* wfname, con
+     {NULL, "doom", "HOME"}, // ~/doom
+     {NULL, NULL, "HOME"}, // ~
+     {NULL, NULL, NULL, I_DoomExeDir}, // config directory
+-    {"/usr/local/share/games/doom"},
+-    {"/usr/share/games/doom"},
+-    {"/usr/local/share/doom"},
+     {"/usr/share/doom"},
+   };
+ 

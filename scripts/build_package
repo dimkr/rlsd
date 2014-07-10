@@ -48,9 +48,9 @@ exit 0" > pkg-config
 	chmod 755 pkg-config
 fi
 
-# replace glib-config, gtk-config, freetype-config, gdk-pixbuf-config and
-# xml2-config with wrappers, which prepend paths with $SYSROOT
-for library in glib gtk freetype gdk-pixbuf gdk-pixbuf xml2
+# replace glib-config, gtk-config, freetype-config, gdk-pixbuf-config,
+# xml2-config and sdl-config with wrappers, which prepend paths with $SYSROOT
+for library in glib gtk freetype gdk-pixbuf gdk-pixbuf xml2 sdl
 do
 	if [ -f "$SYSROOT/bin/$library-config" ] && [ ! -f $library-config ]
 	then
