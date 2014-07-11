@@ -13,10 +13,14 @@ conky_build() {
 	            --prefix= \
 	            --datarootdir=/usr/share \
 	            --disable-ncurses \
+	            --disable-mpd \
+	            --disable-moc \
+	            --disable-curl \
 	            --disable-lua \
 	            --disable-portmon \
 	            --disable-xdamage \
-	            --disable-xft
+	            --disable-xft \
+	            --disable-alsa
 	$MAKE
 }
 
