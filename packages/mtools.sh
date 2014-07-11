@@ -20,5 +20,6 @@ mtools_build() {
 mtools_package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mtools/README"
-	install -m 644 LICENSE "$1/usr/share/doc/mtools/LICENSE"
+	install -m 644 NEWS "$1/usr/share/doc/mtools/NEWS"
+	install -m 644 COPYING "$1/usr/share/doc/mtools/COPYING"
 }
