@@ -1,6 +1,5 @@
 alsa_lib: musl
 aterm: musl tinyxlib
-axtls: musl
 bc: musl
 beaver: musl gtk
 bftpd: musl zlib
@@ -9,11 +8,11 @@ bwm_ng: musl ncurses
 calcoo: musl gtk
 calcurse: musl ncurses
 conky: musl tinyxlib
-curl: musl zlib axtls
+curl: musl zlib libressl
 dhcpcd: musl
 dialog: musl ncurses
 diffutils: musl
-dillo: musl libpng libjpeg_turbo gtk axtls wget
+dillo: musl libpng libjpeg_turbo gtk libressl wget
 dosfstools: musl
 dropbear: musl zlib
 elilo: musl gnu_efi
@@ -68,6 +67,7 @@ libfontenc: musl zlib tinyxlib
 libjpeg_turbo: musl
 libnl_tiny: musl
 libpng: musl zlib
+libressl: musl
 libxaw3d: musl tinyxlib
 libxml2: musl
 linux: 
@@ -75,7 +75,7 @@ linux_headers:
 lok: musl
 loksh: musl
 luufs: musl zlib fuse
-lynx: musl ncurses
+lynx: musl zlib ncurses libressl
 make: musl
 mandoc: musl
 mhwaveedit: musl gtk alsa_lib
@@ -105,7 +105,7 @@ shutbox: musl gtk
 siag: musl mowitz
 sqlite: musl
 squashfs_tools: musl zlib xz
-sylpheed: musl gtk
+sylpheed: musl libressl gtk
 ted: musl zlib libpng libjpeg_turbo tiff gtk font_adobe_75dpi font_adobe_100dpi
 tiff: musl zlib libjpeg_turbo
 tinyalsa: musl
@@ -114,12 +114,12 @@ tinyxlib: musl
 tinyxserver: musl zlib
 toybox: musl
 vile: musl ncurses
-wget: musl
+wget: musl libressl
 wpa_supplicant: musl libnl_tiny
-x11vnc: musl tinyxlib libjpeg_turbo
+x11vnc: musl libressl tinyxlib libjpeg_turbo
 xaos: musl libpng tinyxlib
 xasteroids: musl tinyxlib
-xchat: musl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
+xchat: musl libressl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
 xev: musl tinyxlib
 xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib

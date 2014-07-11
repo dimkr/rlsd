@@ -7,12 +7,16 @@ wget_build() {
 	tar -xJvf wget-$PACKAGE_VERSION.tar.xz
 	cd wget-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/wget-static.patch"
+	patch -p 1 < "$BASE_DIR/patches/wget-libressl.patch"
+	autoreconf
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
 	            --disable-debug \
 	            --disable-nls \
-	            --without-ssl
+	            --with-ssl=openssl
 	$MAKE
 }
 

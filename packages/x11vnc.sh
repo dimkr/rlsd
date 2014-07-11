@@ -13,8 +13,6 @@ x11vnc_build() {
 	            --datadir=/usr/share \
 		    --mandir=/usr/share/man \
 	            --without-xkeyboard \
-	            --without-crypto \
-	            --without-ssl \
 	            --without-avahi
 	$MAKE
 }

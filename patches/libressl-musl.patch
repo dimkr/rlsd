@@ -1,0 +1,47 @@
+diff -rup libressl-2.0.0-orig/crypto/compat/getentropy_linux.c libressl-2.0.0/crypto/compat/getentropy_linux.c
+--- libressl-2.0.0-orig/crypto/compat/getentropy_linux.c	2014-07-12 00:07:18.711818184 +0300
++++ libressl-2.0.0/crypto/compat/getentropy_linux.c	2014-07-12 00:07:28.432818010 +0300
+@@ -24,7 +24,9 @@
+ #include <sys/ioctl.h>
+ #include <sys/resource.h>
+ #include <sys/syscall.h>
++#ifdef __GLIBC__
+ #include <sys/sysctl.h>
++#endif
+ #include <sys/statvfs.h>
+ #include <sys/socket.h>
+ #include <sys/mount.h>
+diff -rup libressl-2.0.0-orig/crypto/compat/issetugid_linux.c libressl-2.0.0/crypto/compat/issetugid_linux.c
+--- libressl-2.0.0-orig/crypto/compat/issetugid_linux.c	2014-07-12 00:07:18.711818184 +0300
++++ libressl-2.0.0/crypto/compat/issetugid_linux.c	2014-07-12 00:07:53.603817559 +0300
+@@ -4,7 +4,9 @@
+  */
+ 
+ #include <errno.h>
+-#include <gnu/libc-version.h>
++#ifdef __GLIBC__
++#	include <gnu/libc-version.h>
++#endif
+ #include <string.h>
+ #include <sys/types.h>
+ #include <unistd.h>
+@@ -33,15 +35,19 @@ int issetugid(void)
+ 	 * info: http://lwn.net/Articles/519085/
+ 	 *
+ 	 */
++#ifdef __GLIBC__
+ 	const char *glcv = gnu_get_libc_version();
+ 	if (strverscmp(glcv, "2.19") >= 0) {
++#endif
+ 		errno = 0;
+ 		if (getauxval(AT_SECURE) == 0) {
+ 			if (errno != ENOENT) {
+ 				return 0;
+ 			}
+ 		}
++#ifdef __GLIBC__
+ 	}
+ #endif
++#endif
+ 	return 1;
+ }

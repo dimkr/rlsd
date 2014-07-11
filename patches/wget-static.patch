@@ -1,0 +1,12 @@
+diff -rup wget-1.15-orig/configure.ac wget-1.15/configure.ac
+--- wget-1.15-orig/configure.ac	2014-07-11 23:36:40.944851095 +0300
++++ wget-1.15/configure.ac	2014-07-11 23:49:06.855837737 +0300
+@@ -292,7 +292,7 @@ AS_IF([test x"$with_ssl" = xopenssl], [
+       ssl_found=yes
+       AC_MSG_NOTICE([compiling in support for SSL via OpenSSL])
+       AC_LIBOBJ([openssl])
+-      LIBS="$LIBSSL $LIBS"
++      LIBS="-lssl -lcrypto $LIBS"
+     elif test x"$with_ssl" != x
+     then
+       AC_MSG_ERROR([--with-ssl=openssl was given, but SSL is not available.])

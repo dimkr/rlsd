@@ -9,11 +9,12 @@ dillo_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/dillo-toolbar.patch"
 
+	LIBS="-lcrypto" \
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
 	            --enable-ipv6 \
-	            --enable-axtls \
+	            --enable-ssl \
 	            --disable-dlgui
 	$MAKE
 }

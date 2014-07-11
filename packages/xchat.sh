@@ -13,6 +13,7 @@ xchat_build() {
 	            --prefix= \
 	            --datadir=/usr/share \
 	            --disable-nls \
+	            --enable-openssl \
 	            --enable-ipv6 \
 	            --disable-textfe \
 	            --disable-perl \

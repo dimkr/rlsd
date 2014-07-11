@@ -1,0 +1,27 @@
+diff -rup libressl-2.0.0-orig/apps/Makefile.am libressl-2.0.0/apps/Makefile.am
+--- libressl-2.0.0-orig/apps/Makefile.am	2014-07-12 00:07:18.671818185 +0300
++++ libressl-2.0.0/apps/Makefile.am	2014-07-12 00:31:12.334792510 +0300
+@@ -4,8 +4,8 @@ bin_PROGRAMS = openssl
+ 
+ openssl_CFLAGS = $(USER_CFLAGS)
+ openssl_LDADD = $(PLATFORM_LDADD)
+-openssl_LDADD += $(top_builddir)/crypto/libcrypto.la
+ openssl_LDADD += $(top_builddir)/ssl/libssl.la
++openssl_LDADD += $(top_builddir)/crypto/libcrypto.la
+ 
+ openssl_SOURCES =
+ noinst_HEADERS =
+diff -rup libressl-2.0.0-orig/apps/Makefile.in libressl-2.0.0/apps/Makefile.in
+--- libressl-2.0.0-orig/apps/Makefile.in	2014-07-12 00:07:18.671818185 +0300
++++ libressl-2.0.0/apps/Makefile.in	2014-07-12 00:31:28.017792230 +0300
+@@ -337,8 +337,8 @@ top_srcdir = @top_srcdir@
+ AM_CPPFLAGS = -I$(top_srcdir)/include -DOPENSSL_NO_ASM \
+ 	-DHAVE_CRYPTODEV -DLIBRESSL_INTERNAL
+ openssl_CFLAGS = $(USER_CFLAGS)
+-openssl_LDADD = $(PLATFORM_LDADD) $(top_builddir)/crypto/libcrypto.la \
+-	$(top_builddir)/ssl/libssl.la
++openssl_LDADD = $(PLATFORM_LDADD) $(top_builddir)/ssl/libssl.la \
++	$(top_builddir)/crypto/libcrypto.la
+ openssl_SOURCES = $(am__append_1) apps.c asn1pars.c ca.c ciphers.c \
+ 	cms.c crl.c crl2p7.c dgst.c dh.c dhparam.c dsa.c dsaparam.c \
+ 	ec.c ecparam.c enc.c engine.c errstr.c gendh.c gendsa.c \

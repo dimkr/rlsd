@@ -1,0 +1,17 @@
+diff -rup wget-1.15-orig/src/openssl.c wget-1.15/src/openssl.c
+--- wget-1.15-orig/src/openssl.c	2014-07-11 23:36:40.920851095 +0300
++++ wget-1.15/src/openssl.c	2014-07-11 23:56:48.367829472 +0300
+@@ -86,13 +86,6 @@ init_prng (void)
+   if (RAND_status ())
+     return;
+ 
+-  /* Get random data from EGD if opt.egd_file was used.  */
+-  if (opt.egd_file && *opt.egd_file)
+-    RAND_egd (opt.egd_file);
+-
+-  if (RAND_status ())
+-    return;
+-
+ #ifdef WINDOWS
+   /* Under Windows, we can try to seed the PRNG using screen content.
+      This may or may not work, depending on whether we'll calling Wget

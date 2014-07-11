@@ -11,7 +11,8 @@ libarchive_build() {
 	            --prefix= \
 	            --datarootdir=/usr/share \
 	            --includedir=/usr/include \
-	            $CONFIGURE_LIBRARY_FLAGS
+	            $CONFIGURE_LIBRARY_FLAGS \
+	            --without-openssl
 	$MAKE
 }
 

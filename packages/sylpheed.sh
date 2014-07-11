@@ -8,7 +8,11 @@ sylpheed_build() {
 	cd sylpheed-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/sylpheed-build.patch"
-	./configure --host=$HOST --prefix=/ --datadir=/usr/share --disable-nls
+	./configure --host=$HOST \
+	            --prefix=/ \
+	            --datadir=/usr/share \
+	            --disable-nls \
+	            --enable-ssl
 	$MAKE
 }
 
