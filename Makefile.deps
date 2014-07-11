@@ -93,7 +93,7 @@ ncurses: musl
 ogg122: musl tinyalsa
 packdude: musl zlib libarchive sqlite curl
 patch: musl
-prboom: musl sdl sdl_mixer sdl_net freedoom
+prboom: musl libpng sdl sdl_mixer sdl_net freedoom
 rfkill: musl
 rox: musl file gtk gdk_pixbuf libxml2
 screen: musl ncurses

@@ -1,0 +1,18 @@
+diff -rup prboom-2.5.0-orig/src/SDL/i_sshot.c prboom-2.5.0/src/SDL/i_sshot.c
+--- prboom-2.5.0-orig/src/SDL/i_sshot.c	2014-07-11 13:58:18.864835373 +0300
++++ prboom-2.5.0/src/SDL/i_sshot.c	2014-07-11 14:01:13.150832252 +0300
+@@ -54,6 +54,14 @@
+ 
+ #ifdef HAVE_LIBPNG
+ 
++#ifndef png_error_ptr_NULL
++#	define png_error_ptr_NULL NULL
++#endif
++
++#ifndef png_infopp_NULL
++#	define png_infopp_NULL NULL
++#endif
++
+ //
+ // Error functions needed by libpng
+ //
