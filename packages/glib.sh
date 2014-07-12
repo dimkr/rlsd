@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/glib/archive/master.zip,glib-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/glib/archive/master.zip,glib-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="Common C functions"
 
 glib_build() {

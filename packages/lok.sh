@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/lok/archive/master.zip,lok-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/lok/archive/master.zip,lok-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A text processing tool"
 
 lok_build() {

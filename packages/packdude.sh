@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/packdude/archive/master.zip,packdude-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/packdude/archive/master.zip,packdude-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A package manager"
 
 packdude_build() {

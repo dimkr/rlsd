@@ -28,21 +28,21 @@ First, install required packages:
   file subversion bc xfonts-utils dosfstools mtools yasm libarchive-dev \
   libcurl4-gnutls-dev libsqlite3-dev xorriso wget
 
-Then, build and install packdude (https://github.com/iguleder/packdude):
-  git clone https://github.com/iguleder/packdude.git
+Then, build and install packdude (https://github.com/dimkr/packdude):
+  git clone https://github.com/dimkr/packdude.git
   cd packdude
   make
   sudo make install
   cd ..
 
-Build a cross-compiler using musl-cross (https://github.com/iguleder/musl-cross):
-  git clone https://github.com/iguleder/musl-cross.git
+Build a cross-compiler using musl-cross (https://github.com/dimkr/musl-cross):
+  git clone https://github.com/dimkr/musl-cross.git
   cd musl-cross
   sudo ./build.sh
   cd ..
 
 Build the entire DSLR package repository:
-  git clone https://github.com/iguleder/dslr.git
+  git clone https://github.com/dimkr/dslr.git
   cd dslr
   make packages
 

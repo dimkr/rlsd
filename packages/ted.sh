@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/ted/archive/master.zip,ted-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/ted/archive/master.zip,ted-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A word processor"
 
 ted_build() {

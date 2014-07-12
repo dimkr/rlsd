@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/rox/archive/master.zip,rox-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/rox/archive/master.zip,rox-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A file manager"
 
 PLATFORM="$(uname -s)-$(uname -m)"

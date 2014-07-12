@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/ogg122/archive/master.zip,ogg122-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/ogg122/archive/master.zip,ogg122-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="An Ogg Vorbis player"
 
 ogg122_build() {

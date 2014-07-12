@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/dillo/archive/master.zip,dillo-$PACKAGE_VERSION.zip http://www.dillo.org/Icons/ProgramIcon48.png,dillo.png"
+PACKAGE_SOURCES="https://github.com/dimkr/dillo/archive/master.zip,dillo-$PACKAGE_VERSION.zip http://www.dillo.org/Icons/ProgramIcon48.png,dillo.png"
 PACKAGE_DESC="A web browser"
 
 dillo_build() {

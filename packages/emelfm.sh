@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/emelfm/archive/master.zip,emelfm-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/emelfm/archive/master.zip,emelfm-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A two-pane file manager"
 
 emelfm_build() {

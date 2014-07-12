@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/tinyxlib/archive/master.zip,tinyxlib-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/tinyxlib/archive/master.zip,tinyxlib-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="Core graphics library"
 
 tinyxlib_build() {

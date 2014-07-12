@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/beaver/archive/master.zip,beaver-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/beaver/archive/master.zip,beaver-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A text editor"
 
 beaver_build() {

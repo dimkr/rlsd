@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/luufs/archive/master.zip,luufs-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/luufs/archive/master.zip,luufs-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A union file system"
 
 luufs_build() {

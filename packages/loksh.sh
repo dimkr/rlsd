@@ -1,5 +1,5 @@
 PACKAGE_VERSION="git$(date +%d%m%Y)"
-PACKAGE_SOURCES="https://github.com/iguleder/loksh/archive/master.zip,loksh-$PACKAGE_VERSION.zip"
+PACKAGE_SOURCES="https://github.com/dimkr/loksh/archive/master.zip,loksh-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A command-line shell"
 
 loksh_build() {
