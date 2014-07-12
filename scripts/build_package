@@ -190,9 +190,22 @@ then
 	done
 fi
 
-# decompress all compressed man pages
 if [ -d "$installation_prefix/usr/share/man" ]
 then
+	# remove localized man pages
+	for i in "$installation_prefix/usr/share/man"/*
+	do
+		case "$i" in
+			*/man[1-9])
+				break
+				;;
+			*)
+				rm -vrf "$i"
+				;;
+		esac
+	done
+
+	# decompress compressed man pages
 	find "$installation_prefix/usr/share/man" -name '*.gz' -type f |
 	while read page
 	do
@@ -205,7 +218,7 @@ if [ -d "$installation_prefix/usr/share/fonts" ]
 then
 	for i in "$installation_prefix/usr/share/fonts"/*
 	do
-		[ -f "$i/fonts.dir" ] && rm -f "$i/fonts.dir"
+		[ -f "$i/fonts.dir" ] && rm -vf "$i/fonts.dir"
 	done
 fi
 
