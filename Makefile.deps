@@ -5,6 +5,7 @@ beaver: musl gtk
 bftpd: musl zlib
 binutils: musl
 bwm_ng: musl ncurses
+ca_certificates:
 calcoo: musl gtk
 calcurse: musl ncurses
 conky: musl tinyxlib
@@ -67,7 +68,7 @@ libfontenc: musl zlib tinyxlib
 libjpeg_turbo: musl
 libnl_tiny: musl
 libpng: musl zlib
-libressl: musl
+libressl: musl ca_certificates
 libxaw3d: musl tinyxlib
 libxml2: musl
 linux: 
