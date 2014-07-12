@@ -95,6 +95,7 @@ PACKAGES="linux
           xchat
           ircii
           guiftp
+          snownews
           ted
           siag
           calcoo
