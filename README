@@ -26,7 +26,8 @@ First, install required packages:
   sudo apt-get install build-essential autoconf automake autotools-dev \
   autoconf-archive unzip flex bison git nasm squashfs-tools pkg-config \
   file subversion bc xfonts-utils dosfstools mtools yasm libarchive-dev \
-  libcurl4-gnutls-dev libsqlite3-dev xorriso wget
+  libcurl4-gnutls-dev libsqlite3-dev xorriso wget \
+  liblwp-useragent-determined-perl
 
 Then, build and install packdude (https://github.com/dimkr/packdude):
   git clone https://github.com/dimkr/packdude.git
