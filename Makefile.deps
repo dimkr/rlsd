@@ -103,6 +103,7 @@ sdl_net: musl tinyxlib alsa_lib sdl
 shed: musl ncurses
 shutbox: musl gtk
 siag: musl mowitz
+snownews: musl zlib ncurses libressl libxml2
 sqlite: musl
 squashfs_tools: musl zlib xz
 sylpheed: musl libressl gtk

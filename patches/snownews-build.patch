@@ -1,0 +1,41 @@
+diff -rup snownews-1.5.12-orig/configure snownews-1.5.12/configure
+--- snownews-1.5.12-orig/configure	2014-07-12 12:25:17.893897460 +0300
++++ snownews-1.5.12/configure	2014-07-12 12:25:52.854896834 +0300
+@@ -12,7 +12,7 @@ my $xmlldflags = `xml2-config --libs`;
+ chomp($xmlldflags);
+ 
+ my $prefix = "/usr/local";
+-my $cflags = "-Wall -Wno-format-y2k -O2 -DLOCALEPATH=\"\\\"\$(LOCALEPATH)\\\"\" -DOS=\\\"$os\\\" $xmlcflags \$(EXTRA_CFLAGS) ";
++my $cflags = "-Wall -Wno-format-y2k -DLOCALEPATH=\"\\\"\$(LOCALEPATH)\\\"\" -DOS=\\\"$os\\\" $xmlcflags \$(EXTRA_CFLAGS) ";
+ my $ldflags = "-lncurses -lcrypto $xmlldflags \$(EXTRA_LDFLAGS) ";
+ 
+ my $use_nls = 1;
+diff -rup snownews-1.5.12-orig/Makefile snownews-1.5.12/Makefile
+--- snownews-1.5.12-orig/Makefile	2014-07-12 12:25:17.893897460 +0300
++++ snownews-1.5.12/Makefile	2014-07-12 12:29:16.404893188 +0300
+@@ -1,8 +1,8 @@
+-CC=         gcc
++CC?=         gcc
+ MAKE=       make
+ INSTALL=    install
+-LOCALEPATH= $(PREFIX)/share/locale
+-MANPATH=    $(PREFIX)/share/man
++LOCALEPATH= $(PREFIX)/usr/share/locale
++MANPATH=    $(PREFIX)/usr/share/man
+ 
+ ### Compiler/linker flags   ###
+ ### Generated via configure ###
+@@ -20,11 +20,11 @@ DISTFILES = AUTHOR COPYING CREDITS Chang
+ 	config.h version.h main.h interface.h netio.h xmlparse.h updatecheck.h os-support.h conversions.h dialog.h ui-support.h categories.h about.h cookies.h setup.h net-support.h digcalc.h filters.h io-internal.h zlib_interface.h support.h
+ 
+ ### Translations ###
+-LOCALES= de es fr it nl ru sl se zh_TW zh_CN pt_BR pl ja be@latin uk_UA
++LOCALES=
+ LOC=     po
+ 
+ ### Manpages ##
+-LANGS= de fr it nl ru_RU.KOI8-R
++LANGS=
+ MAN=   doc/man
+ 
+ ### Compile ###
