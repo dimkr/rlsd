@@ -9,6 +9,7 @@ prboom_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/prboom-build.patch"
 	patch -p 1 < "$BASE_DIR/patches/prboom-libpng.patch"
+	patch -p 1 < "$BASE_DIR/patches/prboom-settings.patch"
 
 	LIBS="-lasound $(pkg-config --libs libpng SDL_mixer)" \
 	./configure --host=$HOST \

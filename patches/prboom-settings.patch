@@ -1,0 +1,12 @@
+diff -rup prboom-2.5.0-orig/src/m_misc.c prboom-2.5.0/src/m_misc.c
+--- prboom-2.5.0-orig/src/m_misc.c	2014-07-12 16:50:36.306999600 +0300
++++ prboom-2.5.0/src/m_misc.c	2014-07-12 16:52:23.384997683 +0300
+@@ -317,7 +317,7 @@ default_t defaults[] =
+    def_int,ss_none},
+   {"screen_height",{&desired_screenheight},{480},200,MAX_SCREENHEIGHT,
+    def_int,ss_none},
+-  {"use_fullscreen",{&use_fullscreen},{1},0,1, /* proff 21/05/2000 */
++  {"use_fullscreen",{&use_fullscreen},{0},0,1, /* proff 21/05/2000 */
+    def_bool,ss_none},
+ #ifndef DISABLE_DOUBLEBUFFER
+   {"use_doublebuffer",{&use_doublebuffer},{1},0,1,             // proff 2001-7-4
