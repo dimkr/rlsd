@@ -1,12 +1,14 @@
-PACKAGE_VERSION="1.3.6.pl01"
-REAL_PACKAGE_VERSION="1.3.6"
+PACKAGE_VERSION="1.3.8"
 PACKAGE_SOURCES="http://www.gnu.org/software/xorriso/xorriso-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An ISO 9660 file system manipulation tool"
 
 xorriso_build() {
 	[ -d xorriso-$PACKAGE_VERSION ] && rm -rf xorriso-$PACKAGE_VERSION
 	tar -xzvf xorriso-$PACKAGE_VERSION.tar.gz
-	cd xorriso-$REAL_PACKAGE_VERSION
+	cd xorriso-$PACKAGE_VERSION
+
+	patch -p 1 < "$BASE_DIR/patches/xorriso-build.patch"
+	autoconf
 
 	./configure --host=$HOST \
 	            --prefix= \
