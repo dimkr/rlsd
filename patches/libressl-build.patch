@@ -1,12 +1,12 @@
-diff -rup libressl-2.0.0-orig/configure.ac libressl-2.0.0/configure.ac
---- libressl-2.0.0-orig/configure.ac	2014-07-11 22:28:54.399923919 +0300
-+++ libressl-2.0.0/configure.ac	2014-07-11 22:29:02.170923780 +0300
-@@ -6,7 +6,7 @@ AC_CONFIG_MACRO_DIR([m4])
+diff -rup libressl-2.0.1-orig/configure.ac libressl-2.0.1/configure.ac
+--- libressl-2.0.1-orig/configure.ac	2014-07-14 22:18:05.767991301 +0300
++++ libressl-2.0.1/configure.ac	2014-07-14 22:21:29.499987653 +0300
+@@ -5,7 +5,7 @@ AC_CONFIG_MACRO_DIR([m4])
+ 
  m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
  
- AC_SUBST([USER_CFLAGS], "-O2 $CFLAGS")
--CFLAGS="$CFLAGS -Wall -Werror -std=c99 -g -Wno-pointer-sign"
-+CFLAGS="$CFLAGS -Wall -std=c99 -g -Wno-pointer-sign"
+-AC_SUBST([USER_CFLAGS], "-O2 $CFLAGS")
++AC_SUBST([USER_CFLAGS], "$CFLAGS")
+ CFLAGS="$CFLAGS -Wall -std=c99 -g"
  
  case $target_os in
- 	*darwin*)
