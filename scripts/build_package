@@ -139,7 +139,7 @@ do
 		esac
 	fi
 
-    # create a link to the file
+	# create a link to the file
 	[ ! -e "build/$destination" ] && \
 	                                   ln -s "../sources/$1/$destination" build/
 done
@@ -190,6 +190,10 @@ then
 	done
 fi
 
+# remove translations
+[ -d "$installation_prefix/usr/share/locale" ] && \
+                                  rm -rvf "$installation_prefix/usr/share/locale"
+
 if [ -d "$installation_prefix/usr/share/man" ]
 then
 	# remove localized man pages
@@ -224,7 +228,9 @@ fi
 
 # create a packdude package from the built package
 [ ! -d "$REPO_DIR" ] && mkdir -p "$REPO_DIR"
-tar -C "$installation_prefix" -c . | xz -9 -e --check=none | dudepack > "$REPO_DIR/$1-$PACKAGE_VERSION.dude"
+tar -C "$installation_prefix" -c . | \
+xz -9 -e --check=none | \
+dudepack > "$REPO_DIR/$1-$PACKAGE_VERSION.dude"
 
 # remove the temporary installation directory
 rm -rf "$installation_prefix"
@@ -236,6 +242,8 @@ rm -rf "$installation_prefix"
 dudeunpack "$REPO_DIR/$1-$PACKAGE_VERSION.dude" "$SYSROOT"
 
 # generate a package entry
-dependencies="$(grep ^$1: "$BASE_DIR/Makefile.deps" | cut -f 2 -d : | cut -c 2-)"
+dependencies="$(grep ^$1: "$BASE_DIR/Makefile.deps" | \
+                cut -f 2 -d : | \
+                cut -c 2-)"
 [ -z "$dependencies" ] && dependencies="-"
 echo "$1,$PACKAGE_VERSION,$PACKAGE_DESC,$1-$PACKAGE_VERSION.dude,$PACKAGE_ARCH,$dependencies" >> "$REPO_DIR/repo.csv"
