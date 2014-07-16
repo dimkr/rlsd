@@ -18,9 +18,6 @@ INITRAMFS_FILES="bin/toybox
                  bin/sleep
                  bin/clear
                  bin/cat
-                 bin/modprobed
-                 bin/devd
-                 bin/modprobe
                  bin/contain
                  bin/poweroff
                  bin/reboot
@@ -39,8 +36,7 @@ INITRAMFS_DIRECTORIES="run
                        mnt/rw
                        mnt/union
                        mnt/ro
-                       sys
-                       lib/modules"
+                       sys"
 
 # package present in the root file system
 PACKAGES="linux
@@ -175,8 +171,8 @@ chmod 1777 tmp
 find . | cpio -o -H newc | xz -9 -e --check=none > "$iso_root/initrd.xz"
 rm -rf "$initramfs_root"
 
-# create a 4 MB, FAT12 UEFI boot image, for UEFI boot
-dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=4
+# create a 16 MB, FAT12 UEFI boot image, for UEFI boot
+dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=16
 /sbin/mkfs.vfat -F 12 -n "DSLR" "$iso_root/efiboot.img"
 mmd -i "$iso_root/efiboot.img" "EFI"
 mmd -i "$iso_root/efiboot.img" "EFI/BOOT"

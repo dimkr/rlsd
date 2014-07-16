@@ -9,6 +9,8 @@ elilo_build() {
 	tar -xzvf elilo-$PACKAGE_VERSION-source.tar.gz
 	cd elilo-$PACKAGE_VERSION-source
 
+	patch -p 1 < "$BASE_DIR/patches/elilo-size.patch"
+
 	sed -e s~'^EFIINC\t   = /usr/include/efi$'~"EFIINC	   = $SYSROOT/usr/include/efi"~ \
 	    -e s~'^GNUEFILIB  = /usr/lib$'~"GNUEFILIB  = $SYSROOT/lib"~ \
 	    -e s~'^EFILIB\t   = /usr/lib$'~"EFILIB	   = $SYSROOT/lib"~ \

@@ -103,23 +103,12 @@ mount -B /mnt/union/run /mnt/union/var/run
 mount -B /var/log /mnt/union/var/log
 mount -B /tmp /mnt/union/tmp
 
-echo -n " done.
-Starting modprobed ..."
-
-mount -B /mnt/union/lib/modules /lib/modules
-modprobed
-
-echo -n " done.
-Starting devd ..."
-
-devd
-
-echo " done."
-
 # copy the package installation data database to the writeable layer, to allow
 # the installation of packages
 [ ! -f /mnt/rw/var/packdude/data.sqlite3 ] && \
           cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
+
+echo " done."
 
 # continue the boot process inside the layered file system, in a container
 contain /mnt/union /etc/rc.d/rc.sysinit

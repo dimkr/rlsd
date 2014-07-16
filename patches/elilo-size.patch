@@ -1,0 +1,12 @@
+diff -rup elilo-3.16-source-orig/x86_64/bzimage.c elilo-3.16-source/x86_64/bzimage.c
+--- elilo-3.16-source-orig/x86_64/bzimage.c	2014-07-16 21:19:19.744939833 +0300
++++ elilo-3.16-source/x86_64/bzimage.c	2014-07-16 21:19:51.354939267 +0300
+@@ -34,7 +34,7 @@
+ boot_params_t *param_start = NULL;
+ UINTN param_size = 0;
+ 
+-UINTN kernel_size = 0x800000;	/* 8M (default x86_64 bzImage size limit) */
++UINTN kernel_size = 0x1000000;	/* 16M (default x86_64 bzImage size limit) */
+ 
+ static VOID *
+ bzImage_alloc()
