@@ -1,0 +1,37 @@
+diff -rupN musl-1.0.3-orig/include/sys/auxv.h musl-1.0.3/include/sys/auxv.h
+--- musl-1.0.3-orig/include/sys/auxv.h	1970-01-01 02:00:00.000000000 +0200
++++ musl-1.0.3/include/sys/auxv.h	2014-07-19 15:38:04.000000000 +0300
+@@ -0,0 +1,16 @@
++#ifndef _SYS_AUXV_H
++#define _SYS_AUXV_H
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++#include <elf.h>
++
++unsigned long getauxval(unsigned long);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+diff -rupN musl-1.0.3-orig/src/misc/getauxval.c musl-1.0.3/src/misc/getauxval.c
+--- musl-1.0.3-orig/src/misc/getauxval.c	1970-01-01 02:00:00.000000000 +0200
++++ musl-1.0.3/src/misc/getauxval.c	2014-07-19 15:37:29.000000000 +0300
+@@ -0,0 +1,13 @@
++#include <sys/auxv.h>
++#include <errno.h>
++#include "libc.h"
++
++unsigned long getauxval(unsigned long item)
++{
++	size_t *auxv = libc.auxv;
++	if (item == AT_SECURE) return libc.secure;
++	for (; *auxv; auxv+=2)
++		if (*auxv==item) return auxv[1];
++	errno = ENOENT;
++	return 0;
++}
