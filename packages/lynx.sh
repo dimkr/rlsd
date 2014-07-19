@@ -7,6 +7,8 @@ lynx_build() {
 	[ -d lynx$version ] && rm -rf lynx$version
 	tar -xjvf lynx$PACKAGE_VERSION.tar.bz2
 	cd lynx$version
+
+	CFLAGS="-DUSE_OPENSSL_INCL $CFLAGS" \
 	./configure --host=$HOST \
 	            --prefix= \
 	            --mandir=/usr/share/man \
