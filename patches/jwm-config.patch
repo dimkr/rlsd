@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-07-12 12:32:15.441889982 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-07-12 12:32:48.182889396 +0300
-@@ -3,116 +3,173 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-07-19 11:51:34.298940808 +0300
++++ jwm-2.2.2/example.jwmrc	2014-07-19 11:51:47.213940577 +0300
+@@ -3,115 +3,172 @@
  <JWM>
  
      <!-- The root menu. -->
@@ -173,7 +173,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      <WindowStyle>
 -        <Font>FreeSans-9:bold</Font>
 -        <Width>4</Width>
-+        <Font>-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*</Font>
++        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +        <Width>3</Width>
          <Height>20</Height>
          <Active>
@@ -181,8 +181,8 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -            <Title>#CC7700:#884400</Title>
 -            <Outline>#000000</Outline>
 -            <Opacity>1.0</Opacity>
-+            <Text>white</Text>
-+            <Title>#5983e0</Title>
++            <Text>black</Text>
++            <Title>#999999</Title>
 +            <Outline>black</Outline>
          </Active>
          <Inactive>
@@ -190,8 +190,8 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -            <Title>#333333:#111111</Title>
 -            <Outline>#000000</Outline>
 -            <Opacity>0.5:0.9:0.1</Opacity>
-+            <Text>black</Text>
-+            <Title>#bbbbbb</Title>
++            <Text>white</Text>
++            <Title>#666666</Title>
 +            <Outline>black</Outline>
          </Inactive>
      </WindowStyle>
@@ -200,7 +200,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Background>#111111</Background>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Opacity>0.75</Opacity>
-+        <Font>-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*</Font>
++        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +        <Background>#bbbbbb</Background>
 +        <Foreground>black</Foreground>
      </TrayStyle>
@@ -208,7 +208,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +        <Foreground>black</Foreground>
 +        <Background>#bbbbbb</Background>
 +        <ActiveForeground>black</ActiveForeground>
-+        <ActiveBackground>#5983e0</ActiveBackground>
++        <ActiveBackground>#666666</ActiveBackground>
 +    </TrayButtonStyle>
      <TaskListStyle>
 -        <Font>FreeSans-12:bold</Font>
@@ -217,7 +217,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Foreground>#FFFFFF</Foreground>
 -        <Background>#333333:#111111</Background>
 +        <ActiveForeground>black</ActiveForeground>
-+        <ActiveBackground>#5983e0</ActiveBackground>
++        <ActiveBackground>#999999</ActiveBackground>
 +	<Background>#bbbbbb</Background>
      </TaskListStyle>
      <PagerStyle>
@@ -227,11 +227,11 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Background>#111111</Background>
 -        <ActiveForeground>#CC7700</ActiveForeground>
 -        <ActiveBackground>#884400</ActiveBackground>
-+       <Outline>black</Outline>
-+       <Foreground>#bbbbbb</Foreground>
-+       <Background>#336699</Background>
-+       <ActiveForeground>#5983e0</ActiveForeground>
-+       <ActiveBackground>#dcdad5</ActiveBackground>
++       <Outline>#222222</Outline>
++       <Foreground>#666666</Foreground>
++       <Background>#3b3b3b</Background>
++       <ActiveForeground>#999999</ActiveForeground>
++       <ActiveBackground>#666666</ActiveBackground>
      </PagerStyle>
      <MenuStyle>
 -        <Font>FreeSans-11</Font>
@@ -240,24 +240,22 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <ActiveForeground>#FFFFFF</ActiveForeground>
 -        <ActiveBackground>#CC7700:#884400</ActiveBackground>
 -        <Opacity>0.85</Opacity>
-+        <Font>-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*</Font>
++        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +        <Foreground>black</Foreground>
 +        <Background>#bbbbbb</Background>
 +        <ActiveForeground>white</ActiveForeground>
-+        <ActiveBackground>#5983e0</ActiveBackground>
++        <ActiveBackground>#666666</ActiveBackground>
      </MenuStyle>
      <PopupStyle>
 -        <Font>FreeSans-10</Font>
 -        <Outline>#000000</Outline>
 -        <Foreground>#000000</Foreground>
--        <Background>#999999</Background>
-+        <Font>-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*</Font>
++        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +        <Outline>black</Outline>
 +        <Foreground>black</Foreground>
-+        <Background>yellow</Background>
+         <Background>#999999</Background>
      </PopupStyle>
  
-     <!-- Path where icons can be found.
 @@ -120,17 +177,17 @@
           for icons in multiple paths.
        -->
@@ -275,7 +273,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
                for that desktop.
           -->
 -        <Background type="image">$HOME/images/bg.jpg</Background>
-+        <Background type="solid">#336699</Background>
++        <Background type="solid">#333333</Background>
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->

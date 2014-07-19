@@ -32,7 +32,7 @@ font_util: musl
 freedoom:
 fuse: musl
 gbase: musl gtk
-gcalendar: musl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
+gcalendar: musl gtk
 gcolor: musl gtk
 gdk_pixbuf: musl libpng libjpeg_turbo tiff
 gdmap: musl gtk
@@ -42,7 +42,7 @@ gifsicle: musl giflib
 glib: musl
 gnu_efi: musl
 grun: musl gtk
-gtk: musl tinyxlib glib font_bh_75dpi font_bh_100dpi
+gtk: musl tinyxlib glib font_adobe_75dpi font_adobe_100dpi
 gtkcat: musl gtk
 gtkdialog1: musl gtk findutils gdk_pixbuf
 gtkdiskfree: musl gtk

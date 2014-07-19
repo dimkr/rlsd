@@ -1,0 +1,12 @@
+diff -rup gtk-orig/gtk/gtkstyle.c gtk/gtk/gtkstyle.c
+--- gtk-orig/gtk/gtkstyle.c	2014-07-19 11:54:45.818998660 +0300
++++ gtk/gtk/gtkstyle.c	2014-07-19 11:57:07.887996115 +0300
+@@ -398,7 +398,7 @@ gtk_style_new (void)
+   if (!default_font)
+     {
+       default_font =
+-	gdk_font_load ("-adobe-helvetica-medium-r-normal--*-120-*-*-*-*-iso8859-1");
++	gdk_font_load ("-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1");
+       if (!default_font)
+ 	default_font = gdk_font_load ("fixed");
+       if (!default_font)

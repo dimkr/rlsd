@@ -59,10 +59,6 @@ Credits and Legal Information
 DSLR consists of many packages; each has its own license, detailed under DSLR's
 /usr/share/doc.
 
-The artwork of included in DSLR was taken from Damn Small Linux
-(http://www.damnsmalllinux.org/) and falls under the terms of the GPLv2
-(https://www.gnu.org/licenses/gpl-2.0.html) license.
-
 The icons included in DSLR's file system skeleton were taken from the
 public-domain Tango Desktop Project (http://tango.freedesktop.org/).
 

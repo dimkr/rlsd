@@ -8,7 +8,6 @@ gcalendar_build() {
 	cd gcalendar-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/gcalendar-build.patch"
-	patch -p 1 < "$BASE_DIR/patches/gcalendar-font.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \
