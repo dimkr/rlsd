@@ -1,6 +1,6 @@
-diff -rup libressl-2.0.1-orig/crypto/compat/issetugid_linux.c libressl-2.0.1/crypto/compat/issetugid_linux.c
---- libressl-2.0.1-orig/crypto/compat/issetugid_linux.c	2014-07-14 22:18:05.776991301 +0300
-+++ libressl-2.0.1/crypto/compat/issetugid_linux.c	2014-07-14 22:18:42.856990637 +0300
+diff -rup libressl-2.0.3-orig/crypto/compat/issetugid_linux.c libressl-2.0.3/crypto/compat/issetugid_linux.c
+--- libressl-2.0.3-orig/crypto/compat/issetugid_linux.c	2014-07-23 20:36:55.420997897 +0300
++++ libressl-2.0.3/crypto/compat/issetugid_linux.c	2014-07-23 20:38:01.421996715 +0300
 @@ -4,7 +4,9 @@
   */
  
