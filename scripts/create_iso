@@ -68,6 +68,7 @@ PACKAGES="linux
           tinyxserver
           jwm
           aterm
+          xmodmap
           conky
           rox
           gtkdialog1
