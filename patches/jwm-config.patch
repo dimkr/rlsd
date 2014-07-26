@@ -1,6 +1,6 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-07-19 11:51:34.298940808 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-07-19 11:51:47.213940577 +0300
+--- jwm-2.2.2-orig/example.jwmrc	2014-07-26 19:46:52.349961259 +0300
++++ jwm-2.2.2/example.jwmrc	2014-07-26 19:47:47.573960270 +0300
 @@ -3,115 +3,172 @@
  <JWM>
  
@@ -277,7 +277,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +197,20 @@
+@@ -140,16 +197,21 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -297,12 +297,13 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +    <ResizeMode coordinates="window">outline</ResizeMode>
 +
 +    <!-- Startup commands -->
++    <StartupCommand>xmodmap /etc/Xmodmap.conf</StartupCommand>
 +    <StartupCommand>conky</StartupCommand>
 +    <StartupCommand>rox -p default</StartupCommand>
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -166,12 +227,18 @@
+@@ -166,12 +228,19 @@
      <Key mask="A" key="Tab">nextstacked</Key>
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>
@@ -315,6 +316,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      <Key mask="A" key="Left">ldesktop</Key>
      <Key mask="A" key="Up">udesktop</Key>
      <Key mask="A" key="Down">ddesktop</Key>
++    <Key mask="A" key="space">window</Key>
  
 +    <Key mask="4" key="Up">maximize</Key>
 +    <Key mask="4" key="Down">minimize</Key>
