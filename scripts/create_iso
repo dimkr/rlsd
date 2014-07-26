@@ -10,6 +10,7 @@ INITRAMFS_FILES="bin/toybox
                  bin/klogd
                  bin/mkdir
                  bin/cp
+                 bin/cttyhack
                  bin/losetup
                  bin/mount
                  bin/umount

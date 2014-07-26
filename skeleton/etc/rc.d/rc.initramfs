@@ -49,7 +49,7 @@ echo -n " done.
 Searching for the home partition ..."
 cd /sys/class/block
 is_found=0
-for i in 1 2 3 4 5
+for i in 1 2 3 4 5 6 7 8 9 10
 do
 	for partition in *
 	do
@@ -67,18 +67,26 @@ do
 		fi
 	done
 	[ 1 -eq $is_found ] && break
-	sleep 5
+	sleep 1
 done
 if [ 0 -eq $is_found ]
 then
-	echo "failure."
+	echo " failure."
 	exit
 fi
+
+# copy the root file system image to /
+echo -n " done.
+Copying the root file system to RAM ..."
+cp /mnt/home/rootfs.sfs /
+
+# unmount the root file system
+umount /mnt/home
 
 # mount the root file system image
 echo -n " done.
 Mounting the root file system ..."
-losetup -r /dev/loop0 /mnt/home/rootfs.sfs
+losetup -r /dev/loop0 /rootfs.sfs
 mount -t squashfs -o ro /dev/loop0 /mnt/ro
 
 # mount a writable file system
@@ -105,13 +113,15 @@ mount -B /tmp /mnt/union/tmp
 
 # copy the package installation data database to the writeable layer, to allow
 # the installation of packages
-[ ! -f /mnt/rw/var/packdude/data.sqlite3 ] && \
-          cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
+if [ -f /mnt/ro/var/packdude/data.sqlite3 ] &&  [ ! -f /mnt/rw/var/packdude/data.sqlite3 ]
+then
+	cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
+fi
 
 echo " done."
 
 # continue the boot process inside the layered file system, in a container
-contain /mnt/union /etc/rc.d/rc.sysinit
+cttyhack contain /mnt/union /etc/rc.d/rc.sysinit
 case $? in
 	2)
 		poweroff
