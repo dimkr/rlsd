@@ -175,8 +175,10 @@ if [ 1 -eq $should_strip ] && [ -d "$installation_prefix/bin" ]
 then
 	find "$installation_prefix" | while read file
 	do
-		[ "application/x-executable" = "$(file -b --mime-type "$file")" ] && \
-		                                            "$STRIP" --strip-all "$file"
+		[ "application/x-executable" != "$(file -b --mime-type "$file")" ] && \
+		                                                                continue
+		$STRIP --strip-all "$file"
+		sstrip -z "$file"
 	done
 fi
 

@@ -42,6 +42,14 @@ Build a cross-compiler using musl-cross (https://github.com/dimkr/musl-cross):
   sudo ./build.sh
   cd ..
 
+Build and install sstrip from ELF Kickers (http://www.muppetlabs.com/~breadbox/software/elfkickers.html):
+  wget http://www.muppetlabs.com/~breadbox/pub/software/ELFkickers-3.0a.tar.gz
+  tar -xzvf ELFkickers-3.0a.tar.gz
+  cd ELFkickers-3.0a/sstrip
+  make
+  sudo cp sstrip /usr/local/bin
+  cd ../..
+
 Build the entire DSLR package repository:
   git clone https://github.com/dimkr/dslr.git
   cd dslr
