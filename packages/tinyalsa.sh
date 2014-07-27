@@ -14,10 +14,6 @@ tinyalsa_build() {
 
 tinyalsa_package() {
 	install -D -m 644 libtinyalsa.a "$1/lib/libtinyalsa.a"
-	for i in tinycap tinymix tinypcminfo tinyplay
-	do
-		install -D -m 755 $i "$1/bin/$i"
-	done
 	install -D -m 644 README "$1/usr/share/doc/tinyalsa/README"
 	head -n 26 mixer.c | tail -n 24 | cut -c 4- \
 	                                       > "$1/usr/share/doc/tinyalsa/COPYING"

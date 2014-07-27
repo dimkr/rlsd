@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 --- jwm-2.2.2-orig/example.jwmrc	2014-07-26 19:46:52.349961259 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-07-26 19:47:47.573960270 +0300
-@@ -3,115 +3,172 @@
++++ jwm-2.2.2/example.jwmrc	2014-07-27 22:01:30.373959897 +0300
+@@ -3,115 +3,173 @@
  <JWM>
  
      <!-- The root menu. -->
@@ -45,6 +45,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +	<Menu label="Multimedia" labeled="true">
 +	        <Program label="xhippo">xhippo</Program>
++	        <Program label="AlsaMixer">aterm -title AlsaMixer -e alsamixer</Program>
 +	        <Program label="mtPaint">mtpaint</Program>
 +	        <Program label="GTK See">gtksee</Program>
 +	        <Program label="mhWaveEdit">mhwaveedit</Program>
@@ -256,7 +257,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
          <Background>#999999</Background>
      </PopupStyle>
  
-@@ -120,17 +177,17 @@
+@@ -120,17 +178,17 @@
           for icons in multiple paths.
        -->
      <IconPath>
@@ -277,7 +278,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
      </Desktops>
  
      <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +197,21 @@
+@@ -140,16 +198,21 @@
      <DoubleClickDelta>2</DoubleClickDelta>
  
      <!-- The focus model (sloppy or click) -->
@@ -303,7 +304,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
  
      <!-- Key bindings -->
      <Key key="Up">up</Key>
-@@ -166,12 +228,19 @@
+@@ -166,12 +229,19 @@
      <Key mask="A" key="Tab">nextstacked</Key>
      <Key mask="A" key="F4">close</Key>
      <Key mask="A" key="#">desktop#</Key>

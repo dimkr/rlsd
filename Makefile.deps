@@ -1,4 +1,5 @@
 alsa_lib: musl
+alsa_utils: musl ncurses alsa_lib
 aterm: musl tinyxlib
 bc: musl
 beaver: musl gtk
