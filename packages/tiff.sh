@@ -7,6 +7,8 @@ tiff_build() {
 	tar -xzvf tiff-$PACKAGE_VERSION.tar.gz
 	cd tiff-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/tiff-html.patch"
+
 	sed s~'LIBTIFF_DOCDIR=\${prefix}/share/doc/${PACKAGE}-${LIBTIFF_VERSION}'~'LIBTIFF_DOCDIR=\${prefix}/share/doc/${PACKAGE}'~ -i configure
 	./configure --host=$HOST \
 	            --prefix=/usr \

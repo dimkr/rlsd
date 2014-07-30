@@ -15,6 +15,7 @@ libxml2_build() {
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --without-debug \
+	            --without-html-dir \
 	            --without-python \
 	            --without-threads \
 	            --without-modules \

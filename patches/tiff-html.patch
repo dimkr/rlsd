@@ -1,0 +1,12 @@
+diff -rup tiff-4.0.3-orig/Makefile.in tiff-4.0.3/Makefile.in
+--- tiff-4.0.3-orig/Makefile.in	2014-07-30 19:36:40.013991332 +0300
++++ tiff-4.0.3/Makefile.in	2014-07-30 19:37:26.815990494 +0300
+@@ -374,7 +374,7 @@ EXTRA_DIST = \
+ 	libtiff-4.pc.in
+ 
+ dist_doc_DATA = $(docfiles)
+-SUBDIRS = port libtiff tools build contrib test man html
++SUBDIRS = port libtiff tools build contrib test man
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = libtiff-4.pc
+ all: all-recursive
