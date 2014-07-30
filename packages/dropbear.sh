@@ -10,6 +10,7 @@ dropbear_build() {
 	cd dropbear-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/dropbear-options.patch"
+	patch -p 1 < "$BASE_DIR/patches/dropbear-links.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --sbindir=/bin \
