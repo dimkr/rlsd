@@ -177,7 +177,7 @@ then
 	do
 		[ "application/x-executable" != "$(file -b --mime-type "$file")" ] && \
 		                                                                continue
-		$STRIP --strip-all "$file"
+		$STRIP --strip-all -R .note -R .comment "$file"
 		sstrip -z "$file"
 	done
 fi
