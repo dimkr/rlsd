@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2014.63"
+PACKAGE_VERSION="2014.64"
 PACKAGE_SOURCES="https://matt.ucc.asn.au/dropbear/releases/dropbear-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A SSH server and client"
 
@@ -26,5 +26,6 @@ dropbear_package() {
 	ln -s dropbearmulti "$1/bin/ssh"
 	install -d -m 644 "$1/etc/dropbear"
 	install -D -m 644 README "$1/usr/share/doc/dropbear/README"
+	install -m 644 CHANGES "$1/usr/share/doc/dropbear/CHANGES"
 	install -m 644 LICENSE "$1/usr/share/doc/dropbear/LICENSE"
 }

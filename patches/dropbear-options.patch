@@ -1,6 +1,6 @@
-diff -rup dropbear-2014.63-orig/options.h dropbear-2014.63/options.h
---- dropbear-2014.63-orig/options.h	2014-07-02 20:52:09.766965942 +0300
-+++ dropbear-2014.63/options.h	2014-07-02 20:53:21.256964662 +0300
+diff -rup dropbear-2014.64-orig/options.h dropbear-2014.64/options.h
+--- dropbear-2014.64-orig/options.h	2014-07-30 16:32:01.477931618 +0300
++++ dropbear-2014.64/options.h	2014-07-30 16:32:07.414931512 +0300
 @@ -264,7 +264,7 @@ much traffic. */
  /* The command to invoke for xauth when using X11 forwarding.
   * "-q" for quiet */
@@ -19,7 +19,7 @@ diff -rup dropbear-2014.63-orig/options.h dropbear-2014.63/options.h
  
  /* Whether to log commands executed by a client. This only logs the 
   * (single) command sent to the server, not what a user did in a 
-@@ -313,7 +313,7 @@ be overridden at runtime with -I. 0 disa
+@@ -318,7 +318,7 @@ be overridden at runtime with -I. 0 disa
  #define DEFAULT_IDLE_TIMEOUT 0
  
  /* The default path. This will often get replaced by the shell */
@@ -28,11 +28,11 @@ diff -rup dropbear-2014.63-orig/options.h dropbear-2014.63/options.h
  
  /* Some other defines (that mostly should be left alone) are defined
   * in sysoptions.h */
-diff -rup dropbear-2014.63-orig/sysoptions.h dropbear-2014.63/sysoptions.h
---- dropbear-2014.63-orig/sysoptions.h	2014-07-02 20:52:09.752965943 +0300
-+++ dropbear-2014.63/sysoptions.h	2014-07-02 20:54:09.399963800 +0300
+diff -rup dropbear-2014.64-orig/sysoptions.h dropbear-2014.64/sysoptions.h
+--- dropbear-2014.64-orig/sysoptions.h	2014-07-30 16:32:01.461931618 +0300
++++ dropbear-2014.64/sysoptions.h	2014-07-30 16:32:07.415931511 +0300
 @@ -7,7 +7,7 @@
- #define DROPBEAR_VERSION "2014.63"
+ #define DROPBEAR_VERSION "2014.64"
  #endif
  
 -#define LOCAL_IDENT "SSH-2.0-dropbear_" DROPBEAR_VERSION
