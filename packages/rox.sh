@@ -10,6 +10,7 @@ rox_build() {
 	cd rox-master
 
 	patch -p 1 < "$BASE_DIR/patches/rox-pinboard.patch"
+	patch -p 1 < "$BASE_DIR/patches/rox-platform.patch"
 
 	cd ROX-Filer/src
 	./configure --host=$HOST --with-platform=$PLATFORM --with-xterm=aterm
@@ -33,7 +34,6 @@ rox_package() {
 	done
 
 	install -D -m 755 $PLATFORM/ROX-Filer "$1/lib/rox/ROX-Filer"
-	ln -s ../../../lib/rox "$1/usr/share/rox/$PLATFORM"
 
 	mkdir "$1/bin"
 	echo "#!/bin/sh

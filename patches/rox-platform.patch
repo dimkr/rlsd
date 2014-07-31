@@ -1,0 +1,12 @@
+diff -rup rox-master-orig/ROX-Filer/AppRun rox-master/ROX-Filer/AppRun
+--- rox-master-orig/ROX-Filer/AppRun	2014-07-31 19:14:35.646946389 +0300
++++ rox-master/ROX-Filer/AppRun	2014-07-31 19:18:56.901941710 +0300
+@@ -39,7 +39,7 @@ case $1 in
+ 		exit 1
+ esac
+ 
+-BIN="$APP_DIR/$PLATFORM/$PROG"
++BIN="/lib/rox/$PROG"
+ 
+ if [ -x "$BIN" ]; then
+   exec $DEBUGGER "$BIN" "$@"
