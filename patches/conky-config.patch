@@ -1,6 +1,6 @@
 diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
---- conky-1.9.0-orig/data/conky.conf	2014-06-15 23:27:11.906746530 +0300
-+++ conky-1.9.0/data/conky.conf	2014-06-15 23:27:20.176746382 +0300
+--- conky-1.9.0-orig/data/conky.conf	2014-07-31 18:47:25.752975577 +0300
++++ conky-1.9.0/data/conky.conf	2014-07-31 18:54:02.668968469 +0300
 @@ -23,55 +23,57 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #
@@ -88,26 +88,3 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
 +${color green}$hr$color
 +$sysname $kernel on $machine
 +${color grey}Host: $color$nodename
-diff -rup conky-1.9.0-orig/data/Makefile.am conky-1.9.0/data/Makefile.am
---- conky-1.9.0-orig/data/Makefile.am	2014-06-15 23:27:11.906746530 +0300
-+++ conky-1.9.0/data/Makefile.am	2014-06-15 23:28:03.090745613 +0300
-@@ -26,6 +26,6 @@
- #
- 
- configdir = ${sysconfdir}/conky
--dist_config_DATA = conky.conf conky_no_x11.conf
-+dist_config_DATA = conky.conf
- 
- # vi:set ts=4 sw=4 noet ai nocindent syntax=automake:
-diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
---- conky-1.9.0-orig/data/Makefile.in	2014-06-15 23:27:11.906746530 +0300
-+++ conky-1.9.0/data/Makefile.in	2014-06-15 23:27:37.987746063 +0300
-@@ -292,7 +292,7 @@ top_builddir = @top_builddir@
- top_srcdir = @top_srcdir@
- xsltproc_cmd = @xsltproc_cmd@
- configdir = ${sysconfdir}/conky
--dist_config_DATA = conky.conf conky_no_x11.conf
-+dist_config_DATA = conky.conf
- all: all-am
- 
- .SUFFIXES:

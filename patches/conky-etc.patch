@@ -1,0 +1,98 @@
+diff -rup conky-1.9.0-orig/data/Makefile.am conky-1.9.0/data/Makefile.am
+--- conky-1.9.0-orig/data/Makefile.am	2014-07-31 18:47:25.752975577 +0300
++++ conky-1.9.0/data/Makefile.am	2014-07-31 18:57:25.526964836 +0300
+@@ -25,7 +25,7 @@
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #
+ 
+-configdir = ${sysconfdir}/conky
+-dist_config_DATA = conky.conf conky_no_x11.conf
++configdir = ${sysconfdir}
++dist_config_DATA = conky.conf
+ 
+ # vi:set ts=4 sw=4 noet ai nocindent syntax=automake:
+diff -rup conky-1.9.0-orig/data/Makefile.in conky-1.9.0/data/Makefile.in
+--- conky-1.9.0-orig/data/Makefile.in	2014-07-31 18:47:25.752975577 +0300
++++ conky-1.9.0/data/Makefile.in	2014-07-31 18:59:06.375963030 +0300
+@@ -291,8 +291,8 @@ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ xsltproc_cmd = @xsltproc_cmd@
+-configdir = ${sysconfdir}/conky
+-dist_config_DATA = conky.conf conky_no_x11.conf
++configdir = ${sysconfdir}
++dist_config_DATA = conky.conf
+ all: all-am
+ 
+ .SUFFIXES:
+diff -rup conky-1.9.0-orig/doc/conky.1 conky-1.9.0/doc/conky.1
+--- conky-1.9.0-orig/doc/conky.1	2014-07-31 18:47:25.746975577 +0300
++++ conky-1.9.0/doc/conky.1	2014-07-31 18:57:25.529964836 +0300
+@@ -191,9 +191,9 @@ Number of times to update Conky (and qui
+ 
+ .SH "CONFIGURATION SETTINGS"
+ Default configuration file location is $HOME/.conkyrc or
+-${sysconfdir}/conky/conky.conf. On most systems, sysconfdir is
++${sysconfdir}/conky.conf. On most systems, sysconfdir is
+ /etc, and you can find the sample config file there
+-(/etc/conky/conky.conf).
++(/etc/conky.conf).
+ .PP
+ You might want to copy it to $HOME/.conkyrc and then
+ start modifying it. Other configs can be found at
+@@ -3079,7 +3079,7 @@ the builtin default config file to ~/.co
+ later customising.
+ .SH FILES
+ .TP 
+-\*(T<\fI${sysconfdir}/conky/conky.conf\fR\*(T> 
++\*(T<\fI${sysconfdir}/conky.conf\fR\*(T> 
+ Default system-wide configuration file.
+ The value of ${sysconfdir} depends on the
+ compile-time options (most likely /etc).
+diff -rup conky-1.9.0-orig/README conky-1.9.0/README
+--- conky-1.9.0-orig/README	2014-07-31 18:47:25.747975577 +0300
++++ conky-1.9.0/README	2014-07-31 18:57:25.530964836 +0300
+@@ -161,8 +161,8 @@ OPTIONS
+ 
+ CONFIGURATION SETTINGS
+        Default      configuration      file      location      is      $HOME/.conkyrc      or
+-       ${sysconfdir}/conky/conky.conf.  On most systems, sysconfdir is /etc, and you can find
+-       the sample config file there (/etc/conky/conky.conf).
++       ${sysconfdir}/conky.conf.  On most systems, sysconfdir is /etc, and you can find
++       the sample config file there (/etc/conky.conf).
+ 
+        You might want to copy it to $HOME/.conkyrc and then start modifying it. Other configs
+        can be found at http://conky.sf.net/
+@@ -2606,7 +2606,7 @@ EXAMPLES
+               ~/.conkyrc for later customising.
+ 
+ FILES
+-       ${sysconfdir}/conky/conky.conf
++       ${sysconfdir}/conky.conf
+               Default  system-wide configuration file.  The value of ${sysconfdir} depends on
+               the compile-time options (most likely /etc).
+ 
+diff -rup conky-1.9.0-orig/src/Makefile.am conky-1.9.0/src/Makefile.am
+--- conky-1.9.0-orig/src/Makefile.am	2014-07-31 18:47:25.752975577 +0300
++++ conky-1.9.0/src/Makefile.am	2014-07-31 18:57:25.531964836 +0300
+@@ -25,7 +25,7 @@
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #
+ 
+-INCLUDES = -DSYSTEM_CONFIG_FILE=\"$(sysconfdir)/conky/conky.conf\" -DPACKAGE_LIBDIR=\"$(pkglibdir)\"
++INCLUDES = -DSYSTEM_CONFIG_FILE=\"$(sysconfdir)/conky.conf\" -DPACKAGE_LIBDIR=\"$(pkglibdir)\"
+ 
+ bin_PROGRAMS = conky
+ 
+diff -rup conky-1.9.0-orig/src/Makefile.in conky-1.9.0/src/Makefile.in
+--- conky-1.9.0-orig/src/Makefile.in	2014-07-31 18:47:25.751975577 +0300
++++ conky-1.9.0/src/Makefile.in	2014-07-31 18:57:25.532964836 +0300
+@@ -397,7 +397,7 @@ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ xsltproc_cmd = @xsltproc_cmd@
+-INCLUDES = -DSYSTEM_CONFIG_FILE=\"$(sysconfdir)/conky/conky.conf\" -DPACKAGE_LIBDIR=\"$(pkglibdir)\"
++INCLUDES = -DSYSTEM_CONFIG_FILE=\"$(sysconfdir)/conky.conf\" -DPACKAGE_LIBDIR=\"$(pkglibdir)\"
+ @BUILD_CONFIG_OUTPUT_TRUE@config_output = defconfig.h
+ @BUILD_CONFIG_OUTPUT_TRUE@config_cookie = conf_cookie.c conf_cookie.h
+ @BUILD_CONFIG_OUTPUT_TRUE@@BUILD_X11_FALSE@config_input = $(srcdir)/../data/conky_no_x11.conf

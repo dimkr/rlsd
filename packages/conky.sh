@@ -9,6 +9,7 @@ conky_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/conky-bool.patch"
 	patch -p 1 < "$BASE_DIR/patches/conky-config.patch"
+	patch -p 1 < "$BASE_DIR/patches/conky-etc.patch"
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
