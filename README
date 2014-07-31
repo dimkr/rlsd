@@ -16,6 +16,9 @@ musl (http://www.musl-libc.org/) and Linux (https://www.kernel.org/) 3.x, on
 x86_64. This blend of good, old applications, a recent base and 64-bit support
 is unique to DSLR and makes it extremely fast.
 
+DSLR's development follows the guidelines in the project manifest described in
+MANIFEST.
+
 Building
 ========
 

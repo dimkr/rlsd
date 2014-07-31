@@ -1,0 +1,117 @@
+This Document
+=============
+
+This document provides various guidelines related to the development and design
+of DSLR. These guidelines should be treated more like a RFC or coding style
+conventions and less like a corporate policy.
+
+Changes and suggestions are always welcome, as long they make sense and follow
+the spirit of this document.
+
+Mission Statement
+=================
+
+  - DSLR is a single-user operating system focused on lightweight, retro
+    applications, minimalism and security.
+  - DSLR should appear professional and well-integrated.
+  - DSLR should be efficient, small and lightweight; efficiency is a top
+    priority, even at the cost of increased memory consumption.
+  - Using and developing DSLR should be fun.
+
+Looks
+=====
+
+  - DSLR is gray. Dark gray is professional, neutral, calm and easy on the eyes.
+
+Hardware Support
+================
+
+  - DSLR supports only hardware with free software drivers that can be built as
+    built-in modules. DSLR does not support dynamic loading of kernel modules,
+    for increased security, simplicity and faster boot times.
+
+Other Projects
+==============
+
+  - The developers of other distributions are friends. All development done in
+    DSLR should be well-documented, to make features developed for DSLR easier
+    to reuse.
+  - Competition is healthy. It should be easy to compete with DSLR (because its
+    development is open and well-documented).
+  - DSLR is permissively-licensed, to encourage sharing of the vast amount of
+    knowledge and experience behind it and code reuse, in both commercial and
+    non-commercial environment.
+
+Package Choice
+==============
+
+  - Packages with less dependencies or packages that share dependencies with
+    ones already included in DSLR are always preferred.
+  - Stable branches are always preferred over development branches, especially
+    in low-level packages like the kernel or the C library. For example, DSLR
+    follows a "longterm" kernel branch.
+  - Rule of thumb: one library per task. For example, DSLR tries to avoid
+    applications that use imlib or imlib2
+    (http://docs.enlightenment.org/api/imlib2/html/), because it includes
+    gdk-pixbuf (https://github.com/dimkr/gdk-pixbuf). The same applies to libxml2
+    (http://www.xmlsoft.org/) and expat (http://www.libexpat.org/).
+
+Packaging
+=========
+
+  - All executables go to /bin, all libraries to /lib and package-specific
+    libraries or binaries which cannot be used directly (libexec directories,
+    http://www.linuxbase.org/betaspecs/fhs/fhs/ch04s07.html) to a sub-directory
+    under /lib. All other files are put in their standard locations (i.e headers
+    in /usr/include and man pages in /usr/share/man). This unification of
+    directories under / and /usr and the lack of sbin directories is meant to
+    simplify the file system layout. In addition, having only /bin in PATH
+    improves security, since it's impossible to "hook" executables by putting
+    malicious ones (e.g scripts that run malware and exec the original binary)
+    earlier in PATH.
+  - Generally, packages should be unmodified. Each modification is a potential
+    maintenance burden, since it has to be adapted to each new version of the
+    upstream package.
+  - If a package has more than three patches, it should be forked. Then, any
+    additional changes should be merged directly into the fork. A fork is the
+    hardest kind of maintenance, so this rule applies only to unmaintained
+    packages.
+  - Each package should ship with documentation under /usr/share/doc. All
+    documentation supplied with the package and legal information (i.e license
+    and a list of its authors) should be put there.
+  - Packages must not contain language support files. DSLR is English-only,
+    because most of its applications are translated poorly or lack any
+    translations. In addition, it's safe to assume most of it target audience
+    speaks English.
+  - If an optional feature makes a package big or adds a dependency for very
+    little benefit, it should be disabled.
+  - Bad default configuration values should be treated like bugs.
+  - The look and feel of an application can be modified freely, but should be
+    implemented as a patch.
+  - Package must not place any files under the user's home directory. Instead,
+    these file should be created at run-time. Also, applications must not assume
+    they are executed by a specific user.
+  - Directories under /etc must contain more than one file. If a package puts
+    a single configuration file in a sub-directory of /etc, it should be
+    patched to remove the sub-directory.
+
+Bugs
+====
+
+  - Bugs in packages should be fixed. The fix should be tested and included in
+    DSLR as a patch under the patches directory. Then, the developer who fixed
+    the bug should put reasonable effort into getting the patch merged into the
+    upstream package.
+
+Security
+========
+
+  - DSLR always runs as root, for maximum freedom and power.
+  - If possible, outward-facing daemons should run as the user "nobody".
+  - DSLR traps all applications executed for the user in a sandbox. The user
+    must not be able to see, stop or change the behavior of critical processes,
+    such as init or syslogd.
+  - The user should be able to run applications as root and the restricted user
+    "someone".
+  - Generally, daemons should be as restricted as possible. unshare(), chdir()
+    and chroot() should be used where appropriate.
