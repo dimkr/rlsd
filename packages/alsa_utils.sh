@@ -7,6 +7,9 @@ alsa_utils_build() {
 	tar -xjvf alsa-utils-$PACKAGE_VERSION.tar.bz2
 	cd alsa-utils-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/alsa-utils-sounds.patch"
+	autoconf
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --sbindir=/bin \
