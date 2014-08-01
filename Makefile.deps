@@ -9,7 +9,7 @@ bwm_ng: musl ncurses
 ca_certificates:
 calcoo: musl gtk
 calcurse: musl ncurses
-conky: musl tinyxlib
+conky: musl tinyxlib font_bh_75dpi font_bh_100dpi
 curl: musl zlib libressl
 dhcpcd: musl
 dialog: musl ncurses
@@ -60,7 +60,7 @@ htop: musl ncurses
 ircii: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
-jwm: musl tinyxlib libpng font_adobe_75dpi font_adobe_100dpi
+jwm: musl tinyxlib libpng font_bh_75dpi font_bh_100dpi
 lazy_utils: musl
 lbzip2: musl
 less: musl ncurses

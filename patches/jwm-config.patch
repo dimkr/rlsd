@@ -1,10 +1,11 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-07-26 19:46:52.349961259 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-07-27 22:01:30.373959897 +0300
-@@ -3,115 +3,173 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-08-01 12:48:53.984954030 +0300
++++ jwm-2.2.2/example.jwmrc	2014-08-01 13:22:35.094917835 +0300
+@@ -2,176 +2,247 @@
+ 
  <JWM>
  
-     <!-- The root menu. -->
+-    <!-- The root menu. -->
 -    <RootMenu onroot="12">
 -        <Program icon="terminal.png" label="Terminal">xterm</Program>
 -        <Menu icon="folder.png" label="Applications">
@@ -24,66 +25,11 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Program icon="lock.png" label="Lock">
 -            xscreensaver-command -lock
 -        </Program>
-+    <RootMenu onroot="3">
-+        <Program label="Settings">settings</Program>
-+	<Menu label="File managers" labeled="true">
-+	        <Program label="emelFM">emelfm</Program>
-+	        <Program label="ROX-Filer">rox</Program>
-+	        <Program label="ytree">aterm -title ytree -e ytree</Program>
-+	        <Program label="guiTAR">guitar</Program>
-+	        <Program label="gtkcat">gtkcat</Program>
-+	</Menu>
-+	<Separator/>
-+
-+	<Menu label="Games" labeled="true">
-+	        <Program label="PrBoom">prboom</Program>
-+	        <Program label="Shut the Box">shutbox</Program>
-+	        <Program label="XPacman">xpacman</Program>
-+	        <Program label="xsoldier">xsoldier</Program>
-+	        <Program label="xasteroids">xast</Program>
-+	</Menu>
-+
-+	<Menu label="Multimedia" labeled="true">
-+	        <Program label="xhippo">xhippo</Program>
-+	        <Program label="AlsaMixer">aterm -title AlsaMixer -e alsamixer</Program>
-+	        <Program label="mtPaint">mtpaint</Program>
-+	        <Program label="GTK See">gtksee</Program>
-+	        <Program label="mhWaveEdit">mhwaveedit</Program>
-+	        <Program label="gcolor">gcolor</Program>
-+	        <Program label="XaoS">xaos</Program>
-+	        <Program label="Webcam Viewer">ffplay -f v4l2 /dev/video0</Program>
-+	        <Program label="Screenshot Taker">mtpaint -s</Program>
-+	</Menu>
-+
-+	<Menu label="Net" labeled="true">
-+		<Menu label="Browsers">
-+		        <Program label="Dillo">dillo</Program>
-+		        <Program label="Lynx">aterm -title Lynx -e lynx</Program>
-+		</Menu>
-+	        <Program label="Sylpheed">sylpheed</Program>
-+	        <Program label="X-Chat">xchat</Program>
-+	        <Program label="ircII">aterm -title ircII -e irc</Program>
-+	        <Program label="guiftp">guiftp</Program>
-+	        <Program label="Snownews">aterm -title Snownews -e snownews</Program>
-+	</Menu>
-+
-+	<Menu label="Office" labeled="true">
-+	        <Program label="Ted">Ted</Program>
-+	        <Program label="Siag">siag</Program>
-+	        <Program label="Calcoo">calcoo</Program>
-+	        <Program label="bc">aterm -title bc -e bc</Program>
-+	        <Program label="gcalendar">gcalendar</Program>
-+	        <Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
-+	        <Program label="gtklepin">gtklepin</Program>
-+	        <Program label="gbase">gbase</Program>
-+	        <Program label="gv">gv</Program>
-+	</Menu>
-+
-         <Separator/>
+-        <Separator/>
 -        <Restart label="Restart" icon="restart.png"/>
 -        <Exit label="Exit" confirm="true" icon="quit.png"/>
 -    </RootMenu>
- 
+-
 -    <!-- Options for program groups. -->
 -    <Group>
 -        <Class>Pidgin</Class>
@@ -102,227 +48,376 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -        <Name>xcalc</Name>
 -        <Option>icon:calculator.png</Option>
 -    </Group>
-+	<Menu label="Editors">
-+	        <Program label="Beaver">beaver</Program>
-+	        <Program label="gtkedit">gtkedit</Program>
-+	        <Program label="Vile">aterm -title Vile -e vile</Program>
-+	        <Program label="nano">aterm -title nano -e nano</Program>
-+	</Menu>
-+
-+	<Menu label="System">
-+	        <Program label="Settings">settings</Program>
-+	        <Program label="System Log">aterm -title "System Log" -e less /var/log/messages</Program>
-+	        <Program label="gtkdiskfree">gtkdiskfree</Program>
-+	        <Program label="GDMap">gdmap</Program>
-+	        <Program label="htop">aterm -title htop -e htop</Program>
-+	        <Program label="ncdu">aterm -title ncdu -e ncdu</Program>
-+	        <Program label="gtkfontsel">gtkfontsel</Program>
-+	        <Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
-+		<Menu label="Daemons">
-+			<Menu label="Dropbear">
-+	        		<Program label="Start">sh /etc/init.d/dropbear start</Program>
-+	        		<Program label="Stop">sh /etc/init.d/dropbear stop</Program>
-+			</Menu>
-+			<Menu label="tftpd">
-+	        		<Program label="Start">sh /etc/init.d/tftpd start</Program>
-+	        		<Program label="Stop">sh /etc/init.d/tftpd stop</Program>
-+			</Menu>
-+		</Menu>
-+	</Menu>
-+
-+	<Menu label="XShells">
-+	        <Program label="aterm">aterm</Program>
-+	        <Program label="Screen">aterm -title Screen -e screen</Program>
-+	</Menu>
- 
+-
 -    <!-- Tray at the bottom. -->
 -    <Tray x="0" y="-1" height="32" autohide="false">
-+        <Separator/>
- 
+-
 -        <TrayButton label="JWM">root:1</TrayButton>
 -        <TrayButton label="_">showdesktop</TrayButton>
-+        <Program label="Help">help</Program>
-+        <Program label="Find">gtkfind</Program>
-+        <Program label="Run Command">grun</Program>
-+        <Program label="Run Restricted">odus grun</Program>
- 
+-
 -        <Pager labeled="true"/>
-+        <Separator/>
- 
+-
 -        <TaskList maxwidth="256"/>
-+	<Menu label="Exit">
-+	        <Restart label="Restart"/>
-+ 		<Exit label="Exit to prompt"/>
-+		<Program label="Suspend">suspend</Program>
-+		<Program label="Reboot">reboot</Program>
-+		<Program label="Power off">poweroff</Program>
-+	</Menu>
-+    </RootMenu>
- 
-+    <!-- Tray at the bottom. -->
-+    <Tray y="-1" height="24" border="1">
-+        <TrayButton label="DSLR">root:3</TrayButton>
-+        <Pager/>
-+        <TaskList/>
-         <Dock/>
+-
+-        <Dock/>
 -        <Clock>xclock</Clock>
 -
-+        <Clock>gcalendar</Clock>
-     </Tray>
- 
-     <!-- Visual Styles -->
-     <WindowStyle>
+-    </Tray>
+-
+-    <!-- Visual Styles -->
+-    <WindowStyle>
 -        <Font>FreeSans-9:bold</Font>
 -        <Width>4</Width>
-+        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
-+        <Width>3</Width>
-         <Height>20</Height>
-         <Active>
+-        <Height>20</Height>
+-        <Active>
 -            <Text>#FFFFFF</Text>
 -            <Title>#CC7700:#884400</Title>
 -            <Outline>#000000</Outline>
 -            <Opacity>1.0</Opacity>
-+            <Text>black</Text>
-+            <Title>#999999</Title>
-+            <Outline>black</Outline>
-         </Active>
-         <Inactive>
+-        </Active>
+-        <Inactive>
 -            <Text>#FFFFFF</Text>
 -            <Title>#333333:#111111</Title>
 -            <Outline>#000000</Outline>
 -            <Opacity>0.5:0.9:0.1</Opacity>
-+            <Text>white</Text>
-+            <Title>#666666</Title>
-+            <Outline>black</Outline>
-         </Inactive>
-     </WindowStyle>
-     <TrayStyle>
+-        </Inactive>
+-    </WindowStyle>
+-    <TrayStyle>
 -        <Font>FreeSans-12:bold</Font>
 -        <Background>#111111</Background>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Opacity>0.75</Opacity>
-+        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
-+        <Background>#bbbbbb</Background>
-+        <Foreground>black</Foreground>
-     </TrayStyle>
-+    <TrayButtonStyle>
-+        <Foreground>black</Foreground>
-+        <Background>#bbbbbb</Background>
-+        <ActiveForeground>black</ActiveForeground>
-+        <ActiveBackground>#666666</ActiveBackground>
-+    </TrayButtonStyle>
-     <TaskListStyle>
+-    </TrayStyle>
+-    <TaskListStyle>
 -        <Font>FreeSans-12:bold</Font>
 -        <ActiveForeground>#FFFFFF</ActiveForeground>
 -        <ActiveBackground>#111111:#333333</ActiveBackground>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Background>#333333:#111111</Background>
-+        <ActiveForeground>black</ActiveForeground>
-+        <ActiveBackground>#999999</ActiveBackground>
-+	<Background>#bbbbbb</Background>
-     </TaskListStyle>
-     <PagerStyle>
+-    </TaskListStyle>
+-    <PagerStyle>
 -        <Outline>#000000</Outline>
 -        <Text>#FFFFFF</Text>
 -        <Foreground>#444444</Foreground>
 -        <Background>#111111</Background>
 -        <ActiveForeground>#CC7700</ActiveForeground>
 -        <ActiveBackground>#884400</ActiveBackground>
-+       <Outline>#222222</Outline>
-+       <Foreground>#666666</Foreground>
-+       <Background>#3b3b3b</Background>
-+       <ActiveForeground>#999999</ActiveForeground>
-+       <ActiveBackground>#666666</ActiveBackground>
-     </PagerStyle>
-     <MenuStyle>
+-    </PagerStyle>
+-    <MenuStyle>
 -        <Font>FreeSans-11</Font>
 -        <Foreground>#FFFFFF</Foreground>
 -        <Background>#333333</Background>
 -        <ActiveForeground>#FFFFFF</ActiveForeground>
 -        <ActiveBackground>#CC7700:#884400</ActiveBackground>
 -        <Opacity>0.85</Opacity>
-+        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
-+        <Foreground>black</Foreground>
-+        <Background>#bbbbbb</Background>
-+        <ActiveForeground>white</ActiveForeground>
-+        <ActiveBackground>#666666</ActiveBackground>
-     </MenuStyle>
-     <PopupStyle>
+-    </MenuStyle>
+-    <PopupStyle>
 -        <Font>FreeSans-10</Font>
 -        <Outline>#000000</Outline>
 -        <Foreground>#000000</Foreground>
-+        <Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
-+        <Outline>black</Outline>
-+        <Foreground>black</Foreground>
-         <Background>#999999</Background>
-     </PopupStyle>
- 
-@@ -120,17 +178,17 @@
-          for icons in multiple paths.
-       -->
-     <IconPath>
+-        <Background>#999999</Background>
+-    </PopupStyle>
+-
+-    <!-- Path where icons can be found.
+-         IconPath can be listed multiple times to allow searching
+-         for icons in multiple paths.
+-      -->
+-    <IconPath>
 -        /usr/share/icons/wm-icons/32x32-gant
-+        /usr/share/pixmaps
-     </IconPath>
- 
-     <!-- Virtual Desktops -->
-     <!-- Desktop tags can be contained within Desktops for desktop names. -->
+-    </IconPath>
+-
+-    <!-- Virtual Desktops -->
+-    <!-- Desktop tags can be contained within Desktops for desktop names. -->
 -    <Desktops width="2" height="1">
-+    <Desktops width="4" height="1">
-         <!-- Default background. Note that a Background tag can be
-               contained within a Desktop tag to give a specific background
-               for that desktop.
-          -->
+-        <!-- Default background. Note that a Background tag can be
+-              contained within a Desktop tag to give a specific background
+-              for that desktop.
+-         -->
 -        <Background type="image">$HOME/images/bg.jpg</Background>
-+        <Background type="solid">#333333</Background>
-     </Desktops>
- 
-     <!-- Double click speed (in milliseconds) -->
-@@ -140,16 +198,21 @@
-     <DoubleClickDelta>2</DoubleClickDelta>
- 
-     <!-- The focus model (sloppy or click) -->
+-    </Desktops>
+-
+-    <!-- Double click speed (in milliseconds) -->
+-    <DoubleClickSpeed>400</DoubleClickSpeed>
+-
+-    <!-- Double click delta (in pixels) -->
+-    <DoubleClickDelta>2</DoubleClickDelta>
+-
+-    <!-- The focus model (sloppy or click) -->
 -    <FocusModel>sloppy</FocusModel>
-+    <FocusModel>click</FocusModel>
- 
-     <!-- The snap mode (none, screen, or border) -->
+-
+-    <!-- The snap mode (none, screen, or border) -->
 -    <SnapMode distance="10">border</SnapMode>
-+    <SnapMode distance="10">screen</SnapMode>
- 
-     <!-- The move mode (outline or opaque) -->
+-
+-    <!-- The move mode (outline or opaque) -->
 -    <MoveMode>opaque</MoveMode>
-+    <MoveMode coordinates="window">outline</MoveMode>
- 
-     <!-- The resize mode (outline or opaque) -->
+-
+-    <!-- The resize mode (outline or opaque) -->
 -    <ResizeMode>opaque</ResizeMode>
-+    <ResizeMode coordinates="window">outline</ResizeMode>
-+
-+    <!-- Startup commands -->
-+    <StartupCommand>xmodmap /etc/Xmodmap.conf</StartupCommand>
-+    <StartupCommand>conky</StartupCommand>
-+    <StartupCommand>rox -p default</StartupCommand>
- 
-     <!-- Key bindings -->
-     <Key key="Up">up</Key>
-@@ -166,12 +229,19 @@
-     <Key mask="A" key="Tab">nextstacked</Key>
-     <Key mask="A" key="F4">close</Key>
-     <Key mask="A" key="#">desktop#</Key>
+-
+-    <!-- Key bindings -->
+-    <Key key="Up">up</Key>
+-    <Key key="Down">down</Key>
+-    <Key key="Right">right</Key>
+-    <Key key="Left">left</Key>
+-    <Key key="h">left</Key>
+-    <Key key="j">down</Key>
+-    <Key key="k">up</Key>
+-    <Key key="l">right</Key>
+-    <Key key="Return">select</Key>
+-    <Key key="Escape">escape</Key>
+-
+-    <Key mask="A" key="Tab">nextstacked</Key>
+-    <Key mask="A" key="F4">close</Key>
+-    <Key mask="A" key="#">desktop#</Key>
 -    <Key mask="A" key="F1">root:1</Key>
 -    <Key mask="A" key="F2">window</Key>
-+    <Key mask="A" key="F1">root:3</Key>
-+    <Key mask="A" key="F2">exec:grun</Key>
-     <Key mask="A" key="F10">maximize</Key>
-     <Key mask="A" key="Right">rdesktop</Key>
-     <Key mask="A" key="Left">ldesktop</Key>
-     <Key mask="A" key="Up">udesktop</Key>
-     <Key mask="A" key="Down">ddesktop</Key>
-+    <Key mask="A" key="space">window</Key>
- 
-+    <Key mask="4" key="Up">maximize</Key>
-+    <Key mask="4" key="Down">minimize</Key>
-+    <Key mask="4" key="d">showdesktop</Key>
-+    <Key mask="4" key="r">exec:grun</Key>
-+    <Key mask="4" key="t">exec:aterm</Key>
-+    <Key mask="A" key="Return">exec:aterm</Key>
+-    <Key mask="A" key="F10">maximize</Key>
+-    <Key mask="A" key="Right">rdesktop</Key>
+-    <Key mask="A" key="Left">ldesktop</Key>
+-    <Key mask="A" key="Up">udesktop</Key>
+-    <Key mask="A" key="Down">ddesktop</Key>
+-
++	<!-- The root menu. -->
++	<RootMenu onroot="3">
++		<Program label="Settings">settings</Program>
++			<Menu label="File managers" labeled="true">
++			<Program label="emelFM">emelfm</Program>
++			<Program label="ROX-Filer">rox</Program>
++			<Program label="ytree">aterm -title ytree -e ytree</Program>
++			<Program label="guiTAR">guitar</Program>
++			<Program label="gtkcat">gtkcat</Program>
++		</Menu>
++
++		<Separator/>
++
++		<Menu label="Games" labeled="true">
++			<Program label="PrBoom">prboom</Program>
++			<Program label="Shut the Box">shutbox</Program>
++			<Program label="XPacman">xpacman</Program>
++			<Program label="xsoldier">xsoldier</Program>
++			<Program label="xasteroids">xast</Program>
++		</Menu>
++
++		<Menu label="Multimedia" labeled="true">
++			<Program label="xhippo">xhippo</Program>
++			<Program label="AlsaMixer">aterm -title AlsaMixer -e alsamixer</Program>
++			<Program label="mtPaint">mtpaint</Program>
++			<Program label="GTK See">gtksee</Program>
++			<Program label="mhWaveEdit">mhwaveedit</Program>
++			<Program label="gcolor">gcolor</Program>
++			<Program label="XaoS">xaos</Program>
++			<Program label="Webcam Viewer">ffplay -f v4l2 /dev/video0</Program>
++			<Program label="Screenshot Taker">mtpaint -s</Program>
++		</Menu>
++
++		<Menu label="Net" labeled="true">
++			<Menu label="Browsers">
++				<Program label="Dillo">dillo</Program>
++				<Program label="Lynx">aterm -title Lynx -e lynx</Program>
++			</Menu>
++			<Program label="Sylpheed">sylpheed</Program>
++			<Program label="X-Chat">xchat</Program>
++			<Program label="ircII">aterm -title ircII -e irc</Program>
++			<Program label="guiftp">guiftp</Program>
++			<Program label="Snownews">aterm -title Snownews -e snownews</Program>
++		</Menu>
++
++		<Menu label="Office" labeled="true">
++			<Program label="Ted">Ted</Program>
++			<Program label="Siag">siag</Program>
++			<Program label="Calcoo">calcoo</Program>
++			<Program label="bc">aterm -title bc -e bc</Program>
++			<Program label="gcalendar">gcalendar</Program>
++			<Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
++			<Program label="gtklepin">gtklepin</Program>
++			<Program label="gbase">gbase</Program>
++			<Program label="gv">gv</Program>
++		</Menu>
++
++		<Separator/>
++
++		<Menu label="Editors">
++			<Program label="Beaver">beaver</Program>
++			<Program label="gtkedit">gtkedit</Program>
++			<Program label="Vile">aterm -title Vile -e vile</Program>
++			<Program label="nano">aterm -title nano -e nano</Program>
++		</Menu>
++
++		<Menu label="System">
++			<Program label="Settings">settings</Program>
++			<Program label="System Log">aterm -title "System Log" -e less /var/log/messages</Program>
++			<Program label="gtkdiskfree">gtkdiskfree</Program>
++			<Program label="GDMap">gdmap</Program>
++			<Program label="htop">aterm -title htop -e htop</Program>
++			<Program label="ncdu">aterm -title ncdu -e ncdu</Program>
++			<Program label="gtkfontsel">gtkfontsel</Program>
++			<Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
++			<Menu label="Daemons">
++				<Menu label="Dropbear">
++					<Program label="Start">sh /etc/init.d/dropbear start</Program>
++					<Program label="Stop">sh /etc/init.d/dropbear stop</Program>
++				</Menu>
++				<Menu label="tftpd">
++					<Program label="Start">sh /etc/init.d/tftpd start</Program>
++					<Program label="Stop">sh /etc/init.d/tftpd stop</Program>
++				</Menu>
++			</Menu>
++		</Menu>
++
++		<Menu label="XShells">
++			<Program label="aterm">aterm</Program>
++			<Program label="Screen">aterm -title Screen -e screen</Program>
++		</Menu>
++
++		<Separator/>
++
++		<Program label="Help">help</Program>
++		<Program label="Find">gtkfind</Program>
++		<Program label="Run Command">grun</Program>
++		<Program label="Run Restricted">odus grun</Program>
++
++		<Separator/>
++
++		<Menu label="Exit">
++			<Restart label="Restart"/>
++			<Exit label="Exit to prompt"/>
++			<Program label="Suspend">suspend</Program>
++			<Program label="Reboot">reboot</Program>
++			<Program label="Power off">poweroff</Program>
++		</Menu>
++	</RootMenu>
++
++	<!-- Tray at the bottom. -->
++	<Tray y="-1" height="24" border="0">
++		<TrayButton label="DSLR">root:3</TrayButton>
++		<Pager/>
++		<TaskList/>
++		<Dock/>
++		<TrayButton icon="audio.xpm" border="false">exec:aterm -title AlsaMixer -e alsamixer</TrayButton>
++		<Clock format="%H:%M">gcalendar</Clock>
++	</Tray>
++
++	<!-- Visual Styles -->
++	<WindowStyle>
++		<Font>-b&amp;h-lucidatypewriter-bold-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Width>3</Width>
++		<Height>20</Height>
++		<Active>
++			<Text>white</Text>
++			<Title>#555555:#303030</Title>
++			<Outline>#777777</Outline>
++		</Active>
++		<Inactive>
++			<Text>white</Text>
++			<Title>#303030</Title>
++			<Outline>#555555</Outline>
++		</Inactive>
++	</WindowStyle>
++	<TrayStyle>
++		<Font>-b&amp;h-lucidatypewriter-bold-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Background>#333333:#555555</Background>
++		<Foreground>white</Foreground>
++	</TrayStyle>
++	<TrayButtonStyle>
++		<Foreground>white</Foreground>
++		<Background>#444444:#777777</Background>
++		<ActiveForeground>black</ActiveForeground>
++		<ActiveBackground>#666666:#bbbbbb</ActiveBackground>
++	</TrayButtonStyle>
++	<TaskListStyle>
++		<ActiveForeground>black</ActiveForeground>
++		<ActiveBackground>#666666:#bbbbbb</ActiveBackground>
++		<Foreground>white</Foreground>
++		<Background>#444444:#777777</Background>
++	</TaskListStyle>
++	<PagerStyle>
++		<Outline>#222222</Outline>
++		<Foreground>#666666</Foreground>
++		<Background>#3b3b3b</Background>
++		<ActiveForeground>#999999</ActiveForeground>
++		<ActiveBackground>#666666</ActiveBackground>
++	</PagerStyle>
++	<MenuStyle>
++		<Font>-b&amp;h-lucidatypewriter-bold-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Foreground>white</Foreground>
++		<Background>#333333</Background>
++		<ActiveForeground>black</ActiveForeground>
++		<ActiveBackground>#666666:#bbbbbb</ActiveBackground>
++	</MenuStyle>
++	<PopupStyle>
++		<Font>-b&amp;h-lucidatypewriter-medium-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Outline>black</Outline>
++		<Foreground>black</Foreground>
++		<Background>#999999</Background>
++	</PopupStyle>
++
++	<!-- Path where icons can be found.
++	IconPath can be listed multiple times to allow searching
++	for icons in multiple paths.
++	-->
++	<IconPath>/usr/share/pixmaps</IconPath>
++
++	<!-- Virtual Desktops -->
++	<!-- Desktop tags can be contained within Desktops for desktop names. -->
++	<Desktops width="4" height="1">
++		<!-- Default background. Note that a Background tag can be
++		contained within a Desktop tag to give a specific background
++		for that desktop.
++		-->
++		<Background type="solid">#222222</Background>
++	</Desktops>
++
++	<!-- Double click speed (in milliseconds) -->
++	<DoubleClickSpeed>400</DoubleClickSpeed>
++
++	<!-- Double click delta (in pixels) -->
++	<DoubleClickDelta>2</DoubleClickDelta>
++
++	<!-- The focus model (sloppy or click) -->
++	<FocusModel>click</FocusModel>
++
++	<!-- The snap mode (none, screen, or border) -->
++	<SnapMode distance="10">screen</SnapMode>
++
++	<!-- The move mode (outline or opaque) -->
++	<MoveMode coordinates="window">outline</MoveMode>
++
++	<!-- The resize mode (outline or opaque) -->
++	<ResizeMode coordinates="window">outline</ResizeMode>
++
++	<!-- Startup commands -->
++	<StartupCommand>xmodmap /etc/Xmodmap.conf</StartupCommand>
++	<StartupCommand>conky</StartupCommand>
++	<StartupCommand>rox -p default</StartupCommand>
++
++	<!-- Key bindings -->
++	<Key key="Up">up</Key>
++	<Key key="Down">down</Key>
++	<Key key="Right">right</Key>
++	<Key key="Left">left</Key>
++	<Key key="h">left</Key>
++	<Key key="j">down</Key>
++	<Key key="k">up</Key>
++	<Key key="l">right</Key>
++	<Key key="Return">select</Key>
++	<Key key="Escape">escape</Key>
++
++	<Key mask="A" key="Tab">nextstacked</Key>
++	<Key mask="A" key="F4">close</Key>
++	<Key mask="A" key="#">desktop#</Key>
++	<Key mask="A" key="F1">root:3</Key>
++	<Key mask="A" key="F2">exec:grun</Key>
++	<Key mask="A" key="F10">maximize</Key>
++	<Key mask="A" key="Right">rdesktop</Key>
++	<Key mask="A" key="Left">ldesktop</Key>
++	<Key mask="A" key="Up">udesktop</Key>
++	<Key mask="A" key="Down">ddesktop</Key>
++	<Key mask="A" key="space">window</Key>
++
++	<Key mask="4" key="Up">maximize</Key>
++	<Key mask="4" key="Down">minimize</Key>
++	<Key mask="4" key="d">showdesktop</Key>
++	<Key mask="4" key="r">exec:grun</Key>
++	<Key mask="4" key="t">exec:aterm</Key>
++	<Key mask="A" key="Return">exec:aterm</Key>
  </JWM>
