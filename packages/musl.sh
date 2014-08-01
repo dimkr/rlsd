@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.0.3"
+PACKAGE_VERSION="1.0.4"
 PACKAGE_SOURCES="http://www.musl-libc.org/releases/musl-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A C library"
 
