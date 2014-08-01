@@ -47,7 +47,12 @@ UNNEEDED_FILES="/lib/*.a
                 /usr/share/man/man3
                 /usr/include
                 /lib/pkgconfig
-                /bin/*-config"
+                /bin/*-config
+                /usr/share/ffmpeg/examples
+                /usr/share/ghostscript/*/examples
+                /usr/share/doc/libxml2/examples
+                /usr/share/doc/libjpeg-turbo/examples
+                /usr/share/doc/xz/examples"
 
 # package present in the root file system
 PACKAGES="linux
