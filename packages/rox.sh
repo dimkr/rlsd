@@ -11,6 +11,7 @@ rox_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/rox-pinboard.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-platform.patch"
+	patch -p 1 < "$BASE_DIR/patches/rox-locale.patch"
 
 	cd ROX-Filer/src
 	./configure --host=$HOST --with-platform=$PLATFORM --with-xterm=aterm
@@ -23,8 +24,6 @@ rox_package() {
 	mkdir -p "$1/usr/share/rox"
 	for i in AppInfo.xml \
 	         AppRun \
-	         Help \
-	         Messages \
 	         Options.xml \
 	         pixmaps \
 	         style.css \
@@ -33,7 +32,21 @@ rox_package() {
 		cp -r $i "$1/usr/share/rox"
 	done
 
-	install -D -m 755 $PLATFORM/ROX-Filer "$1/lib/rox/ROX-Filer"
+	install -d -m 755 "$1/usr/share/rox/Help"
+	cd Help
+	for i in *
+	do
+
+		case "$i" in
+			*-*)
+				;;
+			*)
+				install -m 755 "$i" "$1/usr/share/rox/Help/$i"
+				;;
+		esac
+	done
+
+	install -D -m 755 ../$PLATFORM/ROX-Filer "$1/lib/rox/ROX-Filer"
 
 	mkdir "$1/bin"
 	echo "#!/bin/sh

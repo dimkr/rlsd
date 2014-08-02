@@ -1,0 +1,130 @@
+diff -rup rox-master-orig/ROX-Filer/Options.xml rox-master/ROX-Filer/Options.xml
+--- rox-master-orig/ROX-Filer/Options.xml	2014-08-02 13:25:45.713979625 +0300
++++ rox-master/ROX-Filer/Options.xml	2014-08-02 13:25:58.074979404 +0300
+@@ -1,23 +1,5 @@
+ <?xml version='1.0' encoding='UTF-8'?>
+ <options>
+-  <section title='Translation'>
+-    <label>Display messages in...</label>
+-    <radio-group name='i18n_translation' label='Translation'>
+-      <radio label='Chinese (traditional)' value='zh_TW'/>
+-      <radio label='Chinese (simplified)' value='zh_CN'/>
+-      <radio label='Danish' value='da'/>
+-      <radio label='Dutch' value='nl'/>
+-      <radio label='English (no translation)' value='None'/>
+-      <radio label='French' value='fr'/>
+-      <radio label='German' value='de'/>
+-      <radio label='Hungarian' value='hu'/>
+-      <radio label='Italian' value='it'/>
+-      <radio label='Polish' value='pl'/>
+-      <radio label='Russian' value='ru'/>
+-      <radio label='Spanish' value='sp'/>
+-      <radio label='Use the LANG environment variable' value='From LANG'/>
+-    </radio-group>
+-  </section>
+   <section title='Display'>
+     <toggle name='display_sort_nocase' label='Ignore case when sorting'>If off: Ben, animal, zoo.
+ If on: animal, Ben, zoo.</toggle>
+diff -rup rox-master-orig/ROX-Filer/src/i18n.c rox-master/ROX-Filer/src/i18n.c
+--- rox-master-orig/ROX-Filer/src/i18n.c	2014-08-02 13:25:45.678979626 +0300
++++ rox-master/ROX-Filer/src/i18n.c	2014-08-02 13:27:30.019977758 +0300
+@@ -35,12 +35,14 @@
+ #include "gui_support.h"
+ #include "main.h"
+ 
++#if 0
+ /* Used to stop the translation-changed message on startup */
+ static gboolean doing_init;
+ 
+ /* Static Prototypes */
+ static void set_trans(guchar *lang);
+ static void trans_changed(guchar *lang);
++#endif
+ 
+ /****************************************************************
+  *			EXTERNAL INTERFACE			*
+@@ -52,10 +54,12 @@ void i18n_init(void)
+ {
+ 	gtk_set_locale();
+ 
++#if 0
+ 	doing_init = TRUE;
+ 	option_add_string("i18n_translation", "From LANG", trans_changed);
+ 	doing_init = FALSE;
+ 	set_trans(option_get_static_string("i18n_translation"));
++#endif
+ }
+ 
+ /* These two stolen from dia :-).
+@@ -147,6 +151,8 @@ void free_translated_entries(GtkItemFact
+  *			INTERNAL FUNCTIONS			*
+  ****************************************************************/
+ 
++#if 0
++
+ static void trans_changed(guchar *lang)
+ {
+ 	if (doing_init)
+@@ -194,3 +200,4 @@ static void set_trans(guchar *lang)
+ 	g_free(path);
+ 	g_free(lang2);
+ }
++#endif
+diff -rup rox-master-orig/ROX-Filer/src/rox_gettext.c rox-master/ROX-Filer/src/rox_gettext.c
+--- rox-master-orig/ROX-Filer/src/rox_gettext.c	2014-08-02 13:25:45.684979626 +0300
++++ rox-master/ROX-Filer/src/rox_gettext.c	2014-08-02 13:28:35.381976587 +0300
+@@ -31,6 +31,8 @@
+ 
+ #include "gui_support.h"
+ 
++#if 0
++
+ static GHashTable *translate = NULL;
+ 
+ /* Returns the 32 bit number at 'addr'.
+@@ -41,6 +43,7 @@ static GHashTable *translate = NULL;
+ /* Static prototypes */
+ static guint32 word(char *addr, gboolean swap);
+ 
++#endif
+ 
+ /****************************************************************
+  *			EXTERNAL INTERFACE			*
+@@ -52,6 +55,7 @@ static guint32 word(char *addr, gboolean
+  */
+ char *rox_gettext(char *from)
+ {
++#if 0
+ 	char	*retval;
+ 	
+ 	if (!translate || !from || !*from)
+@@ -60,17 +64,23 @@ char *rox_gettext(char *from)
+ 	retval = g_hash_table_lookup(translate, from);
+ 
+ 	return retval ? retval : from;
++#endif
++	return from;
+ }
+ 
+ void rox_clear_translation(void)
+ {
++#if 0
+ 	if (translate)
+ 	{
+ 		g_hash_table_destroy(translate);
+ 		translate = NULL;
+ 	}
++#endif
+ }
+ 
++#if 0
++
+ /* Read in this .gmo format file; all translations found override
+  * any existing translations for future calls to rox_gettext().
+  */
+@@ -198,3 +208,5 @@ static guint32 word(char *addr, gboolean
+ 	else
+ 		return val;
+ }
++
++#endif
