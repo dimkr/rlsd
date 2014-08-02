@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-08-01 12:48:53.984954030 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-08-01 13:22:35.094917835 +0300
-@@ -2,176 +2,247 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-08-01 22:32:43.567751282 +0300
++++ jwm-2.2.2/example.jwmrc	2014-08-01 22:36:29.300747240 +0300
+@@ -2,176 +2,265 @@
  
  <JWM>
  
@@ -296,6 +296,24 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<TrayButton icon="audio.xpm" border="false">exec:aterm -title AlsaMixer -e alsamixer</TrayButton>
 +		<Clock format="%H:%M">gcalendar</Clock>
 +	</Tray>
++
++	<!-- Application-specific options -->
++	<Group>
++		<Name>xhippo</Name>
++		<Option>sticky</Option>
++		<Option>nolist</Option>
++		<Option>layer:above</Option>
++	</Group>
++
++	<Group>
++		<Name>aterm</Name>
++		<Option>noborder</Option>
++	</Group>
++
++	<Group>
++		<Name>ffplay</Name>
++		<Option>noborder</Option>
++	</Group>
 +
 +	<!-- Visual Styles -->
 +	<WindowStyle>
