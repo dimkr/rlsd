@@ -9,6 +9,7 @@ mtpaint_build() {
 	cd mtPaint-$COMMIT
 
 	patch -p1 < "$BASE_DIR/patches/mtpaint-gtk1.patch"
+	patch -p1 < "$BASE_DIR/patches/mtpaint-giflib.patch"
 
 	./configure --host=$HOST \
 	            --prefix=/usr \

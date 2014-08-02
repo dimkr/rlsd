@@ -1,0 +1,30 @@
+diff -rup mtPaint-3368929b5c44fd62e04219c6d2a5054b6b5e678f-orig/src/png.c mtPaint-3368929b5c44fd62e04219c6d2a5054b6b5e678f/src/png.c
+--- mtPaint-3368929b5c44fd62e04219c6d2a5054b6b5e678f-orig/src/png.c	2014-08-02 11:29:04.637852264 +0300
++++ mtPaint-3368929b5c44fd62e04219c6d2a5054b6b5e678f/src/png.c	2014-08-02 11:29:38.812851652 +0300
+@@ -1675,7 +1675,7 @@ static int load_gif_frames(char *file_na
+ 	}
+ 	res = 1;
+ fail:	mem_free_chanlist(w_set.img);
+-	DGifCloseFile(giffy);
++	DGifCloseFile(giffy, NULL);
+ 	return (res);
+ }
+ 
+@@ -1730,7 +1730,7 @@ static int load_gif(char *file_name, ls_
+ 		}
+ 	}
+ 	res = 1;
+-fail:	DGifCloseFile(giffy);
++fail:	DGifCloseFile(giffy, NULL);
+ 	return (res);
+ }
+ 
+@@ -1799,7 +1799,7 @@ static int save_gif(char *file_name, ls_
+ 	if (!settings->silent) progress_end();
+ 	msg = 0;
+ 
+-fail:	EGifCloseFile(giffy);
++fail:	EGifCloseFile(giffy, NULL);
+ #ifndef WIN32
+ 	/* giflib creates files with 0600 permissions, which is nasty - WJ */
+ 	mode = umask(0022);
