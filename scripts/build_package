@@ -159,7 +159,10 @@ do
 done
 
 # remove libtool libraries
-[ -d "$installation_prefix/lib" ] && rm -vf "$installation_prefix/lib"/*.la
+if [ -d "$installation_prefix/lib" ]
+then
+	find "$installation_prefix/lib" -name "*.la" -delete
+fi
 
 # strip all executables, unless they were built in debug mode
 should_strip=1
