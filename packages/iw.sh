@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.14"
+PACKAGE_VERSION="3.15"
 PACKAGE_SOURCES="https://www.kernel.org/pub/software/network/iw/iw-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A wireless network interface configuration tool"
 
