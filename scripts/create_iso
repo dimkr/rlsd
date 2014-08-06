@@ -250,6 +250,7 @@ rm -rf "$root_fs"
 
 # generate an ISO image
 cd "$BASE_DIR"
+[ ! -d "$BASE_DIR/releases" ] && mkdir "$BASE_DIR/releases"
 xorriso -as mkisofs \
         -iso-level 3 \
         -full-iso9660-filenames \
@@ -263,7 +264,7 @@ xorriso -as mkisofs \
         -e efiboot.img \
         -no-emul-boot \
         -isohybrid-gpt-basdat \
-        -output "$BASE_DIR/$ISO_NAME" \
+        -output "$BASE_DIR/releases/$ISO_NAME" \
         "$iso_root"
 
 # clean up
