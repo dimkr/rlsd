@@ -60,13 +60,13 @@ mount --bind /sys "$1/sys"
 mount --rbind /dev "$1/dev"
 mount --bind /tmp "$1/tmp"
 
+# update all packages
 chroot "$1" apt-get update
-if [ 1 -eq $exists ]
+chroot "$1" apt-get -y upgrade
+
+# install additional, required packages
+if [ 0 -eq $exists ]
 then
-	# update all packages
-	chroot "$1" apt-get -y upgrade
-else
-	# install additional, required packages
 	chroot "$1" apt-get -y install $REQUIRED_PACKAGES
 	[ 0 -ne $? ] && exit 1
 fi
