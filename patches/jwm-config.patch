@@ -1,6 +1,6 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-08-01 22:32:43.567751282 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-08-01 22:36:29.300747240 +0300
+--- jwm-2.2.2-orig/example.jwmrc	2014-08-06 13:30:30.060863378 +0300
++++ jwm-2.2.2/example.jwmrc	2014-08-06 13:31:54.734861862 +0300
 @@ -2,176 +2,265 @@
  
  <JWM>
@@ -321,14 +321,14 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<Width>3</Width>
 +		<Height>20</Height>
 +		<Active>
-+			<Text>white</Text>
-+			<Title>#555555:#303030</Title>
-+			<Outline>#777777</Outline>
++			<Text>black</Text>
++			<Title>#aaaaaa:#808080</Title>
++			<Outline>#555555</Outline>
 +		</Active>
 +		<Inactive>
 +			<Text>white</Text>
-+			<Title>#303030</Title>
-+			<Outline>#555555</Outline>
++			<Title>#555555:#303030</Title>
++			<Outline>#777777</Outline>
 +		</Inactive>
 +	</WindowStyle>
 +	<TrayStyle>
