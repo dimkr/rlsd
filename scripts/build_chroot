@@ -106,6 +106,8 @@ then
 	do
 		[ -d "$1/root/dslr/$i" ] && rm -rf "$1/root/dslr/$i"
 	done
+	rm -f "$1/root/dslr"/*-config > /dev/null 2>&1
+	rm -f "$1/root/dslr"/musl-gcc* > /dev/null 2>&1
 	chroot "$1" sh -c "cd /root/dslr; git pull"
 else
 	chroot "$1" git clone https://github.com/dimkr/dslr.git /root/dslr
