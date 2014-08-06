@@ -1,0 +1,16 @@
+diff -rup rox-master-orig/ROX-Filer/src/choices.c rox-master/ROX-Filer/src/choices.c
+--- rox-master-orig/ROX-Filer/src/choices.c	2014-08-06 15:54:05.972984116 +0300
++++ rox-master/ROX-Filer/src/choices.c	2014-08-06 15:55:16.982982844 +0300
+@@ -77,10 +77,9 @@ void choices_init(void)
+ 	{
+ 		saving_disabled = FALSE;
+ 
+-		dir_list = g_new(gchar *, 4);
++		dir_list = g_new(gchar *, 3);
+ 		dir_list[0] = g_strconcat(getenv("HOME"), "/Choices", NULL);
+-		dir_list[1] = g_strdup("/usr/local/share/Choices");
+-		dir_list[2] = g_strdup("/usr/share/Choices");
++		dir_list[2] = g_strdup("/usr/share/rox/Choices");
+ 		dir_list[3] = NULL;
+ 	}
+ 

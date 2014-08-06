@@ -12,6 +12,7 @@ rox_build() {
 	patch -p 1 < "$BASE_DIR/patches/rox-pinboard.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-platform.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-locale.patch"
+	patch -p 1 < "$BASE_DIR/patches/rox-choices.patch"
 
 	cd ROX-Filer/src
 	./configure --host=$HOST --with-platform=$PLATFORM --with-xterm=aterm
