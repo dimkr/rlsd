@@ -1,0 +1,123 @@
+#!/bin/sh
+
+# the Ubuntu version to use
+RELEASE="trusty"
+
+# the package mirror to fetch packages from
+MIRROR="http://us.archive.ubuntu.com/ubuntu/"
+
+# packages required to build DSLR
+REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev \
+                   autoconf-archive unzip flex bison git nasm squashfs-tools \
+                   pkg-config file subversion bc xfonts-utils dosfstools \
+                   mtools yasm libarchive-dev libcurl4-gnutls-dev \
+                   libsqlite3-dev xorriso wget liblwp-useragent-determined-perl"
+
+# set the locale to the default, to speed up everything
+export LANG="C"
+export LC_ALL="$LANG"
+
+if [ "root" != "$(whoami)" ]
+then
+	echo "Must run as root"
+	exit 1
+fi
+
+if [ -d "$1" ]
+then
+	exists=1
+else
+	# install debootstrap
+	if [ -z "$(which debootstrap)" ]
+	then
+		apt-get -y install debootstrap
+		[ 0 -ne $? ] && exit 1
+	fi
+
+	# run debootstrap
+	debootstrap $RELEASE "$1" $MIRROR
+	[ 0 -ne $? ] && exit 1
+
+	# set the repositories list
+	echo "deb $MIRROR $RELEASE main restricted
+	deb $MIRROR $RELEASE-updates main restricted
+
+	deb $MIRROR $RELEASE universe
+	deb $MIRROR $RELEASE-updates universe
+
+	deb $MIRROR $RELEASE multiverse
+	deb $MIRROR $RELEASE-updates multiverse" > "$1/etc/apt/sources.list"
+
+	exists=0
+fi
+
+# copy over /etc/resolv.conf from the host, to use the same DNS servers
+cp /etc/resolv.conf "$1/etc/"
+
+# bind the host virtual file systems to the chroot environment
+mount --bind /proc "$1/proc"
+mount --bind /sys "$1/sys"
+mount --rbind /dev "$1/dev"
+mount --bind /tmp "$1/tmp"
+
+chroot "$1" apt-get update
+if [ 1 -eq $exists ]
+then
+	# update all packages
+	chroot "$1" apt-get -y upgrade
+else
+	# install additional, required packages
+	chroot "$1" apt-get -y install $REQUIRED_PACKAGES
+	[ 0 -ne $? ] && exit 1
+fi
+
+# build a musl cross-compiler using musl-cross
+if [ ! -d "$1/opt/cross" ]
+then
+	chroot "$1" sh -c "git clone https://github.com/dimkr/musl-cross.git \
+	                             /root/musl-cross; \
+	                   cd /root/musl-cross; sh build.sh"
+fi
+
+# install packdude
+if [ ! -f "$1/bin/packdude" ]
+then
+	chroot "$1" sh -c "git clone https://github.com/dimkr/packdude.git \
+	                             /root/packdude; \
+	                   cd /root/packdude; make; make install"
+fi
+
+# install sstrip
+if [ ! -f "$1/usr/local/bin/sstrip" ]
+then
+	chroot "$1" sh -c "cd /root; \
+	 wget \
+	  http://www.muppetlabs.com/~breadbox/pub/software/ELFkickers-3.0a.tar.gz; \
+	 tar -xzf ELFkickers-3.0a.tar.gz; \
+	 cd ELFkickers-3.0a/sstrip; \
+	 make; \
+	 cp sstrip /usr/local/bin"
+fi
+
+# clean and update or fetch the DSLR build environment
+if [ -d "$1/root/dslr" ]
+then
+	for i in repo build sysroot
+	do
+		[ -d "$1/root/dslr/$i" ] && rm -rf "$1/root/dslr/$i"
+	done
+	chroot "$1" sh -c "cd /root/dslr; git pull"
+else
+	chroot "$1" git clone https://github.com/dimkr/dslr.git /root/dslr
+fi
+
+# build DSLR
+chroot "$1" sh -c "cd /root/dslr; \
+                   make packages; \
+                   make iso"
+
+# clean up
+umount -l "$1/tmp"
+umount -l "$1/dev"
+umount -l "$1/sys"
+umount -l "$1/proc"
