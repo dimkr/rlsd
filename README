@@ -25,44 +25,18 @@ Building
 DSLR is built from source. It is cross-compiled through Ubuntu
 (http://www.ubuntu.com/) 14.04 x86_64.
 
-First, install required packages:
-  sudo apt-get install build-essential autoconf automake autotools-dev \
-  autoconf-archive unzip flex bison git nasm squashfs-tools pkg-config \
-  file subversion bc xfonts-utils dosfstools mtools yasm libarchive-dev \
-  libcurl4-gnutls-dev libsqlite3-dev xorriso wget \
-  liblwp-useragent-determined-perl
+The whole process is automated; there's a script (http://goo.gl/8x9id4) that
+generates a clean, up-to-date build environment, then cross-compiles the entire
+DSLR inside it.
 
-Then, build and install packdude (https://github.com/dimkr/packdude):
-  git clone https://github.com/dimkr/packdude.git
-  cd packdude
-  make
-  sudo make install
-  cd ..
+To build DSLR:
+  wget http://goo.gl/8x9id4
+  sudo sh 8x9id4 ./dslr-chroot
+  sudo ls ./dslr-chroot/root/dslr/releases
 
-Build a cross-compiler using musl-cross (https://github.com/dimkr/musl-cross):
-  git clone https://github.com/dimkr/musl-cross.git
-  cd musl-cross
-  sudo ./build.sh
-  cd ..
-
-Build and install sstrip from ELF Kickers (http://www.muppetlabs.com/~breadbox/software/elfkickers.html):
-  wget http://www.muppetlabs.com/~breadbox/pub/software/ELFkickers-3.0a.tar.gz
-  tar -xzvf ELFkickers-3.0a.tar.gz
-  cd ELFkickers-3.0a/sstrip
-  make
-  sudo cp sstrip /usr/local/bin
-  cd ../..
-
-Build the entire DSLR package repository:
-  git clone https://github.com/dimkr/dslr.git
-  cd dslr
-  make packages
-
-Finally, generate a bootable DSLR image:
-  make iso
-
-It is possible to generate a DSLR image without building all its packages
-first. In this case, packages will be downloaded from the official repository.
+The script should run on Ubuntu (http://www.ubuntu.com/) 14.04 x86_64 as well.
+It is highly recommended to read the script first, as it installs debootstrap on
+the host.
 
 Credits and Legal Information
 =============================
