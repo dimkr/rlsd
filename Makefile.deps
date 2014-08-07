@@ -118,7 +118,7 @@ tinyxserver: musl zlib
 toybox: musl
 vile: musl ncurses
 wget: musl libressl
-wpa_supplicant: musl libnl_tiny
+wpa_supplicant: musl libressl libnl_tiny
 x11vnc: musl libressl tinyxlib libjpeg_turbo
 xaos: musl libpng tinyxlib
 xasteroids: musl tinyxlib

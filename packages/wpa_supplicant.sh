@@ -12,12 +12,14 @@ wpa_supplicant_build() {
 
 	cd wpa_supplicant
 	cp defconfig .config
-	echo "CONFIG_TLS=none" >> .config
+	echo "CONFIG_TLS=openssl" >> .config
+	echo "CONFIG_TLSV11=y" >> .config
+	echo "CONFIG_TLSV12=y" >> .config
 	echo "CC = $CC" >> .config
 	echo "CFLAGS += -D_GNU_SOURCE $(pkg-config --cflags libnl-tiny)" >> .config
 	echo "LDFLAGS += $(pkg-config --libs libnl-tiny)" >> .config
 	echo "CONFIG_LIBNL_TINY=y" >> .config
-	$MAKE CC="$CC" CONFIG_LIBNL_TINY=1
+	$MAKE CC="$CC"
 }
 
 wpa_supplicant_package() {
