@@ -68,6 +68,7 @@ libarchive: musl zlib lbzip2 xz
 libfontenc: musl zlib tinyxlib
 libjpeg_turbo: musl
 libnl_tiny: musl
+libpcap: musl
 libpng: musl zlib
 libressl: musl ca_certificates
 libxaw3d: musl tinyxlib
@@ -109,6 +110,7 @@ snownews: musl zlib ncurses libressl libxml2
 sqlite: musl
 squashfs_tools: musl zlib xz
 sylpheed: musl libressl gtk
+tcpdump: musl libressl libpcap
 ted: musl zlib libpng libjpeg_turbo tiff gtk font_adobe_75dpi font_adobe_100dpi
 tiff: musl zlib libjpeg_turbo
 tinyalsa: musl

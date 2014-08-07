@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-08-06 13:30:30.060863378 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-08-06 13:31:54.734861862 +0300
-@@ -2,176 +2,265 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-08-07 22:18:09.214958556 +0300
++++ jwm-2.2.2/example.jwmrc	2014-08-07 22:20:13.701956327 +0300
+@@ -2,176 +2,267 @@
  
  <JWM>
  
@@ -220,6 +220,8 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +			<Program label="ircII">aterm -title ircII -e irc</Program>
 +			<Program label="guiftp">guiftp</Program>
 +			<Program label="Snownews">aterm -title Snownews -e snownews</Program>
++			<Program label="bwm-ng">aterm -title bwm-ng -e bwm-ng</Program>
++			<Program label="tcpdump">aterm -title tcpdump -e tcpdump</Program>
 +		</Menu>
 +
 +		<Menu label="Office" labeled="true">

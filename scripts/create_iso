@@ -110,6 +110,8 @@ PACKAGES="linux
           ircii
           guiftp
           snownews
+          bwm-ng
+          tcpdump
           ted
           siag
           calcoo
