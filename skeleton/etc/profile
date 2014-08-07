@@ -3,7 +3,7 @@ export PATH="/bin"
 export PS1='[\u@\w]\$ '
 export HISTFILE="$HOME/.ksh_history"
 export REPO="http://repo.dimakrasner.com:1024"
-export XINITRC="/etc/xinitrc"
+export XINITRC="/bin/jwm"
 
 xinit="$(which xinit)"
 if [ -n "$xinit" ] && [ -z "$(pidof xinit)" ]
