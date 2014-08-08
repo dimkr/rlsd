@@ -10,6 +10,7 @@ prboom_build() {
 	patch -p 1 < "$BASE_DIR/patches/prboom-build.patch"
 	patch -p 1 < "$BASE_DIR/patches/prboom-libpng.patch"
 	patch -p 1 < "$BASE_DIR/patches/prboom-settings.patch"
+	patch -p 1 < "$BASE_DIR/patches/prboom-doc.patch"
 
 	LIBS="-lasound $(pkg-config --libs libpng SDL_mixer)" \
 	./configure --host=$HOST \
@@ -24,8 +25,4 @@ prboom_build() {
 
 prboom_package() {
 	$MAKE DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/prboom/README"
-	install -m 644 NEWS "$1/usr/share/doc/prboom/NEWS"
-	install -m 644 AUTHORS "$1/usr/share/doc/prboom/AUTHORS"
-	install -m 644 COPYING "$1/usr/share/doc/prboom/COPYING"
 }

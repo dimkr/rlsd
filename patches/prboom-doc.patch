@@ -1,0 +1,48 @@
+diff -rup prboom-2.5.0-orig/Makefile.am prboom-2.5.0/Makefile.am
+--- prboom-2.5.0-orig/Makefile.am	2014-08-08 19:45:56.402988979 +0300
++++ prboom-2.5.0/Makefile.am	2014-08-08 19:51:11.330983339 +0300
+@@ -3,7 +3,7 @@
+ #
+ 
+ ACLOCAL_AMFLAGS = -I autotools
+-docdir=$(prefix)/share/doc/@PACKAGE@-@VERSION@
++docdir=$(prefix)/share/doc/@PACKAGE@
+ SUBDIRS = doc data src ICONS VisualC8 VisualC6
+ EXTRA_DIST = prboom.spec.in prboom.spec config.h bootstrap
+ doc_DATA = README COPYING AUTHORS NEWS
+diff -rup prboom-2.5.0-orig/Makefile.in prboom-2.5.0/Makefile.in
+--- prboom-2.5.0-orig/Makefile.in	2014-08-08 19:45:56.402988979 +0300
++++ prboom-2.5.0/Makefile.in	2014-08-08 19:51:04.850983456 +0300
+@@ -163,7 +163,7 @@ build_vendor = @build_vendor@
+ builddir = @builddir@
+ datadir = @datadir@
+ datarootdir = @datarootdir@
+-docdir = $(prefix)/share/doc/@PACKAGE@-@VERSION@
++docdir = $(prefix)/share/doc/@PACKAGE@
+ dvidir = @dvidir@
+ exec_prefix = @exec_prefix@
+ host = @host@
+diff -rup prboom-2.5.0-orig/doc/Makefile.am prboom-2.5.0/doc/Makefile.am
+--- prboom-2.5.0-orig/doc/Makefile.am	2014-08-08 19:45:56.389988979 +0300
++++ prboom-2.5.0/doc/Makefile.am	2014-08-08 19:49:22.711985285 +0300
+@@ -4,7 +4,7 @@
+ #
+ #
+ 
+-docdir=$(prefix)/share/doc/@PACKAGE@-@VERSION@
++docdir=$(prefix)/share/doc/@PACKAGE@
+ man_MANS=prboom.6 boom.cfg.5 prboom-game-server.6
+ doc_DATA=boom.txt MBF.txt MBFFAQ.txt README.demos README.compat
+ EXTRA_DIST=boom.txt prboom.6 boom.cfg.5 prboom-game-server.6 \
+diff -rup prboom-2.5.0-orig/doc/Makefile.in prboom-2.5.0/doc/Makefile.in
+--- prboom-2.5.0-orig/doc/Makefile.in	2014-08-08 19:45:56.389988979 +0300
++++ prboom-2.5.0/doc/Makefile.in	2014-08-08 19:46:11.481988709 +0300
+@@ -140,7 +140,7 @@ build_vendor = @build_vendor@
+ builddir = @builddir@
+ datadir = @datadir@
+ datarootdir = @datarootdir@
+-docdir = $(prefix)/share/doc/@PACKAGE@-@VERSION@
++docdir = $(prefix)/share/doc/@PACKAGE@
+ dvidir = @dvidir@
+ exec_prefix = @exec_prefix@
+ host = @host@
