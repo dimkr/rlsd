@@ -1,0 +1,12 @@
+diff -rup file-5.19-orig/configure.ac file-5.19/configure.ac
+--- file-5.19-orig/configure.ac	2014-08-08 00:41:12.402804848 +0300
++++ file-5.19/configure.ac	2014-08-08 00:40:41.478805402 +0300
+@@ -61,7 +61,7 @@ esac
+ AC_SUBST(MINGW)
+ AM_CONDITIONAL(MINGW, test "$MINGW" = 1)
+ 
+-AC_SUBST([pkgdatadir], ['$(datadir)/misc'])
++AC_SUBST([pkgdatadir], ['$(datadir)/file'])
+ AC_SUBST(fsect)
+ AM_CONDITIONAL(FSECT5, test x$fsect = x5)
+ 

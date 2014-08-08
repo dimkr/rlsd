@@ -7,6 +7,9 @@ file_build() {
 	tar -xzvf file-$PACKAGE_VERSION.tar.gz
 	cd file-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/file-data.patch"
+	autoconf
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \
