@@ -52,7 +52,9 @@ UNNEEDED_FILES="/lib/*.a
                 /usr/share/ghostscript/*/examples
                 /usr/share/doc/libxml2/examples
                 /usr/share/doc/libjpeg-turbo/examples
-                /usr/share/doc/xz/examples"
+                /usr/share/doc/xz/examples
+                /usr/share/gdk-pixbuf
+                /usr/share/x11vnc"
 
 # package present in the root file system
 PACKAGES="linux
