@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-08-07 22:18:09.214958556 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-08-07 22:20:13.701956327 +0300
-@@ -2,176 +2,267 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-08-08 19:39:58.581995387 +0300
++++ jwm-2.2.2/example.jwmrc	2014-08-08 19:41:42.246993531 +0300
+@@ -2,176 +2,268 @@
  
  <JWM>
  
@@ -439,5 +439,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	<Key mask="4" key="d">showdesktop</Key>
 +	<Key mask="4" key="r">exec:grun</Key>
 +	<Key mask="4" key="t">exec:aterm</Key>
++	<Key mask="4" key="h">exec:rox</Key>
 +	<Key mask="A" key="Return">exec:aterm</Key>
  </JWM>
