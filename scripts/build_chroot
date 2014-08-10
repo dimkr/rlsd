@@ -58,7 +58,9 @@ cp /etc/resolv.conf "$1/etc/"
 mount --bind /proc "$1/proc"
 mount --bind /sys "$1/sys"
 mount --rbind /dev "$1/dev"
-mount --bind /tmp "$1/tmp"
+
+# mount a tmpfs at /tmp, to speed up the ISO generation
+mount -t tmpfs dslr-tmp "$1/tmp"
 
 # update all packages
 chroot "$1" apt-get update
