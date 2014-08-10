@@ -1,6 +1,15 @@
 diff -rup dillo-master-orig/dillorc dillo-master/dillorc
---- dillo-master-orig/dillorc	2014-06-28 13:55:54.022844628 +0300
-+++ dillo-master/dillorc	2014-06-28 13:58:37.665841698 +0300
+--- dillo-master-orig/dillorc	2014-08-10 15:16:27.477971893 +0300
++++ dillo-master/dillorc	2014-08-10 15:17:09.194971146 +0300
+@@ -94,7 +94,7 @@ search_url="http://www.google.com/search
+ # Set the background color
+ # bg_color=gray
+ # bg_color=0xd6d6c0
+-bg_color=0xdcd1ba
++bg_color=0xaaaaa7
+ 
+ # Set the text color
+ text_color=black
 @@ -123,8 +123,8 @@ contrast_visited_color=YES
  # small  :  very nice! (it's "medium" without icon titles)
  # medium :  nice!
