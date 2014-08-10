@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<special-files>
+  <rule match="/usr/share/rox/Choices/SendTo/gtkedit">
+    <icon>/usr/share/pixmaps/text.xpm</icon>
+  </rule>
+  <rule match="/usr/share/rox/Choices/SendTo/Beaver">
+    <icon>/usr/share/pixmaps/beaver.png</icon>
+  </rule>
+  <rule match="/usr/share/rox/Choices/SendTo/mtPaint">
+    <icon>/usr/share/pixmaps/mtpaint.png</icon>
+  </rule>
+  <rule match="/usr/share/rox/Choices/SendTo/Dillo">
+    <icon>/usr/share/pixmaps/dillo.png</icon>
+  </rule>
+  <rule match="/usr/share/rox/Choices/SendTo/guiTAR">
+    <icon>/usr/share/pixmaps/archive.xpm</icon>
+  </rule>
+</special-files>
