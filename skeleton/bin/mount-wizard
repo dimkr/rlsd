@@ -17,10 +17,10 @@ _choose_action() {
 				type="sd"
 				;;
 			*sr*)
-				type="drive"
+				type="disc"
 				;;
 			*)
-				type="disc"
+				type="drive"
 				;;
 		esac
 
