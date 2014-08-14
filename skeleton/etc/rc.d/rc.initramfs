@@ -51,7 +51,7 @@ cd /sys/class/block
 is_found=0
 for i in 1 2 3 4 5 6 7 8 9 10
 do
-	for partition in *
+	for partition in sd* mmc* sr*
 	do
 		mount -o ro /dev/$partition /mnt/home
 		if [ 0 -eq $? ]
