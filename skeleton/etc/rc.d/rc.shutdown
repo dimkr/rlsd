@@ -12,7 +12,7 @@ umount /mnt/union
 losetup -d /dev/loop0
 
 # unmount all virtual file systems
-echo -n "done.
+echo -n " done.
 Unmounting virtual file systems ..."
 
 umount /dev/pts
@@ -21,5 +21,10 @@ umount /run
 umount /dev
 umount /proc
 umount /sys
+
+# unmount remaining file systems
+echo -n " done.
+Unmounting remaining file systems ..."
+umount -a
 
 echo " done."
