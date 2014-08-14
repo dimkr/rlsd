@@ -1,0 +1,115 @@
+#!/bin/sh
+
+# mount-wizard: a partition mounting wizard
+
+_choose_action() {
+	i=0
+
+	echo "<wtitle>Mounting Wizard</wtitle>
+<hbox>"
+
+	for partition in $1
+	do
+		[ 0 -eq $i ] && echo "	<vbox>"
+
+		case "$partition" in
+			*mmc*)
+				type="sd"
+				;;
+			*sr*)
+				type="drive"
+				;;
+			*)
+				type="disc"
+				;;
+		esac
+
+		echo "<frame>
+<hbox>
+	<pixmap>
+		<input file>/usr/share/pixmaps/$type.xpm</input>
+	</pixmap>
+	<vbox>
+		<text>
+			<label>$partition</label>
+		</text>"
+
+		mountpoint -q "/mnt/$partition" > /dev/null 2>&1
+		if [ 0 -eq $? ]
+		then
+				echo "<button>
+	<label>Browse</label>
+	<action>echo ACTION=browse</action>
+	<action>echo PARTITION=$partition</action>
+	<action>EXIT=ok</action>
+</button>
+<button>
+	<label>Unmount</label>
+	<action>echo ACTION=unmount</action>
+	<action>echo PARTITION=$partition</action>
+	<action>EXIT=ok</action>
+</button>"
+		else
+			echo "<button>
+	<label>Mount</label>
+	<action>echo ACTION=mount</action>
+	<action>echo PARTITION=$partition</action>
+	<action>EXIT=ok</action>
+</button>"
+		fi
+
+		echo "</vbox>
+	</hbox>
+</frame>"
+
+		i=$((1 + $i))
+		if [ 5 -eq $i ]
+		then
+			echo "</vbox>"
+			i=0;
+		fi
+	done
+
+	[ 0 -ne $i ] && echo "</vbox>"
+
+	echo "</hbox>"
+}
+
+# list all partitions
+partitions=""
+cd /sys/class/block
+for partition in sd* mmc* sr*
+do
+	case "$partition" in
+		*[0-9])
+			partitions="$partition $partitions"
+			;;
+	esac
+done
+
+# let the user choose a partition
+eval $(_choose_action "$partitions" | gtkdialog1 -s)
+[ "abort" = "$EXIT" ] && exit 1
+
+# perform the chosen action
+case "$ACTION" in
+	browse)
+		rox "/mnt/$PARTITION"
+		;;
+
+	mount)
+		[ ! -d "/mnt/$PARTITION" ] && mkdir "/mnt/$PARTITION"
+		mount "/dev/$PARTITION" "/mnt/$PARTITION"
+		if [ 0 -eq $? ]
+		then
+			rox "/mnt/$PARTITION"
+		else
+			rmdir "/mnt/$PARTITION"
+		fi
+		;;
+
+	unmount)
+		umount "/mnt/$PARTITION"
+		[ 0 -eq $? ] && rmdir "/mnt/$PARTITION"
+		;;
+esac

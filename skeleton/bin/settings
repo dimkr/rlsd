@@ -30,6 +30,10 @@ eval $(echo "<wtitle>Settings</wtitle>
 				<label>Package Manager</label>
 				<action>EXIT=gpackdude</action>
 			</button>
+			<button>
+				<label>Mounting Wizard</label>
+				<action>EXIT=mount-wizard</action>
+			</button>
 		</vbox>
 		<vseparator></vseparator>
 		<vbox>
@@ -68,8 +72,8 @@ case "$EXIT" in
 		fi
 		;;
 
-	gpackdude|wifi-wizard)
-		exec "$EXIT" 
+	gpackdude|*-wizard)
+		exec "$EXIT"
 		;;
 
 	*)
