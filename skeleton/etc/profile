@@ -2,7 +2,7 @@ umask 022
 export PATH="/bin"
 export PS1='[\u@\w]\$ '
 export HISTFILE="$HOME/.ksh_history"
-export REPO="http://repo.dimakrasner.com:1024"
+export REPO="http://dslr.dimakrasner.com/repo"
 export XINITRC="/bin/jwm"
 
 xinit="$(which xinit)"

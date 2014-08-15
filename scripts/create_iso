@@ -148,7 +148,7 @@ then
 	repo="file://$BASE_DIR/repo"
 else
 	# otherwise, use the upstream repository
-	repo="http://repo.dimakrasner.com:1024"
+	repo="http://dslr.dimakrasner.com/repo"
 fi
 
 # initialize the root file system with the skeleton
