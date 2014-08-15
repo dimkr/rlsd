@@ -1,11 +1,11 @@
-diff -rup dropbear-2014.64-orig/options.h dropbear-2014.64/options.h
---- dropbear-2014.64-orig/options.h	2014-07-30 16:32:01.477931618 +0300
-+++ dropbear-2014.64/options.h	2014-07-30 16:32:07.414931512 +0300
+diff -rup dropbear-2014.65-orig/options.h dropbear-2014.65/options.h
+--- dropbear-2014.65-orig/options.h	2014-08-15 17:44:11.211770397 +0300
++++ dropbear-2014.65/options.h	2014-08-15 17:44:58.834769544 +0300
 @@ -264,7 +264,7 @@ much traffic. */
  /* The command to invoke for xauth when using X11 forwarding.
   * "-q" for quiet */
  #ifndef XAUTH_COMMAND
--#define XAUTH_COMMAND "/usr/bin/X11/xauth -q"
+-#define XAUTH_COMMAND "/usr/bin/xauth -q"
 +#define XAUTH_COMMAND "/bin/xauth -q"
  #endif
  
@@ -28,11 +28,11 @@ diff -rup dropbear-2014.64-orig/options.h dropbear-2014.64/options.h
  
  /* Some other defines (that mostly should be left alone) are defined
   * in sysoptions.h */
-diff -rup dropbear-2014.64-orig/sysoptions.h dropbear-2014.64/sysoptions.h
---- dropbear-2014.64-orig/sysoptions.h	2014-07-30 16:32:01.461931618 +0300
-+++ dropbear-2014.64/sysoptions.h	2014-07-30 16:32:07.415931511 +0300
+diff -rup dropbear-2014.65-orig/sysoptions.h dropbear-2014.65/sysoptions.h
+--- dropbear-2014.65-orig/sysoptions.h	2014-08-15 17:44:11.201770397 +0300
++++ dropbear-2014.65/sysoptions.h	2014-08-15 17:44:42.202769842 +0300
 @@ -7,7 +7,7 @@
- #define DROPBEAR_VERSION "2014.64"
+ #define DROPBEAR_VERSION "2014.65"
  #endif
  
 -#define LOCAL_IDENT "SSH-2.0-dropbear_" DROPBEAR_VERSION
