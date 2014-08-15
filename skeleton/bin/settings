@@ -87,7 +87,7 @@ case "$EXIT" in
 		;;
 
 	shus)
-		if [ "true" = "shus" ]
+		if [ "true" = "$shus" ]
 		then
 			sh /etc/init.d/shus start
 		else
