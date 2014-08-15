@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		# start shus
+		echo -n "Starting shus ..."
+		[ ! -f /srv/http/index.html ] && shus-index /srv/http
+		shusd /srv/http
+		echo " done."
+		;;
+
+	stop)
+		# stop shus
+		killall shusd
+		;;
+esac

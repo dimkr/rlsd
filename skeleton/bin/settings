@@ -18,6 +18,14 @@ else
 	tftpd="false"
 fi
 
+# check whether shus is running
+if [ -n "$(pidof shusd)" ]
+then
+	shus="true"
+else
+	shus="false"
+fi
+
 eval $(echo "<wtitle>Settings</wtitle>
 <hbox>
 	<hbox>
@@ -49,6 +57,12 @@ eval $(echo "<wtitle>Settings</wtitle>
 				<variable>tftpd</variable>
 				<action>EXIT=tftpd</action>
 			</checkbox>
+			<checkbox>
+				<label>shus</label>
+				<default>$shus</default>
+				<variable>shus</variable>
+				<action>EXIT=shus</action>
+			</checkbox>
 		</vbox>
 	</hbox>
 </hbox>" | gtkdialog1 -s)
@@ -69,6 +83,15 @@ case "$EXIT" in
 			sh /etc/init.d/tftpd start
 		else
 			sh /etc/init.d/tftpd stop
+		fi
+		;;
+
+	shus)
+		if [ "true" = "shus" ]
+		then
+			sh /etc/init.d/shus start
+		else
+			sh /etc/init.d/shus stop
 		fi
 		;;
 

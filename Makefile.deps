@@ -104,6 +104,7 @@ sdl: musl tinyxlib alsa_lib
 sdl_mixer: musl tinyxlib alsa_lib sdl
 sdl_net: musl tinyxlib alsa_lib sdl
 shed: musl ncurses
+shus: musl
 shutbox: musl gtk
 siag: musl mowitz
 snownews: musl zlib ncurses libressl libxml2

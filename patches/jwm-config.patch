@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-08-08 19:39:58.581995387 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-08-08 19:41:42.246993531 +0300
-@@ -2,176 +2,268 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-08-15 17:11:35.793805415 +0300
++++ jwm-2.2.2/example.jwmrc	2014-08-15 17:12:21.385804598 +0300
+@@ -2,176 +2,272 @@
  
  <JWM>
  
@@ -262,6 +262,10 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +				<Menu label="tftpd">
 +					<Program label="Start">sh /etc/init.d/tftpd start</Program>
 +					<Program label="Stop">sh /etc/init.d/tftpd stop</Program>
++				</Menu>
++				<Menu label="shus">
++					<Program label="Start">sh /etc/init.d/shus start</Program>
++					<Program label="Stop">sh /etc/init.d/shus stop</Program>
 +				</Menu>
 +			</Menu>
 +		</Menu>

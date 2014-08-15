@@ -113,6 +113,7 @@ PACKAGES="linux
           guiftp
           snownews
           bwm_ng
+          shus
           tcpdump
           ted
           siag
