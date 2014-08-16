@@ -96,6 +96,7 @@ PACKAGES="linux
           guitar
           gtkcat
           prboom
+          nethack
           shutbox
           xpacman
           xsoldier

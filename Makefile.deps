@@ -93,6 +93,7 @@ nano: musl ncurses
 nc: musl
 ncdu: musl ncurses
 ncurses: musl
+nethack: musl xz
 ogg122: musl tinyalsa
 packdude: musl zlib libarchive sqlite curl
 patch: musl

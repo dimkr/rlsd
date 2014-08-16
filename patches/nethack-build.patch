@@ -1,0 +1,132 @@
+diff -rup nethack-3.4.3-orig/include/config.h nethack-3.4.3/include/config.h
+--- nethack-3.4.3-orig/include/config.h	2014-08-16 12:03:48.530920245 +0300
++++ nethack-3.4.3/include/config.h	2014-08-16 13:29:10.096828528 +0300
+@@ -169,8 +169,8 @@
+ 
+ #ifdef UNIX
+ /* path and file name extension for compression program */
+-#define COMPRESS "/usr/bin/compress"	/* Lempel-Ziv compression */
+-#define COMPRESS_EXTENSION ".Z"		/* compress's extension */
++#define COMPRESS "/bin/xz"	/* LZMA2 compression */
++#define COMPRESS_EXTENSION ".xz"		/* xz's extension */
+ /* An example of one alternative you might want to use: */
+ /* #define COMPRESS "/usr/local/bin/gzip" */	/* FSF gzip compression */
+ /* #define COMPRESS_EXTENSION ".gz" */		/* normal gzip extension */
+@@ -204,7 +204,7 @@
+  * otherwise it will be the current directory.
+  */
+ # ifndef HACKDIR
+-#  define HACKDIR "/usr/games/lib/nethackdir"
++#  define HACKDIR "/var/games/nethack"
+ # endif
+ 
+ /*
+diff -rup nethack-3.4.3-orig/include/unixconf.h nethack-3.4.3/include/unixconf.h
+--- nethack-3.4.3-orig/include/unixconf.h	2014-08-16 12:03:48.530920245 +0300
++++ nethack-3.4.3/include/unixconf.h	2014-08-16 12:45:20.975875610 +0300
+@@ -37,7 +37,7 @@
+ #define NETWORK		/* if running on a networked system */
+ 			/* e.g. Suns sharing a playground through NFS */
+ /* #define SUNOS4 */	/* SunOS 4.x */
+-/* #define LINUX */	/* Another Unix clone */
++#define LINUX		/* Another Unix clone */
+ /* #define CYGWIN32 */	/* Unix on Win32 -- use with case sensitive defines */
+ /* #define GENIX */	/* Yet Another Unix Clone */
+ /* #define HISX */	/* Bull Unix for XPS Machines */
+@@ -132,7 +132,7 @@
+  * "extra output" method is used, but not all systems provide access to
+  * a fine-grained timer.
+  */
+-/* #define TIMED_DELAY */	/* usleep() */
++#define TIMED_DELAY	/* usleep() */
+ #endif
+ 
+ /*
+diff -rup nethack-3.4.3-orig/sys/unix/Makefile.doc nethack-3.4.3/sys/unix/Makefile.doc
+--- nethack-3.4.3-orig/sys/unix/Makefile.doc	2014-08-16 12:03:48.553920245 +0300
++++ nethack-3.4.3/sys/unix/Makefile.doc	2014-08-16 13:20:39.140837678 +0300
+@@ -41,7 +41,7 @@ Guidebook.dvi:	Guidebook.tex
+ 
+ 
+ GAME	= nethack
+-MANDIR	= /usr/man/man6
++MANDIR	= $(PREFIX)/usr/share/man/man6
+ MANEXT	= 6
+ 
+ # manual installation for most BSD-style systems
+diff -rup nethack-3.4.3-orig/sys/unix/Makefile.src nethack-3.4.3/sys/unix/Makefile.src
+--- nethack-3.4.3-orig/sys/unix/Makefile.src	2014-08-16 12:03:48.553920245 +0300
++++ nethack-3.4.3/sys/unix/Makefile.src	2014-08-16 12:45:20.977875610 +0300
+@@ -151,8 +151,8 @@ GNOMEINC=-I/usr/lib/glib/include -I/usr/
+ # flags for debugging:
+ # CFLAGS = -g -I../include
+ 
+-CFLAGS = -O -I../include
+-LFLAGS = 
++CFLAGS += -I../include
++LFLAGS = $(LDFLAGS)
+ 
+ # The Qt and Be window systems are written in C++, while the rest of
+ # NetHack is standard C.  If using Qt, uncomment the LINK line here to get
+@@ -230,8 +230,8 @@ WINOBJ = $(WINTTYOBJ)
+ # WINTTYLIB = -ltermcap
+ # WINTTYLIB = -lcurses
+ # WINTTYLIB = -lcurses16
+-# WINTTYLIB = -lncurses
+-WINTTYLIB = -ltermlib
++WINTTYLIB = -lncurses
++# WINTTYLIB = -ltermlib
+ #
+ # libraries for X11
+ # If USE_XPM is defined in config.h, you will also need -lXpm here.
+diff -rup nethack-3.4.3-orig/sys/unix/Makefile.top nethack-3.4.3/sys/unix/Makefile.top
+--- nethack-3.4.3-orig/sys/unix/Makefile.top	2014-08-16 12:03:48.553920245 +0300
++++ nethack-3.4.3/sys/unix/Makefile.top	2014-08-16 12:48:58.546871714 +0300
+@@ -14,16 +14,16 @@
+ # MAKE = make
+ 
+ # make NetHack
+-PREFIX	 = /usr
++PREFIX	 = /
+ GAME     = nethack
+ # GAME     = nethack.prg
+-GAMEUID  = games
+-GAMEGRP  = bin
++GAMEUID  = root 
++GAMEGRP  = root
+ 
+ # Permissions - some places use setgid instead of setuid, for instance
+ # See also the option "SECURE" in include/config.h
+-GAMEPERM = 04755
+-FILEPERM = 0644
++GAMEPERM = 0755
++FILEPERM = 0664
+ EXEPERM  = 0755
+ DIRPERM  = 0755
+ 
+@@ -35,9 +35,9 @@ DIRPERM  = 0755
+ # therefore there should not be anything in GAMEDIR that you want to keep
+ # (if there is, you'll have to do the installation by hand or modify the
+ # instructions)
+-GAMEDIR  = $(PREFIX)/games/lib/$(GAME)dir
++GAMEDIR  = $(PREFIX)/var/games/$(GAME)
+ VARDIR  = $(GAMEDIR)
+-SHELLDIR = $(PREFIX)/games
++SHELLDIR = $(PREFIX)/bin
+ 
+ # per discussion in Install.X11 and Install.Qt
+ VARDATND = 
+diff -rup nethack-3.4.3-orig/sys/unix/Makefile.utl nethack-3.4.3/sys/unix/Makefile.utl
+--- nethack-3.4.3-orig/sys/unix/Makefile.utl	2014-08-16 12:03:48.553920245 +0300
++++ nethack-3.4.3/sys/unix/Makefile.utl	2014-08-16 13:13:19.557845550 +0300
+@@ -89,8 +89,8 @@
+ # flags for debugging:
+ # CFLAGS = -g -I../include
+ 
+-CFLAGS = -O -I../include
+-LFLAGS =
++CFLAGS += -I../include
++LFLAGS = $(LDFLAGS)
+ 
+ LIBS =
+  

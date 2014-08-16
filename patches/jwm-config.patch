@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-08-15 17:11:35.793805415 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-08-15 17:12:21.385804598 +0300
-@@ -2,176 +2,272 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-08-16 13:21:59.650836236 +0300
++++ jwm-2.2.2/example.jwmrc	2014-08-16 13:22:48.311835365 +0300
+@@ -2,176 +2,273 @@
  
  <JWM>
  
@@ -192,6 +192,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +		<Menu label="Games" labeled="true">
 +			<Program label="PrBoom">prboom</Program>
++			<Program label="NetHack">aterm -title NetHack -e nethack</Program>
 +			<Program label="Shut the Box">shutbox</Program>
 +			<Program label="XPacman">xpacman</Program>
 +			<Program label="xsoldier">xsoldier</Program>
