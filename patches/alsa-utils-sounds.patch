@@ -6,7 +6,7 @@ diff -rup alsa-utils-1.0.28-orig/configure.ac alsa-utils-1.0.28/configure.ac
  esac
  
 -soundsdir="$dir/sounds/alsa"
-+soundsdir="$dir/sounds"
++soundsdir="$dir/alsa/sounds"
  AC_DEFINE_UNQUOTED(SOUNDSDIR, "$soundsdir", [directory containing sample data])
  
  mydatadir="$dir/alsa"
@@ -15,7 +15,7 @@ diff -rup alsa-utils-1.0.28-orig/speaker-test/samples/Makefile.am alsa-utils-1.0
 +++ alsa-utils-1.0.28/speaker-test/samples/Makefile.am	2014-08-01 22:15:40.184769609 +0300
 @@ -1,4 +1,4 @@
 -sounddir = $(datadir)/sounds/alsa
-+sounddir = $(datadir)/sounds
++sounddir = $(datadir)/alsa/sounds
  wav_files = Front_Left.wav \
  	Rear_Center.wav \
  	Rear_Right.wav \
@@ -27,7 +27,7 @@ diff -rup alsa-utils-1.0.28-orig/speaker-test/samples/Makefile.in alsa-utils-1.0
  udevrulesdir = @udevrulesdir@
  xmlto = @xmlto@
 -sounddir = $(datadir)/sounds/alsa
-+sounddir = $(datadir)/sounds
++sounddir = $(datadir)/alsa/sounds
  wav_files = Front_Left.wav \
  	Rear_Center.wav \
  	Rear_Right.wav \
@@ -39,7 +39,7 @@ diff -rup alsa-utils-1.0.28-orig/speaker-test/speaker-test.1 alsa-utils-1.0.28/s
  \fB\-W\fP | \fB\-\-wavdir\fP \fIDIRECTORY\fP
  Specify the directory containing WAV files for playback.
 -The default path is \fI/usr/share/sounds/alsa\fP.
-+The default path is \fI/usr/share/sounds\fP.
++The default path is \fI/usr/share/alsa/sounds\fP.
  
  .TP
  \fB\-m\fP | \fB\-\-chmap\fP \fIMAP\fP
