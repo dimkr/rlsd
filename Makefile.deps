@@ -18,6 +18,7 @@ dillo: musl libpng libjpeg_turbo gtk libressl wget
 dosfstools: musl
 dropbear: musl zlib
 elilo: musl gnu_efi
+elvis: musl ncurses
 emelfm: musl gtk
 evilwm: musl tinyxlib
 ffmpeg: musl zlib alsa_lib sdl
@@ -120,7 +121,6 @@ tinyunmute: musl tinyalsa
 tinyxlib: musl
 tinyxserver: musl zlib
 toybox: musl
-vile: musl ncurses
 wget: musl libressl
 wpa_supplicant: musl libressl libnl_tiny
 x11vnc: musl libressl tinyxlib libjpeg_turbo

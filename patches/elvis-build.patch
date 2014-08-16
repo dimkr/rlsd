@@ -1,0 +1,24 @@
+diff -rup elvis-tiny-1.4.orig-orig/Makefile.mix elvis-tiny-1.4.orig/Makefile.mix
+--- elvis-tiny-1.4.orig-orig/Makefile.mix	2014-08-16 17:58:49.431986651 +0300
++++ elvis-tiny-1.4.orig/Makefile.mix	2014-08-16 18:00:20.706985016 +0300
+@@ -41,9 +41,9 @@ O=	.o
+ E=
+ EXTRA=
+ EXTRA2=
+-LIBS=	-ltinfo
++LIBS=	-lncurses
+ BIN=	/usr/bin
+-CFLAGS=	-O2 -DM_SYSV -DCRUNCH -DNO_MKEXRC -DNO_CURSORSHAPE -DNO_CHARATTR \
++CFLAGS+=	-DM_SYSV -DCRUNCH -DNO_MKEXRC -DNO_CURSORSHAPE -DNO_CHARATTR \
+ 	-DNO_SHOWMODE -DNO_MODELINE -DNO_OPTCOLS -DNO_DIGRAPH -DNO_ABBR \
+ 	-DNO_AT -DNO_SENTENCE -DNO_ERRLIST -DUSE_MKSTEMP -DUSE_SNPRINTF \
+ 	-fsigned-char $(EXTRA_CFLAGS)
+@@ -311,7 +311,7 @@ all: $(PROGS)
+ 	@echo done.
+ 
+ elvis$E: $(OBJS) $(EXTRA) $(EXTRA2)
+-	$(CC) $(CFLAGS) $(OF)elvis$E $(OBJS) $(EXTRA) $(EXTRA2) $(LIBS)
++	$(CC) $(CFLAGS) $(OF)elvis$E $(OBJS) $(EXTRA) $(EXTRA2) $(LIBS) $(LDFLAGS)
+ 	$(CHMEM)
+ 
+ ctags$E: ctags.c

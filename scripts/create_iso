@@ -127,7 +127,7 @@ PACKAGES="linux
           gv
           beaver
           gtkedit
-          vile
+          elvis
           nano
           gtkdiskfree
           gdmap

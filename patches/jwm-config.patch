@@ -242,7 +242,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<Menu label="Editors">
 +			<Program label="Beaver">beaver</Program>
 +			<Program label="gtkedit">gtkedit</Program>
-+			<Program label="Vile">aterm -title Vile -e vile</Program>
++			<Program label="Elvis">aterm -title Elvis -e elvis</Program>
 +			<Program label="nano">aterm -title nano -e nano</Program>
 +		</Menu>
 +
