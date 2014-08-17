@@ -7,6 +7,8 @@ calcurse_build() {
 	tar -xzvf calcurse-$PACKAGE_VERSION.tar.gz
 	cd calcurse-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/calcurse-doc.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

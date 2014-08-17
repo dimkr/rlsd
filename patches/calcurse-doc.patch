@@ -1,0 +1,12 @@
+diff -rup calcurse-3.2.1-orig/doc/Makefile.in calcurse-3.2.1/doc/Makefile.in
+--- calcurse-3.2.1-orig/doc/Makefile.in	2014-08-17 23:40:10.988989380 +0300
++++ calcurse-3.2.1/doc/Makefile.in	2014-08-17 23:40:26.260989107 +0300
+@@ -266,7 +266,7 @@ AUTOMAKE_OPTIONS = foreign
+ @HAVE_A2X_TRUE@	-d manpage \
+ @HAVE_A2X_TRUE@	-f manpage
+ 
+-doc_langs = fr de es nl ru pt_BR
++doc_langs =
+ nobase_dist_doc_DATA = \
+ 	manual.html \
+ 	submitting-patches.html \
