@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.0u"
+PACKAGE_VERSION="3.0w"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/gnu-efi/gnu-efi_$PACKAGE_VERSION.orig.tar.gz"
 PACKAGE_DESC="A common functions library for UEFI applications"
 
