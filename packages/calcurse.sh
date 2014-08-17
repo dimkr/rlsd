@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.1.4"
+PACKAGE_VERSION="3.2.1"
 PACKAGE_SOURCES="http://calcurse.org/files/calcurse-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A personal organizer"
 
