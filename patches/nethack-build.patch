@@ -1,6 +1,6 @@
 diff -rup nethack-3.4.3-orig/include/config.h nethack-3.4.3/include/config.h
---- nethack-3.4.3-orig/include/config.h	2014-08-16 12:03:48.530920245 +0300
-+++ nethack-3.4.3/include/config.h	2014-08-16 13:29:10.096828528 +0300
+--- nethack-3.4.3-orig/include/config.h	2014-08-21 23:49:46.167897992 +0300
++++ nethack-3.4.3/include/config.h	2014-08-21 23:49:53.521897861 +0300
 @@ -169,8 +169,8 @@
  
  #ifdef UNIX
@@ -22,8 +22,8 @@ diff -rup nethack-3.4.3-orig/include/config.h nethack-3.4.3/include/config.h
  
  /*
 diff -rup nethack-3.4.3-orig/include/unixconf.h nethack-3.4.3/include/unixconf.h
---- nethack-3.4.3-orig/include/unixconf.h	2014-08-16 12:03:48.530920245 +0300
-+++ nethack-3.4.3/include/unixconf.h	2014-08-16 12:45:20.975875610 +0300
+--- nethack-3.4.3-orig/include/unixconf.h	2014-08-21 23:49:46.167897992 +0300
++++ nethack-3.4.3/include/unixconf.h	2014-08-21 23:57:09.692890050 +0300
 @@ -37,7 +37,7 @@
  #define NETWORK		/* if running on a networked system */
  			/* e.g. Suns sharing a playground through NFS */
@@ -33,6 +33,17 @@ diff -rup nethack-3.4.3-orig/include/unixconf.h nethack-3.4.3/include/unixconf.h
  /* #define CYGWIN32 */	/* Unix on Win32 -- use with case sensitive defines */
  /* #define GENIX */	/* Yet Another Unix Clone */
  /* #define HISX */	/* Bull Unix for XPS Machines */
+@@ -95,8 +95,8 @@
+  *		Ralf Brown, 7/26/89 (from v2.3 hack of 10/10/88)
+  */
+ 
+-/* #define NO_FILE_LINKS */	/* if no hard links */
+-/* #define LOCKDIR "/usr/games/lib/nethackdir" */	/* where to put locks */
++#define NO_FILE_LINKS	/* if no hard links */
++#define LOCKDIR "/run" 	/* where to put locks */
+ 
+ /*
+  * If you want the static parts of your playground on a read-only file
 @@ -132,7 +132,7 @@
   * "extra output" method is used, but not all systems provide access to
   * a fine-grained timer.
@@ -43,8 +54,8 @@ diff -rup nethack-3.4.3-orig/include/unixconf.h nethack-3.4.3/include/unixconf.h
  
  /*
 diff -rup nethack-3.4.3-orig/sys/unix/Makefile.doc nethack-3.4.3/sys/unix/Makefile.doc
---- nethack-3.4.3-orig/sys/unix/Makefile.doc	2014-08-16 12:03:48.553920245 +0300
-+++ nethack-3.4.3/sys/unix/Makefile.doc	2014-08-16 13:20:39.140837678 +0300
+--- nethack-3.4.3-orig/sys/unix/Makefile.doc	2014-08-21 23:49:46.193897992 +0300
++++ nethack-3.4.3/sys/unix/Makefile.doc	2014-08-21 23:49:53.522897861 +0300
 @@ -41,7 +41,7 @@ Guidebook.dvi:	Guidebook.tex
  
  
@@ -55,8 +66,8 @@ diff -rup nethack-3.4.3-orig/sys/unix/Makefile.doc nethack-3.4.3/sys/unix/Makefi
  
  # manual installation for most BSD-style systems
 diff -rup nethack-3.4.3-orig/sys/unix/Makefile.src nethack-3.4.3/sys/unix/Makefile.src
---- nethack-3.4.3-orig/sys/unix/Makefile.src	2014-08-16 12:03:48.553920245 +0300
-+++ nethack-3.4.3/sys/unix/Makefile.src	2014-08-16 12:45:20.977875610 +0300
+--- nethack-3.4.3-orig/sys/unix/Makefile.src	2014-08-21 23:49:46.193897992 +0300
++++ nethack-3.4.3/sys/unix/Makefile.src	2014-08-21 23:49:53.522897861 +0300
 @@ -151,8 +151,8 @@ GNOMEINC=-I/usr/lib/glib/include -I/usr/
  # flags for debugging:
  # CFLAGS = -g -I../include
@@ -80,8 +91,8 @@ diff -rup nethack-3.4.3-orig/sys/unix/Makefile.src nethack-3.4.3/sys/unix/Makefi
  # libraries for X11
  # If USE_XPM is defined in config.h, you will also need -lXpm here.
 diff -rup nethack-3.4.3-orig/sys/unix/Makefile.top nethack-3.4.3/sys/unix/Makefile.top
---- nethack-3.4.3-orig/sys/unix/Makefile.top	2014-08-16 12:03:48.553920245 +0300
-+++ nethack-3.4.3/sys/unix/Makefile.top	2014-08-16 12:48:58.546871714 +0300
+--- nethack-3.4.3-orig/sys/unix/Makefile.top	2014-08-21 23:49:46.193897992 +0300
++++ nethack-3.4.3/sys/unix/Makefile.top	2014-08-21 23:49:53.523897861 +0300
 @@ -14,16 +14,16 @@
  # MAKE = make
  
@@ -117,8 +128,8 @@ diff -rup nethack-3.4.3-orig/sys/unix/Makefile.top nethack-3.4.3/sys/unix/Makefi
  # per discussion in Install.X11 and Install.Qt
  VARDATND = 
 diff -rup nethack-3.4.3-orig/sys/unix/Makefile.utl nethack-3.4.3/sys/unix/Makefile.utl
---- nethack-3.4.3-orig/sys/unix/Makefile.utl	2014-08-16 12:03:48.553920245 +0300
-+++ nethack-3.4.3/sys/unix/Makefile.utl	2014-08-16 13:13:19.557845550 +0300
+--- nethack-3.4.3-orig/sys/unix/Makefile.utl	2014-08-21 23:49:46.193897992 +0300
++++ nethack-3.4.3/sys/unix/Makefile.utl	2014-08-21 23:49:53.524897861 +0300
 @@ -89,8 +89,8 @@
  # flags for debugging:
  # CFLAGS = -g -I../include
