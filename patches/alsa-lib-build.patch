@@ -1,0 +1,12 @@
+diff -rup alsa-lib-1.0.28-orig/modules/mixer/simple/Makefile.in alsa-lib-1.0.28/modules/mixer/simple/Makefile.in
+--- alsa-lib-1.0.28-orig/modules/mixer/simple/Makefile.in	2014-08-22 19:06:37.801996387 +0300
++++ alsa-lib-1.0.28/modules/mixer/simple/Makefile.in	2014-08-22 19:07:43.269995214 +0300
+@@ -307,7 +307,7 @@ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ alsaplugindir = @ALSA_PLUGIN_DIR@
+-AM_CFLAGS = -g -O2 -W -Wall
++AM_CFLAGS = -W -Wall
+ AM_CPPFLAGS = -I$(top_srcdir)/include
+ pkglib_LTLIBRARIES = smixer-sbase.la smixer-ac97.la smixer-hda.la \
+ 	$(am__append_1)

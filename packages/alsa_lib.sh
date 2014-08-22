@@ -7,6 +7,8 @@ alsa_lib_build() {
 	tar -xjvf alsa-lib-$PACKAGE_VERSION.tar.bz2
 	cd alsa-lib-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/alsa-lib-build.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
