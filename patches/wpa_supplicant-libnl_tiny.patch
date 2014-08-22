@@ -1,7 +1,7 @@
-diff -rup wpa_supplicant-2.1-orig/src/drivers/driver_nl80211.c wpa_supplicant-2.1/src/drivers/driver_nl80211.c
---- wpa_supplicant-2.1-orig/src/drivers/driver_nl80211.c	2014-02-12 23:14:16.584448584 +0200
-+++ wpa_supplicant-2.1/src/drivers/driver_nl80211.c	2014-02-12 23:25:12.648466152 +0200
-@@ -59,6 +59,12 @@
+diff -rup wpa_supplicant-2.2-orig/src/drivers/driver_nl80211.c wpa_supplicant-2.2/src/drivers/driver_nl80211.c
+--- wpa_supplicant-2.2-orig/src/drivers/driver_nl80211.c	2014-08-22 21:38:40.456927876 +0300
++++ wpa_supplicant-2.2/src/drivers/driver_nl80211.c	2014-08-22 21:39:16.583927229 +0300
+@@ -60,6 +60,12 @@
  #define PACKET_TX_TIMESTAMP	16
  #endif
  
@@ -14,10 +14,10 @@ diff -rup wpa_supplicant-2.1-orig/src/drivers/driver_nl80211.c wpa_supplicant-2.
  #ifdef ANDROID
  #include "android_drv.h"
  #endif /* ANDROID */
-diff -rup wpa_supplicant-2.1-orig/src/drivers/drivers.mak wpa_supplicant-2.1/src/drivers/drivers.mak
---- wpa_supplicant-2.1-orig/src/drivers/drivers.mak	2014-02-12 23:14:16.584448584 +0200
-+++ wpa_supplicant-2.1/src/drivers/drivers.mak	2014-02-12 23:21:12.228459714 +0200
-@@ -34,6 +34,7 @@ ifdef CONFIG_LIBNL32
+diff -rup wpa_supplicant-2.2-orig/src/drivers/drivers.mak wpa_supplicant-2.2/src/drivers/drivers.mak
+--- wpa_supplicant-2.2-orig/src/drivers/drivers.mak	2014-08-22 21:38:40.456927876 +0300
++++ wpa_supplicant-2.2/src/drivers/drivers.mak	2014-08-22 21:39:16.583927229 +0300
+@@ -39,6 +39,7 @@ ifdef CONFIG_LIBNL32
  else
    ifdef CONFIG_LIBNL_TINY
      DRV_LIBS += -lnl-tiny
