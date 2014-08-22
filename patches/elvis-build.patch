@@ -1,24 +1,59 @@
-diff -rup elvis-tiny-1.4.orig-orig/Makefile.mix elvis-tiny-1.4.orig/Makefile.mix
---- elvis-tiny-1.4.orig-orig/Makefile.mix	2014-08-16 17:58:49.431986651 +0300
-+++ elvis-tiny-1.4.orig/Makefile.mix	2014-08-16 18:00:20.706985016 +0300
-@@ -41,9 +41,9 @@ O=	.o
- E=
- EXTRA=
- EXTRA2=
--LIBS=	-ltinfo
-+LIBS=	-lncurses
- BIN=	/usr/bin
--CFLAGS=	-O2 -DM_SYSV -DCRUNCH -DNO_MKEXRC -DNO_CURSORSHAPE -DNO_CHARATTR \
-+CFLAGS+=	-DM_SYSV -DCRUNCH -DNO_MKEXRC -DNO_CURSORSHAPE -DNO_CHARATTR \
- 	-DNO_SHOWMODE -DNO_MODELINE -DNO_OPTCOLS -DNO_DIGRAPH -DNO_ABBR \
- 	-DNO_AT -DNO_SENTENCE -DNO_ERRLIST -DUSE_MKSTEMP -DUSE_SNPRINTF \
- 	-fsigned-char $(EXTRA_CFLAGS)
-@@ -311,7 +311,7 @@ all: $(PROGS)
- 	@echo done.
+diff -rup elvis-master-orig/Makefile.in elvis-master/Makefile.in
+--- elvis-master-orig/Makefile.in	2014-08-22 19:29:11.976972136 +0300
++++ elvis-master/Makefile.in	2014-08-22 19:29:55.972971348 +0300
+@@ -14,7 +14,7 @@
+ # If you're compiling with X-windows support, you may need to add a
+ # "-I/usr/X11/include" flag or something similar.
+ #CC=gcc -g -Wall -pedantic -Wtraditional -Wpointer-arith -Wstrict-prototypes -Wmissing-prototypes -I/usr/include/freetype2 -I/usr/X11R6/include
+-CC=cc -O
++CC?=cc -O
  
- elvis$E: $(OBJS) $(EXTRA) $(EXTRA2)
--	$(CC) $(CFLAGS) $(OF)elvis$E $(OBJS) $(EXTRA) $(EXTRA2) $(LIBS)
-+	$(CC) $(CFLAGS) $(OF)elvis$E $(OBJS) $(EXTRA) $(EXTRA2) $(LIBS) $(LDFLAGS)
- 	$(CHMEM)
+ ################################################################################
+ # This macro gives any arguments which will be needed during linking.
+@@ -164,7 +164,7 @@ OBJ3=	$(OSOBJS2) autocmd$(OBJ) cut$(OBJ)
+ OBJS=	$(OBJ1) $(OBJ2) $(OBJ3)
+ REFOBJS=ref$(OBJ) tag$(OBJ) tagsrch$(OBJ) safe$(OBJ)
+ CTOBJS=	ctags$(OBJ) tag$(OBJ) safe$(OBJ)
+-CFLAGS=	$(FLAGI)os$(OS)
++CFLAGS+=	$(FLAGI)os$(OS)
+ EVERY=	$(ALL) verify$(EXE) elvdump$(EXE) calc$(EXE)
+ SHELL=	/bin/sh
  
- ctags$E: ctags.c
+diff -rup elvis-master-orig/osunix/osdef.h elvis-master/osunix/osdef.h
+--- elvis-master-orig/osunix/osdef.h	2014-08-22 19:29:11.979972136 +0300
++++ elvis-master/osunix/osdef.h	2014-08-22 19:36:06.608964711 +0300
+@@ -37,7 +37,7 @@
+  */
+ #define OSPATHDELIM	':'
+ 
+-/*=============================================================================
++/*============================================================================
+  * This is used as the directory delimiter inside a file name.  For UNIX, this
+  * is traditionally a '/' character.  Most other OSes use a '\\' character.
+  */
+@@ -46,14 +46,14 @@
+ /*=============================================================================
+  * This is a list of directories where elvis might store its session file.
+  */
+-#define OSSESSIONPATH	"/var/tmp:/tmp:~:."
++#define OSSESSIONPATH	"/tmp:~:."
+ 
+ /* This is the default value of the "syntax" display mode's includepath option,
+  * which tells elvis where to look for #include files.  It can be overridden
+  * at run time by an INCLUDEPATH environment variable.
+  */
+ #ifndef OSINCLUDEPATH
+-# define OSINCLUDEPATH	"/usr/local/include:/usr/include"
++# define OSINCLUDEPATH	"/usr/include"
+ #endif
+ 
+ /*=============================================================================
+@@ -65,7 +65,7 @@
+  * the value shown here.
+  */
+ #ifndef OSLIBPATH
+-# define OSLIBPATH	"/usr/local/lib/elvis"
++# define OSLIBPATH	"/lib/elvis"
+ #endif
+ 
+ /*=============================================================================
