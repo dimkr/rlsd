@@ -20,7 +20,7 @@ ffmpeg_build() {
 	            --cc="$CC" \
 	            --ld="$CC" \
 	            --cpu="$ARCH" \
-	            --extra-cflags="$CFLAGS" \
+	            --extra-cflags="-D_BSD_SOURCE $CFLAGS" \
 	            --extra-ldflags="$LDFLAGS" \
 	            --disable-debug
 	$MAKE
