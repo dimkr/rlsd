@@ -8,6 +8,7 @@ ghostscript_build() {
 	cd ghostscript-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/ghostscript-tinyxlib.patch"
+	patch -p 1 < "$BASE_DIR/patches/ghostscript-build.patch"
 
 	autoconf
 	./configure --host=$HOST \

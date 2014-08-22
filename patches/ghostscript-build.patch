@@ -1,0 +1,12 @@
+diff -rup ghostscript-9.14-orig/configure.ac ghostscript-9.14/configure.ac
+--- ghostscript-9.14-orig/configure.ac	2014-08-22 14:33:32.233939806 +0300
++++ ghostscript-9.14/configure.ac	2014-08-22 15:43:32.926864580 +0300
+@@ -150,7 +150,7 @@ SET_DT_SONAME="-soname="
+ case `uname` in
+         Linux*|GNU*)
+         if test $ac_cv_prog_gcc = yes; then
+-            CC_OPT_FLAGS_TO_TRY="-O2"
++            CC_OPT_FLAGS_TO_TRY=""
+             CC_DBG_FLAGS_TO_TRY="-gdwarf-2 -g3 -O0"
+         fi
+         ;;
