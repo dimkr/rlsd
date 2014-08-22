@@ -7,6 +7,8 @@ loksh_build() {
 	unzip loksh-$PACKAGE_VERSION.zip
 	cd loksh-master
 
+	patch -p 1 < "$BASE_DIR/patches/loksh-build.patch"
+
 	$MAKE
 }
 

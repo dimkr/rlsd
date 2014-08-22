@@ -1,0 +1,12 @@
+diff -rup loksh-master-orig/config.h loksh-master/config.h
+--- loksh-master-orig/config.h	2014-08-22 21:53:10.570912294 +0300
++++ loksh-master/config.h	2014-08-22 21:53:20.137912123 +0300
+@@ -15,7 +15,7 @@
+ #define EMACS 1
+ 
+ /* Include vi editing? */
+-#define VI 1
++/* #define VI 1 */
+ 
+ /* Include job control? */
+ #define JOBS 1
