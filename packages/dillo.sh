@@ -10,6 +10,7 @@ dillo_build() {
 	patch -p 1 < "$BASE_DIR/patches/dillo-settings.patch"
 
 	LIBS="-lcrypto" \
+	CXXFLAGS="$CFLAGS" \
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datadir=/usr/share \
