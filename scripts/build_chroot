@@ -7,11 +7,12 @@ RELEASE="trusty"
 MIRROR="http://us.archive.ubuntu.com/ubuntu/"
 
 # packages required to build DSLR
-REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev \
-                   autoconf-archive unzip flex bison git nasm squashfs-tools \
-                   pkg-config file subversion bc xfonts-utils dosfstools \
-                   mtools yasm libarchive-dev libcurl4-gnutls-dev \
-                   libsqlite3-dev xorriso wget liblwp-useragent-determined-perl"
+REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev
+                   autoconf-archive unzip flex bison git nasm squashfs-tools
+                   pkg-config file subversion bc xfonts-utils dosfstools mtools
+                   yasm libarchive-dev libcurl4-gnutls-dev libsqlite3-dev
+                   xorriso wget liblwp-useragent-determined-perl advancecomp
+                   optipng"
 
 # set the locale to the default, to speed up everything
 export LANG="C"

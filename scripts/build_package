@@ -195,6 +195,17 @@ then
 	done
 fi
 
+# optimize all PNG images
+if [ -d "$installation_prefix/usr/share" ]
+then
+	find "$installation_prefix/usr/share" -name '*.png' -type f |
+	while read image
+	do
+		optipng -o7 "$image"
+		advpng -z4 "$image"
+	done
+fi
+
 # remove translations
 [ -d "$installation_prefix/usr/share/locale" ] && \
                                   rm -rvf "$installation_prefix/usr/share/locale"
