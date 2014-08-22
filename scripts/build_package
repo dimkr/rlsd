@@ -29,12 +29,19 @@ export PKG_CONFIG_PATH="$SYSROOT/lib/pkgconfig"
 export PKG_CONFIG_LIBDIR="/lib/pkgconfig"
 export MAKE="make -j $(cat /proc/cpuinfo | grep ^processor | wc -l)"
 export ARCH
-export KARCH
 export BASE_DIR
 export SYSROOT
 export PATH="$BASE_DIR:/opt/cross/$ARCH-linux-musl/bin:$PATH"
 export LANG="C"
 export LC_ALL="C"
+case "$ARCH" in
+	i?86)
+		export KARCH="x86"
+		;;
+	*)
+		export KARCH="$ARCH"
+		;;
+esac
 
 # replace pkg-config with a wrapper which forces "--static"
 if [ 1 -eq $STATIC ] && [ -d "$SYSROOT/lib/pkgconfig" ] && [ ! -f pkg-config ]
