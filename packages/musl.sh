@@ -14,7 +14,7 @@ musl_build() {
 	            --host=$HOST \
 	            --disable-debug \
 	            --enable-gcc-wrapper \
-	            --enable-shared
+	            $CONFIGURE_LIBRARY_FLAGS
 	$MAKE
 }
 
