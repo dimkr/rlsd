@@ -108,6 +108,8 @@ mount -B /sys /mnt/union/sys
 mount -R /dev /mnt/union/dev
 mount -B /run /mnt/union/run
 mount -B /mnt/union/run /mnt/union/var/run
+mkdir /run/mnt
+mount -B /run/mnt /mnt/union/mnt
 mount -B /var/log /mnt/union/var/log
 mount -B /tmp /mnt/union/tmp
 
