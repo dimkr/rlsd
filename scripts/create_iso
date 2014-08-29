@@ -2,43 +2,6 @@
 
 . ./config
 
-# files present in the initramfs
-INITRAMFS_FILES="bin/toybox
-                 bin/init
-                 bin/ksh
-                 bin/syslogd
-                 bin/klogd
-                 bin/mkdir
-                 bin/cp
-                 bin/cttyhack
-                 bin/losetup
-                 bin/mount
-                 bin/umount
-                 bin/luufs
-                 bin/fusermount
-                 bin/sleep
-                 bin/clear
-                 bin/cat
-                 bin/contain
-                 bin/poweroff
-                 bin/reboot
-                 etc/rc.d/rc.initramfs
-                 etc/rc.d/rc.shutdown"
-
-# directories present in the initramfs
-INITRAMFS_DIRECTORIES="run
-                       tmp
-                       etc/rc.d
-                       bin
-                       var/log
-                       proc
-                       dev
-                       mnt/home
-                       mnt/rw
-                       mnt/union
-                       mnt/ro
-                       sys"
-
 # unneeded files and directories in the root file system
 UNNEEDED_FILES="/lib/*.a
                 /lib/*.o
@@ -170,30 +133,8 @@ rm -f "$root_fs/var/packdude"/repo-*.sqlite3
 # remove packdude's lock file
 rm -f "$root_fs/var/packdude/lock"
 
-# create a temporary directory for the initramfs contents
-initramfs_root="$(mktemp -d -u)"
-
-# create the initramfs directories
-for directory in $INITRAMFS_DIRECTORIES
-do
-	mkdir -p "$initramfs_root/$directory"
-done
-
-# add required programs and scripts to the initramfs
-for i in $INITRAMFS_FILES
-do
-	cp "$root_fs/$i" "$initramfs_root/$i"
-done
-
 # create a temporary directory for the extracted ISO image contents
 iso_root="$(mktemp -d)"
-
-# generate a compressed initramfs
-cd "$initramfs_root"
-chown -R 0:0 .
-chmod 1777 tmp
-find . | cpio -o -H newc | xz -9 -e --check=none > "$iso_root/initrd.xz"
-rm -rf "$initramfs_root"
 
 # create a 16 MB, FAT12 UEFI boot image, for UEFI boot
 dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=16
@@ -203,7 +144,6 @@ mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
 mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/elilo.efi" "::EFI/BOOT/BOOTX64.EFI"
 mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/elilo.conf" "::EFI/BOOT/"
 mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
-mcopy -i "$iso_root/efiboot.img" "$iso_root/initrd.xz" "::EFI/BOOT/"
 
 # put the kernel, the boot loader and its configuration file in the image root,
 # for BIOS boot

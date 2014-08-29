@@ -56,9 +56,7 @@ do
 		mount -o ro /dev/$partition /mnt/home
 		if [ 0 -eq $? ]
 		then
-			if [ -f /mnt/home/bzImage ] && \
-			   [ -f /mnt/home/initrd.xz ] && \
-			   [ -f /mnt/home/rootfs.sfs ]
+			if [ -f /mnt/home/bzImage ] && [ -f /mnt/home/rootfs.sfs ]
 			then
 				is_found=1
 				break
