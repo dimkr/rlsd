@@ -49,6 +49,7 @@ linux_build() {
 	patch -p 1 < "$BASE_DIR/patches/linux-swappiness.patch"
 	patch -p 1 < "$BASE_DIR/patches/linux-verbosity.patch"
 	patch -p 1 < "$BASE_DIR/patches/linux-lazy_utils.patch"
+	patch -p 1 < "$BASE_DIR/patches/linux-compression.patch"
 
 	# reset the minor version number, so the kernel is compatible with modules
 	# built against previous minor versions

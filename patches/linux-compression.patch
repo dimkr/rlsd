@@ -1,0 +1,21 @@
+diff -rup linux-3.14.17-orig/scripts/Makefile.lib linux-3.14.17/scripts/Makefile.lib
+--- linux-3.14.17-orig/scripts/Makefile.lib	2014-08-29 19:06:31.869996385 +0300
++++ linux-3.14.17/scripts/Makefile.lib	2014-08-29 19:11:06.422991468 +0300
+@@ -366,7 +366,7 @@ cmd_xzkern = (cat $(filter-out FORCE,$^)
+ 
+ quiet_cmd_xzmisc = XZMISC  $@
+ cmd_xzmisc = (cat $(filter-out FORCE,$^) | \
+-	xz --check=crc32 --lzma2=dict=1MiB) > $@ || \
++	xz -9 -e --check=crc32 --lzma2=dict=1MiB) > $@ || \
+ 	(rm -f $@ ; false)
+ 
+ # misc stuff
+diff -rup linux-3.14.17-orig/scripts/xz_wrap.sh linux-3.14.17/scripts/xz_wrap.sh
+--- linux-3.14.17-orig/scripts/xz_wrap.sh	2014-08-29 19:06:31.837996386 +0300
++++ linux-3.14.17/scripts/xz_wrap.sh	2014-08-29 19:10:25.481992202 +0300
+@@ -20,4 +20,4 @@ case $SRCARCH in
+ 	sparc)          BCJ=--sparc ;;
+ esac
+ 
+-exec xz --check=crc32 $BCJ --lzma2=$LZMA2OPTS,dict=32MiB
++exec xz -9 -e --check=crc32 $BCJ --lzma2=$LZMA2OPTS,dict=32MiB
