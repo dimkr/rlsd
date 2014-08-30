@@ -9,14 +9,14 @@ tiff_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/tiff-html.patch"
 
-	sed s~'LIBTIFF_DOCDIR=\${prefix}/share/doc/${PACKAGE}-${LIBTIFF_VERSION}'~'LIBTIFF_DOCDIR=\${prefix}/share/doc/${PACKAGE}'~ -i configure
 	./configure --host=$HOST \
 	            --prefix=/usr \
 	            --bindir=/bin \
 	            --libdir=/lib \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --disable-lzma \
-	            --disable-cxx
+	            --disable-cxx \
+	            --with-docdir="/usr/share/doc/tiff"
 	$MAKE
 }
 
