@@ -12,7 +12,6 @@ rfkill_build() {
 
 rfkill_package() {
 	$MAKE DESTDIR="$1" SBINDIR="/bin" install
-	return 0
 	install -D -m 644 README "$1/usr/share/doc/rfkill/README"
 	install -m 644 COPYING "$1/usr/share/doc/rfkill/COPYING"
 }
