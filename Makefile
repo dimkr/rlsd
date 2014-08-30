@@ -14,6 +14,7 @@ packages: $(PACKAGES)
 	cd repo; repodude repo.csv repo.sqlite3
 
 iso:
-	./scripts/create_iso
+	./scripts/create_iso uefi
+	./scripts/create_iso bios
 
 include ./Makefile.deps

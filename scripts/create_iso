@@ -29,7 +29,6 @@ PACKAGES="linux
           packdude
           mandoc
           isolinux
-          elilo
           dhcpcd
           rfkill
           iw
@@ -105,7 +104,7 @@ PACKAGES="linux
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
-ISO_NAME="dslr-$VERSION.iso"
+ISO_NAME="dslr-$VERSION-$1.iso"
 
 # if all packages were built locally, use the build output
 if [ -d "$BASE_DIR/repo" ]
@@ -120,9 +119,17 @@ fi
 root_fs="$(mktemp -d -u)"
 cp -ar "$BASE_DIR/skeleton" "$root_fs"
 
+# if the generated image supports UEFI, install elilo as well
+if [ "uefi " = "$1" ]
+then
+	packages="$PACKAGES elilo"
+else
+	packages="$PACKAGES"
+fi
+
 # install the packages
 mkdir -p "$root_fs/var/packdude"
-for package in $PACKAGES
+for package in $packages
 do
 	packdude -i $package -n -p "$root_fs" -u "$repo"
 done
@@ -137,13 +144,20 @@ rm -f "$root_fs/var/packdude/lock"
 iso_root="$(mktemp -d)"
 
 # create a 16 MB, FAT12 UEFI boot image, for UEFI boot
-dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=16
-/sbin/mkfs.vfat -F 12 -n "DSLR" "$iso_root/efiboot.img"
-mmd -i "$iso_root/efiboot.img" "EFI"
-mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
-mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/elilo.efi" "::EFI/BOOT/BOOTX64.EFI"
-mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/elilo.conf" "::EFI/BOOT/"
-mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
+if [ "uefi" = "$1" ]
+then
+	dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=16
+	/sbin/mkfs.vfat -F 12 -n "DSLR" "$iso_root/efiboot.img"
+	mmd -i "$iso_root/efiboot.img" "EFI"
+	mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
+	mcopy -i "$iso_root/efiboot.img" \
+	         "$root_fs/boot/elilo.efi" \
+	         "::EFI/BOOT/BOOTX64.EFI"
+	mcopy -i "$iso_root/efiboot.img" \
+	         "$root_fs/boot/elilo.conf" \
+	         "::EFI/BOOT/"
+	mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
+fi
 
 # put the kernel, the boot loader and its configuration file in the image root,
 # for BIOS boot
@@ -197,6 +211,15 @@ rm -rf "$root_fs"
 # generate an ISO image
 cd "$BASE_DIR"
 [ ! -d "$BASE_DIR/releases" ] && mkdir "$BASE_DIR/releases"
+if [ "uefi" = "$1" ]
+then
+	uefi_flags="-eltorito-alt-boot \
+	            -e efiboot.img \
+	            -no-emul-boot \
+	            -isohybrid-gpt-basdat"
+else
+	uefi_flags=""
+fi
 xorriso -as mkisofs \
         -iso-level 3 \
         -full-iso9660-filenames \
@@ -206,10 +229,7 @@ xorriso -as mkisofs \
         -eltorito-catalog boot.cat \
         -no-emul-boot -boot-load-size 4 -boot-info-table \
         -isohybrid-mbr "$iso_root/isohdpfx.bin" \
-        -eltorito-alt-boot \
-        -e efiboot.img \
-        -no-emul-boot \
-        -isohybrid-gpt-basdat \
+        $uefi_flags \
         -output "$BASE_DIR/releases/$ISO_NAME" \
         "$iso_root"
 
