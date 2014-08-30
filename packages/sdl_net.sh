@@ -18,7 +18,7 @@ sdl_net_build() {
 
 sdl_net_package() {
 	$MAKE DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/SDL_net/README"
-	install -D -m 644 CHANGES $"$1/usr/share/doc/SDL_net/CHANGES"
-	install -m 644 COPYING "$1/usr/share/doc/SDL_net/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/sdl_net/README"
+	install -m 644 CHANGES $"$1/usr/share/doc/sdl_net/CHANGES"
+	install -m 644 COPYING "$1/usr/share/doc/sdl_net/COPYING"
 }

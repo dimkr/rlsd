@@ -20,6 +20,6 @@ libxaw3d_build() {
 
 libxaw3d_package() {
 	$MAKE DESTDIR="$1" install
-	install -m 644 ChangeLog "$1/usr/share/doc/libXaw3d/ChangeLog"
-	install -m 644 COPYING "$1/usr/share/doc/libXaw3d/COPYING"
+	install -m 644 ChangeLog "$1/usr/share/doc/libxaw3d/ChangeLog"
+	install -m 644 COPYING "$1/usr/share/doc/libxaw3d/COPYING"
 }

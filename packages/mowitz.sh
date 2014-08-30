@@ -22,9 +22,9 @@ mowitz_build() {
 
 mowitz_package() {
 	$MAKE DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/Mowitz/README"
-	install -m 644 ChangeLog "$1/usr/share/doc/Mowitz/ChangeLog"
-	install -m 644 NEWS "$1/usr/share/doc/Mowitz/NEWS"
-	install -m 644 AUTHORS "$1/usr/share/doc/Mowitz/AUTHORS"
-	install -m 644 COPYING "$1/usr/share/doc/Mowitz/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/mowitz/README"
+	install -m 644 ChangeLog "$1/usr/share/doc/mowitz/ChangeLog"
+	install -m 644 NEWS "$1/usr/share/doc/mowitz/NEWS"
+	install -m 644 AUTHORS "$1/usr/share/doc/mowitz/AUTHORS"
+	install -m 644 COPYING "$1/usr/share/doc/mowitz/COPYING"
 }

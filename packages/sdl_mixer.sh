@@ -22,7 +22,7 @@ sdl_mixer_build() {
 
 sdl_mixer_package() {
 	$MAKE DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/SDL_mixer/README"
-	install -D -m 644 CHANGES $"$1/usr/share/doc/SDL_mixer/CHANGES"
-	install -m 644 COPYING "$1/usr/share/doc/SDL_mixer/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/sdl_mixer/README"
+	install -D -m 644 CHANGES $"$1/usr/share/doc/sdl_mixer/CHANGES"
+	install -m 644 COPYING "$1/usr/share/doc/sdl_mixer/COPYING"
 }

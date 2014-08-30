@@ -18,6 +18,6 @@ ted_package() {
 	tar -xzvf tedPackage/Ted_*_Linux_${ARCH}.tar.gz -C "$1/usr/share/ted"
 	mv "$1/usr/share/ted/bin" "$1/"
 	install -D -m 644 tedPackage/Ted.png "$1/usr/share/pixmaps/Ted.png"
-	install -D -m 644 README "$1/usr/share/doc/Ted/README"
-	install -m 644 gpl.txt "$1/usr/share/doc/Ted/gpl.txt"
+	install -D -m 644 README "$1/usr/share/doc/ted/README"
+	install -m 644 gpl.txt "$1/usr/share/doc/ted/gpl.txt"
 }

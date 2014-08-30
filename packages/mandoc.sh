@@ -17,6 +17,6 @@ mandoc_build() {
 mandoc_package() {
 	install -D -m 755 mandoc "$1/bin/mandoc"
 	install -D -m 644 mandoc.1 "$1/usr/share/man/man1/mandoc.1"
-	install -D -m 644 NEWS "$1/usr/share/doc/mdocml/NEWS"
-	install -m 644 LICENSE "$1/usr/share/doc/mdocml/LICENSE"
+	install -D -m 644 NEWS "$1/usr/share/doc/mandoc/NEWS"
+	install -m 644 LICENSE "$1/usr/share/doc/mandoc/LICENSE"
 }

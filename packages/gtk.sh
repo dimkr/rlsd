@@ -26,8 +26,8 @@ gtk_build() {
 
 gtk_package() {
 	$MAKE DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/gtk+/README"
-	install -m 644 ChangeLog "$1/usr/share/doc/gtk+/ChangeLog"
-	install -m 644 AUTHORS "$1/usr/share/doc/gtk+/AUTHORS"
-	install -m 644 COPYING "$1/usr/share/doc/gtk+/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/gtk/README"
+	install -m 644 ChangeLog "$1/usr/share/doc/gtk/ChangeLog"
+	install -m 644 AUTHORS "$1/usr/share/doc/gtk/AUTHORS"
+	install -m 644 COPYING "$1/usr/share/doc/gtk/COPYING"
 }

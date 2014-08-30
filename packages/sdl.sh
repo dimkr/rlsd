@@ -25,8 +25,8 @@ sdl_build() {
 
 sdl_package() {
 	$MAKE DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/SDL/README"
-	install -m 644 README-SDL.txt "$1/usr/share/doc/SDL/README-SDL.txt"
-	install -m 644 CREDITS "$1/usr/share/doc/SDL/CREDITS"
-	install -m 644 COPYING "$1/usr/share/doc/SDL/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/sdl/README"
+	install -m 644 README-SDL.txt "$1/usr/share/doc/sdl/README-SDL.txt"
+	install -m 644 CREDITS "$1/usr/share/doc/sdl/CREDITS"
+	install -m 644 COPYING "$1/usr/share/doc/sdl/COPYING"
 }

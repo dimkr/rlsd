@@ -18,9 +18,9 @@ gtkdialog1_build() {
 
 gtkdialog1_package() {
 	$MAKE DESTDIR="$1" install
-	install -D -m 644 README "$1/usr/share/doc/GtkDialog1/README"
-	install -m 644 NEWS "$1/usr/share/doc/GtkDialog1/NEWS"
-	install -m 644 ChangeLog "$1/usr/share/doc/GtkDialog1/ChangeLog"
-	install -m 644 AUTHORS "$1/usr/share/doc/GtkDialog1/AUTHORS"
-	install -m 644 COPYING "$1/usr/share/doc/GtkDialog1/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/gtkdialog1/README"
+	install -m 644 NEWS "$1/usr/share/doc/gtkdialog1/NEWS"
+	install -m 644 ChangeLog "$1/usr/share/doc/gtkdialog1/ChangeLog"
+	install -m 644 AUTHORS "$1/usr/share/doc/gtkdialog1/AUTHORS"
+	install -m 644 COPYING "$1/usr/share/doc/gtkdialog1/COPYING"
 }
