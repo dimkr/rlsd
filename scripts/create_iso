@@ -6,6 +6,7 @@
 UNNEEDED_FILES="/lib/*.a
                 /lib/*.o
                 /lib/*.lds
+                /lib/alsa-lib/smixer/*.a
                 /usr/share/man/man2
                 /usr/share/man/man3
                 /usr/include
