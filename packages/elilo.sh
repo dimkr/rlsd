@@ -10,6 +10,7 @@ elilo_build() {
 	cd elilo-$PACKAGE_VERSION-source
 
 	patch -p 1 < "$BASE_DIR/patches/elilo-size.patch"
+	patch -p 1 < "$BASE_DIR/patches/elilo-build.patch"
 
 	sed -e s~'^EFIINC\t   = /usr/include/efi$'~"EFIINC	   = $SYSROOT/usr/include/efi"~ \
 	    -e s~'^GNUEFILIB  = /usr/lib$'~"GNUEFILIB  = $SYSROOT/lib"~ \
@@ -17,7 +18,7 @@ elilo_build() {
 	    -e s~'^EFICRT0\t   = /usr/lib$'~"EFICRT0	   = $SYSROOT/lib"~ \
 	    -i Make.defaults
 
-	$MAKE CC="$CC"
+	$MAKE
 }
 
 elilo_package() {

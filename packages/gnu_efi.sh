@@ -7,6 +7,8 @@ gnu_efi_build() {
 	tar -xzvf gnu-efi_$PACKAGE_VERSION.orig.tar.gz
 	cd gnu-efi-3.0
 
+	patch -p 1 < "$BASE_DIR/patches/gnu-efi-build.patch"
+
 	CFLAGS="" LDFLAGS="" $MAKE
 }
 

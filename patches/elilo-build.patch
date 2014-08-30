@@ -1,0 +1,36 @@
+diff -rup elilo-3.16-source-orig/Make.defaults elilo-3.16-source/Make.defaults
+--- elilo-3.16-source-orig/Make.defaults	2014-08-23 12:12:18.397949814 +0300
++++ elilo-3.16-source/Make.defaults	2014-08-23 12:39:46.077920307 +0300
+@@ -70,7 +70,7 @@ CPPFLAGS   = -DCONFIG_$(ARCH)
+ 
+ OPTIMFLAGS = -O2 
+ DEBUGFLAGS = -Wall
+-CFLAGS     = $(ARCH3264) $(OPTIMFLAGS) -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar $(DEBUGFLAGS)
++CFLAGS     = $(ARCH3264) $(OPTIMFLAGS) -DGNU_EFI_USE_MS_ABI -maccumulate-outgoing-args -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar $(DEBUGFLAGS)
+ ASFLAGS    = $(ARCH3264)
+ LDFLAGS	   = -nostdlib -znocombreloc
+ INSTALL	   = install
+@@ -102,12 +102,12 @@ endif
+ prefix	        = /usr/bin/
+   # Redhat 8.0 ia32 gcc-3.x version is reported to produce working EFI binaries.
+   # Redhat 9.0 ia32 gcc-3.x version is reported to produce BAD binaries.
+-CC		= $(prefix)gcc
++CC		?= $(prefix)gcc
+ AS		= $(prefix)as
+-LD		= $(prefix)ld
++LD		?= $(prefix)ld
+ AR		= $(prefix)ar
+ RANLIB	        = $(prefix)ranlib
+-OBJCOPY	        = $(prefix)objcopy
++OBJCOPY	        ?= $(prefix)objcopy
+ 
+ # Use Modified binutils that supports x86_64 using UEFI ABI
+ ifeq ($(ARCH), x86_64)
+@@ -121,7 +121,6 @@ ifeq ($(ARCH), x86_64)
+   endif
+ 
+         CFLAGS   += -DEFI_FUNCTION_WRAPPER
+-	OBJCOPY	  = /usr/bin/objcopy
+ endif
+ 
+ ifeq ($(ARCH), ia32)

@@ -22,6 +22,8 @@ UNNEEDED_FILES="usr/share/applications
 
 # prepare the build environment
 export AR
+export LD
+export OBJCOPY
 export CFLAGS="$CFLAGS -I$SYSROOT/usr/include"
 export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
 export PKG_CONFIG="$BASE_DIR/pkg-config"
@@ -69,9 +71,6 @@ do
 done
 export GLIB_CONFIG="$BASE_DIR/glib-config"
 export GTK_CONFIG="$BASE_DIR/gtk-config"
-
-# if the system root is not present yet, initialize it with the skeleton
-[ ! -d "$SYSROOT" ] && cp -r "$BASE_DIR/skeleton" "$SYSROOT"
 
 # if musl is already installed, use its wrapper instead of the real compiler
 if [ -e "musl-gcc" ]

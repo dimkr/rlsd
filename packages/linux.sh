@@ -74,7 +74,13 @@ linux_build() {
 	# add required programs and scripts to the initramfs
 	for i in $INITRAMFS_FILES
 	do
-		cp "$SYSROOT/$i" "$initramfs_root/$i"
+		if [ -e "$SYSROOT/$i" ]
+		then
+			path="$SYSROOT/$i"
+		else
+			path="$BASE_DIR/skeleton/$i"
+		fi
+		cp "$path" "$initramfs_root/$i"
 	done
 
 	# create /dev/console
