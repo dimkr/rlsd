@@ -120,7 +120,7 @@ root_fs="$(mktemp -d -u)"
 cp -ar "$BASE_DIR/skeleton" "$root_fs"
 
 # if the generated image supports UEFI, install elilo as well
-if [ "uefi " = "$1" ]
+if [ "uefi" = "$1" ]
 then
 	packages="$PACKAGES elilo"
 else
