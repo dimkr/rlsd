@@ -53,4 +53,7 @@ rox_package() {
 	echo "#!/bin/sh
 exec /usr/share/rox/AppRun \"\$@\"" > "$1/bin/rox"
 	chmod 755 "$1/bin/rox"
+
+	install -D -d -m 755 "$1/usr/share/doc"
+	ln -s ../rox/Help "$1/usr/share/doc/rox"
 }
