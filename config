@@ -2,7 +2,6 @@ ARCH="$(uname -m)"
 CFLAGS="-Os -ffunction-sections -fdata-sections -fomit-frame-pointer -fPIC -pipe"
 case "$ARCH" in
 	i?86)
-		ARCH="i486"
 		CFLAGS="-march=i486 -mtune=i686 $CFLAGS"
 		;;
 	*)
