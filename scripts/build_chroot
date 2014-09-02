@@ -36,7 +36,16 @@ else
 	fi
 
 	# run debootstrap
-	debootstrap $RELEASE "$1" $MIRROR
+	arch="$(uname -m)"
+	case "$arch" in
+		i?86)
+			arch="i386"
+			;;
+		x86_64)
+			arch="amd64"
+			;;
+	esac
+	debootstrap --arch "$arch" $RELEASE "$1" $MIRROR
 	[ 0 -ne $? ] && exit 1
 
 	# set the repositories list
