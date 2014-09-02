@@ -59,8 +59,8 @@ linux_build() {
 	sed s~'^EXTRAVERSION =.*'~'EXTRAVERSION ='~ -i Makefile
 
 	# clean the sources tree
-	$MAKE clean
-	$MAKE mrproper
+	ARCH="$KARCH" $MAKE clean
+	ARCH="$KARCH" $MAKE mrproper
 
 	# create a temporary directory for the initramfs contents
 	initramfs_root="$(mktemp -d -u)"
@@ -5578,7 +5578,7 @@ CONFIG_MM_OWNER=y
 # CONFIG_SYSFS_DEPRECATED is not set
 # CONFIG_RELAY is not set
 CONFIG_BLK_DEV_INITRD=y
-CONFIG_INITRAMFS_SOURCE="/tmp/tmp.QpjopFeCm6.cpio"
+CONFIG_INITRAMFS_SOURCE="$initramfs"
 CONFIG_INITRAMFS_ROOT_UID=0
 CONFIG_INITRAMFS_ROOT_GID=0
 # CONFIG_RD_GZIP is not set
@@ -10919,7 +10919,7 @@ CONFIG_EOF
 		;;
 	esac
 
-	$MAKE bzImage
+	ARCH="$KARCH" $MAKE CROSS_COMPILE="$HOST-" bzImage
 	rm -f "$initramfs"
 }
 
