@@ -235,7 +235,7 @@ xorriso -as mkisofs \
         -no-emul-boot -boot-load-size 4 -boot-info-table \
         -isohybrid-mbr "$iso_root/isohdpfx.bin" \
         $uefi_flags \
-        -output "$BASE_DIR/releases/dslr-$VERSION-$KARCH$suffix.iso" \
+        -output "$BASE_DIR/releases/dslr-$VERSION-$ARCH$suffix.iso" \
         "$iso_root"
 
 # clean up
