@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.6.1"
+PACKAGE_VERSION="1.6.2"
 PACKAGE_SOURCES="http://www.tcpdump.org/release/libpcap-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A packet capture library"
 
