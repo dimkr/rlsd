@@ -9,6 +9,7 @@ case "$1" in
 		route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
 
 		# turn on the wireless interface
+		rfkill unblock wlan0 > /dev/null 2>&1
 		ifconfig wlan0 up > /dev/null 2>&1
 
 		if [ -f /etc/wpa_supplicant.conf ]
@@ -17,10 +18,10 @@ case "$1" in
 			wpa_supplicant -B \
 			               -iwlan0 \
 			               -c/etc/wpa_supplicant.conf \
-			               -P/run/wpa_supplicant.pid
+			               -P/run/wpa_supplicant.pid > /dev/null 2>&1
 
 			# run dhcpcd
-			dhcpcd -L wlan0
+			dhcpcd -L wlan0 > /dev/null 2>&1
 		fi
 
 		echo " done."
@@ -30,15 +31,16 @@ case "$1" in
 		if [ -f /run/wpa_supplicant.pid ]
 		then
 			# stop dhcpcd
-			dhcpcd -k wlan0
+			dhcpcd -k wlan0 > /dev/null 2>&1
 
 			# stop wpa_supplicant
-			kill $(cat /run/wpa_supplicant.pid)
+			kill $(cat /run/wpa_supplicant.pid) > /dev/null 2>&1
 			rm /run/wpa_supplicant.conf
 		fi
 
 		# bring down the wireless interface
 		ifconfig wlan0 down > /dev/null 2>&1
+		rfkill block wlan0 > /dev/null 2>&1
 
 		# disable the loopback interface
 		ifconfig lo down
