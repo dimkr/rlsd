@@ -223,7 +223,7 @@ then
 	suffix=""
 else
 	uefi_flags=""
-	suffix="-bios"
+	suffix="-$1"
 fi
 xorriso -as mkisofs \
         -iso-level 3 \
@@ -235,7 +235,7 @@ xorriso -as mkisofs \
         -no-emul-boot -boot-load-size 4 -boot-info-table \
         -isohybrid-mbr "$iso_root/isohdpfx.bin" \
         $uefi_flags \
-        -output "$BASE_DIR/releases/dslr-$VERSION$suffix.iso" \
+        -output "$BASE_DIR/releases/dslr-$VERSION-$KARCH$suffix.iso" \
         "$iso_root"
 
 # clean up
