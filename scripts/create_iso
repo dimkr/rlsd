@@ -107,13 +107,16 @@ BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 ISO_NAME="dslr-$VERSION-$1.iso"
 
+# include the configuration file
+. ./config
+
 # if all packages were built locally, use the build output
 if [ -d "$BASE_DIR/repo" ]
 then
 	repo="file://$BASE_DIR/repo"
 else
 	# otherwise, use the upstream repository
-	repo="http://dslr.dimakrasner.com/repo"
+	repo="http://dslr.dimakrasner.com/$ARCH"
 fi
 
 # initialize the root file system with the skeleton
