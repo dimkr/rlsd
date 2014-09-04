@@ -24,6 +24,11 @@ UNNEEDED_FILES="usr/share/applications
 export AR
 export LD
 export OBJCOPY
+if [ 1 -eq $STATIC ]
+then
+	CFLAGS="$CFLAGS -fPIC"
+	LDFLAGS="$LDFLAGS -fPIC"
+fi
 export CFLAGS="$CFLAGS -I$SYSROOT/usr/include"
 export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
 export PKG_CONFIG="$BASE_DIR/pkg-config"

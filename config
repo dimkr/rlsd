@@ -1,5 +1,5 @@
 ARCH="$(uname -m)"
-CFLAGS="-Os -ffunction-sections -fdata-sections -fomit-frame-pointer -fPIC -pipe"
+CFLAGS="-Os -ffunction-sections -fdata-sections -fomit-frame-pointer -pipe"
 case "$ARCH" in
 	i?86)
 		CFLAGS="-march=i486 -mtune=i686 $CFLAGS"
@@ -8,7 +8,7 @@ case "$ARCH" in
 		CFLAGS="-mtune=generic $CFLAGS"
 		;;
 esac
-LDFLAGS="-fPIC -Wl,-gc-sections -Wl,--sort-common"
+LDFLAGS="-Wl,-gc-sections -Wl,--sort-common"
 HOST="$ARCH-musl-linux"
 CC="$HOST-gcc"
 AR="$HOST-ar"
