@@ -80,14 +80,12 @@ lok: musl
 loksh: musl
 luufs: musl zlib fuse
 lynx: musl zlib ncurses libressl
-make: musl
 mandoc: musl
 mhwaveedit: musl gtk alsa_lib
 mkfontdir: mkfontscale
 mkfontscale: musl zlib tinyxlib libfontenc
 mowitz: musl tinyxlib
 mpg123: musl tinyalsa
-mtools: musl
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
 nano: musl ncurses
@@ -130,7 +128,6 @@ xchat: musl libressl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter
 xev: musl tinyxlib
 xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib
-xorriso: musl zlib
 xpacman: musl tinyxlib
 xsoldier: musl tinyxlib
 xz: musl
