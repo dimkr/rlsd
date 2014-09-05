@@ -20,6 +20,15 @@ mount -t devpts -o mode=620 pts /dev/pts
 mkdir /run/shm /dev/shm
 mount -B /run/shm /dev/shm
 
+# check the amount of available RAM - if it's at least 256 MB, copy the root
+# file system image to RAM
+if [ 262144 -le $(grep MemTotal: /proc/meminfo | awk '{print $2}') ]
+then
+	copy=1
+else
+	copy=0
+fi
+
 # read the kernel command-line
 home=""
 for i in $(cat /proc/cmdline)
@@ -59,12 +68,10 @@ do
 			if [ -f /mnt/home/bzImage ] && [ -f /mnt/home/rootfs.sfs ]
 			then
 				is_found=1
-				break
+				break 2
 			fi
-			umount /mnt/home
 		fi
 	done
-	[ 1 -eq $is_found ] && break
 	sleep 1
 done
 if [ 0 -eq $is_found ]
@@ -73,18 +80,22 @@ then
 	exit
 fi
 
-# copy the root file system image to /
-echo -n " done.
+# copy the root file system image to RAM
+if [ 0 -eq $copy ]
+then
+	image_path="/mnt/home/rootfs.sfs"
+else
+	echo " done.
 Copying the root file system to RAM ..."
-cp /mnt/home/rootfs.sfs /
-
-# unmount the root file system
-umount /mnt/home
+	cp /mnt/home/rootfs.sfs /rootfs.sfs
+	umount /mnt/home
+	image_path="/rootfs.sfs"
+fi
 
 # mount the root file system image
 echo -n " done.
 Mounting the root file system ..."
-losetup -r /dev/loop0 /rootfs.sfs
+losetup -r /dev/loop0 "$image_path"
 mount -t squashfs -o ro /dev/loop0 /mnt/ro
 
 # mount a writable file system

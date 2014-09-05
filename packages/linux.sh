@@ -7,11 +7,13 @@ PACKAGE_DESC="An operating system kernel"
 INITRAMFS_FILES="bin/toybox
                  bin/init
                  bin/ksh
+                 bin/awk
                  bin/syslogd
                  bin/klogd
                  bin/mkdir
                  bin/cp
                  bin/cttyhack
+                 bin/grep
                  bin/losetup
                  bin/mount
                  bin/umount
