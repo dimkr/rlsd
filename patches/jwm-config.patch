@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 --- jwm-2.2.2-orig/example.jwmrc	2014-09-06 11:31:27.303037219 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-09-06 11:31:46.825037521 +0300
-@@ -2,176 +2,272 @@
++++ jwm-2.2.2/example.jwmrc	2014-09-06 12:47:38.869107784 +0300
+@@ -2,176 +2,273 @@
  
  <JWM>
  
@@ -233,6 +233,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +			<Program label="gcalendar">gcalendar</Program>
 +			<Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
 +			<Program label="gtklepin">gtklepin</Program>
++			<Program label="SQLite">aterm -title SQLite -e sqlite3</Program>
 +			<Program label="gbase">gbase</Program>
 +			<Program label="gv">gv</Program>
 +		</Menu>
