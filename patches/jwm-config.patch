@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-08-16 13:21:59.650836236 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-08-16 13:22:48.311835365 +0300
-@@ -2,176 +2,273 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-09-06 11:31:27.303037219 +0300
++++ jwm-2.2.2/example.jwmrc	2014-09-06 11:31:46.825037521 +0300
+@@ -2,176 +2,272 @@
  
  <JWM>
  
@@ -308,7 +308,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	<Group>
 +		<Name>xhippo</Name>
 +		<Option>sticky</Option>
-+		<Option>nolist</Option>
 +		<Option>layer:above</Option>
 +	</Group>
 +
