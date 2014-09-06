@@ -109,7 +109,6 @@ shutbox: musl gtk
 siag: musl mowitz
 snownews: musl zlib ncurses libressl libxml2
 sqlite: musl
-squashfs_tools: musl zlib xz
 sylpheed: musl libressl gtk gdk_pixbuf
 tcpdump: musl libressl libpcap
 ted: musl zlib libpng libjpeg_turbo tiff gtk font_adobe_75dpi font_adobe_100dpi
