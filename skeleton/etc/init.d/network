@@ -35,7 +35,7 @@ case "$1" in
 
 			# stop wpa_supplicant
 			kill $(cat /run/wpa_supplicant.pid) > /dev/null 2>&1
-			rm /run/wpa_supplicant.conf
+			rm /run/wpa_supplicant.pid
 		fi
 
 		# bring down the wireless interface
