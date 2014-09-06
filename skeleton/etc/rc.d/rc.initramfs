@@ -85,7 +85,7 @@ if [ 0 -eq $copy ]
 then
 	image_path="/mnt/home/rootfs.sfs"
 else
-	echo " done.
+	echo -n " done.
 Copying the root file system to RAM ..."
 	cp /mnt/home/rootfs.sfs /rootfs.sfs
 	umount /mnt/home
