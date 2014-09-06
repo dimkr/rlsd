@@ -24,7 +24,7 @@ UNNEEDED_FILES="usr/share/applications
 export AR
 export LD
 export OBJCOPY
-if [ 1 -eq $STATIC ]
+if [ 0 -eq $STATIC ]
 then
 	CFLAGS="$CFLAGS -fPIC"
 	LDFLAGS="$LDFLAGS -fPIC"
