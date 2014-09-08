@@ -1,0 +1,13 @@
+diff -rup ScrollZ-2.2.3-orig/Makefile.in ScrollZ-2.2.3/Makefile.in
+--- ScrollZ-2.2.3-orig/Makefile.in	2014-09-08 19:46:16.870967696 +0300
++++ ScrollZ-2.2.3/Makefile.in	2014-09-08 19:47:15.494966646 +0300
+@@ -175,8 +175,7 @@ installirc: scrollz installdirs
+ 	@if test -f $(DESTDIR)/$(INSTALL_IRC).old; then $(RM) $(DESTDIR)/$(INSTALL_IRC).old; fi
+ 	@if test -f $(DESTDIR)/$(INSTALL_IRC); then $(MV) $(DESTDIR)/$(INSTALL_IRC) $(INSTALL_IRC).old; fi
+ 	$(RM) $(DESTDIR)/$(INSTALL_IRC)
+-	$(INSTALL) source/scrollz $(DESTDIR)/$(INSTALL_IRC)-$(VERSION)
+-	@(cd $(DESTDIR)/$(bindir) ; $(LN) scrollz-$(VERSION) scrollz)
++	$(INSTALL) source/scrollz $(DESTDIR)/$(INSTALL_IRC)
+ 	@cp doc/ScrollZ.doc $(DESTDIR)/$(IRCDOC)
+ 
+ installman: installdirs scrollz.1

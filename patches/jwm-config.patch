@@ -218,7 +218,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +			</Menu>
 +			<Program label="Sylpheed">sylpheed</Program>
 +			<Program label="X-Chat">xchat</Program>
-+			<Program label="ircII">aterm -title ircII -e irc</Program>
++			<Program label="ScrollZ">aterm -title ScrollZ -e scrollz</Program>
 +			<Program label="guiftp">guiftp</Program>
 +			<Program label="Snownews">aterm -title Snownews -e snownews</Program>
 +			<Program label="bwm-ng">aterm -title bwm-ng -e bwm-ng</Program>

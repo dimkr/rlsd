@@ -58,7 +58,6 @@ guitar: musl gtk libarchive
 gv: musl libxaw3d ghostscript
 gzip: musl
 htop: musl ncurses
-ircii: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
 jwm: musl tinyxlib libpng font_bh_75dpi font_bh_100dpi
@@ -100,6 +99,7 @@ prboom: musl libpng sdl sdl_mixer sdl_net freedoom
 rfkill: musl
 rox: musl file gtk gdk_pixbuf libxml2
 screen: musl ncurses
+scrollz: musl ncurses libressl
 sdl: musl tinyxlib alsa_lib
 sdl_mixer: musl tinyxlib alsa_lib sdl
 sdl_net: musl tinyxlib alsa_lib sdl
