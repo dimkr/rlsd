@@ -9,6 +9,7 @@ nethack_build() {
 	cd nethack-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/nethack-build.patch"
+	patch -p 1 < "$BASE_DIR/patches/nethack-empty_files.patch"
 
 	sh sys/unix/setup.sh x
 	$MAKE

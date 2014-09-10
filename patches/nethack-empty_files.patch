@@ -1,0 +1,23 @@
+diff -rup nethack-3.4.3-orig/sys/unix/Makefile.top nethack-3.4.3/sys/unix/Makefile.top
+--- nethack-3.4.3-orig/sys/unix/Makefile.top	2014-09-10 21:29:12.458952714 +0300
++++ nethack-3.4.3/sys/unix/Makefile.top	2014-09-10 21:30:44.310951069 +0300
+@@ -226,7 +226,6 @@ update: $(GAME) recover $(VARDAT) dungeo
+ # touch time-sensitive files
+ 	-touch -c $(VARDIR)/bones* $(VARDIR)/?lock* $(VARDIR)/wizard*
+ 	-touch -c $(VARDIR)/save/*
+-	touch $(VARDIR)/perm $(VARDIR)/record
+ # and a reminder
+ 	@echo You may also want to install the man pages via the doc Makefile.
+ 
+@@ -242,11 +241,6 @@ install: $(GAME) recover $(VARDAT) dunge
+ 	chmod $(DIRPERM) $(GAMEDIR) $(VARDIR) $(VARDIR)/save
+ # set up the game files
+ 	( $(MAKE) dofiles )
+-# set up some additional files
+-	touch $(VARDIR)/perm $(VARDIR)/record $(VARDIR)/logfile
+-	-( cd $(VARDIR) ; $(CHOWN) $(GAMEUID) perm record logfile ; \
+-			$(CHGRP) $(GAMEGRP) perm record logfile ; \
+-			chmod $(FILEPERM) perm record logfile )
+ # and a reminder
+ 	@echo You may also want to reinstall the man pages via the doc Makefile.
+ 
