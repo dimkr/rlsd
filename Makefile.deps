@@ -70,7 +70,7 @@ libjpeg_turbo: musl
 libnl_tiny: musl
 libpcap: musl
 libpng: musl zlib
-libressl: musl ca_certificates
+libressl: musl zlib ca_certificates
 libxaw3d: musl tinyxlib
 libxml2: musl
 linux: toybox loksh lazy_utils lok luufs fuse
