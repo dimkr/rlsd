@@ -8,6 +8,10 @@ case "$1" in
 		ifconfig lo 127.0.0.1 up
 		route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
 
+		# turn on ethernet
+		ifconfig wlan0 up > /dev/null 2>&1
+		dhcpcd -L eth0 > /dev/null 2>&1
+
 		# turn on the wireless interface
 		rfkill unblock wlan0 > /dev/null 2>&1
 		ifconfig wlan0 up > /dev/null 2>&1
@@ -41,6 +45,10 @@ case "$1" in
 		# bring down the wireless interface
 		ifconfig wlan0 down > /dev/null 2>&1
 		rfkill block wlan0 > /dev/null 2>&1
+
+		# bring down ethernet
+		dhcpcd -k eth0 > /dev/null 2>&1
+		ifconfig eth0 down > /dev/null 2>&1
 
 		# disable the loopback interface
 		ifconfig lo down
