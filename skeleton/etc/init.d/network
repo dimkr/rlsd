@@ -9,7 +9,7 @@ case "$1" in
 		route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
 
 		# turn on ethernet
-		ifconfig wlan0 up > /dev/null 2>&1
+		ifconfig eth0 up > /dev/null 2>&1
 		dhcpcd -L eth0 > /dev/null 2>&1
 
 		# turn on the wireless interface
