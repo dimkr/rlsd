@@ -56,7 +56,7 @@ gtksee: musl gtk gdk_pixbuf
 guiftp: musl gtk
 guitar: musl gtk libarchive
 gv: musl libxaw3d ghostscript
-gzip: musl
+gzip: musl diffutils
 htop: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
