@@ -1,41 +1,33 @@
-     _     _
-  __| |___| |_ __
- / _` / __| | '__|
-| (_| \__ \ | |
- \__,_|___/_|_|
+      _         _
+ _ __| |___  __| |
+| '__| / __|/ _` |
+| |  | \__ \ (_| |
+|_|  |_|___/\__,_|
 
-DSLR is a small, "live", Linux-libre (http://linux-libre.fsfla.org/)
-distribution for i486 and x86_64, in the spirit of Damn Small Linux
-(http://www.damnsmalllinux.org/). It's a lightweight operating system targeted
-at advanced users, which comes pre-loaded with many useful applications and
-breaths new life into nostalgic applications and old hardware.
+RLSD is a small, "live" Linux-libre (http://linux-libre.fsfla.org/)
+distribution with retro applications for the i686 and x86_64 architectures. It
+revives old hardware and the way computing used to be in the late 90's.
 
-DSLR revives classic applications like Ted (http://www.nllgg.nl/Ted/) 2.17 and
-Dillo (http://www.dillo.org/) 0.8.6, by porting them so they run against today's
-musl (http://www.musl-libc.org/) and Linux (https://www.kernel.org/) 3.x, on
-x86_64. This blend of good, old applications, a recent base and 64-bit support
-is unique to DSLR and makes it extremely fast.
-
-DSLR's development follows the guidelines in the project manifest described in
+RLSD's development follows the guidelines in the project manifest described in
 MANIFEST.
 
 Building
 ========
 
-DSLR is built from source. It is cross-compiled through Ubuntu
+RLSD is built from source. It is cross-compiled through Ubuntu
 (http://www.ubuntu.com/) 14.04 x86_64.
 
 The whole process is automated; there's a script (http://goo.gl/8x9id4) that
 generates a clean, up-to-date build environment, then cross-compiles the entire
-DSLR inside it.
+RLSD inside it.
 
-To build a 64-bit DSLR:
+To build a 64-bit RLSD:
   wget http://goo.gl/8x9id4
-  sudo sh 8x9id4 ./dslr-chroot
-  sudo ls ./dslr-chroot/root/dslr/releases
+  sudo sh 8x9id4 ./rlsd-chroot
+  sudo ls ./rlsd-chroot/root/rlsd/releases
 
 Alternatively, to build a 32-bit variant, use setarch(1), e.g:
-  sudo setarch i486 sh 8x9id4 ./dslr-chroot
+  sudo setarch i486 sh 8x9id4 ./rlsd-chroot
 
 The script should run on Ubuntu (http://www.ubuntu.com/) 14.04 x86_64. It is
 highly recommended to read the script first, as it installs debootstrap on the
@@ -44,13 +36,13 @@ host.
 Credits and Legal Information
 =============================
 
-DSLR consists of many packages; each has its own license, detailed under DSLR's
+RLSD consists of many packages; each has its own license, detailed under RLSD's
 /usr/share/doc.
 
-The icons included in DSLR's file system skeleton were taken from the
+The icons included in RLSD's file system skeleton were taken from the
 public-domain Tango Desktop Project (http://tango.freedesktop.org/).
 
-The rest of DSLR (its build system, file system skeleton, etc') is free and
+The rest of RLSD (its build system, file system skeleton, etc') is free and
 unencumbered software released under the terms of the MIT license; see COPYING
 for the license text.
 

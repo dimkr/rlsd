@@ -2,7 +2,7 @@ This Document
 =============
 
 This document provides various guidelines related to the development and design
-of DSLR. These guidelines should be treated more like a RFC or coding style
+of RLSD. These guidelines should be treated more like a RFC or coding style
 conventions and less like a corporate policy.
 
 Changes and suggestions are always welcome, as long they make sense and follow
@@ -11,34 +11,34 @@ the spirit of this document.
 Mission Statement
 =================
 
-  - DSLR is a single-user operating system focused on lightweight, retro
+  - RLSD is a single-user operating system focused on lightweight, retro
     applications, minimalism and security.
-  - DSLR should appear professional and well-integrated.
-  - DSLR should be efficient, small and lightweight; efficiency is a top
+  - RLSD should appear professional and well-integrated.
+  - RLSD should be efficient, small and lightweight; efficiency is a top
     priority, even at the cost of increased memory consumption.
-  - Using and developing DSLR should be fun.
+  - Using and developing RLSD should be fun.
 
 Looks
 =====
 
-  - DSLR is gray. Dark gray is professional, neutral, calm and easy on the eyes.
+  - RLSD is gray. Dark gray is professional, neutral, calm and easy on the eyes.
 
 Hardware Support
 ================
 
-  - DSLR supports only hardware with free software drivers that can be built as
-    built-in modules. DSLR does not support dynamic loading of kernel modules,
+  - RLSD supports only hardware with free software drivers that can be built as
+    built-in modules. RLSD does not support dynamic loading of kernel modules,
     for increased security, simplicity and faster boot times.
 
 Other Projects
 ==============
 
   - The developers of other distributions are friends. All development done in
-    DSLR should be well-documented, to make features developed for DSLR easier
+    RLSD should be well-documented, to make features developed for RLSD easier
     to reuse.
-  - Competition is healthy. It should be easy to compete with DSLR (because its
+  - Competition is healthy. It should be easy to compete with RLSD (because its
     development is open and well-documented).
-  - DSLR is permissively-licensed, to encourage sharing of the vast amount of
+  - RLSD is permissively-licensed, to encourage sharing of the vast amount of
     knowledge and experience behind it and code reuse, in both commercial and
     non-commercial environment.
 
@@ -46,11 +46,11 @@ Package Choice
 ==============
 
   - Packages with less dependencies or packages that share dependencies with
-    ones already included in DSLR are always preferred.
+    ones already included in RLSD are always preferred.
   - Stable branches are always preferred over development branches, especially
-    in low-level packages like the kernel or the C library. For example, DSLR
+    in low-level packages like the kernel or the C library. For example, RLSD
     follows a "longterm" kernel branch.
-  - Rule of thumb: one library per task. For example, DSLR tries to avoid
+  - Rule of thumb: one library per task. For example, RLSD tries to avoid
     applications that use imlib or imlib2
     (http://docs.enlightenment.org/api/imlib2/html/), because it includes
     gdk-pixbuf (https://github.com/dimkr/gdk-pixbuf). The same applies to libxml2
@@ -79,7 +79,7 @@ Packaging
   - Each package should ship with documentation under /usr/share/doc. All
     documentation supplied with the package and legal information (i.e license
     and a list of its authors) should be put there.
-  - Packages must not contain language support files. DSLR is English-only,
+  - Packages must not contain language support files. RLSD is English-only,
     because most of its applications are translated poorly or lack any
     translations. In addition, it's safe to assume most of it target audience
     speaks English.
@@ -99,16 +99,16 @@ Bugs
 ====
 
   - Bugs in packages should be fixed. The fix should be tested and included in
-    DSLR as a patch under the patches directory. Then, the developer who fixed
+    RLSD as a patch under the patches directory. Then, the developer who fixed
     the bug should put reasonable effort into getting the patch merged into the
     upstream package.
 
 Security
 ========
 
-  - DSLR always runs as root, for maximum freedom and power.
+  - RLSD always runs as root, for maximum freedom and power.
   - If possible, outward-facing daemons should run as the user "nobody".
-  - DSLR traps all applications executed for the user in a sandbox. The user
+  - RLSD traps all applications executed for the user in a sandbox. The user
     must not be able to see, stop or change the behavior of critical processes,
     such as init or syslogd.
   - The user should be able to run applications as root and the restricted user

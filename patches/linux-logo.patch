@@ -5,8 +5,8 @@ diff -rupN linux-3.14.18-orig/drivers/video/logo/Kconfig linux-3.14.18/drivers/v
  	depends on M32R
  	default y
  
-+config LOGO_DSLR_CLUT224
-+	bool "224-color DSLR logo"
++config LOGO_RLSD_CLUT224
++	bool "224-color RLSD logo"
 +	default y
 +
  endif # LOGO
@@ -17,16 +17,16 @@ diff -rupN linux-3.14.18-orig/drivers/video/logo/logo.c linux-3.14.18/drivers/vi
  		/* M32R Linux logo */
  		logo = &logo_m32r_clut224;
  #endif
-+#ifdef CONFIG_LOGO_DSLR_CLUT224
-+		/* DSLR logo */
-+		logo = &logo_dslr_clut224;
++#ifdef CONFIG_LOGO_RLSD_CLUT224
++		/* RLSD logo */
++		logo = &logo_rlsd_clut224;
 +#endif
  	}
  	return logo;
  }
-diff -rupN linux-3.14.18-orig/drivers/video/logo/logo_dslr_clut224.ppm linux-3.14.18/drivers/video/logo/logo_dslr_clut224.ppm
---- linux-3.14.18-orig/drivers/video/logo/logo_dslr_clut224.ppm	1970-01-01 02:00:00.000000000 +0200
-+++ linux-3.14.18/drivers/video/logo/logo_dslr_clut224.ppm	2014-09-13 15:00:18.806660806 +0300
+diff -rupN linux-3.14.18-orig/drivers/video/logo/logo_rlsd_clut224.ppm linux-3.14.18/drivers/video/logo/logo_rlsd_clut224.ppm
+--- linux-3.14.18-orig/drivers/video/logo/logo_rlsd_clut224.ppm	1970-01-01 02:00:00.000000000 +0200
++++ linux-3.14.18/drivers/video/logo/logo_rlsd_clut224.ppm	2014-09-13 15:00:18.806660806 +0300
 @@ -0,0 +1,1333 @@
 +P3
 +83 95
@@ -1368,7 +1368,7 @@ diff -rupN linux-3.14.18-orig/drivers/video/logo/Makefile linux-3.14.18/drivers/
  obj-$(CONFIG_LOGO_SUPERH_VGA16)		+= logo_superh_vga16.o
  obj-$(CONFIG_LOGO_SUPERH_CLUT224)	+= logo_superh_clut224.o
  obj-$(CONFIG_LOGO_M32R_CLUT224)		+= logo_m32r_clut224.o
-+obj-$(CONFIG_LOGO_DSLR_CLUT224)		+= logo_dslr_clut224.o
++obj-$(CONFIG_LOGO_RLSD_CLUT224)		+= logo_rlsd_clut224.o
  
  obj-$(CONFIG_SPU_BASE)			+= logo_spe_clut224.o
  
@@ -1379,7 +1379,7 @@ diff -rupN linux-3.14.18-orig/include/linux/linux_logo.h linux-3.14.18/include/l
  extern const struct linux_logo logo_superh_clut224;
  extern const struct linux_logo logo_m32r_clut224;
  extern const struct linux_logo logo_spe_clut224;
-+extern const struct linux_logo logo_dslr_clut224;
++extern const struct linux_logo logo_rlsd_clut224;
  
  extern const struct linux_logo *fb_find_logo(int depth);
  #ifdef CONFIG_FB_LOGO_EXTRA

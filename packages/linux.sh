@@ -47,7 +47,7 @@ linux_build() {
 	tar -xJvf linux-libre-$PACKAGE_VERSION-gnu.tar.xz
 	cd linux-$PACKAGE_VERSION
 
-	# apply all DSLR modifications
+	# apply all RLSD modifications
 	patch -p 1 < "$BASE_DIR/patches/linux-swappiness.patch"
 	patch -p 1 < "$BASE_DIR/patches/linux-verbosity.patch"
 	patch -p 1 < "$BASE_DIR/patches/linux-lazy_utils.patch"
@@ -3220,7 +3220,7 @@ CONFIG_LOGO=y
 # CONFIG_LOGO_LINUX_MONO is not set
 # CONFIG_LOGO_LINUX_VGA16 is not set
 # CONFIG_LOGO_LINUX_CLUT224 is not set
-CONFIG_LOGO_DSLR_CLUT224=y
+CONFIG_LOGO_RLSD_CLUT224=y
 CONFIG_SOUND=y
 # CONFIG_SOUND_OSS_CORE is not set
 CONFIG_SND=y
@@ -7887,7 +7887,7 @@ CONFIG_LOGO=y
 # CONFIG_LOGO_LINUX_MONO is not set
 # CONFIG_LOGO_LINUX_VGA16 is not set
 # CONFIG_LOGO_LINUX_CLUT224 is not set
-CONFIG_LOGO_DSLR_CLUT224=y
+CONFIG_LOGO_RLSD_CLUT224=y
 CONFIG_SOUND=y
 # CONFIG_SOUND_OSS_CORE is not set
 CONFIG_SND=y

@@ -115,7 +115,7 @@ then
 	repo="file://$BASE_DIR/repo"
 else
 	# otherwise, use the upstream repository
-	repo="http://dslr.dimakrasner.com/$ARCH"
+	repo="http://rlsd.dimakrasner.com/$ARCH"
 fi
 
 # initialize the root file system with the skeleton
@@ -150,7 +150,7 @@ iso_root="$(mktemp -d)"
 if [ "uefi" = "$1" ]
 then
 	dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=16
-	/sbin/mkfs.vfat -F 12 -n "DSLR" "$iso_root/efiboot.img"
+	/sbin/mkfs.vfat -F 12 -n "RLSD" "$iso_root/efiboot.img"
 	mmd -i "$iso_root/efiboot.img" "EFI"
 	mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
 	mcopy -i "$iso_root/efiboot.img" \
@@ -187,12 +187,12 @@ do
 	mkfontdir
 done
 
-# add DSLR's documentation
-install -m 644 "$BASE_DIR/README" "$root_fs/usr/share/doc/dslr/README"
-install -m 644 "$BASE_DIR/MANIFEST" "$root_fs/usr/share/doc/dslr/MANIFEST"
-install -m 644 "$BASE_DIR/AUTHORS" "$root_fs/usr/share/doc/dslr/AUTHORS"
-install -m 644 "$BASE_DIR/THANKS" "$root_fs/usr/share/doc/dslr/THANKS"
-install -m 644 "$BASE_DIR/COPYING" "$root_fs/usr/share/doc/dslr/COPYING"
+# add RLSD's documentation
+install -m 644 "$BASE_DIR/README" "$root_fs/usr/share/doc/rlsd/README"
+install -m 644 "$BASE_DIR/MANIFEST" "$root_fs/usr/share/doc/rlsd/MANIFEST"
+install -m 644 "$BASE_DIR/AUTHORS" "$root_fs/usr/share/doc/rlsd/AUTHORS"
+install -m 644 "$BASE_DIR/THANKS" "$root_fs/usr/share/doc/rlsd/THANKS"
+install -m 644 "$BASE_DIR/COPYING" "$root_fs/usr/share/doc/rlsd/COPYING"
 
 # generate the root file system image
 chown -R 0:0 "$root_fs"
@@ -228,14 +228,14 @@ fi
 xorriso -as mkisofs \
         -iso-level 3 \
         -full-iso9660-filenames \
-        -volid "DSLR_$VERSION" \
-        -appid "DSLR $VERSION" \
+        -volid "RLSD_$VERSION" \
+        -appid "RLSD $VERSION" \
         -eltorito-boot isolinux.bin \
         -eltorito-catalog boot.cat \
         -no-emul-boot -boot-load-size 4 -boot-info-table \
         -isohybrid-mbr "$iso_root/isohdpfx.bin" \
         $uefi_flags \
-        -output "$BASE_DIR/releases/dslr-$VERSION-$ARCH$suffix.iso" \
+        -output "$BASE_DIR/releases/rlsd-$VERSION-$ARCH$suffix.iso" \
         "$iso_root"
 
 # clean up

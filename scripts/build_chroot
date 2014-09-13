@@ -6,7 +6,7 @@ RELEASE="trusty"
 # the package mirror to fetch packages from
 MIRROR="http://us.archive.ubuntu.com/ubuntu/"
 
-# packages required to build DSLR
+# packages required to build RLSD
 REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev
                    autoconf-archive unzip flex bison git nasm squashfs-tools
                    pkg-config file subversion bc xfonts-utils dosfstools mtools
@@ -70,7 +70,7 @@ mount --bind /sys "$1/sys"
 mount --rbind /dev "$1/dev"
 
 # mount a tmpfs at /tmp, to speed up the ISO generation
-mount -t tmpfs dslr-tmp "$1/tmp"
+mount -t tmpfs rlsd-tmp "$1/tmp"
 
 # update all packages
 chroot "$1" apt-get update
@@ -111,22 +111,22 @@ then
 	 cp sstrip /usr/local/bin"
 fi
 
-# clean and update or fetch the DSLR build environment
-if [ -d "$1/root/dslr" ]
+# clean and update or fetch the RLSD build environment
+if [ -d "$1/root/rlsd" ]
 then
 	for i in repo build sysroot
 	do
-		[ -d "$1/root/dslr/$i" ] && rm -rf "$1/root/dslr/$i"
+		[ -d "$1/root/rlsd/$i" ] && rm -rf "$1/root/rlsd/$i"
 	done
-	rm -f "$1/root/dslr"/*-config > /dev/null 2>&1
-	rm -f "$1/root/dslr"/musl-gcc* > /dev/null 2>&1
-	chroot "$1" sh -c "cd /root/dslr; git pull"
+	rm -f "$1/root/rlsd"/*-config > /dev/null 2>&1
+	rm -f "$1/root/rlsd"/musl-gcc* > /dev/null 2>&1
+	chroot "$1" sh -c "cd /root/rlsd; git pull"
 else
-	chroot "$1" git clone https://github.com/dimkr/dslr.git /root/dslr
+	chroot "$1" git clone https://github.com/dimkr/rlsd.git /root/rlsd
 fi
 
-# build DSLR
-chroot "$1" sh -c "cd /root/dslr; \
+# build RLSD
+chroot "$1" sh -c "cd /root/rlsd; \
                    make packages; \
                    make iso"
 

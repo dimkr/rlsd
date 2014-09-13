@@ -2,4 +2,4 @@
 
 # help: a help page
 
-exec dillo /usr/share/doc/dslr/getting_started.html
+exec dillo /usr/share/doc/rlsd/getting_started.html

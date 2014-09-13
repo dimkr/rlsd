@@ -297,7 +297,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +	<!-- Tray at the bottom. -->
 +	<Tray y="-1" height="24" border="0">
-+		<TrayButton label="DSLR">root:3</TrayButton>
++		<TrayButton label="RLSD">root:3</TrayButton>
 +		<Pager/>
 +		<TaskList/>
 +		<Dock/>

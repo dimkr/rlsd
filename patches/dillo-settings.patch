@@ -8,11 +8,11 @@ diff -rup dillo-master-orig/dillorc dillo-master/dillorc
 -# Uncomment if you want to override the default start page.
 -#start_page="file:/home/user/custom.html"
 +# Comment if you want the default start page.
-+start_page="file:/usr/share/doc/dslr/getting_started.html"
++start_page="file:/usr/share/doc/rlsd/getting_started.html"
  
  # Set the home location
 -home="http://www.dillo.org/"
-+home="file:/usr/share/doc/dslr/getting_started.html"
++home="file:/usr/share/doc/rlsd/getting_started.html"
  
  # Set search url to use with the search dialog.
  # %s is replaced with urlencoded keywords, and %% by '%'.
