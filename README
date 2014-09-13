@@ -51,7 +51,7 @@ The icons included in DSLR's file system skeleton were taken from the
 public-domain Tango Desktop Project (http://tango.freedesktop.org/).
 
 The rest of DSLR (its build system, file system skeleton, etc') is free and
-unencumbered software released into the public domain; see COPYING for the
-license text.
+unencumbered software released under the terms of the MIT license; see COPYING
+for the license text.
 
 The ASCII art logo at the top was made using FIGlet (http://www.figlet.org/).
