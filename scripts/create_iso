@@ -115,7 +115,7 @@ then
 	repo="file://$BASE_DIR/repo"
 else
 	# otherwise, use the upstream repository
-	repo="http://rlsd.dimakrasner.com/$ARCH"
+	repo="http://dimkr.insomnia247.nl/$ARCH"
 fi
 
 # initialize the root file system with the skeleton
