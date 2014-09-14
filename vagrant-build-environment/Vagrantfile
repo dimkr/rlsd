@@ -8,11 +8,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "bootstrap.sh"
   config.vm.synced_folder "../releases/", "/releases"
 
-  config.vm.define "v32" do |v32|
+  config.vm.define "v32", autostart: false do |v32|
     v32.vm.box = "ubuntu/trusty32"
   end
 
-  config.vm.define "v64" do |v64|
+  config.vm.define "v64", autostart: false do |v64|
     v64.vm.box = "ubuntu/trusty64"
   end
 end

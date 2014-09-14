@@ -2,14 +2,14 @@
 apt-get update
 apt-get -y install git build-essential libarchive-dev libcurl4-gnutls-dev zlib1g-dev libsqlite3-dev squashfs-tools xorriso mtools
 
-# packdude
+# get, build and install packdude
 git clone https://github.com/dimkr/packdude.git
 cd packdude
 make
 make install
 cd ..
 
-# rlsd itself
+# get and build RLSD itself
 git clone https://github.com/dimkr/rlsd.git
 cd rlsd
 make
