@@ -13,7 +13,7 @@
    version="1.1"
    id="svg2"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="logo-2-1.svg"
+   sodipodi:docname="rlsd.svg"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <metadata
@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <dc:creator>
           <cc:Agent>
             <dc:title>Danyil Bohdan</dc:title>
@@ -55,13 +55,14 @@
      inkscape:window-height="821"
      id="namedview21"
      showgrid="false"
-     inkscape:zoom="0.49166666"
-     inkscape:cx="237.87016"
-     inkscape:cy="965.78711"
+     inkscape:zoom="1"
+     inkscape:cx="398.5878"
+     inkscape:cy="382.32022"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3" />
+     inkscape:current-layer="g2999"
+     inkscape:snap-global="false" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
@@ -84,50 +85,38 @@
     <g
        transform="translate(0,-3.0791375e-6)"
        id="g2999"
-       style="stroke:#575757;stroke-opacity:1">
+       style="stroke:none;stroke-opacity:1">
+      <path
+         id="path19-8"
+         style="fill:#ffffff;stroke:none;display:inline"
+         d="m 480.29,447.89 c 12.32,21.35 24.69,42.68 36.95,64.06 -24.57,0.07 -49.14,0.11 -73.71,-0.02 12.1,-21.43 24.73,-42.57 36.76,-64.04 z m -184.71,64.08 c 12.41,-21.28 24.6,-42.7 37.01,-64 12.2,21.38 24.61,42.63 36.87,63.97 -24.63,0.13 -49.26,0.05 -73.88,0.03 z m 37,-191.96 c 49.21,0 98.42,-0.05 147.63,0.02 -11.99,21.45 -24.7,42.51 -36.65,63.97 12.02,21.41 24.52,42.57 36.73,63.89 -12.03,21.47 -24.66,42.61 -36.76,64.04 -24.68,0.12 -49.38,0.11 -74.07,0.01 C 357.2,490.6 344.79,469.35 332.59,447.97 344.82,426.62 357.27,405.38 369.45,384 357.27,362.61 344.81,341.37 332.58,320.01 z M 480.27,192.1 c 12.41,20.99 24.74,42.58 36.95,63.9 -24.57,-0.04 -49.14,0.07 -73.7,-0.06 12.13,-21.34 24.56,-42.52 36.75,-63.84 z M 295.52,256 c 12.57,-21.2 24.48,-42.8 37.16,-63.93 12.12,21.37 24.57,42.56 36.79,63.88 -24.65,0.12 -49.3,0.02 -73.95,0.05 z" />
       <g
          id="#ffffffff"
-         style="stroke:#575757;stroke-opacity:1">
-        <path
-           style="fill:#ffffff;stroke:#575757;stroke-opacity:1"
-           inkscape:connector-curvature="0"
-           id="path5"
-           d="m 295.52,256 c 12.57,-21.2 24.48,-42.8 37.16,-63.93 12.12,21.37 24.57,42.56 36.79,63.88 -24.65,0.12 -49.3,0.02 -73.95,0.05 z" />
-        <path
-           style="fill:#ffffff;stroke:#575757;stroke-opacity:1"
-           inkscape:connector-curvature="0"
-           id="path7"
-           d="m 480.27,192.1 c 12.41,20.99 24.74,42.58 36.95,63.9 -24.57,-0.04 -49.14,0.07 -73.7,-0.06 12.13,-21.34 24.56,-42.52 36.75,-63.84 z" />
-        <path
-           style="fill:#ffffff;stroke:#575757;stroke-opacity:1"
-           inkscape:connector-curvature="0"
-           id="path9"
-           d="m 332.58,320.01 c 49.21,0 98.42,-0.05 147.63,0.02 -11.99,21.45 -24.7,42.51 -36.65,63.97 12.02,21.41 24.52,42.57 36.73,63.89 -12.03,21.47 -24.66,42.61 -36.76,64.04 -24.68,0.12 -49.38,0.11 -74.07,0.01 -12.26,-21.34 -24.67,-42.59 -36.87,-63.97 12.23,-21.35 24.68,-42.59 36.86,-63.97 -12.18,-21.39 -24.64,-42.63 -36.87,-63.99 z" />
-      </g>
+         style="stroke:none;stroke-opacity:1" />
       <g
          id="#000000ff"
-         style="stroke:#575757;stroke-opacity:1">
+         style="stroke:none;stroke-opacity:1">
         <path
-           style="fill:#000000;stroke:#575757;stroke-opacity:1"
+           style="fill:#000000;stroke:none;stroke-opacity:1"
            inkscape:connector-curvature="0"
            id="path12"
            d="m 332.68,192.07 c 49.2,-0.1 98.4,-0.15 147.59,0.03 -12.19,21.32 -24.62,42.5 -36.75,63.84 24.56,0.13 49.13,0.02 73.7,0.06 -11.98,21.46 -24.9,42.47 -36.58,64.05 24.03,42.84 49.29,85.13 73.44,127.95 -12.03,21.45 -24.47,42.69 -36.84,63.95 -12.26,-21.38 -24.63,-42.71 -36.95,-64.06 -12.21,-21.32 -24.71,-42.48 -36.73,-63.89 11.95,-21.46 24.66,-42.52 36.65,-63.97 -49.21,-0.07 -98.42,-0.02 -147.63,-0.02 12.23,21.36 24.69,42.6 36.87,63.99 -12.18,21.38 -24.63,42.62 -36.86,63.97 -12.41,21.3 -24.6,42.72 -37.01,64 -12.16,-21.36 -24.84,-42.48 -36.7,-63.97 24.08,-42.85 49.37,-85.2 73.47,-128 -11.98,-21.44 -24.48,-42.72 -36.83,-64 24.65,-0.03 49.3,0.07 73.95,-0.05 -12.22,-21.32 -24.67,-42.51 -36.79,-63.88 m 36.9,63.99 c 12.46,21.04 24.11,43.07 37.14,63.44 12.25,-21.15 24.42,-42.35 36.69,-63.49 -24.61,0.04 -49.22,-0.06 -73.83,0.05 z" />
       </g>
       <g
          id="#f6e700ff"
-         style="stroke:#575757;stroke-opacity:1">
+         style="stroke:none">
         <path
-           style="fill:#f6e700;stroke:#575757;stroke-opacity:1"
+           style="fill:#f6e700;stroke:none"
            inkscape:connector-curvature="0"
            id="path15"
            d="m 369.58,256.06 c 24.61,-0.11 49.22,-0.01 73.83,-0.05 -12.27,21.14 -24.44,42.34 -36.69,63.49 -13.03,-20.37 -24.68,-42.4 -37.14,-63.44 z" />
         <path
-           style="fill:#f6e700;stroke:#575757;stroke-opacity:1"
+           style="fill:#f6e700;stroke:none"
            inkscape:connector-curvature="0"
            id="path17"
            d="m 295.58,511.97 c 12.41,-21.28 24.6,-42.7 37.01,-64 12.2,21.38 24.61,42.63 36.87,63.97 -24.63,0.13 -49.26,0.05 -73.88,0.03 z" />
         <path
-           style="fill:#f6e700;stroke:#575757;stroke-opacity:1"
+           style="fill:#f6e700;stroke:none"
            inkscape:connector-curvature="0"
            id="path19"
            d="m 480.29,447.89 c 12.32,21.35 24.69,42.68 36.95,64.06 -24.57,0.07 -49.14,0.11 -73.71,-0.02 12.1,-21.43 24.73,-42.57 36.76,-64.04 z" />
@@ -156,5 +145,18 @@
          inkscape:export-xdpi="17.58"
          inkscape:export-ydpi="17.58" />
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Outline bottom mask"
+     style="display:inline">
+    <rect
+       style="fill:#000000;stroke:none"
+       id="rect3772"
+       width="250.2439"
+       height="15.820017"
+       x="277.98285"
+       y="512.16516" />
   </g>
 </svg>
