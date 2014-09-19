@@ -1,0 +1,14 @@
+diff -rup jimtcl-orig/Makefile.in jimtcl/Makefile.in
+--- jimtcl-orig/Makefile.in	2014-09-19 13:35:07.736943540 +0300
++++ jimtcl/Makefile.in	2014-09-19 13:35:48.370942812 +0300
+@@ -73,8 +73,8 @@ docs: Tcl.html
+ 
+ @if JIM_DOCS
+ install-docs: docs
+-	$(INSTALL_DATA_DIR) $(DESTDIR)$(prefix)/doc/jim
+-	$(INSTALL_DATA) Tcl.html $(DESTDIR)$(prefix)/doc/jim
++	$(INSTALL_DATA_DIR) $(DESTDIR)$(prefix)/share/doc/jim
++	$(INSTALL_DATA) Tcl.html $(DESTDIR)$(prefix)/share/doc/jim
+ @else
+ install-docs:
+ @endif

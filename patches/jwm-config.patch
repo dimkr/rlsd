@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-09-06 11:31:27.303037219 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-09-06 12:47:38.869107784 +0300
-@@ -2,176 +2,273 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-09-19 13:44:16.940933705 +0300
++++ jwm-2.2.2/example.jwmrc	2014-09-19 13:44:57.752932974 +0300
+@@ -2,176 +2,274 @@
  
  <JWM>
  
@@ -275,6 +275,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<Menu label="XShells">
 +			<Program label="aterm">aterm</Program>
 +			<Program label="Screen">aterm -title Screen -e screen</Program>
++			<Program label="Jim">aterm -title Jim -e jimsh</Program>
 +		</Menu>
 +
 +		<Separator/>

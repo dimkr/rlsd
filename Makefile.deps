@@ -60,6 +60,7 @@ gzip: musl diffutils
 htop: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
+jimtcl: musl
 jwm: musl tinyxlib libpng font_bh_75dpi font_bh_100dpi font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
 lazy_utils: musl
 lbzip2: musl
