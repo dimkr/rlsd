@@ -1,7 +1,7 @@
 diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
---- conky-1.9.0-orig/data/conky.conf	2014-07-31 18:47:25.752975577 +0300
-+++ conky-1.9.0/data/conky.conf	2014-07-31 18:54:02.668968469 +0300
-@@ -23,55 +23,57 @@
+--- conky-1.9.0-orig/data/conky.conf	2014-09-19 13:14:45.727965424 +0300
++++ conky-1.9.0/data/conky.conf	2014-09-19 13:15:16.494964873 +0300
+@@ -23,55 +23,55 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #
  
@@ -80,8 +80,6 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
 +${color grey}File Systems:
 +/          $color${fs_free /}/${fs_size /}
 +         ${color grey}${fs_bar 3 /}
-+/home      $color${fs_free /home}/${fs_size /home}
-+         ${color grey}${fs_bar 3 /home}
 +${color red}$hr
 +${color grey}Uptime:    $color $uptime
 +${color #ddd}Battery:   $color ${battery}
