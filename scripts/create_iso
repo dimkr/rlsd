@@ -21,87 +21,89 @@ UNNEEDED_FILES="/lib/*.a
                 /usr/share/x11vnc"
 
 # package present in the root file system
-PACKAGES="linux
-          toybox
-          lazy_utils
-          loksh
-          lok
-          luufs
-          packdude
-          mandoc
-          isolinux
-          dhcpcd
-          rfkill
-          iw
-          wpa_supplicant
-          gzip
-          lbzip2
-          xz
-          libarchive
-          packdude
-          dropbear
-          nc
-          tinyunmute
-          alsa_utils
-          less
-          htop
-          nano
-          tinyxserver
-          jwm
-          aterm
-          xmodmap
-          conky
-          rox
-          gtkdialog1
-          dillo
-          emelfm
-          ytree
-          guitar
-          gtkcat
-          prboom
-          nethack
-          shutbox
-          xpacman
-          xsoldier
-          xasteroids
-          xhippo
-          mtpaint
-          gtksee
-          mhwaveedit
-          gcolor
-          xaos
-          lynx
-          sylpheed
-          xchat
-          scrollz
-          guiftp
-          snownews
-          bwm_ng
-          shus
-          tcpdump
-          ted
-          siag
-          calcoo
-          bc
-          gcalendar
-          calcurse
-          gtklepin
-          gbase
-          gv
-          beaver
-          gtkedit
-          elvis
-          nano
-          gtkdiskfree
-          gdmap
-          htop
-          ncdu
-          gtkfontsel
-          x11vnc
-          screen
-          gtkfind
-          grun
-          ffmpeg"
+MINIMAL_PACKAGES="linux
+                  toybox
+                  lazy_utils
+                  loksh
+                  lok
+                  luufs
+                  packdude
+                  mandoc
+                  less
+                  isolinux
+                  dhcpcd
+                  rfkill
+                  iw
+                  wpa_supplicant
+                  gzip
+                  lbzip2
+                  xz
+                  libarchive
+                  packdude
+                  elvis"
+BIOS_PACKAGES="$MINIMAL_PACKAGES
+               dropbear
+               nc
+               tinyunmute
+               alsa_utils
+               htop
+               nano
+               tinyxserver
+               jwm
+               aterm
+               xmodmap
+               conky
+               rox
+               gtkdialog1
+               dillo
+               emelfm
+               ytree
+               guitar
+               gtkcat
+               prboom
+               nethack
+               shutbox
+               xpacman
+               xsoldier
+               xasteroids
+               xhippo
+               mtpaint
+               gtksee
+               mhwaveedit
+               gcolor
+               xaos
+               lynx
+               sylpheed
+               xchat
+               scrollz
+               guiftp
+               snownews
+               bwm_ng
+               shus
+               tcpdump
+               ted
+               siag
+               calcoo
+               bc
+               gcalendar
+               calcurse
+               gtklepin
+               gbase
+               gv
+               beaver
+               gtkedit
+               nano
+               gtkdiskfree
+               gdmap
+               htop
+               ncdu
+               gtkfontsel
+               x11vnc
+               screen
+               gtkfind
+               grun
+               ffmpeg"
+UEFI_PACKAGES="$BIOS_PACKAGES elilo"
 
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
@@ -122,13 +124,18 @@ fi
 root_fs="$(mktemp -d -u)"
 cp -ar "$BASE_DIR/skeleton" "$root_fs"
 
-# if the generated image supports UEFI, install elilo as well
-if [ "uefi" = "$1" ]
-then
-	packages="$PACKAGES elilo"
-else
-	packages="$PACKAGES"
-fi
+# choose which packages to install
+case "$1" in
+	uefi)
+		packages="$UEFI_PACKAGES"
+		;;
+	bios)
+		packages="$BIOS_PACKAGES"
+		;;
+	minimal)
+		packages="$MINIMAL_PACKAGES"
+		;;
+esac
 
 # install the packages
 mkdir -p "$root_fs/var/packdude"
@@ -178,14 +185,6 @@ done
 
 # remove all .gitignore files
 find "$root_fs" -name .gitignore -delete
-
-# generate font cache files
-for i in "$root_fs/usr/share/fonts"/*
-do
-	cd "$i"
-	mkfontscale
-	mkfontdir
-done
 
 # add RLSD's documentation
 install -m 644 "$BASE_DIR/README" "$root_fs/usr/share/doc/rlsd/README"

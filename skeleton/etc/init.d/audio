@@ -3,8 +3,10 @@
 [ "start" != "$1" ] && exit
 
 # unmute all mixer channels
+tinyunmute="$(which tinyunmute)"
+[ -z "$tinyunmute" ] && exit
 echo -n "Initializing audio volume ..."
 
-tinyunmute
+"$tinyunmute"
 
 echo " done."

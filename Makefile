@@ -16,5 +16,6 @@ packages: $(PACKAGES)
 iso:
 	./scripts/create_iso uefi
 	./scripts/create_iso bios
+	./scripts/create_iso minimal
 
 include ./Makefile.deps

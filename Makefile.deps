@@ -60,7 +60,7 @@ gzip: musl diffutils
 htop: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
-jwm: musl tinyxlib libpng font_bh_75dpi font_bh_100dpi
+jwm: musl tinyxlib libpng font_bh_75dpi font_bh_100dpi font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
 lazy_utils: musl
 lbzip2: musl
 less: musl ncurses
@@ -116,7 +116,7 @@ tiff: musl zlib libjpeg_turbo
 tinyalsa: musl
 tinyunmute: musl tinyalsa
 tinyxlib: musl
-tinyxserver: musl zlib
+tinyxserver: musl zlib mkfontscale mkfontdir
 toybox: musl
 wget: musl libressl
 wpa_supplicant: musl libressl libnl_tiny

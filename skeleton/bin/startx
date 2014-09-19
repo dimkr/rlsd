@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# startx: a wrapper for xinit which generates the font cache
+
+# generate the font cache
+directory="$(pwd)"
+for i in /usr/share/fonts/*
+do
+	cd "$i"
+        [ ! -f fonts.scale ] && mkfontscale
+        [ ! -f fonts.dir ] && mkfontdir
+done
+cd "$directory"
+
+export XINITRC="/bin/jwm"
+exec xinit $@
