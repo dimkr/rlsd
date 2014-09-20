@@ -53,6 +53,7 @@ linux_build() {
 	patch -p 1 < "$BASE_DIR/patches/linux-lazy_utils.patch"
 	patch -p 1 < "$BASE_DIR/patches/linux-compression.patch"
 	patch -p 1 < "$BASE_DIR/patches/linux-logo.patch"
+	patch -p 1 < "$BASE_DIR/patches/linux-auto_vga.patch"
 
 	# reset the minor version number, so the kernel is compatible with modules
 	# built against previous minor versions
