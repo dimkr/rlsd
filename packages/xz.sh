@@ -1,4 +1,4 @@
-PACKAGE_VERSION="5.0.6"
+PACKAGE_VERSION="5.0.7"
 PACKAGE_SOURCES="http://tukaani.org/xz/xz-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="Compression tools"
 
