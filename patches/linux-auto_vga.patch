@@ -1,7 +1,7 @@
 diff -rup linux-3.14.19-orig/arch/x86/boot/video.c linux-3.14.19/arch/x86/boot/video.c
---- linux-3.14.19-orig/arch/x86/boot/video.c	2014-09-17 19:21:23.000000000 +0300
-+++ linux-3.14.19/arch/x86/boot/video.c	2014-09-20 14:11:16.564844745 +0300
-@@ -312,6 +312,40 @@ static void restore_screen(void)
+--- linux-3.14.19-orig/arch/x86/boot/video.c	2014-09-21 20:11:20.662964171 +0300
++++ linux-3.14.19/arch/x86/boot/video.c	2014-09-22 19:22:39.520944994 +0300
+@@ -312,6 +312,39 @@ static void restore_screen(void)
  	store_cursor_position();
  }
  
@@ -15,7 +15,7 @@ diff -rup linux-3.14.19-orig/arch/x86/boot/video.c linux-3.14.19/arch/x86/boot/v
 +
 +	for (card = video_cards; card < video_cards_end; card++) {
 +		mi = card->modes;
-+		for (i = 0; i < card->nmodes; i++) {
++		for (i = 0; i < card->nmodes; i++, mi++) {
 +			int visible = mi->x && mi->y;
 +			u16 mode_id = mi->mode ? mi->mode :
 +					(mi->y << 8)+mi->x;
@@ -24,14 +24,13 @@ diff -rup linux-3.14.19-orig/arch/x86/boot/video.c linux-3.14.19/arch/x86/boot/v
 +				continue; /* Hidden mode */
 +
 +			unsigned long pixels = mi->x * mi->y;
-+			if (max_pixels < pixels) {
-+				mode = mode_id;
++			if (pixels > max_pixels) {
 +				max_pixels = pixels;
 +				max_depth = mi->depth;
-+			} else if ((max_pixels == pixels) && (max_depth < mi->depth)) {
 +				mode = mode_id;
-+				max_pixels = pixels;
++			} else if ((pixels == max_pixels) && (mi->depth > max_depth)) {
 +				max_depth = mi->depth;
++				mode = mode_id;
 +			}
 +		}
 +	}
@@ -42,7 +41,7 @@ diff -rup linux-3.14.19-orig/arch/x86/boot/video.c linux-3.14.19/arch/x86/boot/v
  void set_video(void)
  {
  	u16 mode = boot_params.hdr.vid_mode;
-@@ -322,6 +356,9 @@ void set_video(void)
+@@ -322,6 +355,9 @@ void set_video(void)
  	save_screen();
  	probe_cards(0);
  
