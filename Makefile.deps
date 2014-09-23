@@ -119,6 +119,7 @@ tinyxlib: musl
 tinyxserver: musl zlib mkfontscale mkfontdir
 toybox: musl
 vifm: musl ncurses file
+vitetris: musl ncurses
 wget: musl libressl
 wpa_supplicant: musl libressl libnl_tiny
 x11vnc: musl libressl tinyxlib libjpeg_turbo
