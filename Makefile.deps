@@ -12,7 +12,6 @@ calcurse: musl ncurses
 conky: musl tinyxlib font_bh_75dpi font_bh_100dpi
 curl: musl zlib libressl
 dhcpcd: musl
-dialog: musl ncurses
 diffutils: musl
 dillo: musl libpng libjpeg_turbo gtk libressl wget
 dosfstools: musl
@@ -119,6 +118,7 @@ tinyunmute: musl tinyalsa
 tinyxlib: musl
 tinyxserver: musl zlib mkfontscale mkfontdir
 toybox: musl
+vifm: musl ncurses file
 wget: musl libressl
 wpa_supplicant: musl libressl libnl_tiny
 x11vnc: musl libressl tinyxlib libjpeg_turbo

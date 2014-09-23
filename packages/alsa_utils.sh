@@ -17,6 +17,7 @@ alsa_utils_build() {
 	            --disable-nls \
 	            --disable-xmlto \
 	            --without-udev-rules-dir \
+	            --with-curses=ncurses \
 	            --with-asound-state-dir=/etc \
 	            --with-alsactl-pidfile-dir=/run
 	$MAKE

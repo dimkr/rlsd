@@ -15,6 +15,7 @@ lynx_build() {
 	            --disable-nls \
 	            --with-ssl \
 	            --enable-ipv6 \
+	            --with-screen=ncurses \
 	            --disable-gzip-help \
 	            --with-zlib
 	$MAKE

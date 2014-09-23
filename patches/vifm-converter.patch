@@ -1,0 +1,22 @@
+diff -rup vifm-0.7.7-orig/src/Makefile.in vifm-0.7.7/src/Makefile.in
+--- vifm-0.7.7-orig/src/Makefile.in	2014-09-23 22:14:24.531865662 +0300
++++ vifm-0.7.7/src/Makefile.in	2014-09-23 22:15:57.516863997 +0300
+@@ -53,7 +53,7 @@ PRE_UNINSTALL = :
+ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+-bin_PROGRAMS = vifm$(EXEEXT) vifmrc-converter$(EXEEXT)
++bin_PROGRAMS = vifm$(EXEEXT)
+ subdir = src
+ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+@@ -273,8 +273,7 @@ pkgdata_DATA = ../data/vifmrc \
+ 
+ bin_SCRIPTS = vifm-pause
+ man_MANS = ../data/vifm.1 \
+-					 ../data/vifm-pause.1 \
+-					 ../data/vifmrc-converter.1
++					 ../data/vifm-pause.1
+ 
+ MOSTLYCLEANFILES = compile_info.c \
+ 									 ../data/vifm-help.txt

@@ -32,6 +32,7 @@ ncurses_build() {
 	            $library_flags \
 	            --without-debug \
 	            --without-profile \
+	            --enable-widec \
 	            --with-manpage-format=normal
 	$MAKE
 }
@@ -41,6 +42,15 @@ ncurses_package() {
 	mv "$1/usr/lib/pkgconfig" "$1/lib/"
 	rmdir "$1/usr/lib"
 	ln -s libncurses.a "$1/lib/libtinfo.a"
+
+	# create links for backwards-compatibility
+	for i in "$1/lib"/*w.* "$1/lib/pkgconfig"/*w.pc
+	do
+		name="$(basename "$i")"
+		directory="$(dirname "$i")"
+		ln -s "$name" "$directory/$(echo "$name" | sed s~w\.~.~)"
+	done
+	ln -s ncursesw5-config "$1/bin/ncurses5-config"
 
 	# trim the terminfo directory
 	rm -rf "$1/usr/share/terminfo/1" \

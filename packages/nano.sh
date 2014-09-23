@@ -10,7 +10,7 @@ nano_build() {
 	            --prefix= \
 	            --datarootdir=/usr/share \
 	            --disable-nls \
-	            --disable-memory-debug \
+	            --disable-utf8 \
 	            --without-slang
 	$MAKE
 }
