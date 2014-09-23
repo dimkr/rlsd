@@ -84,6 +84,7 @@ mandoc: musl
 mhwaveedit: musl gtk alsa_lib
 mkfontdir: mkfontscale
 mkfontscale: musl zlib tinyxlib libfontenc
+moon_buggy: musl ncurses
 mowitz: musl tinyxlib
 mpg123: musl tinyalsa
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
