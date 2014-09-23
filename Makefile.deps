@@ -5,6 +5,7 @@ bc: musl
 beaver: musl gtk
 bftpd: musl zlib
 binutils: musl
+bs: musl ncurses
 bwm_ng: musl ncurses
 ca_certificates:
 calcoo: musl gtk
