@@ -137,6 +137,7 @@ xev: musl tinyxlib
 xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib
 xpacman: musl tinyxlib
+xplayargs: musl mpg123 ogg122
 xsoldier: musl tinyxlib
 xz: musl
 ytree: musl ncurses
