@@ -1,0 +1,22 @@
+PACKAGES="linux
+          toybox
+          lazy_utils
+          loksh
+          lok
+          luufs
+          packdude
+          mandoc
+          less
+          isolinux
+          dhcpcd
+          rfkill
+          iw
+          wpa_supplicant
+          gzip
+          lbzip2
+          xz
+          libarchive
+          packdude
+          elvis"
+
+SUFFIX="-minimal"

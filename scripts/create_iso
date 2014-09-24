@@ -20,92 +20,6 @@ UNNEEDED_FILES="/lib/*.a
                 /usr/share/gdk-pixbuf
                 /usr/share/x11vnc"
 
-# package present in the root file system
-MINIMAL_PACKAGES="linux
-                  toybox
-                  lazy_utils
-                  loksh
-                  lok
-                  luufs
-                  packdude
-                  mandoc
-                  less
-                  isolinux
-                  dhcpcd
-                  rfkill
-                  iw
-                  wpa_supplicant
-                  gzip
-                  lbzip2
-                  xz
-                  libarchive
-                  packdude
-                  elvis"
-BIOS_PACKAGES="$MINIMAL_PACKAGES
-               dropbear
-               nc
-               tinyunmute
-               alsa_utils
-               htop
-               nano
-               tinyxserver
-               jwm
-               aterm
-               xmodmap
-               conky
-               rox
-               gtkdialog1
-               dillo
-               emelfm
-               ytree
-               guitar
-               gtkcat
-               prboom
-               nethack
-               shutbox
-               xpacman
-               xsoldier
-               xasteroids
-               xhippo
-               mtpaint
-               gtksee
-               mhwaveedit
-               gcolor
-               xaos
-               lynx
-               sylpheed
-               xchat
-               scrollz
-               guiftp
-               snownews
-               bwm_ng
-               shus
-               tcpdump
-               ted
-               siag
-               calcoo
-               bc
-               gcalendar
-               calcurse
-               gtklepin
-               gbase
-               gv
-               beaver
-               gtkedit
-               nano
-               gtkdiskfree
-               gdmap
-               htop
-               ncdu
-               gtkfontsel
-               x11vnc
-               screen
-               jimtcl
-               gtkfind
-               grun
-               ffmpeg"
-UEFI_PACKAGES="$BIOS_PACKAGES elilo"
-
 BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 
@@ -126,21 +40,13 @@ root_fs="$(mktemp -d -u)"
 cp -ar "$BASE_DIR/skeleton" "$root_fs"
 
 # choose which packages to install
-case "$1" in
-	uefi)
-		packages="$UEFI_PACKAGES"
-		;;
-	bios)
-		packages="$BIOS_PACKAGES"
-		;;
-	minimal)
-		packages="$MINIMAL_PACKAGES"
-		;;
-esac
+cd flavors
+. "./$1"
+cd ..
 
 # install the packages
 mkdir -p "$root_fs/var/packdude"
-for package in $packages
+for package in $PACKAGES
 do
 	packdude -i $package -n -p "$root_fs" -u "$repo"
 done
@@ -155,7 +61,7 @@ rm -f "$root_fs/var/packdude/lock"
 iso_root="$(mktemp -d)"
 
 # create a 16 MB, FAT12 UEFI boot image, for UEFI boot
-if [ "uefi" = "$1" ]
+if [ -f "$root_fs/boot/elilo.efi" ]
 then
 	dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=16
 	/sbin/mkfs.vfat -F 12 -n "RLSD" "$iso_root/efiboot.img"
@@ -214,16 +120,14 @@ rm -rf "$root_fs"
 # generate an ISO image
 cd "$BASE_DIR"
 [ ! -d "$BASE_DIR/releases" ] && mkdir "$BASE_DIR/releases"
-if [ "uefi" = "$1" ]
+if [ -f "$iso_root/efiboot.img" ]
 then
 	uefi_flags="-eltorito-alt-boot \
 	            -e efiboot.img \
 	            -no-emul-boot \
 	            -isohybrid-gpt-basdat"
-	suffix=""
 else
 	uefi_flags=""
-	suffix="-$1"
 fi
 xorriso -as mkisofs \
         -iso-level 3 \
@@ -235,7 +139,7 @@ xorriso -as mkisofs \
         -no-emul-boot -boot-load-size 4 -boot-info-table \
         -isohybrid-mbr "$iso_root/isohdpfx.bin" \
         $uefi_flags \
-        -output "$BASE_DIR/releases/rlsd-$VERSION-$ARCH$suffix.iso" \
+        -output "$BASE_DIR/releases/rlsd-$VERSION-$ARCH$SUFFIX.iso" \
         "$iso_root"
 
 # clean up
