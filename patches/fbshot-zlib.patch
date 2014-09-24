@@ -1,0 +1,11 @@
+diff -rup fbshot-0.3-orig/fbshot.c fbshot-0.3/fbshot.c
+--- fbshot-0.3-orig/fbshot.c	2014-09-25 00:00:56.693963293 +0300
++++ fbshot-0.3/fbshot.c	2014-09-25 00:01:13.346962995 +0300
+@@ -45,6 +45,7 @@
+ #include <sys/utsname.h>
+ 
+ #include <sys/vt.h>
++#include <zlib.h>
+ #include <png.h>
+ #include <linux/fb.h> 
+ 
