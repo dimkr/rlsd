@@ -19,6 +19,7 @@ diffutils: musl
 dillo: musl libpng libjpeg_turbo gtk libressl wget
 dosfstools: musl
 dropbear: musl zlib
+dvtm: musl ncurses
 elilo: musl gnu_efi
 elvis: musl ncurses
 emelfm: musl gtk
