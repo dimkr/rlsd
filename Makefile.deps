@@ -26,6 +26,7 @@ emelfm: musl gtk
 evilwm: musl tinyxlib
 fbshot: musl libpng
 ffmpeg: musl zlib alsa_lib sdl
+figlet: musl
 file: musl zlib
 findutils: musl
 font_adobe_100dpi: font_util
