@@ -7,6 +7,7 @@ vifm_build() {
 	tar -xjvf vifm-$PACKAGE_VERSION.tar.bz2
 	cd vifm-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/vifm-elvis.patch"
 	patch -p 1 < "$BASE_DIR/patches/vifm-converter.patch"
 
 	LIBS="-lmagic -lz" \

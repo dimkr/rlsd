@@ -1,0 +1,36 @@
+diff -rup vifm-0.7.7-orig/data/vifm.1 vifm-0.7.7/data/vifm.1
+--- vifm-0.7.7-orig/data/vifm.1	2014-05-16 22:32:42.000000000 +0300
++++ vifm-0.7.7/data/vifm.1	2014-09-25 02:05:11.684829789 +0300
+@@ -2894,7 +2894,7 @@ Maximum number of changes that can be un
+ .BI vicmd
+ type: string
+ .br
+-default: "vim"
++default: "vi"
+ .br
+ The actual command used to start vi.  Ampersand sign at the end (regardless
+ whether it's preceded by space or not) means backgrounding of command.
+diff -rup vifm-0.7.7-orig/data/vim/doc/vifm.txt vifm-0.7.7/data/vim/doc/vifm.txt
+--- vifm-0.7.7-orig/data/vim/doc/vifm.txt	2014-05-16 22:32:42.000000000 +0300
++++ vifm-0.7.7/data/vim/doc/vifm.txt	2014-09-25 02:04:58.520830024 +0300
+@@ -2489,7 +2489,7 @@ Maximum number of changes that can be un
+                                                *vifm-'vicmd'*
+ vicmd
+ type: string
+-default: "vim"
++default: "vi"
+ The actual command used to start vi.  Ampersand sign at the end (regardless
+ whether it's preceded by space or not) means backgrounding of command.
+ 
+diff -rup vifm-0.7.7-orig/src/cfg/config.c vifm-0.7.7/src/cfg/config.c
+--- vifm-0.7.7-orig/src/cfg/config.c	2014-05-16 22:32:42.000000000 +0300
++++ vifm-0.7.7/src/cfg/config.c	2014-09-25 02:04:33.238830477 +0300
+@@ -128,7 +128,7 @@ init_config(void)
+ 	cfg.follow_links = 1;
+ 	cfg.fast_run = 0;
+ 	cfg.confirm = 1;
+-	cfg.vi_command = strdup("vim");
++	cfg.vi_command = strdup("vi");
+ 	cfg.vi_cmd_bg = 0;
+ 	cfg.vi_x_command = strdup("");
+ 	cfg.vi_x_cmd_bg = 0;
