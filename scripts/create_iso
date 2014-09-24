@@ -60,10 +60,10 @@ rm -f "$root_fs/var/packdude/lock"
 # create a temporary directory for the extracted ISO image contents
 iso_root="$(mktemp -d)"
 
-# create a 16 MB, FAT12 UEFI boot image, for UEFI boot
+# create a 11 MB, FAT12 UEFI boot image, for UEFI boot
 if [ -f "$root_fs/boot/elilo.efi" ]
 then
-	dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=16
+	dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=11
 	/sbin/mkfs.vfat -F 12 -n "RLSD" "$iso_root/efiboot.img"
 	mmd -i "$iso_root/efiboot.img" "EFI"
 	mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
