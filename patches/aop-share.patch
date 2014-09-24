@@ -1,0 +1,12 @@
+diff -rup aop-0.6-orig/aop.c aop-0.6/aop.c
+--- aop-0.6-orig/aop.c	2014-09-24 12:54:28.070958917 +0300
++++ aop-0.6/aop.c	2014-09-24 12:54:50.306958519 +0300
+@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
+ 	init_pair(1, COLOR_RED, COLOR_BLACK);
+ 
+ start:	memset(field, ' ', 25*81);
+-	snprintf(tmp, 96, "/usr/local/share/aop/aop-level-%02d.txt", level);
++	snprintf(tmp, 96, "/usr/share/aop/aop-level-%02d.txt", level);
+ 	f = fopen(argc>=2 ? argv[level] : tmp, "r");
+ 	if (!f) { endwin(); printf("Can't open level file.\n"); return 1; }
+ 	opx=ipx=px=3, opy=ipy=py=2; op=p; p += 700000 + level*373737;

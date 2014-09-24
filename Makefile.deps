@@ -1,5 +1,6 @@
 alsa_lib: musl
 alsa_utils: musl ncurses alsa_lib
+aop: musl ncurses
 aterm: musl tinyxlib
 bc: musl
 beaver: musl gtk
@@ -10,6 +11,7 @@ bwm_ng: musl ncurses
 ca_certificates:
 calcoo: musl gtk
 calcurse: musl ncurses
+chimaera: musl
 conky: musl tinyxlib font_bh_75dpi font_bh_100dpi
 curl: musl zlib libressl
 dhcpcd: musl
@@ -111,6 +113,7 @@ shutbox: musl gtk
 siag: musl mowitz
 snownews: musl zlib ncurses libressl libxml2
 sqlite: musl
+sumeria: musl
 sylpheed: musl libressl gtk gdk_pixbuf
 tcpdump: musl libressl libpcap
 ted: musl zlib libpng libjpeg_turbo tiff gtk font_adobe_75dpi font_adobe_100dpi

@@ -1,0 +1,78 @@
+diff -rup chimaera-orig/chimaera.c chimaera/chimaera.c
+--- chimaera-orig/chimaera.c	2014-09-24 12:43:27.468970747 +0300
++++ chimaera/chimaera.c	2014-09-24 12:43:38.337970553 +0300
+@@ -105,7 +105,7 @@ int main()
+         itest = 1;
+         tnoua("Choose one (0 - 10) ");
+         showtext();
+-        len = getline();        /* Get input line and convert it to upper case */
++        len = get_line();        /* Get input line and convert it to upper case */
+         if (len == 0) { itest = 0; continue; }
+         if (!isdigit(inbuff[0])) { itest = 0; continue; }
+         advno = atoi(inbuff);
+@@ -244,7 +244,7 @@ int main()
+        tonl(1);
+        tnoua("> ");                                       /* Get and parse an input line */
+        showtext();
+-       len = getline();
++       len = get_line();
+        if (len == 0) continue; else i = parse();             /* Loop if input is null */
+ 
+        /*---- Check the input against the dictionary ----*/
+@@ -981,7 +981,7 @@ void describe( int mpoint)             /
+     described = 1;
+    }
+ /*----------------------------------------------------------------------*/
+-int getline(void)                      /* Get a line of input           */
++int get_line(void)                      /* Get a line of input           */
+    {
+     int i,len;
+     fgets(inbuff,80,stdin);
+@@ -2276,7 +2276,7 @@ void cheat(void)
+     if (strstr(cbuff,"S")) /* Go to a defined location */
+       {
+        printf("Set X, Y Z co-ordinates: ");
+-       getline();
++       get_line();
+        i=0;
+        memset(&tokens[0],'\0',30);
+        pt = strtok(inbuff,sep);     /* Get first token */
+@@ -2297,7 +2297,7 @@ void cheat(void)
+        while (j == 1)
+          {
+           printf("Object > ");
+-          getline();
++          get_line();
+           if (strlen(inbuff) == 0) return;
+           memset(&tokens[0],'\0',30);
+           pt = strtok(inbuff,sep);      /* Get first token    */
+@@ -2322,7 +2322,7 @@ void cheat(void)
+        while (j == 1)
+          {
+           printf("Monster > ");
+-          getline();
++          get_line();
+           if (strlen(inbuff) == 0) return;
+           memset(&tokens[0],'\0',30);
+           pt = strtok(inbuff,sep);      /* Get first token    */
+@@ -2964,7 +2964,7 @@ void gamic(void)                 /* Sect
+       {
+        tnoua("> ");
+        showtext();
+-       len = getline();
++       len = get_line();
+        if (len == 0) continue; else parse();             /* Loop if input is null */
+        if (strncmp(action,"ENGLISH",3) == 0)
+          {
+diff -rup chimaera-orig/chimaera.h chimaera/chimaera.h
+--- chimaera-orig/chimaera.h	2014-09-24 12:43:27.468970747 +0300
++++ chimaera/chimaera.h	2014-09-24 12:43:37.126970574 +0300
+@@ -593,7 +593,7 @@ static char times[49][10] =  /* Times of
+ int main         (void);                /* Main function                */
+ /*---- Utility Functions -----------------------------------------------*/
+ void describe    (int n);              /* Describe the current location */
+-int  getline     (void);                /* Get a line of input          */
++int  get_line     (void);                /* Get a line of input          */
+ void timdat      (int z);               /* Display the time and date    */
+ void initialise  (void);                /* Initialise arrays            */
+ int  instructions(int n);               /* User instructions            */
