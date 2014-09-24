@@ -126,6 +126,7 @@ tinyunmute: musl tinyalsa
 tinyxlib: musl
 tinyxserver: musl zlib mkfontscale mkfontdir
 toybox: musl
+tty_clock: musl ncurses
 vifm: musl ncurses file
 vitetris: musl ncurses
 wget: musl libressl
