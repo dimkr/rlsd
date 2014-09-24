@@ -33,6 +33,7 @@ ncurses_build() {
 	            --without-debug \
 	            --without-profile \
 	            --enable-widec \
+	            --enable-ext-colors \
 	            --with-manpage-format=normal
 	$MAKE
 }
@@ -50,7 +51,7 @@ ncurses_package() {
 		directory="$(dirname "$i")"
 		ln -s "$name" "$directory/$(echo "$name" | sed s~w\.~.~)"
 	done
-	ln -s ncursesw5-config "$1/bin/ncurses5-config"
+	ln -s ncursesw6-config "$1/bin/ncurses6-config"
 
 	# trim the terminfo directory
 	rm -rf "$1/usr/share/terminfo/1" \
