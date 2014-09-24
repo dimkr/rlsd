@@ -1,0 +1,19 @@
+diff -rup greed-3.10-orig/Makefile greed-3.10/Makefile
+--- greed-3.10-orig/Makefile	2014-09-24 14:58:36.883980608 +0300
++++ greed-3.10/Makefile	2014-09-24 14:59:33.776979589 +0300
+@@ -2,12 +2,12 @@
+ 
+ VERS=3.10
+ 
+-SFILE=/usr/games/lib/greed.hs
++SFILE=/var/games/greed/greed.hs
+ # Location of game executable
+ BIN=/usr/games
+ 
+ greed: greed.c
+-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -DSCOREFILE=\"$(SFILE)\" -DRELEASE=\"$(VERS)\" -o greed greed.c -O3 -lcurses
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -DSCOREFILE=\"$(SFILE)\" -DRELEASE=\"$(VERS)\" -o greed greed.c -lncurses
+ 
+ greed.6: greed.xml
+ 	xmlto man greed.xml
+Only in greed-3.10-orig/: greed.6
