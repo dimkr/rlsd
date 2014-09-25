@@ -77,8 +77,8 @@ diff -rupN linux-3.14.19-orig/security/rlsd/Makefile linux-3.14.19/security/rlsd
 +rlsd-y := rlsd_lsm.o
 diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rlsd/rlsd_lsm.c
 --- linux-3.14.19-orig/security/rlsd/rlsd_lsm.c	1970-01-01 02:00:00.000000000 +0200
-+++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-25 17:56:38.911930733 +0300
-@@ -0,0 +1,62 @@
++++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-25 22:26:44.223829260 +0300
+@@ -0,0 +1,100 @@
 +/*
 + * RLSD Linux Security Module
 + *
@@ -88,37 +88,75 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +
 +#include <linux/security.h>
 +#include <linux/sched.h>
++#include <linux/mount.h>
++#include <linux/fs.h>
 +#include <linux/printk.h>
++#include <linux/string.h>
 +
 +static bool rlsd_enabled = 1;
 +
 +static int __init rlsd_enabled_setup(char *str)
 +{
-+        unsigned long enabled;
-+        int error = strict_strtoul(str, 0, &enabled);
-+        if (!error)
-+                rlsd_enabled = enabled ? 1 : 0;
-+        return 1;
++	unsigned long enabled;
++	int error;
++	if (str) {
++		error = strict_strtoul(str, 0, &enabled);
++		if (!error)
++			rlsd_enabled = enabled ? 1 : 0;
++	}
++	return 1;
 +}
 +
 +__setup("rlsd=", rlsd_enabled_setup);
 +
 +static int rlsd_ptrace_traceme(struct task_struct *parent) {
-+	printk(KERN_ALERT "rlsd: denied PTRACE_TRACEME from %lu\n", (unsigned long) parent->pid);
++	if (!parent)
++		return -EINVAL;
++
++	printk(KERN_ALERT "rlsd: denied PTRACE_TRACEME from %lu\n",
++	       (unsigned long) parent->pid);
 +	return -EPERM;
 +}
 +
 +static int rlsd_ptrace_access_check(struct task_struct *child,
 +                                    unsigned int mode) {
-+	printk(KERN_ALERT "rlsd: denied ptrace from %lu\n", (unsigned long) child->pid);
++	if (!child)
++		return -EINVAL;
++
++	printk(KERN_ALERT "rlsd: denied ptrace from %lu\n",
++	       (unsigned long) child->pid);
 +	return -EPERM;
++}
++
++static int rlsd_sb_umount(struct vfsmount *mnt, int flags) {
++	if (!mnt)
++		return -EINVAL;
++	if (!mnt->mnt_sb)
++		return -EINVAL;
++	if (!mnt->mnt_sb->s_type)
++		return -EINVAL;
++	if (!mnt->mnt_sb->s_type->name)
++		return -EINVAL;
++
++	if ((0 == strcmp("proc", mnt->mnt_sb->s_type->name)) ||
++	    (0 == strcmp("sysfs", mnt->mnt_sb->s_type->name)) ||
++	    (0 == strcmp("devtmpfs", mnt->mnt_sb->s_type->name)) ||
++	    (0 == strcmp("devpts", mnt->mnt_sb->s_type->name))) {
++		printk(KERN_ALERT "rlsd: denied unmount of %s\n",
++		       mnt->mnt_sb->s_type->name);
++		return -EPERM;
++	}
++
++	return 0;
 +}
 +
 +static struct security_operations rlsd_ops = {
 +	.name			= "rlsd",
 +
 +	.ptrace_access_check	= rlsd_ptrace_access_check,
-+	.ptrace_traceme		= rlsd_ptrace_traceme
++	.ptrace_traceme		= rlsd_ptrace_traceme,
++
++	.sb_umount		= rlsd_sb_umount
 +};
 +
 +static __init int rlsd_init(void)
