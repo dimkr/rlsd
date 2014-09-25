@@ -1,4 +1,4 @@
-PACKAGE_VERSION="9.14"
+PACKAGE_VERSION="9.15"
 PACKAGE_SOURCES="http://downloads.ghostscript.com/public/ghostscript-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A PostScript and PDF interpreter"
 
