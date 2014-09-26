@@ -7,6 +7,7 @@ ghostscript_build() {
 	tar -xzvf ghostscript-$PACKAGE_VERSION.tar.gz
 	cd ghostscript-$PACKAGE_VERSION
 
+	rm -rf zlib
 	patch -p 1 < "$BASE_DIR/patches/ghostscript-tinyxlib.patch"
 	patch -p 1 < "$BASE_DIR/patches/ghostscript-build.patch"
 
