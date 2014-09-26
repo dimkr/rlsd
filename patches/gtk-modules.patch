@@ -1,0 +1,75 @@
+diff -rup gtk-master-orig/gtk/gtkmain.c gtk-master/gtk/gtkmain.c
+--- gtk-master-orig/gtk/gtkmain.c	2014-09-26 19:43:37.986988647 +0300
++++ gtk-master/gtk/gtkmain.c	2014-09-26 19:47:30.083984490 +0300
+@@ -260,8 +260,7 @@ gtk_init_check (int	 *argc,
+     }
+ #endif	/* G_ENABLE_DEBUG */
+ 
+-  env_string = getenv ("GTK_MODULES");
+-  if (env_string)
++  if (0)
+     {
+       gchar **modules, **as;
+ 
+@@ -283,8 +282,7 @@ gtk_init_check (int	 *argc,
+       
+       for (i = 1; i < *argc;)
+ 	{
+-	  if (strcmp ("--gtk-module", (*argv)[i]) == 0 ||
+-	      strncmp ("--gtk-module=", (*argv)[i], 13) == 0)
++	  if (0)
+ 	    {
+ 	      gchar *module_name = (*argv)[i] + 12;
+ 	      
+@@ -374,6 +372,7 @@ gtk_init_check (int	 *argc,
+     }
+   
+   /* load gtk modules */
++#if 0
+   gtk_modules = g_slist_reverse (gtk_modules);
+   for (slist = gtk_modules; slist; slist = slist->next)
+     {
+@@ -422,6 +421,7 @@ gtk_init_check (int	 *argc,
+ 	}
+       g_free (module_name);
+     }
++#endif
+ 
+ #ifdef ENABLE_NLS
+   bindtextdomain("gtk+", GTK_LOCALEDIR);
+@@ -450,6 +450,7 @@ gtk_init_check (int	 *argc,
+ 
+   /* initialize gtk modules
+    */
++#if 0
+   for (slist = gtk_modules; slist; slist = slist->next)
+     {
+       if (slist->data)
+@@ -461,6 +462,7 @@ gtk_init_check (int	 *argc,
+ 	}
+     }
+   g_slist_free (gtk_modules);
++#endif
+ 
+   return TRUE;
+ }
+diff -rup gtk-master-orig/gtk/gtkthemes.c gtk-master/gtk/gtkthemes.c
+--- gtk-master-orig/gtk/gtkthemes.c	2014-09-26 19:43:37.995988646 +0300
++++ gtk-master/gtk/gtkthemes.c	2014-09-26 19:49:30.554982333 +0300
+@@ -56,6 +56,8 @@ static GHashTable *engine_hash = NULL;
+ GtkThemeEngine*
+ gtk_theme_engine_get (const gchar *name)
+ {
++  return NULL;
++#if 0
+   GtkThemeEnginePrivate *result;
+   
+   if (!engine_hash)
+@@ -123,6 +125,7 @@ gtk_theme_engine_get (const gchar *name)
+     result->refcount++;
+ 
+   return (GtkThemeEngine *)result;
++#endif
+ }
+ 
+ void
