@@ -77,8 +77,8 @@ diff -rupN linux-3.14.19-orig/security/rlsd/Makefile linux-3.14.19/security/rlsd
 +rlsd-y := rlsd_lsm.o
 diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rlsd/rlsd_lsm.c
 --- linux-3.14.19-orig/security/rlsd/rlsd_lsm.c	1970-01-01 02:00:00.000000000 +0200
-+++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-25 22:26:44.223829260 +0300
-@@ -0,0 +1,100 @@
++++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-26 23:33:57.948834709 +0300
+@@ -0,0 +1,150 @@
 +/*
 + * RLSD Linux Security Module
 + *
@@ -90,6 +90,8 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +#include <linux/sched.h>
 +#include <linux/mount.h>
 +#include <linux/fs.h>
++#include <linux/ptrace.h>
++#include <linux/prctl.h>
 +#include <linux/printk.h>
 +#include <linux/string.h>
 +
@@ -109,26 +111,49 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +
 +__setup("rlsd=", rlsd_enabled_setup);
 +
-+static int rlsd_ptrace_traceme(struct task_struct *parent) {
++static int rlsd_ptrace_traceme(struct task_struct *parent)
++{
++	char name[sizeof(parent->comm)];
++	struct task_struct *child;
++
 +	if (!parent)
 +		return -EINVAL;
 +
-+	printk(KERN_ALERT "rlsd: denied PTRACE_TRACEME from %lu\n",
-+	       (unsigned long) parent->pid);
++	child = current;
++	printk(KERN_ALERT "rlsd: denied PTRACE_TRACEME from %lu (%s)\n",
++	       (unsigned long) child->pid,
++	       get_task_comm(name, child));
 +	return -EPERM;
 +}
 +
 +static int rlsd_ptrace_access_check(struct task_struct *child,
-+                                    unsigned int mode) {
++                                    unsigned int mode)
++{
++	char pname[sizeof(child->comm)];
++	struct task_struct *parent;
++
 +	if (!child)
 +		return -EINVAL;
 +
-+	printk(KERN_ALERT "rlsd: denied ptrace from %lu\n",
-+	       (unsigned long) child->pid);
++	if (PTRACE_MODE_ATTACH != mode)
++		return cap_ptrace_access_check(child, mode);
++
++	/* access child->comm directly - ptrace_may_access() (kernel/ptrace.c)
++	 * already locks */
++	parent = current;
++	printk(KERN_ALERT "rlsd: denied attach of %lu (%s) to %lu (%s)\n",
++	       (unsigned long) parent->pid,
++	       get_task_comm(pname, parent),
++	       (unsigned long) child->pid,
++	       child->comm);
 +	return -EPERM;
 +}
 +
-+static int rlsd_sb_umount(struct vfsmount *mnt, int flags) {
++static int rlsd_sb_umount(struct vfsmount *mnt, int flags)
++{
++	char name[sizeof(((struct task_struct *) NULL)->comm)];
++	struct task_struct *tsk;
++
 +	if (!mnt)
 +		return -EINVAL;
 +	if (!mnt->mnt_sb)
@@ -142,9 +167,32 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	    (0 == strcmp("sysfs", mnt->mnt_sb->s_type->name)) ||
 +	    (0 == strcmp("devtmpfs", mnt->mnt_sb->s_type->name)) ||
 +	    (0 == strcmp("devpts", mnt->mnt_sb->s_type->name))) {
-+		printk(KERN_ALERT "rlsd: denied unmount of %s\n",
-+		       mnt->mnt_sb->s_type->name);
++		tsk = current;
++		printk(KERN_ALERT "rlsd: denied unmount of %s from %lu (%s)\n",
++		       mnt->mnt_sb->s_type->name,
++		       (unsigned long) tsk->pid,
++		       get_task_comm(name, tsk));
 +		return -EPERM;
++	}
++
++	return 0;
++}
++
++static inline int rlsd_task_prctl(int option,
++                                  unsigned long arg2,
++                                  unsigned long arg3,
++                                  unsigned long arg4,
++                                  unsigned long arg5)
++{
++	char name[sizeof(((struct task_struct *) NULL)->comm)];
++	struct task_struct *tsk;
++
++	if (PR_SET_NAME == option) {
++		tsk = current;
++		printk(KERN_ALERT "rlsd: denied PR_SET_NAME from %lu (%s)\n",
++		       (unsigned long) tsk->pid,
++		       get_task_comm(name, tsk));
++		return -EINVAL;
 +	}
 +
 +	return 0;
@@ -156,7 +204,9 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	.ptrace_access_check	= rlsd_ptrace_access_check,
 +	.ptrace_traceme		= rlsd_ptrace_traceme,
 +
-+	.sb_umount		= rlsd_sb_umount
++	.sb_umount		= rlsd_sb_umount,
++
++	.task_prctl		= rlsd_task_prctl
 +};
 +
 +static __init int rlsd_init(void)
