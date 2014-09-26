@@ -7,6 +7,7 @@ musl_build() {
 	tar -xzvf musl-$PACKAGE_VERSION.tar.gz
 	cd musl-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/musl-ld_preload.patch"
 	patch -p 1 < "$BASE_DIR/patches/musl-getauxval.patch"
 
 	./configure --prefix= \

@@ -1,0 +1,12 @@
+diff -rup musl-1.0.4-orig/src/ldso/dynlink.c musl-1.0.4/src/ldso/dynlink.c
+--- musl-1.0.4-orig/src/ldso/dynlink.c	2014-09-26 19:33:20.021999713 +0300
++++ musl-1.0.4/src/ldso/dynlink.c	2014-09-26 19:36:09.032996686 +0300
+@@ -967,8 +967,6 @@ void *__dynlink(int argc, char **argv)
+ 	for (i=argc+1; argv[i]; i++)
+ 		if (!memcmp(argv[i], "LD_LIBRARY_PATH=", 16))
+ 			env_path = argv[i]+16;
+-		else if (!memcmp(argv[i], "LD_PRELOAD=", 11))
+-			env_preload = argv[i]+11;
+ 	auxv = (void *)(argv+i+1);
+ 
+ 	decode_vec(auxv, aux, AUX_CNT);
