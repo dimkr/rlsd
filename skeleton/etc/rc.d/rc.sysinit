@@ -7,4 +7,4 @@ do
 done
 
 # automatically log in as root
-exec autologin
+exec autologin root
