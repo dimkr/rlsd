@@ -6,5 +6,5 @@ do
 	[ -x "$i" ] && $i start
 done
 
-# automatically log in as root
-exec autologin root
+# automatically log in as boss
+exec autologin boss

@@ -106,7 +106,7 @@ find "$root_fs" -type d | while read directory
 do
 	chmod 755 "$directory"
 done
-chmod 700 "$root_fs/root"
+chmod 700 "$root_fs/home/boss"
 chown 1000:1000 "$root_fs/home/someone"
 chmod 755 "$root_fs/home/someone"
 mksquashfs "$root_fs" \
