@@ -1,0 +1,12 @@
+diff -rup loksh-master-orig/main.c loksh-master/main.c
+--- loksh-master-orig/main.c	2014-09-26 20:26:47.877995489 +0300
++++ loksh-master/main.c	2014-09-26 20:26:56.233995339 +0300
+@@ -412,7 +412,7 @@ init_username(void)
+ 	struct tbl *vp = global("USER");
+ 
+ 	if (vp->flag & ISSET)
+-		p = ksheuid == 0 ? "root" : str_val(vp);
++		p = ksheuid == 0 ? "boss" : str_val(vp);
+ 	else
+ 		p = getlogin();
+ 
