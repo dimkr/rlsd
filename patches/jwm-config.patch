@@ -249,7 +249,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +		<Menu label="System">
 +			<Program label="Settings">settings</Program>
-+			<Program label="System Log">aterm -title "System Log" -e less /var/log/messages</Program>
++			<Program label="System Log">aterm -title "System Log" -e sh -c "syslog | less"</Program>
 +			<Program label="gtkdiskfree">gtkdiskfree</Program>
 +			<Program label="GDMap">gdmap</Program>
 +			<Program label="htop">aterm -title htop -e htop</Program>
