@@ -77,8 +77,8 @@ diff -rupN linux-3.14.19-orig/security/rlsd/Makefile linux-3.14.19/security/rlsd
 +rlsd-y := rlsd_lsm.o
 diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rlsd/rlsd_lsm.c
 --- linux-3.14.19-orig/security/rlsd/rlsd_lsm.c	1970-01-01 02:00:00.000000000 +0200
-+++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-26 23:33:57.948834709 +0300
-@@ -0,0 +1,150 @@
++++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-27 14:28:37.306985954 +0300
+@@ -0,0 +1,175 @@
 +/*
 + * RLSD Linux Security Module
 + *
@@ -92,6 +92,9 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +#include <linux/fs.h>
 +#include <linux/ptrace.h>
 +#include <linux/prctl.h>
++#ifdef CONFIG_SECURITY_NETWORK
++#	include <linux/socket.h>
++#endif
 +#include <linux/printk.h>
 +#include <linux/string.h>
 +
@@ -151,7 +154,7 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +
 +static int rlsd_sb_umount(struct vfsmount *mnt, int flags)
 +{
-+	char name[sizeof(((struct task_struct *) NULL)->comm)];
++	char name[FIELD_SIZEOF(struct task_struct, comm)];
 +	struct task_struct *tsk;
 +
 +	if (!mnt)
@@ -184,19 +187,35 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +                                  unsigned long arg4,
 +                                  unsigned long arg5)
 +{
-+	char name[sizeof(((struct task_struct *) NULL)->comm)];
++	char name[FIELD_SIZEOF(struct task_struct, comm)];
 +	struct task_struct *tsk;
 +
-+	if (PR_SET_NAME == option) {
-+		tsk = current;
-+		printk(KERN_ALERT "rlsd: denied PR_SET_NAME from %lu (%s)\n",
-+		       (unsigned long) tsk->pid,
-+		       get_task_comm(name, tsk));
-+		return -EINVAL;
-+	}
++	if (PR_SET_NAME != option)
++		return 0;
 +
-+	return 0;
++	tsk = current;
++	printk(KERN_ALERT "rlsd: denied PR_SET_NAME from %lu (%s)\n",
++	       (unsigned long) tsk->pid,
++	       get_task_comm(name, tsk));
++	return -EINVAL;
 +}
++
++#ifdef CONFIG_SECURITY_NETWORK
++static int rlsd_socket_listen(struct socket *sock, int backlog)
++{
++	char name[FIELD_SIZEOF(struct task_struct, comm)];
++	struct task_struct *tsk;
++
++	if (uid_eq(current_euid(), GLOBAL_ROOT_UID))
++		return 0;
++
++	tsk = current;
++	printk(KERN_ALERT "rlsd: denied listen from %lu (%s)\n",
++	       (unsigned long) tsk->pid,
++	       get_task_comm(name, tsk));
++	return -EPERM;
++}
++#endif
 +
 +static struct security_operations rlsd_ops = {
 +	.name			= "rlsd",
@@ -206,7 +225,13 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +
 +	.sb_umount		= rlsd_sb_umount,
 +
++#ifndef CONFIG_SECURITY_NETWORK
 +	.task_prctl		= rlsd_task_prctl
++#else
++	.task_prctl		= rlsd_task_prctl,
++
++	.socket_listen		= rlsd_socket_listen
++#endif
 +};
 +
 +static __init int rlsd_init(void)
