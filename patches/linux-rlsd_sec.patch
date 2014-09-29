@@ -77,8 +77,8 @@ diff -rupN linux-3.14.19-orig/security/rlsd/Makefile linux-3.14.19/security/rlsd
 +rlsd-y := rlsd_lsm.o
 diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rlsd/rlsd_lsm.c
 --- linux-3.14.19-orig/security/rlsd/rlsd_lsm.c	1970-01-01 02:00:00.000000000 +0200
-+++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-27 14:28:37.306985954 +0300
-@@ -0,0 +1,175 @@
++++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-09-29 21:20:35.251962693 +0300
+@@ -0,0 +1,195 @@
 +/*
 + * RLSD Linux Security Module
 + *
@@ -92,6 +92,7 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +#include <linux/fs.h>
 +#include <linux/ptrace.h>
 +#include <linux/prctl.h>
++#include <linux/mman.h>
 +#ifdef CONFIG_SECURITY_NETWORK
 +#	include <linux/socket.h>
 +#endif
@@ -200,6 +201,23 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	return -EINVAL;
 +}
 +
++static int rlsd_file_mprotect(struct vm_area_struct *vma,
++                              unsigned long reqprot,
++                              unsigned long prot)
++{
++	char name[FIELD_SIZEOF(struct task_struct, comm)];
++	struct task_struct *tsk;
++
++	if (!(PROT_EXEC & prot))
++		return 0;
++
++	tsk = current;
++	printk(KERN_ALERT "rlsd: denied PROT_EXEC from %lu (%s)\n",
++	       (unsigned long) tsk->pid,
++	       get_task_comm(name, tsk));
++	return -EPERM;
++}
++
 +#ifdef CONFIG_SECURITY_NETWORK
 +static int rlsd_socket_listen(struct socket *sock, int backlog)
 +{
@@ -224,6 +242,8 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	.ptrace_traceme		= rlsd_ptrace_traceme,
 +
 +	.sb_umount		= rlsd_sb_umount,
++
++	.file_mprotect	= rlsd_file_mprotect,
 +
 +#ifndef CONFIG_SECURITY_NETWORK
 +	.task_prctl		= rlsd_task_prctl
