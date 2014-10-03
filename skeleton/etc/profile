@@ -1,8 +1,11 @@
 umask 022
+
 export PATH="/bin"
 export PS1='[\u@\w]\$ '
 export HISTFILE="$HOME/.ksh_history"
 export REPO="http://dimkr.insomnia247.nl/$(uname -m)"
+
+alias ll="ls -la"
 
 if [ -n "$(which xinit)" ] && [ -z "$(pidof xinit)" ]
 then
