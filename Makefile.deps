@@ -96,7 +96,7 @@ mpg123: musl tinyalsa
 msmtp: musl libressl
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
-mutt: musl libressl msmtp
+mutt: musl ncurses libressl msmtp
 nano: musl ncurses
 nc: musl
 ncdu: musl ncurses
