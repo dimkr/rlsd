@@ -1,0 +1,21 @@
+diff -rup aop-0.6-orig/aop.c aop-0.6/aop.c
+--- aop-0.6-orig/aop.c	2014-10-04 01:08:40.314669321 +0300
++++ aop-0.6/aop.c	2014-10-04 01:10:08.392667744 +0300
+@@ -44,7 +44,7 @@ start:	memset(field, ' ', 25*81);
+ 		} else if (field[py][px] == '0') lifes++;
+ 		else if (field[py][px] != ' ' && dir) {
+ 			field[opy][opx] = '0'; sleep(1); flushinp();
+-			if(--lifes == 0) { p=op; lastword="Sucker!"; break; }
++			if(--lifes == 0) { p=op; lastword="You lost!"; break; }
+ 			opx=px=ipx; opy=py=ipy; c=dir=0; continue;
+ 		}
+ 		field[opy][opx] = ' '; field[opy=py][opx=px] = 'O';
+@@ -58,7 +58,7 @@ start:	memset(field, ' ', 25*81);
+ 		refresh(); usleep(dir < 5 ? 50000 : 100000);
+ 	} while( (c=getch()) != 'q' );
+ 	endwin(); printf("%s (%d points)\n", lastword, p);
+-	return strcmp(lastword, "Sucker!") == 0;
++	return strcmp(lastword, "You lost!") == 0;
+ }
+ 
+ /* Yup - This are 64 lines of C code.  ;-) */

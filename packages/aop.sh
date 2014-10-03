@@ -8,6 +8,7 @@ aop_build() {
 	cd aop-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/aop-share.patch"
+	patch -p 1 < "$BASE_DIR/patches/aop-insult.patch"
 
 	$CC -o aop aop.c $CFLAGS $LDFLAGS -lncurses
 }
