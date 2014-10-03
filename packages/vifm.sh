@@ -12,8 +12,8 @@ vifm_build() {
 
 	LIBS="-lmagic -lz" \
 	./configure --host=$HOST \
-	            --prefix= \
-	            --datarootdir=/usr/share \
+		    --prefix=/usr \
+	            --bindir=/bin \
 	            --disable-desktop-files \
 	            --with-curses-name=ncurses
 	$MAKE
