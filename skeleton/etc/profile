@@ -4,6 +4,7 @@ export PATH="/bin"
 export PS1='[\u@\w]\$ '
 export HISTFILE="$HOME/.ksh_history"
 export REPO="http://dimkr.insomnia247.nl/$(uname -m)"
+export EDITOR="vi"
 
 alias ll="ls -la"
 
