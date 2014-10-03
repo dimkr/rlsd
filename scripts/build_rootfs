@@ -1,0 +1,75 @@
+#!/bin/sh
+
+# build_rootfs: installs the RLSD root file system to a directory
+
+. ./config
+
+# include the configuration file
+. ./config
+
+# initialize the root file system with the skeleton
+cp -ar skeleton "$2"
+
+# choose which packages to install
+cd flavors
+. "./$1"
+cd ..
+
+# if all packages were built locally, use the build output
+if [ -d "$BASE_DIR/repo" ]
+then
+        repo="file://$BASE_DIR/repo"
+else
+        # otherwise, use the upstream repository
+        repo="http://dimkr.insomnia247.nl/$ARCH"
+fi
+
+# install the packages
+mkdir -p "$2/var/packdude"
+for package in $PACKAGES
+do
+	packdude -i $package -n -p "$2" -u "$repo"
+done
+
+# remove unneeded files and directories
+for i in "$2/lib"/*.a \
+         "$2/lib"/*.o \
+         "$2/lib"/*.lds \
+         "$2/lib/alsa-lib/smixer"/*.a \
+         "$2/usr/share/man/man2" \
+         "$2/usr/share/man/man3" \
+         "$2/usr/include" \
+         "$2/lib/pkgconfig" \
+         "$2/bin"/*-config \
+         "$2/usr/share/ffmpeg/examples" \
+         "$2/usr/share/ghostscript"/*/examples \
+         "$2/usr/share/doc/libxml2/examples" \
+         "$2/usr/share/doc/libjpeg-turbo/examples" \
+         "$2/usr/share/doc/xz/examples" \
+         "$2/usr/share/gdk-pixbuf" \
+         "$2/usr/share/x11vnc" \
+         "$2/var/packdude/lock" \
+         "$2/var/packdude"/repo-*.sqlite3
+do
+	rm -rvf "$i" 2>/dev/null
+done
+
+# remove .gitignore files
+find "$2" -name .gitignore -delete
+
+# add RLSD's documentation
+install -m 644 README "$2/usr/share/doc/rlsd/README"
+install -m 644 MANIFEST "$2/usr/share/doc/rlsd/MANIFEST"
+install -m 644 AUTHORS "$2/usr/share/doc/rlsd/AUTHORS"
+install -m 644 THANKS "$2/usr/share/doc/rlsd/THANKS"
+install -m 644 COPYING "$2/usr/share/doc/rlsd/COPYING"
+
+# fix permissions
+chown -R 0:0 "$2"
+find "$2" -type d | while read directory
+do
+	chmod 755 "$directory"
+done
+chmod 700 "$2/home/boss"
+chown 1000:1000 "$2/home/someone"
+chmod 755 "$2/home/someone"

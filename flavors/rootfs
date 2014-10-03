@@ -1,0 +1,11 @@
+# rootfs: a basic, non-bootable root file system with nothing but packdude
+
+PACKAGES="toybox
+          lazy_utils
+          loksh
+          packdude
+          mandoc
+          less
+          packdude"
+
+SUFFIX="-rootfs"

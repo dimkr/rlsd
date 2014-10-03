@@ -1,3 +1,5 @@
+# regular: a graphical flavor with applications and UEFI support
+
 . ./bios
 
 PACKAGES="$PACKAGES elilo"

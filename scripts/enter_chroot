@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# enter_chroot: unpacks a minimalistic RLSD root file system and chroots into it
+
+# the host architecture
+ARCH="$(uname -m)"
+
+# the root file system archive file name
+ARCHIVE="rlsd-$(date +%d%m%Y)-$ARCH-rootfs.tar.xz"
+
+# the repository to fetch the archive from
+REPO="http://dimkr.insomnia247.nl"
+
+if [ "root" != "$(whoami)" ]
+then
+	echo "Must run as root"
+	exit 1
+fi
+
+if [ ! -d /usr/local/rlsd-root ]
+then
+	# download the root file system archive
+	root_fs="$(mktemp -u)"
+	wget -O "$root_fs" "$REPO/releases/$ARCH/$ARCHIVE"
+	if [ 0 -ne $? ]
+	then
+		echo "Error: failed to download $ARCHIVE."
+		rm -f "$root_fs" 2>/dev/null
+		exit 1
+	fi
+
+	# unpack it to /usr/local
+	cd /usr/local
+	tar -xJvf "$root_fs"
+fi
+
+# bind the host file systems
+mount --bind /proc /usr/local/rlsd-root/proc
+mount --bind /sys /usr/local/rlsd-root/sys
+mount --rbind /dev /usr/local/rlsd-root/dev
+mount --bind /tmp /usr/local/rlsd-root/tmp
+
+# copy over the host /etc/resolv.conf
+cp -f /etc/resolv.conf /usr/local/rlsd-root/etc/
+
+# log in as boss, inside a separate PID namespace
+chroot /usr/local/rlsd-root contain / autologin boss
+
+# clean up
+umount -l /usr/local/rlsd-root/tmp
+umount -l /usr/local/rlsd-root/dev
+umount -l /usr/local/rlsd-root/sys
+umount -l /usr/local/rlsd-root/proc

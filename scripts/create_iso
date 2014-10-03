@@ -1,61 +1,28 @@
 #!/bin/sh
 
+# create_iso: builds a root file system and generates a bootable ISO9660 image
+
 . ./config
 
-# unneeded files and directories in the root file system
-UNNEEDED_FILES="/lib/*.a
-                /lib/*.o
-                /lib/*.lds
-                /lib/alsa-lib/smixer/*.a
-                /usr/share/man/man2
-                /usr/share/man/man3
-                /usr/include
-                /lib/pkgconfig
-                /bin/*-config
-                /usr/share/ffmpeg/examples
-                /usr/share/ghostscript/*/examples
-                /usr/share/doc/libxml2/examples
-                /usr/share/doc/libjpeg-turbo/examples
-                /usr/share/doc/xz/examples
-                /usr/share/gdk-pixbuf
-                /usr/share/x11vnc"
-
-BASE_DIR="$(pwd)"
 VERSION="$(date +%d%m%Y)"
 
 # include the configuration file
 . ./config
 
-# if all packages were built locally, use the build output
-if [ -d "$BASE_DIR/repo" ]
-then
-	repo="file://$BASE_DIR/repo"
-else
-	# otherwise, use the upstream repository
-	repo="http://dimkr.insomnia247.nl/$ARCH"
-fi
-
-# initialize the root file system with the skeleton
-root_fs="$(mktemp -d -u)"
-cp -ar "$BASE_DIR/skeleton" "$root_fs"
-
-# choose which packages to install
+# get the image name suffix
 cd flavors
 . "./$1"
 cd ..
 
-# install the packages
-mkdir -p "$root_fs/var/packdude"
-for package in $PACKAGES
-do
-	packdude -i $package -n -p "$root_fs" -u "$repo"
-done
-
-# remove the package database
-rm -f "$root_fs/var/packdude"/repo-*.sqlite3
-
-# remove packdude's lock file
-rm -f "$root_fs/var/packdude/lock"
+# build the root file system
+root_fs="$(mktemp -d -u)"
+./scripts/build_rootfs "$1" "$root_fs"
+if [ ! -f "$root_fs/boot/bzImage" ] || [ ! -f "$root_fs/boot/isolinux.bin" ]
+then
+	echo "Error: the root file system must contain the kernel and isolinux."
+	rm -rf "$root_fs"
+	exit 1
+fi
 
 # create a temporary directory for the extracted ISO image contents
 iso_root="$(mktemp -d)"
@@ -84,31 +51,7 @@ mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 rm -rf "$root_fs/boot"
 
-# remove unneeded files and directories
-for i in $UNNEEDED_FILES
-do
-	rm -rf "$root_fs"/$i > /dev/null 2>&1
-done
-
-# remove all .gitignore files
-find "$root_fs" -name .gitignore -delete
-
-# add RLSD's documentation
-install -m 644 "$BASE_DIR/README" "$root_fs/usr/share/doc/rlsd/README"
-install -m 644 "$BASE_DIR/MANIFEST" "$root_fs/usr/share/doc/rlsd/MANIFEST"
-install -m 644 "$BASE_DIR/AUTHORS" "$root_fs/usr/share/doc/rlsd/AUTHORS"
-install -m 644 "$BASE_DIR/THANKS" "$root_fs/usr/share/doc/rlsd/THANKS"
-install -m 644 "$BASE_DIR/COPYING" "$root_fs/usr/share/doc/rlsd/COPYING"
-
 # generate the root file system image
-chown -R 0:0 "$root_fs"
-find "$root_fs" -type d | while read directory
-do
-	chmod 755 "$directory"
-done
-chmod 700 "$root_fs/home/boss"
-chown 1000:1000 "$root_fs/home/someone"
-chmod 755 "$root_fs/home/someone"
 mksquashfs "$root_fs" \
            "$iso_root/rootfs.sfs" \
            -comp xz \
@@ -118,8 +61,7 @@ mksquashfs "$root_fs" \
 rm -rf "$root_fs"
 
 # generate an ISO image
-cd "$BASE_DIR"
-[ ! -d "$BASE_DIR/releases" ] && mkdir "$BASE_DIR/releases"
+[ ! -d releases ] && mkdir releases
 if [ -f "$iso_root/efiboot.img" ]
 then
 	uefi_flags="-eltorito-alt-boot \
@@ -139,7 +81,7 @@ xorriso -as mkisofs \
         -no-emul-boot -boot-load-size 4 -boot-info-table \
         -isohybrid-mbr "$iso_root/isohdpfx.bin" \
         $uefi_flags \
-        -output "$BASE_DIR/releases/rlsd-$VERSION-$ARCH$SUFFIX.iso" \
+        -output "releases/rlsd-$VERSION-$ARCH$SUFFIX.iso" \
         "$iso_root"
 
 # clean up

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# build_package: builds a single package
+
 # the base directory
 BASE_DIR="$(pwd)"
 

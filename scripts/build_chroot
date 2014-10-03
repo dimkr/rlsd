@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# build_chroot: generates a chroot environment and builds RLSD inside it
+
 # the Ubuntu version to use
 RELEASE="trusty"
 
@@ -128,7 +130,7 @@ fi
 # build RLSD
 chroot "$1" sh -c "cd /root/rlsd; \
                    make packages; \
-                   make iso"
+                   make images"
 
 # clean up
 umount -l "$1/tmp"

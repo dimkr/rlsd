@@ -1,3 +1,5 @@
+# bios: a graphical flavor with applications, without UEFI support
+
 . ./minimal
 
 PACKAGES="$PACKAGES

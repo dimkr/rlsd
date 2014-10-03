@@ -1,22 +1,20 @@
-PACKAGES="linux
-          toybox
-          lazy_utils
-          loksh
+# minimal: a command-line, bootable flavor without applications
+
+. ./rootfs
+
+PACKAGES="$PACKAGES
+          linux
+          isolinux
           lok
           luufs
-          packdude
-          mandoc
-          less
-          isolinux
-          dhcpcd
           rfkill
+          dhcpcd
           iw
           wpa_supplicant
           gzip
           lbzip2
           xz
           libarchive
-          packdude
           elvis"
 
 SUFFIX="-minimal"

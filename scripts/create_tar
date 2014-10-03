@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# create_tar: builds a root file system and packs it as an archive
+
+. ./config
+
+VERSION="$(date +%d%m%Y)"
+
+# include the configuration file
+. ./config
+
+# get the archive name suffix
+cd flavors
+. "./$1"
+cd ..
+
+# build the root file system
+root_fs="$(mktemp -d)"
+./scripts/build_rootfs "$1" "$root_fs/rlsd-root"
+
+# remove /boot from the root file system
+rm -rf "$root_fs/rlsd-root/boot"
+
+# generate an archive
+[ ! -d releases ] && mkdir releases
+archive="$(pwd)/releases/rlsd-$VERSION-$ARCH$SUFFIX.tar.xz"
+cd "$root_fs"
+tar -c rlsd-root | xz -9 -e > "$archive"
+
+# clean up
+rm -rf "$root_fs"
