@@ -93,8 +93,10 @@ mkfontscale: musl zlib tinyxlib libfontenc
 moon_buggy: musl ncurses
 mowitz: musl tinyxlib
 mpg123: musl tinyalsa
+msmtp: musl libressl
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
 musl: linux_headers
+mutt: musl libressl msmtp
 nano: musl ncurses
 nc: musl
 ncdu: musl ncurses
