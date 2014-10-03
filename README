@@ -11,6 +11,20 @@ revives old hardware and the way computing used to be in the late 90's.
 RLSD's development follows the guidelines in the project manifest described in
 MANIFEST.
 
+For more information, see the project homepage (http://rlsd.dimakrasner.com/).
+
+Running
+=======
+
+RLSD is available as regular, bootable ISO9660 images, or as a chroot
+environment similar to crouton (https://github.com/dnschneid/crouton).
+
+To set up a RLSD chroot environment:
+  wget http://goo.gl/fFZwXC
+  sudo sh fFZwXC
+
+Daily builds of RLSD are available through its homepage.
+
 Building
 ========
 
