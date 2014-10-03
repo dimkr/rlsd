@@ -107,6 +107,7 @@ packdude: musl zlib libarchive sqlite curl
 patch: musl
 prboom: musl libpng sdl sdl_mixer sdl_net freedoom
 rfkill: musl
+rogue: musl ncurses
 rox: musl file gtk gdk_pixbuf libxml2
 screen: musl ncurses
 scrollz: musl ncurses libressl
