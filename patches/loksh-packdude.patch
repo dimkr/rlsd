@@ -1,0 +1,26 @@
+diff -rup loksh-orig/exec.c loksh/exec.c
+--- loksh-orig/exec.c	2014-10-04 22:55:04.431935433 +0300
++++ loksh/exec.c	2014-10-04 23:45:18.179992206 +0300
+@@ -398,6 +398,7 @@ comexec(struct op *t, struct tbl *volati
+ 	int keepasn_ok;
+ 	int fcflags = FC_BI|FC_FUNC|FC_PATH;
+ 	int bourne_function_call = 0;
++	char *nfound_ap[] = {"/bin/packsuggest", ap[0], NULL};
+ 
+ 	/* snag the last argument for $_ XXX not the same as at&t ksh,
+ 	 * which only seems to set $_ after a newline (but not in
+@@ -649,6 +650,13 @@ comexec(struct op *t, struct tbl *volati
+ 			} else {
+ 				warningf(true, "%s: not found", cp);
+ 				rv = 127;
++				if (Flag(FTALKING)) {
++					texec.type = TEXEC;
++					texec.left = t;
++					texec.str = nfound_ap[0];
++					texec.args = nfound_ap;
++					exchild(&texec, flags, xerrok, -1);
++				}
+ 			}
+ 			break;
+ 		}
+Binary files loksh-orig/.git/index and loksh/.git/index differ
