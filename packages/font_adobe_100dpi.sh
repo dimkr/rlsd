@@ -1,6 +1,7 @@
 PACKAGE_VERSION="1.0.3"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/font/font-adobe-100dpi-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="Adobe 100 DPI fonts"
+PACKAGE_ARCH="all"
 
 font_adobe_100dpi_build() {
 	[ -d font-adobe-100dpi-$PACKAGE_VERSION ] && rm -rf font-adobe-100dpi-$PACKAGE_VERSION

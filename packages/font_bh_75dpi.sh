@@ -1,6 +1,7 @@
 PACKAGE_VERSION="1.0.3"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/font/font-bh-75dpi-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="Extra 75 DPI fonts"
+PACKAGE_ARCH="all"
 
 font_bh_75dpi_build() {
 	[ -d font-bh-75dpi-$PACKAGE_VERSION ] && rm -rf font-bh-75dpi-$PACKAGE_VERSION

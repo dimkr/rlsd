@@ -1,6 +1,7 @@
 PACKAGE_VERSION="1.0.3"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/font/font-bh-lucidatypewriter-100dpi-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="Lucida 100 DPI fonts"
+PACKAGE_ARCH="all"
 
 font_bh_lucidatypewriter_100dpi_build() {
 	[ -d font-bh-lucidatypewriter-100dpi-$PACKAGE_VERSION ] && rm -rf font-bh-lucidatypewriter-100dpi-$PACKAGE_VERSION

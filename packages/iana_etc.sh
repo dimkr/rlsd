@@ -1,6 +1,7 @@
 PACKAGE_VERSION="2.30"
 PACKAGE_SOURCES="http://sethwklein.net/iana-etc-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="IANA data files"
+PACKAGE_ARCH="all"
 
 iana_etc_build() {
 	[ -d iana-etc-$PACKAGE_VERSION ] && rm -rf iana-etc-$PACKAGE_VERSION

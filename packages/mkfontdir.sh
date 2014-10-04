@@ -1,6 +1,7 @@
 PACKAGE_VERSION="1.0.7"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/app/mkfontdir-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A tool for indexing fonts"
+PACKAGE_ARCH="all"
 
 mkfontdir_build() {
 	[ -d mkfontdir-$PACKAGE_VERSION ] && rm -rf mkfontdir-$PACKAGE_VERSION
