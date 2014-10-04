@@ -1,0 +1,34 @@
+diff -rup figlet-2.2.5-orig/Makefile figlet-2.2.5/Makefile
+--- figlet-2.2.5-orig/Makefile	2014-10-04 18:45:49.438740414 +0300
++++ figlet-2.2.5/Makefile	2014-10-04 18:46:47.624739372 +0300
+@@ -19,23 +19,23 @@
+ SHELL = /bin/sh
+ 
+ # The C compiler and linker to use
+-CC	= gcc
+-CFLAGS	= -g -O2 -Wall
+-LD	= gcc
+-LDFLAGS =
++CC	?= gcc
++CFLAGS	?= -g -O2 -Wall
++LD	?= gcc
++LDFLAGS ?=
+ 
+ # Feature flags:
+ #   define TLF_FONTS to use TOIlet TLF fonts
+ XCFLAGS	= -DTLF_FONTS
+ 
+ # Where to install files
+-prefix	= /usr/local
++prefix	= /usr
+ 
+ # Where the executables should be put
+-BINDIR	= $(prefix)/bin
++BINDIR	= /bin
+ 
+ # Where the man page should be put
+-MANDIR	= $(prefix)/man
++MANDIR	= $(prefix)/share/man
+ 
+ # Where figlet will search first for fonts (the ".flf" files).
+ DEFAULTFONTDIR = $(prefix)/share/figlet
