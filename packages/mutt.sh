@@ -13,7 +13,6 @@ mutt_build() {
 	            --datarootdir=/usr/share \
 	            --enable-pop \
 	            --enable-imap \
-	            --enable-smtp \
 	            --disable-nls \
 	            --with-ssl
 	$MAKE
