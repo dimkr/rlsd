@@ -16,9 +16,9 @@ cd flavors
 cd ..
 
 # if all packages were built locally, use the build output
-if [ -d "$BASE_DIR/repo" ]
+if [ -d repo ]
 then
-        repo="file://$BASE_DIR/repo"
+        repo="file://$(pwd)/repo"
 else
         # otherwise, use the upstream repository
         repo="http://dimkr.insomnia247.nl/$ARCH"
