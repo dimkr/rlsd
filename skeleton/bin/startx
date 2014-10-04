@@ -13,4 +13,5 @@ done
 cd "$directory"
 
 export XINITRC="/bin/jwm"
+export XSERVERRC="/etc/xserverrc"
 exec xinit $@
