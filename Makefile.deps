@@ -95,7 +95,7 @@ mowitz: musl tinyxlib
 mpg123: musl tinyalsa
 msmtp: musl libressl
 mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
-musl: linux_headers
+musl: linux_headers iana_etc
 mutt: musl ncurses libressl msmtp
 nano: musl ncurses
 nc: musl
