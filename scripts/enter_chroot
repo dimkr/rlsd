@@ -44,7 +44,7 @@ mount --bind /tmp /usr/local/rlsd-root/tmp
 cp -f /etc/resolv.conf /usr/local/rlsd-root/etc/
 
 # log in as boss, inside a separate PID namespace
-chroot /usr/local/rlsd-root contain / autologin boss
+env -i chroot /usr/local/rlsd-root contain / autologin boss
 
 # clean up
 umount -l /usr/local/rlsd-root/tmp
