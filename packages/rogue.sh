@@ -10,7 +10,7 @@ rogue_build() {
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
-	            --docdir=/usr/share/doc
+	            --docdir=/usr/share/doc/rogue
 	$MAKE
 }
 
