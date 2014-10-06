@@ -19,7 +19,6 @@ msmtp_build() {
 msmtp_package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/msmtp/README"
-	install -m 644 FAQ "$1/usr/share/doc/msmtp/FAQ"
 	install -m 644 NEWS "$1/usr/share/doc/msmtp/NEWS"
 	install -m 644 ChangeLog "$1/usr/share/doc/msmtp/ChangeLog"
 	install -m 644 AUTHORS "$1/usr/share/doc/msmtp/AUTHORS"
