@@ -20,6 +20,9 @@ REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev
 export LANG="C"
 export LC_ALL="$LANG"
 
+# initialize PATH, to ensure it includes /usr/local/bin
+export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
+
 if [ "root" != "$(whoami)" ]
 then
 	echo "Must run as root"
