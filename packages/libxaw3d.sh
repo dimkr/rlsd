@@ -7,7 +7,7 @@ libxaw3d_build() {
 	tar -xjvf libXaw3d-$PACKAGE_VERSION.tar.bz2
 	cd libXaw3d-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/libXaw3d-tinyxlib.patch"
+	patch -p 1 < "$BASE_DIR/patches/libxaw3d-tinyxlib.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \
