@@ -7,7 +7,7 @@ shus_build() {
 	unzip shus-$PACKAGE_VERSION.zip
 	cd shus-master
 
-	$MAKE
+	USER="nobody" $MAKE
 }
 
 shus_package() {
