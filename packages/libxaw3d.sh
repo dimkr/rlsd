@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.6.2"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/lib/libXaw3d-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A graphical toolkit"
 
-libXaw3d_build() {
+libxaw3d_build() {
 	[ -d libXaw3d-$PACKAGE_VERSION ] && rm -rf libXaw3d-$PACKAGE_VERSION
 	tar -xjvf libXaw3d-$PACKAGE_VERSION.tar.bz2
 	cd libXaw3d-$PACKAGE_VERSION
@@ -18,7 +18,7 @@ libXaw3d_build() {
 	$MAKE
 }
 
-libXaw3d_package() {
+libxaw3d_package() {
 	$MAKE DESTDIR="$1" install
 	install -m 644 ChangeLog "$1/usr/share/doc/libXaw3d/ChangeLog"
 	install -m 644 COPYING "$1/usr/share/doc/libXaw3d/COPYING"
