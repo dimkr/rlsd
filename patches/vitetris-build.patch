@@ -1,0 +1,16 @@
+diff -rup vitetris-0.57-orig/Makefile vitetris-0.57/Makefile
+--- vitetris-0.57-orig/Makefile	2014-10-07 23:18:23.153985438 +0300
++++ vitetris-0.57/Makefile	2014-10-07 23:20:41.623982958 +0300
+@@ -1,9 +1,9 @@
+ include config.mk
+ 
+-PROGNAME = tetris$(EXE)
++PROGNAME = vitetris$(EXE)
+ 
+ # Uncomment to change the default.  (Only used in Unix-like systems.)
+-#HISCORE_FILENAME = /var/games/vitetris-hiscores
++HISCORE_FILENAME = /var/games/vitetris/hiscores
+ 
+ INSTALL = install -oroot -groot
+ 
+Only in vitetris-0.57: vitetris
