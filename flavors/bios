@@ -17,13 +17,11 @@ PACKAGES="$PACKAGES
           rox
           gtkdialog1
           dillo
-          emelfm
           ytree
           guitar
           gtkcat
-          prboom
+          vitetris
           nethack
-          shutbox
           xpacman
           xsoldier
           xasteroids
@@ -39,13 +37,10 @@ PACKAGES="$PACKAGES
           scrollz
           guiftp
           snownews
-          bwm_ng
           shus
-          tcpdump
           ted
           siag
           calcoo
-          bc
           gcalendar
           calcurse
           gtklepin
@@ -58,10 +53,8 @@ PACKAGES="$PACKAGES
           gdmap
           htop
           ncdu
-          gtkfontsel
           x11vnc
           screen
-          jimtcl
           gtkfind
           grun
           ffmpeg"

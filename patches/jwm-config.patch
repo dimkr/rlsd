@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-09-19 13:44:16.940933705 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-09-19 13:44:57.752932974 +0300
-@@ -2,176 +2,274 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-10-07 23:13:47.297990378 +0300
++++ jwm-2.2.2/example.jwmrc	2014-10-07 23:28:11.331974905 +0300
+@@ -2,176 +2,267 @@
  
  <JWM>
  
@@ -181,7 +181,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	<RootMenu onroot="3">
 +		<Program label="Settings">settings</Program>
 +			<Menu label="File managers" labeled="true">
-+			<Program label="emelFM">emelfm</Program>
 +			<Program label="ROX-Filer">rox</Program>
 +			<Program label="ytree">aterm -title ytree -e ytree</Program>
 +			<Program label="guiTAR">guitar</Program>
@@ -191,9 +190,8 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<Separator/>
 +
 +		<Menu label="Games" labeled="true">
-+			<Program label="PrBoom">prboom</Program>
++			<Program label="vitetris">aterm -title vitetris -e vitetris</Program>
 +			<Program label="NetHack">aterm -title NetHack -e nethack</Program>
-+			<Program label="Shut the Box">shutbox</Program>
 +			<Program label="XPacman">xpacman</Program>
 +			<Program label="xsoldier">xsoldier</Program>
 +			<Program label="xasteroids">xast</Program>
@@ -221,15 +219,12 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +			<Program label="ScrollZ">aterm -title ScrollZ -e scrollz</Program>
 +			<Program label="guiftp">guiftp</Program>
 +			<Program label="Snownews">aterm -title Snownews -e snownews</Program>
-+			<Program label="bwm-ng">aterm -title bwm-ng -e bwm-ng</Program>
-+			<Program label="tcpdump">aterm -title tcpdump -e tcpdump</Program>
 +		</Menu>
 +
 +		<Menu label="Office" labeled="true">
 +			<Program label="Ted">Ted</Program>
 +			<Program label="Siag">siag</Program>
 +			<Program label="Calcoo">calcoo</Program>
-+			<Program label="bc">aterm -title bc -e bc</Program>
 +			<Program label="gcalendar">gcalendar</Program>
 +			<Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
 +			<Program label="gtklepin">gtklepin</Program>
@@ -254,7 +249,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +			<Program label="GDMap">gdmap</Program>
 +			<Program label="htop">aterm -title htop -e htop</Program>
 +			<Program label="ncdu">aterm -title ncdu -e ncdu</Program>
-+			<Program label="gtkfontsel">gtkfontsel</Program>
 +			<Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
 +			<Menu label="Daemons">
 +				<Menu label="Dropbear">
@@ -275,7 +269,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<Menu label="XShells">
 +			<Program label="aterm">aterm</Program>
 +			<Program label="Screen">aterm -title Screen -e screen</Program>
-+			<Program label="Jim">aterm -title Jim -e jimsh</Program>
 +		</Menu>
 +
 +		<Separator/>
