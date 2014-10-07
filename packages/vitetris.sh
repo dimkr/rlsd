@@ -7,11 +7,14 @@ vitetris_build() {
 	tar -xzvf vitetris-$PACKAGE_VERSION.tar.gz
 	cd vitetris-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/vitetris-build.patch"
+
 	./configure --prefix= --datarootdir=/usr/share curses=yes xlib=no
 	$MAKE
 }
 
 vitetris_package() {
 	$MAKE DESTDIR="$1" install
+	install -d -D -m 755 "$1/var/games/vitetris"
 	install -m 644 changes.txt "$1/usr/share/doc/vitetris/changes.txt"
 }
