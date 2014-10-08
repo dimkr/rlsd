@@ -10,6 +10,7 @@ mtpaint_build() {
 
 	patch -p1 < "$BASE_DIR/patches/mtpaint-gtk1.patch"
 	patch -p1 < "$BASE_DIR/patches/mtpaint-giflib.patch"
+	patch -p1 < "$BASE_DIR/patches/mtpaint-actions.patch"
 
 	./configure --host=$HOST \
 	            --prefix=/usr \
