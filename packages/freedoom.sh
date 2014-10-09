@@ -1,6 +1,7 @@
 PACKAGE_VERSION="0.8"
 PACKAGE_SOURCES="https://github.com/freedoom/freedoom/releases/download/v$PACKAGE_VERSION/freedoom-ultimate-v$PACKAGE_VERSION.zip"
 PACKAGE_DESC="Game content for the Doom engine"
+PACKAGE_ARCH="all"
 
 freedoom_build() {
 	[ -d freedoom-ultimate-v$PACKAGE_VERSION ] && rm -rf freedoom-ultimate-v$PACKAGE_VERSION
