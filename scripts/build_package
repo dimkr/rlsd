@@ -23,26 +23,28 @@ UNNEEDED_FILES="usr/share/applications
 . ./config
 
 # prepare the build environment
-export AR
-export LD
-export OBJCOPY
-if [ 0 -eq $STATIC ]
+HOST="$ARCH-musl-linux"
+if [ -e "musl-gcc" ]
 then
-	CFLAGS="$CFLAGS -fPIC"
-	LDFLAGS="$LDFLAGS -fPIC"
+	export REALGCC="$HOST-gcc"
+	export CC="$BASE_DIR/musl-gcc"
+else
+	export CC="$HOST-gcc"
 fi
-export CFLAGS="$CFLAGS -I$SYSROOT/usr/include"
-export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
+export AR="$HOST-ar"
+export LD="$HOST-ld"
+export OBJCOPY="$HOST-objcopy"
+export STRIP="$HOST-strip"
 export PKG_CONFIG="$BASE_DIR/pkg-config"
 export PKG_CONFIG_PATH="$SYSROOT/lib/pkgconfig"
 export PKG_CONFIG_LIBDIR="/lib/pkgconfig"
 export MAKE="make -j $(cat /proc/cpuinfo | grep ^processor | wc -l)"
-export ARCH
 export BASE_DIR
 export SYSROOT
 export PATH="$BASE_DIR:/opt/cross/$ARCH-linux-musl/bin:$PATH"
 export LANG="C"
 export LC_ALL="C"
+CONFIGURE_LIBRARY_FLAGS="--enable-static --disable-shared"
 case "$ARCH" in
 	i?86)
 		export KARCH="x86"
@@ -52,8 +54,20 @@ case "$ARCH" in
 		;;
 esac
 
+case "$ARCH" in
+	i?86)
+		CFLAGS="-march=i486 -mtune=i686 $CFLAGS"
+		;;
+	*)
+		CFLAGS="-mtune=generic $CFLAGS"
+	 	;;
+esac
+export ARCH
+export CFLAGS="$CFLAGS -I$SYSROOT/usr/include"
+export LDFLAGS="$LDFLAGS -L$SYSROOT/lib"
+
 # replace pkg-config with a wrapper which forces "--static"
-if [ 1 -eq $STATIC ] && [ -d "$SYSROOT/lib/pkgconfig" ] && [ ! -f pkg-config ]
+if [ -d "$SYSROOT/lib/pkgconfig" ] && [ ! -f pkg-config ]
 then
 	echo "#!/bin/sh
 output=\"\$($(which pkg-config) --static \"\$@\")\"
@@ -78,24 +92,6 @@ do
 done
 export GLIB_CONFIG="$BASE_DIR/glib-config"
 export GTK_CONFIG="$BASE_DIR/gtk-config"
-
-# if musl is already installed, use its wrapper instead of the real compiler
-if [ -e "musl-gcc" ]
-then
-	export REALGCC="$CC"
-	export CC="$BASE_DIR/musl-gcc"
-else
-	# otherwise, build musl with the compiler specified in the configuration
-	export CC
-fi
-
-# choose the library type flags passed to configure scripts
-if [ 1 -eq $STATIC ]
-then
-	CONFIGURE_LIBRARY_FLAGS="--enable-static --disable-shared"
-else
-	CONFIGURE_LIBRARY_FLAGS="--disable-static --enable-shared"
-fi
 
 # make sure the package name is valid
 if [ ! -e ./packages/$1.sh ]

@@ -1,18 +1,3 @@
 ARCH="$(uname -m)"
 CFLAGS="-Os -ffunction-sections -fdata-sections -fomit-frame-pointer -pipe"
-case "$ARCH" in
-	i?86)
-		CFLAGS="-march=i486 -mtune=i686 $CFLAGS"
-		;;
-	*)
-		CFLAGS="-mtune=generic $CFLAGS"
-		;;
-esac
 LDFLAGS="-Wl,-gc-sections -Wl,--sort-common"
-HOST="$ARCH-musl-linux"
-CC="$HOST-gcc"
-AR="$HOST-ar"
-LD="$HOST-ld"
-OBJCOPY="$HOST-objcopy"
-STRIP="$HOST-strip"
-STATIC=1
