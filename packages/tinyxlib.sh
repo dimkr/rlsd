@@ -18,7 +18,7 @@ tinyxlib_build() {
 }
 
 tinyxlib_package() {
-	$MAKE DESTDIR="$1" BINDIR="/bin" LIBDIR="/lib" STATIC="$STATIC" install
+	$MAKE DESTDIR="$1" BINDIR="/bin" LIBDIR="/lib" STATIC=1 install
 	install -D -m 644 README "$1/usr/share/doc/tinyxlib/README"
 	install -m 644 libXau/README "$1/usr/share/doc/tinyxlib/README.libXau"
 	install -m 644 libXmu/README "$1/usr/share/doc/tinyxlib/README.libXmu"
