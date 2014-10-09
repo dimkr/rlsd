@@ -13,7 +13,7 @@ tinyxlib_build() {
 	      LDFLAGS="$LDFLAGS" \
 	      BINDIR="/bin" \
 	      LIBDIR="/lib" \
-	      STATIC="$STATIC" \
+	      STATIC=1 \
 	      FONT_ENCODINGS_DIRECTORY="/usr/share/fonts/encodings/encodings.dir"
 }
 
