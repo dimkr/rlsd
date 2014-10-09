@@ -1,0 +1,12 @@
+diff -rup musl-1.0.4-orig/Makefile musl-1.0.4/Makefile
+--- musl-1.0.4-orig/Makefile	2014-08-01 08:30:56.000000000 +0300
++++ musl-1.0.4/Makefile	2014-10-09 13:52:56.027923173 +0300
+@@ -92,7 +92,7 @@ crt/crt1.o crt/Scrt1.o: $(wildcard arch/
+ crt/Scrt1.o: CFLAGS += -fPIC
+ 
+ OPTIMIZE_SRCS = $(wildcard $(OPTIMIZE_GLOBS:%=src/%))
+-$(OPTIMIZE_SRCS:%.c=%.o) $(OPTIMIZE_SRCS:%.c=%.lo): CFLAGS += -O3
++$(OPTIMIZE_SRCS:%.c=%.o) $(OPTIMIZE_SRCS:%.c=%.lo):
+ 
+ MEMOPS_SRCS = src/string/memcpy.c src/string/memmove.c src/string/memcmp.c src/string/memset.c
+ $(MEMOPS_SRCS:%.c=%.o) $(MEMOPS_SRCS:%.c=%.lo): CFLAGS += $(CFLAGS_MEMOPS)

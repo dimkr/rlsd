@@ -9,6 +9,7 @@ musl_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/musl-ld_preload.patch"
 	patch -p 1 < "$BASE_DIR/patches/musl-getauxval.patch"
+	patch -p 1 < "$BASE_DIR/patches/musl-build.patch"
 
 	./configure --prefix= \
 	            --includedir=/usr/include \
