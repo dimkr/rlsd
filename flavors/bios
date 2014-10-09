@@ -4,7 +4,6 @@
 
 PACKAGES="$PACKAGES
           dropbear
-          nc
           tinyunmute
           alsa_utils
           htop
