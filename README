@@ -4,12 +4,17 @@
 | |  | \__ \ (_| |
 |_|  |_|___/\__,_|
 
-RLSD is a small, "live" Linux-libre (http://linux-libre.fsfla.org/)
-distribution with retro applications for the i686 and x86_64 architectures. It
-revives old hardware and the way computing used to be in the late 90's.
+RLSD, the Retro Linux-libre Software Distribution, is a small, "live" operating
+system with GNU/Linux-libre (http://linux-libre.fsfla.org/) and retro
+applications for the x86 and x86_64 architectures. It revives old hardware and
+the way computing used to be in the late 90's.
 
 RLSD's development follows the guidelines in the project manifest described in
 MANIFEST.
+
+RLSD consists of free software: software that resepects the user's freedom. RLSD
+is free to study, modify and share. To read more about free software, see
+http://www.gnu.org/philosophy/free-sw.html.
 
 For more information, see the project homepage (http://rlsd.dimakrasner.com/).
 

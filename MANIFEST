@@ -17,6 +17,8 @@ Mission Statement
   - RLSD should be efficient, small and lightweight; efficiency is a top
     priority, even at the cost of increased memory consumption.
   - Using and developing RLSD should be fun.
+  - RLSD should contain only free software, as in defined in the Free Software
+    Definition (http://www.gnu.org/philosophy/free-sw.html).
 
 Looks
 =====
@@ -107,7 +109,8 @@ Security
 ========
 
   - RLSD always runs as root, for maximum freedom and power.
-  - If possible, outward-facing daemons should run as the user "nobody".
+  - If possible, outward-facing daemons should run as "someone" or "nobody". The
+    latter has no shell, so it is preferred for non-interactive applications.
   - RLSD traps all applications executed for the user in a sandbox. The user
     must not be able to see, stop or change the behavior of critical processes,
     such as init or syslogd.
