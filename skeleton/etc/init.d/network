@@ -13,8 +13,8 @@ case "$1" in
 		dhcpcd -L eth0 > /dev/null 2>&1
 
 		# turn on the wireless interface
-		rfkill unblock wlan0 > /dev/null 2>&1
 		ifconfig wlan0 up > /dev/null 2>&1
+		rfkill unblock wifi > /dev/null 2>&1
 
 		if [ -f /etc/wpa_supplicant.conf ]
 		then
@@ -43,8 +43,8 @@ case "$1" in
 		fi
 
 		# bring down the wireless interface
+		rfkill block wifi > /dev/null 2>&1
 		ifconfig wlan0 down > /dev/null 2>&1
-		rfkill block wlan0 > /dev/null 2>&1
 
 		# bring down ethernet
 		dhcpcd -k eth0 > /dev/null 2>&1
