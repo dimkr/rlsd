@@ -1,0 +1,12 @@
+diff -rup file-5.20-orig/src/file.h file-5.20/src/file.h
+--- file-5.20-orig/src/file.h	2014-10-11 13:31:30.011970075 +0300
++++ file-5.20/src/file.h	2014-10-11 13:31:57.726969579 +0300
+@@ -477,7 +477,7 @@ protected int file_os2_apptype(struct ma
+ 
+ typedef struct {
+ 	const char *pat;
+-#if defined(HAVE_NEWLOCALE) && defined(HAVE_USELOCALE) && defined(HAVE_FREELOCALE)
++#if 0
+ #define USE_C_LOCALE
+ 	locale_t old_lc_ctype;
+ 	locale_t c_lc_ctype;

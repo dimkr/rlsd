@@ -1,4 +1,4 @@
-PACKAGE_VERSION="5.18"
+PACKAGE_VERSION="5.20"
 PACKAGE_SOURCES="ftp://ftp.astron.com/pub/file/file-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A file type guessing tool"
 
@@ -7,6 +7,7 @@ file_build() {
 	tar -xzvf file-$PACKAGE_VERSION.tar.gz
 	cd file-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/file-locale.patch"
 	patch -p 1 < "$BASE_DIR/patches/file-data.patch"
 	autoconf
 
