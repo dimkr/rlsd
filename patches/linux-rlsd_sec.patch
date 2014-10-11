@@ -113,7 +113,7 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	return 1;
 +}
 +
-+__setup("rlsd=", rlsd_enabled_setup);
++__setup("secure=", rlsd_enabled_setup);
 +
 +static int rlsd_ptrace_traceme(struct task_struct *parent)
 +{

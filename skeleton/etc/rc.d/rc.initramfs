@@ -31,6 +31,7 @@ fi
 
 # read the kernel command-line
 home=""
+secure=1
 for i in $(cat /proc/cmdline)
 do
 	case "$i" in
@@ -42,6 +43,9 @@ do
 			echo -n " done.
 Waiting for $interval seconds ..."
 			sleep $interval
+			;;
+		secure=0)
+			secure=0
 			;;
 	esac
 done
@@ -131,12 +135,17 @@ fi
 echo " done."
 
 # continue the boot process inside the layered file system, in a container
-cttyhack contain /mnt/union /etc/rc.d/rc.sysinit
-case $? in
-	2)
-		poweroff
-		;;
-	*)
-		reboot
-		;;
-esac
+if [ 0 -eq $secure ]
+then
+	cttyhack chroot /mnt/union /etc/rc.d/rc.sysinit
+else
+	cttyhack contain /mnt/union /etc/rc.d/rc.sysinit
+	case $? in
+		2)
+			poweroff
+			;;
+		*)
+			reboot
+			;;
+	esac
+fi

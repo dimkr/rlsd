@@ -12,6 +12,7 @@ INITRAMFS_FILES="bin/toybox
                  bin/klogd
                  bin/mkdir
                  bin/cp
+                 bin/chroot
                  bin/cttyhack
                  bin/grep
                  bin/losetup
