@@ -7,7 +7,6 @@ elvis_build() {
 	unzip elvis-$PACKAGE_VERSION.zip
 	cd elvis-master
 
-	patch -p 1 < "$BASE_DIR/patches/elvis-split.patch"
 	patch -p 1 < "$BASE_DIR/patches/elvis-build.patch"
 
 	./configure --bindir="/bin" \
