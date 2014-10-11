@@ -16,7 +16,8 @@ xaos_build() {
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
-	            --disable-nls
+	            --disable-nls \
+	            --without-sffe
 	$MAKE
 }
 
