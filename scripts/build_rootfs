@@ -73,3 +73,7 @@ done
 chmod 700 "$2/home/boss"
 chown 1000:1000 "$2/home/someone"
 chmod 755 "$2/home/someone"
+
+# rename packdude's installation database; it is copied to the writeable layer
+# by rc.initramfs
+mv "$2/var/packdude/data.sqlite3" "$2/var/packdude/core.sqlite3"

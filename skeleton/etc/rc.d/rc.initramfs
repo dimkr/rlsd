@@ -122,11 +122,10 @@ mount -B /run/mnt /mnt/union/mnt
 mount -B /var/log /mnt/union/var/log
 mount -B /tmp /mnt/union/tmp
 
-# copy the package installation data database to the writeable layer, to allow
-# the installation of packages
-if [ -f /mnt/ro/var/packdude/data.sqlite3 ] &&  [ ! -f /mnt/rw/var/packdude/data.sqlite3 ]
+# copy the package installation data database to the writeable layer
+if [ ! -f /mnt/rw/var/packdude/data.sqlite3 ]
 then
-	cp /mnt/ro/var/packdude/data.sqlite3 /mnt/rw/var/packdude/data.sqlite3
+	cp /mnt/ro/var/packdude/core.sqlite3 /mnt/rw/var/packdude/data.sqlite3
 fi
 
 echo " done."
