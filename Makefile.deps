@@ -12,6 +12,7 @@ ca_certificates:
 calcoo: musl gtk
 calcurse: musl ncurses
 chimaera: musl
+clzip: musl
 conky: musl tinyxlib font_bh_75dpi font_bh_100dpi
 curl: musl zlib libressl
 dhcpcd: musl
