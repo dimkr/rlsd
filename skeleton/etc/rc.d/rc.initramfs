@@ -137,6 +137,7 @@ echo " done."
 # continue the boot process inside the layered file system, in a container
 if [ 0 -eq $secure ]
 then
+	mount -B /proc /mnt/union/proc
 	cttyhack chroot /mnt/union /etc/rc.d/rc.sysinit
 else
 	cttyhack contain /mnt/union /etc/rc.d/rc.sysinit
