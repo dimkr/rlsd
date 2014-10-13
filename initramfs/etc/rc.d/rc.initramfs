@@ -116,7 +116,7 @@ fi
 echo -n " done.
 Setting up a layered file system ..."
 
-luufs -o allow_other,default_permissions /mnt/ro /mnt/rw /mnt/union
+luufs -o suid,dev,allow_other,default_permissions /mnt/ro /mnt/rw /mnt/union
 mount -B /sys /mnt/union/sys
 mount -R /dev /mnt/union/dev
 mount -B /run /mnt/union/run
