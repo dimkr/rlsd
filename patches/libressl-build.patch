@@ -1,12 +1,12 @@
-diff -rup libressl-2.0.3-orig/configure.ac libressl-2.0.3/configure.ac
---- libressl-2.0.3-orig/configure.ac	2014-07-23 20:36:55.407997897 +0300
-+++ libressl-2.0.3/configure.ac	2014-07-23 20:37:30.949997261 +0300
-@@ -5,7 +5,7 @@ AC_CONFIG_MACRO_DIR([m4])
+diff -rup libressl-2.1.0-orig/configure libressl-2.1.0/configure
+--- libressl-2.1.0-orig/configure	2014-10-13 23:47:14.879735463 +0300
++++ libressl-2.1.0/configure	2014-10-13 23:49:50.100732684 +0300
+@@ -2957,7 +2957,7 @@ fi
+ AM_BACKSLASH='\'
  
- m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
  
--AC_SUBST([USER_CFLAGS], "-O2 $CFLAGS")
-+AC_SUBST([USER_CFLAGS], "$CFLAGS")
- CFLAGS="$CFLAGS -Wall -std=c99 -g"
+-USER_CFLAGS="-O2 $CFLAGS"
++USER_CFLAGS="$CFLAGS"
  
- case $host_os in
+ CFLAGS="$CFLAGS -Wall -std=gnu99 -g"
+ 

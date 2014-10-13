@@ -1,5 +1,5 @@
-PACKAGE_VERSION="2.0.5"
-PACKAGE_SOURCES="http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$PACKAGE_VERSION.tar.gz"
+PACKAGE_VERSION="2.1.0"
+PACKAGE_SOURCES="http://ftp5.usa.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An encryption and privacy library"
 
 libressl_build() {
@@ -9,7 +9,6 @@ libressl_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/libressl-musl.patch"
 	patch -p 1 < "$BASE_DIR/patches/libressl-build.patch"
-	autoconf
 
 	./configure --host=$HOST \
 	            --prefix= \
