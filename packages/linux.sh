@@ -84,7 +84,7 @@ linux_build() {
 		then
 			path="$SYSROOT/$i"
 		else
-			path="$BASE_DIR/skeleton/$i"
+			path="$BASE_DIR/initramfs/$i"
 		fi
 		cp "$path" "$initramfs_root/$i"
 	done
