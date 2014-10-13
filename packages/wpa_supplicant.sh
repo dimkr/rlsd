@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.2"
+PACKAGE_VERSION="2.3"
 PACKAGE_SOURCES="http://hostap.epitest.fi/releases/wpa_supplicant-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A tool for association with wireless networks"
 
