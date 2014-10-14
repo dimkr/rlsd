@@ -77,8 +77,8 @@ diff -rupN linux-3.14.19-orig/security/rlsd/Makefile linux-3.14.19/security/rlsd
 +rlsd-y := rlsd_lsm.o
 diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rlsd/rlsd_lsm.c
 --- linux-3.14.19-orig/security/rlsd/rlsd_lsm.c	1970-01-01 02:00:00.000000000 +0200
-+++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-10-13 23:28:12.946755913 +0300
-@@ -0,0 +1,245 @@
++++ linux-3.14.19/security/rlsd/rlsd_lsm.c	2014-10-14 13:37:56.708900722 +0300
+@@ -0,0 +1,288 @@
 +/*
 + * RLSD Linux Security Module
 + *
@@ -95,6 +95,9 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +#include <linux/mman.h>
 +#include <linux/binfmts.h>
 +#include <linux/cred.h>
++#include <linux/dcache.h>
++#include <linux/stat.h>
++#include <linux/path.h>
 +#ifdef CONFIG_SECURITY_NETWORK
 +#	include <linux/socket.h>
 +#endif
@@ -212,7 +215,7 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	char name[FIELD_SIZEOF(struct task_struct, comm)];
 +	struct task_struct *tsk;
 +
-+	if ((!(MAP_ANONYMOUS & prot)) || (!(PROT_EXEC & prot)))
++	if ((0 == (MAP_ANONYMOUS & prot)) || (0 == (PROT_EXEC & prot)))
 +		return 0;
 +
 +	tsk = current;
@@ -229,7 +232,7 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	char name[FIELD_SIZEOF(struct task_struct, comm)];
 +	struct task_struct *tsk;
 +
-+	if (!(PROT_EXEC & prot))
++	if (0 == (PROT_EXEC & prot))
 +		return 0;
 +
 +	tsk = current;
@@ -265,6 +268,43 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	return -EPERM;
 +}
 +
++static inline int rlsd_inode_create(struct inode *dir,
++                                    struct dentry *dentry,
++                                    umode_t mode)
++{
++	char name[FIELD_SIZEOF(struct task_struct, comm)];
++	struct task_struct *tsk;
++
++	if ((uid_eq(current_euid(), GLOBAL_ROOT_UID)) ||
++	    (S_ISDIR(mode)) ||
++	    (0 == (mode & S_IXUGO)))
++		return 0;
++
++	tsk = current;
++	printk(KERN_ALERT "rlsd: denied create from %lu (%s)\n",
++	       (unsigned long) tsk->pid,
++	       get_task_comm(name, tsk));
++	return -EPERM;
++}
++
++static inline int rlsd_path_chmod(struct path *path, umode_t mode)
++{
++	char name[FIELD_SIZEOF(struct task_struct, comm)];
++	struct task_struct *tsk;
++
++	if ((uid_eq(current_euid(), GLOBAL_ROOT_UID)) ||
++	    (NULL == path->dentry->d_inode) ||
++	    (S_ISDIR(path->dentry->d_inode->i_mode)) ||
++	    (0 == (mode & S_IXUGO)))
++		return 0;
++
++	tsk = current;
++	printk(KERN_ALERT "rlsd: denied chmod from %lu (%s)\n",
++	       (unsigned long) tsk->pid,
++	       get_task_comm(name, tsk));
++	return -EPERM;
++}
++
 +#ifdef CONFIG_SECURITY_NETWORK
 +static int rlsd_socket_listen(struct socket *sock, int backlog)
 +{
@@ -294,6 +334,9 @@ diff -rupN linux-3.14.19-orig/security/rlsd/rlsd_lsm.c linux-3.14.19/security/rl
 +	.file_mprotect		= rlsd_file_mprotect,
 +
 +	.bprm_set_creds		= rlsd_bprm_set_creds,
++
++	.path_chmod		= rlsd_path_chmod,
++	.inode_create		= rlsd_inode_create,
 +
 +#ifndef CONFIG_SECURITY_NETWORK
 +	.task_prctl		= rlsd_task_prctl
