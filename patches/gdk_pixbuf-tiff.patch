@@ -1,0 +1,77 @@
+diff -rup gdk-pixbuf-master-orig/gdk-pixbuf/gdk-pixbuf-io.c gdk-pixbuf-master/gdk-pixbuf/gdk-pixbuf-io.c
+--- gdk-pixbuf-master-orig/gdk-pixbuf/gdk-pixbuf-io.c	2014-10-15 13:09:03.579989298 +0300
++++ gdk-pixbuf-master/gdk-pixbuf/gdk-pixbuf-io.c	2014-10-15 13:18:24.231979258 +0300
+@@ -60,6 +60,7 @@ pixbuf_check_jpeg (guchar *buffer, int s
+ 	return TRUE;
+ }
+ 
++#if 0
+ static gboolean
+ pixbuf_check_tiff (guchar *buffer, int size)
+ {
+@@ -80,6 +81,7 @@ pixbuf_check_tiff (guchar *buffer, int s
+ 
+ 	return FALSE;
+ }
++#endif
+ 
+ static gboolean
+ pixbuf_check_gif (guchar *buffer, int size)
+@@ -195,7 +197,6 @@ pixbuf_check_xbm (guchar *buffer, int si
+ static GdkPixbufModule file_formats [] = {
+ 	{ "png",  pixbuf_check_png, NULL,  NULL, NULL, NULL, NULL, NULL },
+ 	{ "jpeg", pixbuf_check_jpeg, NULL, NULL, NULL, NULL, NULL, NULL },
+-	{ "tiff", pixbuf_check_tiff, NULL, NULL, NULL, NULL, NULL, NULL },
+ 	{ "gif",  pixbuf_check_gif, NULL,  NULL, NULL, NULL, NULL, NULL },
+ #define XPM_FILE_FORMAT_INDEX 4
+ 	{ "xpm",  pixbuf_check_xpm, NULL,  NULL, NULL, NULL, NULL, NULL },
+@@ -323,10 +324,12 @@ m_load (ras);
+ m_begin_load (ras);
+ m_load_increment (ras);
+ m_stop_load (ras);
++#if 0
+ m_load (tiff);
+ m_begin_load (tiff);
+ m_load_increment (tiff);
+ m_stop_load (tiff);
++#endif
+ m_load (xpm);
+ m_load_xpm_data (xpm);
+ m_load (xbm);
+@@ -393,6 +396,7 @@ gdk_pixbuf_load_module (GdkPixbufModule
+ 		image_module->stop_load      = mname (ras,stop_load);
+ 		return;
+ 	}
++#if 0
+ 	if (strcmp (image_module->module_name, "tiff") == 0){
+ 		image_module->load           = mname (tiff,load);
+ 		image_module->begin_load     = mname (tiff,begin_load);
+@@ -400,6 +404,7 @@ gdk_pixbuf_load_module (GdkPixbufModule
+ 		image_module->stop_load      = mname (tiff,stop_load);
+ 		return;
+ 	}
++#endif
+ 	if (strcmp (image_module->module_name, "xpm") == 0){
+ 		image_module->load           = mname (xpm,load);
+ 		image_module->load_xpm_data  = mname (xpm,load_xpm_data);
+diff -rup gdk-pixbuf-master-orig/gdk-pixbuf/Makefile.in gdk-pixbuf-master/gdk-pixbuf/Makefile.in
+--- gdk-pixbuf-master-orig/gdk-pixbuf/Makefile.in	2014-10-15 13:09:03.579989298 +0300
++++ gdk-pixbuf-master/gdk-pixbuf/Makefile.in	2014-10-15 13:19:22.835978208 +0300
+@@ -348,7 +348,7 @@ libgdk_pixbuf_la_DEPENDENCIES =  pixops/
+ @BUILD_DYNAMIC_MODULES_FALSE@gdk-pixbuf-scale.lo gdk-pixbuf-util.lo \
+ @BUILD_DYNAMIC_MODULES_FALSE@gdk-pixbuf-parse-color.lo io-png.lo \
+ @BUILD_DYNAMIC_MODULES_FALSE@io-jpeg.lo io-xpm.lo io-gif.lo io-ico.lo \
+-@BUILD_DYNAMIC_MODULES_FALSE@io-ras.lo io-tiff.lo io-pnm.lo io-bmp.lo \
++@BUILD_DYNAMIC_MODULES_FALSE@io-ras.lo io-pnm.lo io-bmp.lo \
+ @BUILD_DYNAMIC_MODULES_FALSE@io-xbm.lo
+ @BUILD_DYNAMIC_MODULES_TRUE@libgdk_pixbuf_la_OBJECTS =  gdk-pixbuf.lo \
+ @BUILD_DYNAMIC_MODULES_TRUE@gdk-pixbuf-animation.lo gdk-pixbuf-data.lo \
+@@ -367,7 +367,7 @@ libgdk_pixbuf.la
+ @BUILD_DYNAMIC_MODULES_FALSE@gdk-pixbuf-xlibrgb.lo \
+ @BUILD_DYNAMIC_MODULES_FALSE@gdk-pixbuf-parse-color.lo io-png.lo \
+ @BUILD_DYNAMIC_MODULES_FALSE@io-jpeg.lo io-xpm.lo io-gif.lo io-ico.lo \
+-@BUILD_DYNAMIC_MODULES_FALSE@io-ras.lo io-tiff.lo io-pnm.lo io-bmp.lo \
++@BUILD_DYNAMIC_MODULES_FALSE@io-ras.lo io-pnm.lo io-bmp.lo \
+ @BUILD_DYNAMIC_MODULES_FALSE@io-xbm.lo
+ @BUILD_DYNAMIC_MODULES_TRUE@libgdk_pixbuf_xlib_la_OBJECTS =  \
+ @BUILD_DYNAMIC_MODULES_TRUE@gdk-pixbuf.lo gdk-pixbuf-xlib.lo \

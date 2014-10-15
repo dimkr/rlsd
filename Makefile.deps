@@ -40,7 +40,7 @@ fuse: musl
 gbase: musl gtk
 gcalendar: musl gtk
 gcolor: musl gtk
-gdk_pixbuf: musl libpng libjpeg_turbo tiff
+gdk_pixbuf: musl libpng libjpeg_turbo
 gdmap: musl gtk
 ghostscript: musl zlib libpng libjpeg_turbo tiff tinyxlib
 giflib: musl
@@ -93,7 +93,7 @@ moon_buggy: musl ncurses
 mowitz: musl tinyxlib
 mpg123: musl tinyalsa
 msmtp: musl libressl
-mtpaint: musl gtk libpng libjpeg_turbo tiff giflib gifsicle
+mtpaint: musl gtk libpng libjpeg_turbo giflib gifsicle
 musl: linux_headers iana_etc
 mutt: musl ncurses libressl msmtp
 nano: musl ncurses

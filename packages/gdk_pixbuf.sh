@@ -7,6 +7,7 @@ gdk_pixbuf_build() {
 	unzip gdk-pixbuf-$PACKAGE_VERSION.zip
 	cd gdk-pixbuf-master
 
+	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-tiff.patch"
 	sed s~'SUBDIRS = gdk-pixbuf demo doc'~'SUBDIRS = gdk-pixbuf doc'~ \
 	    -i Makefile.in
 	./configure --host=$HOST \

@@ -22,7 +22,6 @@ mtpaint_build() {
 	            cflags \
 	            GIF \
 	            jpeg \
-	            tiff \
 	            man
 	$MAKE
 }
