@@ -13,7 +13,7 @@ calcoo: musl gtk
 calcurse: musl ncurses
 chimaera: musl
 clzip: musl
-conky: musl tinyxlib font_adobe_75dpi font_adobe_100dpi
+conky: musl tinyxlib
 curl: musl zlib libressl
 dhcpcd: musl
 diffutils: musl

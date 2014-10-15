@@ -24,7 +24,7 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
 -gap_x 5
 -gap_y 60
 +draw_shades yes
-+font -adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1
++font -misc-fixed-medium-r-normal-*-14-*-*-*-c-*-iso8859-1
 +gap_x 12
 +gap_y 12
  minimum_size 5 5

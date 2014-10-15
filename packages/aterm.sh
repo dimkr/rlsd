@@ -8,6 +8,7 @@ aterm_build() {
 	cd aterm-$PACKAGE_VERSION
 
 	patch -p1 < "$BASE_DIR/patches/aterm-openpty.patch"
+	patch -p1 < "$BASE_DIR/patches/aterm-config.patch"
 	./configure --host=$HOST \
 	            --prefix=/usr \
 	            --bindir=/bin \

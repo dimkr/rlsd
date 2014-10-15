@@ -1,6 +1,6 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 --- jwm-2.2.2-orig/example.jwmrc	2014-10-14 14:27:52.968847065 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-10-15 13:03:26.608995332 +0300
++++ jwm-2.2.2/example.jwmrc	2014-10-15 21:48:51.400905205 +0300
 @@ -2,176 +2,167 @@
  
  <JWM>
@@ -219,7 +219,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +	<!-- Visual Styles -->
 +	<WindowStyle>
-+		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-bold-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Width>3</Width>
 +		<Height>20</Height>
 +		<Active>
@@ -234,7 +234,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		</Inactive>
 +	</WindowStyle>
 +	<TrayStyle>
-+		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-bold-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Background>#333333:#555555</Background>
 +		<Foreground>white</Foreground>
 +	</TrayStyle>
@@ -258,14 +258,14 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<ActiveBackground>#666666</ActiveBackground>
 +	</PagerStyle>
 +	<MenuStyle>
-+		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-bold-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Foreground>white</Foreground>
 +		<Background>#333333</Background>
 +		<ActiveForeground>black</ActiveForeground>
 +		<ActiveBackground>#666666:#bbbbbb</ActiveBackground>
 +	</MenuStyle>
 +	<PopupStyle>
-+		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-bold-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Outline>black</Outline>
 +		<Foreground>black</Foreground>
 +		<Background>#999999</Background>
@@ -284,7 +284,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		contained within a Desktop tag to give a specific background
 +		for that desktop.
 +		-->
-+		<Background type="solid">#222222</Background>
++		<Background type="gradient">#000000:#737392</Background>
 +	</Desktops>
 +
 +	<!-- Double click speed (in milliseconds) -->
