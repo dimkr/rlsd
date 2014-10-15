@@ -1,4 +1,4 @@
-# minimal: a command-line, bootable flavor without applications
+# console: a command-line, bootable flavor
 
 . ./rootfs
 
@@ -17,4 +17,4 @@ PACKAGES="$PACKAGES
           libarchive
           elvis"
 
-SUFFIX="-minimal"
+SUFFIX="-console"

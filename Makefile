@@ -15,8 +15,8 @@ packages: $(PACKAGES)
 
 images:
 	./scripts/create_tar rootfs
-	./scripts/create_iso minimal
-	./scripts/create_iso bios
-	./scripts/create_iso regular
+	./scripts/create_iso console
+	./scripts/create_iso graphical
+	./scripts/create_iso uefi
 
 include ./Makefile.deps

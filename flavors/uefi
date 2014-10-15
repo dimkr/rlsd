@@ -1,0 +1,7 @@
+# uefi: a graphical flavor with UEFI support
+
+. ./graphical
+
+PACKAGES="$PACKAGES elilo"
+
+SUFFIX="-uefi"

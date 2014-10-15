@@ -1,6 +1,6 @@
-# bios: a graphical flavor with applications, without UEFI support
+# graphical: a graphical flavor without UEFI support
 
-. ./minimal
+. ./console
 
 PACKAGES="$PACKAGES
           tinyunmute
@@ -13,9 +13,9 @@ PACKAGES="$PACKAGES
           conky
           aterm
           gtkedit
-          emelfm 
+          emelfm
           scrollz
           dillo
           grun"
 
-SUFFIX="-bios"
+SUFFIX=""
