@@ -9,7 +9,6 @@ rox_build() {
 	unzip rox-$PACKAGE_VERSION.zip
 	cd rox-master
 
-	patch -p 1 < "$BASE_DIR/patches/rox-pinboard.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-platform.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-locale.patch"
 	patch -p 1 < "$BASE_DIR/patches/rox-choices.patch"

@@ -13,7 +13,7 @@ calcoo: musl gtk
 calcurse: musl ncurses
 chimaera: musl
 clzip: musl
-conky: musl tinyxlib font_bh_75dpi font_bh_100dpi
+conky: musl tinyxlib font_adobe_75dpi font_adobe_100dpi
 curl: musl zlib libressl
 dhcpcd: musl
 diffutils: musl
@@ -32,8 +32,6 @@ file: musl zlib
 findutils: musl
 font_adobe_100dpi: font_util
 font_adobe_75dpi: font_util
-font_bh_100dpi: font_util
-font_bh_75dpi: font_util
 font_bh_lucidatypewriter_100dpi: font_util
 font_bh_lucidatypewriter_75dpi: font_util
 font_util: musl
@@ -68,7 +66,7 @@ htop: musl ncurses
 isolinux: 
 iw: musl libnl_tiny
 jimtcl: musl
-jwm: musl tinyxlib libpng font_bh_75dpi font_bh_100dpi font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
+jwm: musl tinyxlib libpng font_adobe_75dpi font_adobe_100dpi
 lazy_utils: musl
 lbzip2: musl
 less: musl ncurses

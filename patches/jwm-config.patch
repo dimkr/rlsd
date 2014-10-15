@@ -1,7 +1,7 @@
 diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
---- jwm-2.2.2-orig/example.jwmrc	2014-10-07 23:13:47.297990378 +0300
-+++ jwm-2.2.2/example.jwmrc	2014-10-07 23:28:11.331974905 +0300
-@@ -2,176 +2,267 @@
+--- jwm-2.2.2-orig/example.jwmrc	2014-10-14 14:27:52.968847065 +0300
++++ jwm-2.2.2/example.jwmrc	2014-10-15 13:03:26.608995332 +0300
+@@ -2,176 +2,167 @@
  
  <JWM>
  
@@ -179,124 +179,25 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 -
 +	<!-- The root menu. -->
 +	<RootMenu onroot="3">
-+		<Program label="Settings">settings</Program>
-+			<Menu label="File managers" labeled="true">
-+			<Program label="ROX-Filer">rox</Program>
-+			<Program label="ytree">aterm -title ytree -e ytree</Program>
-+			<Program label="guiTAR">guitar</Program>
-+			<Program label="gtkcat">gtkcat</Program>
-+		</Menu>
-+
++		<Desktops/>
 +		<Separator/>
-+
-+		<Menu label="Games" labeled="true">
-+			<Program label="vitetris">aterm -title vitetris -e vitetris</Program>
-+			<Program label="NetHack">aterm -title NetHack -e nethack</Program>
-+			<Program label="XPacman">xpacman</Program>
-+			<Program label="xsoldier">xsoldier</Program>
-+			<Program label="xasteroids">xast</Program>
-+		</Menu>
-+
-+		<Menu label="Multimedia" labeled="true">
-+			<Program label="xhippo">xhippo</Program>
-+			<Program label="AlsaMixer">aterm -title AlsaMixer -e alsamixer</Program>
-+			<Program label="mtPaint">mtpaint</Program>
-+			<Program label="GTK See">gtksee</Program>
-+			<Program label="mhWaveEdit">mhwaveedit</Program>
-+			<Program label="gcolor">gcolor</Program>
-+			<Program label="XaoS">xaos</Program>
-+			<Program label="Webcam Viewer">ffplay -f v4l2 /dev/video0</Program>
-+			<Program label="Screenshot Taker">mtpaint -s</Program>
-+		</Menu>
-+
-+		<Menu label="Net" labeled="true">
-+			<Menu label="Browsers">
-+				<Program label="Dillo">dillo</Program>
-+				<Program label="Lynx">aterm -title Lynx -e lynx</Program>
-+			</Menu>
-+			<Program label="Sylpheed">sylpheed</Program>
-+			<Program label="X-Chat">xchat</Program>
-+			<Program label="ScrollZ">aterm -title ScrollZ -e scrollz</Program>
-+			<Program label="guiftp">guiftp</Program>
-+			<Program label="Snownews">aterm -title Snownews -e snownews</Program>
-+		</Menu>
-+
-+		<Menu label="Office" labeled="true">
-+			<Program label="Ted">Ted</Program>
-+			<Program label="Siag">siag</Program>
-+			<Program label="Calcoo">calcoo</Program>
-+			<Program label="gcalendar">gcalendar</Program>
-+			<Program label="Calcurse">aterm -title Calcurse -e calcurse</Program>
-+			<Program label="gtklepin">gtklepin</Program>
-+			<Program label="SQLite">aterm -title SQLite -e sqlite3</Program>
-+			<Program label="gbase">gbase</Program>
-+			<Program label="gv">gv</Program>
-+		</Menu>
-+
-+		<Separator/>
-+
-+		<Menu label="Editors">
-+			<Program label="Beaver">beaver</Program>
-+			<Program label="gtkedit">gtkedit</Program>
-+			<Program label="Elvis">aterm -title Elvis -e elvis</Program>
-+			<Program label="nano">aterm -title nano -e nano</Program>
-+		</Menu>
-+
-+		<Menu label="System">
-+			<Program label="Settings">settings</Program>
-+			<Program label="System Log">aterm -title "System Log" -e sh -c "syslog | less"</Program>
-+			<Program label="gtkdiskfree">gtkdiskfree</Program>
-+			<Program label="GDMap">gdmap</Program>
-+			<Program label="htop">aterm -title htop -e htop</Program>
-+			<Program label="ncdu">aterm -title ncdu -e ncdu</Program>
-+			<Program label="x11vnc">aterm -title x11vnc -e x11vnc</Program>
-+			<Menu label="Daemons">
-+				<Menu label="Dropbear">
-+					<Program label="Start">sh /etc/init.d/dropbear start</Program>
-+					<Program label="Stop">sh /etc/init.d/dropbear stop</Program>
-+				</Menu>
-+				<Menu label="tftpd">
-+					<Program label="Start">sh /etc/init.d/tftpd start</Program>
-+					<Program label="Stop">sh /etc/init.d/tftpd stop</Program>
-+				</Menu>
-+				<Menu label="shus">
-+					<Program label="Start">sh /etc/init.d/shus start</Program>
-+					<Program label="Stop">sh /etc/init.d/shus stop</Program>
-+				</Menu>
-+			</Menu>
-+		</Menu>
-+
-+		<Menu label="XShells">
-+			<Program label="aterm">aterm</Program>
-+			<Program label="Screen">aterm -title Screen -e screen</Program>
-+		</Menu>
-+
-+		<Separator/>
-+
-+		<Program label="Help">help</Program>
-+		<Program label="Find">gtkfind</Program>
-+		<Program label="Run Command">grun</Program>
-+		<Program label="Run Restricted">odus grun</Program>
-+
-+		<Separator/>
-+
-+		<Menu label="Exit">
-+			<Restart label="Restart"/>
-+			<Exit label="Exit to prompt"/>
-+			<Program label="Suspend">suspend</Program>
-+			<Program label="Reboot">reboot</Program>
-+			<Program label="Power off">poweroff</Program>
-+		</Menu>
++		<Restart label="Restart"/>
++		<Exit label="Exit to prompt"/>
++		<Program label="Suspend">suspend</Program>
++		<Program label="Reboot">reboot</Program>
++		<Program label="Power off">poweroff</Program>
 +	</RootMenu>
 +
 +	<!-- Tray at the bottom. -->
-+	<Tray y="-1" height="24" border="0">
-+		<TrayButton label="RLSD">root:3</TrayButton>
-+		<Pager/>
-+		<TaskList/>
-+		<Dock/>
-+		<TrayButton icon="audio.xpm" border="false">exec:aterm -title AlsaMixer -e alsamixer</TrayButton>
-+		<Clock format="%H:%M">gcalendar</Clock>
++	<Tray y="-1" height="48" border="1" halign="center" autohide="true">
++		<TrayButton icon="rlsd.xpm" border="false">root:3</TrayButton>
++		<TrayButton icon="text.xpm" popup="Text editor" border="false">exec:gtkedit</TrayButton>
++		<TrayButton icon="settings.xpm" popup="Settings" border="false">exec:settings</TrayButton>
++		<TrayButton icon="terminal.xpm" popup="Terminal" border="false">exec:aterm</TrayButton>
++		<TrayButton icon="home.xpm" popup="File manager" border="false">exec:emelfm</TrayButton>
++		<TrayButton icon="executable.xpm" popup="Launcher" border="false">exec:grun</TrayButton>
++		<TrayButton icon="chat.xpm" popup="Chat" border="false">exec:aterm -title ScrollZ -e scrollz -c \#rlsdlinux irc.freenode.net</TrayButton>
++		<TrayButton icon="help.png" popup="Help" border="false">exec:dillo /usr/share/doc/rlsd/getting_started.html</TrayButton>
 +	</Tray>
 +
 +	<!-- Application-specific options -->
@@ -318,7 +219,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +
 +	<!-- Visual Styles -->
 +	<WindowStyle>
-+		<Font>-b&amp;h-lucidatypewriter-bold-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Width>3</Width>
 +		<Height>20</Height>
 +		<Active>
@@ -333,7 +234,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		</Inactive>
 +	</WindowStyle>
 +	<TrayStyle>
-+		<Font>-b&amp;h-lucidatypewriter-bold-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Background>#333333:#555555</Background>
 +		<Foreground>white</Foreground>
 +	</TrayStyle>
@@ -357,14 +258,14 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<ActiveBackground>#666666</ActiveBackground>
 +	</PagerStyle>
 +	<MenuStyle>
-+		<Font>-b&amp;h-lucidatypewriter-bold-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Foreground>white</Foreground>
 +		<Background>#333333</Background>
 +		<ActiveForeground>black</ActiveForeground>
 +		<ActiveBackground>#666666:#bbbbbb</ActiveBackground>
 +	</MenuStyle>
 +	<PopupStyle>
-+		<Font>-b&amp;h-lucidatypewriter-medium-r-normal-*-12-*-*-*-m-*-iso8859-1</Font>
++		<Font>-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1</Font>
 +		<Outline>black</Outline>
 +		<Foreground>black</Foreground>
 +		<Background>#999999</Background>
@@ -407,7 +308,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	<!-- Startup commands -->
 +	<StartupCommand>xmodmap /etc/Xmodmap.conf</StartupCommand>
 +	<StartupCommand>conky</StartupCommand>
-+	<StartupCommand>rox -p default</StartupCommand>
 +
 +	<!-- Key bindings -->
 +	<Key key="Up">up</Key>
@@ -438,6 +338,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	<Key mask="4" key="d">showdesktop</Key>
 +	<Key mask="4" key="r">exec:grun</Key>
 +	<Key mask="4" key="t">exec:aterm</Key>
-+	<Key mask="4" key="h">exec:rox</Key>
++	<Key mask="4" key="h">exec:exec:emelfm</Key>
 +	<Key mask="A" key="Return">exec:aterm</Key>
  </JWM>

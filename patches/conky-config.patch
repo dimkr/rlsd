@@ -1,6 +1,6 @@
 diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
---- conky-1.9.0-orig/data/conky.conf	2014-09-19 13:14:45.727965424 +0300
-+++ conky-1.9.0/data/conky.conf	2014-09-19 13:15:16.494964873 +0300
+--- conky-1.9.0-orig/data/conky.conf	2014-10-14 14:44:41.774828999 +0300
++++ conky-1.9.0/data/conky.conf	2014-10-14 14:45:28.878828156 +0300
 @@ -23,55 +23,55 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #
@@ -24,7 +24,7 @@ diff -rup conky-1.9.0-orig/data/conky.conf conky-1.9.0/data/conky.conf
 -gap_x 5
 -gap_y 60
 +draw_shades yes
-+font -b&h-lucidatypewriter-medium-r-normal-*-14-*-*-*-m-*-iso8859-1
++font -adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1
 +gap_x 12
 +gap_y 12
  minimum_size 5 5

@@ -3,59 +3,19 @@
 . ./minimal
 
 PACKAGES="$PACKAGES
-          dropbear
           tinyunmute
-          alsa_utils
-          htop
-          nano
           tinyxserver
+          gtkdialog1
+          dropbear
+          shus
           jwm
-          aterm
           xmodmap
           conky
-          rox
-          gtkdialog1
-          dillo
-          ytree
-          guitar
-          gtkcat
-          vitetris
-          nethack
-          xpacman
-          xsoldier
-          xasteroids
-          xhippo
-          mtpaint
-          gtksee
-          mhwaveedit
-          gcolor
-          xaos
-          lynx
-          sylpheed
-          xchat
-          scrollz
-          guiftp
-          snownews
-          shus
-          ted
-          siag
-          calcoo
-          gcalendar
-          calcurse
-          gtklepin
-          gbase
-          gv
-          beaver
+          aterm
           gtkedit
-          nano
-          gtkdiskfree
-          gdmap
-          htop
-          ncdu
-          x11vnc
-          screen
-          gtkfind
-          grun
-          ffmpeg"
+          emelfm 
+          scrollz
+          dillo
+          grun"
 
 SUFFIX="-bios"

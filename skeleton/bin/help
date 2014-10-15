@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# help: a help page
-
-exec dillo /usr/share/doc/rlsd/getting_started.html
