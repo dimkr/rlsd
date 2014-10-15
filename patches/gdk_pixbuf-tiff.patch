@@ -1,6 +1,6 @@
 diff -rup gdk-pixbuf-master-orig/gdk-pixbuf/gdk-pixbuf-io.c gdk-pixbuf-master/gdk-pixbuf/gdk-pixbuf-io.c
 --- gdk-pixbuf-master-orig/gdk-pixbuf/gdk-pixbuf-io.c	2014-10-15 13:09:03.579989298 +0300
-+++ gdk-pixbuf-master/gdk-pixbuf/gdk-pixbuf-io.c	2014-10-15 13:18:24.231979258 +0300
++++ gdk-pixbuf-master/gdk-pixbuf/gdk-pixbuf-io.c	2014-10-15 15:07:42.737943343 +0300
 @@ -60,6 +60,7 @@ pixbuf_check_jpeg (guchar *buffer, int s
  	return TRUE;
  }
@@ -17,14 +17,17 @@ diff -rup gdk-pixbuf-master-orig/gdk-pixbuf/gdk-pixbuf-io.c gdk-pixbuf-master/gd
  
  static gboolean
  pixbuf_check_gif (guchar *buffer, int size)
-@@ -195,7 +197,6 @@ pixbuf_check_xbm (guchar *buffer, int si
+@@ -195,9 +197,8 @@ pixbuf_check_xbm (guchar *buffer, int si
  static GdkPixbufModule file_formats [] = {
  	{ "png",  pixbuf_check_png, NULL,  NULL, NULL, NULL, NULL, NULL },
  	{ "jpeg", pixbuf_check_jpeg, NULL, NULL, NULL, NULL, NULL, NULL },
 -	{ "tiff", pixbuf_check_tiff, NULL, NULL, NULL, NULL, NULL, NULL },
  	{ "gif",  pixbuf_check_gif, NULL,  NULL, NULL, NULL, NULL, NULL },
- #define XPM_FILE_FORMAT_INDEX 4
+-#define XPM_FILE_FORMAT_INDEX 4
++#define XPM_FILE_FORMAT_INDEX 3
  	{ "xpm",  pixbuf_check_xpm, NULL,  NULL, NULL, NULL, NULL, NULL },
+ 	{ "pnm",  pixbuf_check_pnm, NULL,  NULL, NULL, NULL, NULL, NULL },
+ 	{ "ras",  pixbuf_check_sunras, NULL,  NULL, NULL, NULL, NULL, NULL },
 @@ -323,10 +324,12 @@ m_load (ras);
  m_begin_load (ras);
  m_load_increment (ras);
