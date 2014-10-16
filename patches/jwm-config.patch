@@ -338,6 +338,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	<Key mask="4" key="d">showdesktop</Key>
 +	<Key mask="4" key="r">exec:grun</Key>
 +	<Key mask="4" key="t">exec:aterm</Key>
-+	<Key mask="4" key="h">exec:exec:rox</Key>
++	<Key mask="4" key="h">exec:rox</Key>
 +	<Key mask="A" key="Return">exec:aterm</Key>
  </JWM>
