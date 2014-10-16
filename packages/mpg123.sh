@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.20.1"
+PACKAGE_VERSION="1.21.0"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/mpg123/mpg123/$PACKAGE_VERSION/mpg123-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A MP3 player"
 
@@ -27,6 +27,8 @@ mpg123_package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mpg123/README"
 	install -D -m 644 ChangeLog "$1/usr/share/doc/mpg123/ChangeLog"
+	install -D -m 644 NEWS "$1/usr/share/doc/mpg123/NEWS"
+	install -D -m 644 NEWS.libmpg123 "$1/usr/share/doc/mpg123/NEWS.libmpg123"
 	install -D -m 644 AUTHORS "$1/usr/share/doc/mpg123/AUTHORS"
 	install -D -m 644 COPYING "$1/usr/share/doc/mpg123/COPYING"
 }
