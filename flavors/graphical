@@ -13,7 +13,7 @@ PACKAGES="$PACKAGES
           conky
           aterm
           gtkedit
-          emelfm
+          rox
           scrollz
           dillo
           grun"
