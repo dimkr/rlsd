@@ -1,0 +1,12 @@
+diff -rup libxml2-2.9.2-orig/Makefile.in libxml2-2.9.2/Makefile.in
+--- libxml2-2.9.2-orig/Makefile.in	2014-10-16 20:12:00.052967335 +0300
++++ libxml2-2.9.2/Makefile.in	2014-10-16 20:16:52.924962090 +0300
+@@ -1780,7 +1780,7 @@ info: info-recursive
+ 
+ info-am:
+ 
+-install-data-am: install-cmakeDATA install-data-local \
++install-data-am: install-data-local \
+ 	install-m4dataDATA install-man install-pkgconfigDATA
+ 
+ install-dvi: install-dvi-recursive

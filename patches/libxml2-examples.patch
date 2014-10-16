@@ -1,0 +1,15 @@
+diff -rup libxml2-2.9.2-orig/Makefile.in libxml2-2.9.2/Makefile.in
+--- libxml2-2.9.2-orig/Makefile.in	2014-10-16 20:12:00.052967335 +0300
++++ libxml2-2.9.2/Makefile.in	2014-10-16 20:13:35.311965629 +0300
+@@ -2874,11 +2874,6 @@ xml2Conf.sh: xml2Conf.sh.in Makefile
+ install-data-local: 
+ 	$(MKDIR_P) $(DESTDIR)$(BASE_DIR)/$(DOC_MODULE)
+ 	-$(INSTALL) -m 0644 $(srcdir)/Copyright $(DESTDIR)$(BASE_DIR)/$(DOC_MODULE)
+-	$(MKDIR_P) $(DESTDIR)$(EXAMPLES_DIR)
+-	-$(INSTALL) -m 0644 $(srcdir)/xmllint.c $(DESTDIR)$(EXAMPLES_DIR)
+-	-$(INSTALL) -m 0644 $(srcdir)/testSAX.c $(DESTDIR)$(EXAMPLES_DIR)
+-	-$(INSTALL) -m 0644 $(srcdir)/testHTML.c $(DESTDIR)$(EXAMPLES_DIR)
+-	-$(INSTALL) -m 0644 $(srcdir)/testXPath.c $(DESTDIR)$(EXAMPLES_DIR)
+ 
+ uninstall-local:
+ 	rm -f $(DESTDIR)$(EXAMPLES_DIR)/testXPath.c
