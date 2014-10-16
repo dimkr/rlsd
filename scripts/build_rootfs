@@ -46,6 +46,7 @@ for i in "$2/lib"/*.a \
          "$2/usr/share/doc/libxml2/examples" \
          "$2/usr/share/doc/libjpeg-turbo/examples" \
          "$2/usr/share/doc/xz/examples" \
+         "$2/usr/share/doc/xz/examples_old" \
          "$2/usr/share/gdk-pixbuf" \
          "$2/usr/share/x11vnc" \
          "$2/var/packdude/lock" \
