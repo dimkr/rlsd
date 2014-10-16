@@ -8,17 +8,6 @@ BASE_DIR="$(pwd)"
 # the directory for built packages
 REPO_DIR="$BASE_DIR/repo"
 
-# uneeded files which should be removed from packages
-UNNEEDED_FILES="usr/share/applications
-                usr/share/info
-                usr/share/gtk-doc
-                lib/charset.alias
-                etc/X11
-                usr/share/gnome
-                etc/init.d
-                etc/udev
-                usr/share/aclocal"
-
 # include the configuration file
 . ./config
 
@@ -164,17 +153,54 @@ ${1}_build
 installation_prefix="$(mktemp -d)"
 ${1}_package "$installation_prefix"
 
-# remove all unneeded files
-for i in $UNNEEDED_FILES
-do
-	[ -e "$installation_prefix/$i" ] && rm -rf "$installation_prefix/$i"
-done
-
 # remove libtool libraries
 if [ -d "$installation_prefix/lib" ]
 then
 	find "$installation_prefix/lib" -name "*.la" -delete
 fi
+
+# copy the package to the system root
+[ ! -d "$SYSROOT" ] && mkdir -p "$SYSROOT"
+cp -a "$installation_prefix"/* "$SYSROOT/"
+
+# remove all files not needed at run-time
+for i in "$installation_prefix/usr/share/applications" \
+         "$installation_prefix/usr/share/info" \
+         "$installation_prefix/usr/share/gtk-doc" \
+         "$installation_prefix/lib/charset.alias" \
+         "$installation_prefix/etc/X11" \
+         "$installation_prefix/usr/share/gnome" \
+         "$installation_prefix/etc/init.d" \
+         "$installation_prefix/etc/udev" \
+         "$installation_prefix/usr/share/aclocal" \
+         "$installation_prefix/lib"/*.a \
+         "$installation_prefix/lib"/*.o \
+         "$installation_prefix/lib"/*.lds \
+         "$installation_prefix/lib/alsa-lib/smixer"/*.a \
+         "$installation_prefix/usr/share/man/man2" \
+         "$installation_prefix/usr/share/man/man3" \
+         "$installation_prefix/usr/include" \
+         "$installation_prefix/lib/pkgconfig" \
+         "$installation_prefix/bin"/*-config \
+         "$installation_prefix/usr/share/ffmpeg/examples" \
+         "$installation_prefix/usr/share/ghostscript"/*/examples \
+         "$installation_prefix/usr/share/doc/libxml2/examples" \
+         "$installation_prefix/usr/share/doc/libjpeg-turbo/examples" \
+         "$installation_prefix/usr/share/doc/xz/examples" \
+         "$installation_prefix/usr/share/doc/xz/examples_old" \
+         "$installation_prefix/usr/share/gdk-pixbuf" \
+         "$installation_prefix/usr/share/x11vnc"
+do
+	rm -rvf "$i" 2>/dev/null
+done
+
+# remove empty directories
+cd "$installation_prefix"
+find . -empty | while read i
+do
+	[ -d "$BASE_DIR/skeleton/$i" ] && rmdir -v "$i"
+done
+cd "$BASE_DIR"
 
 # strip all executables, unless they were built in debug mode
 should_strip=1
@@ -220,7 +246,7 @@ fi
 
 # remove translations
 [ -d "$installation_prefix/usr/share/locale" ] && \
-                                  rm -rvf "$installation_prefix/usr/share/locale"
+                                 rm -rvf "$installation_prefix/usr/share/locale"
 
 if [ -d "$installation_prefix/usr/share/man" ]
 then
@@ -262,12 +288,6 @@ dudepack > "$REPO_DIR/$1-$PACKAGE_VERSION.dude"
 
 # remove the temporary installation directory
 rm -rf "$installation_prefix"
-
-# create the file system root directory
-[ ! -d "$SYSROOT" ] && mkdir -p "$SYSROOT"
-
-# unpack the package into the file system root
-dudeunpack "$REPO_DIR/$1-$PACKAGE_VERSION.dude" "$SYSROOT"
 
 # generate a package entry
 dependencies="$(grep ^$1: "$BASE_DIR/Makefile.deps" | \

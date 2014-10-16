@@ -10,6 +10,9 @@
 # initialize the root file system with the skeleton
 cp -ar skeleton "$2"
 
+# remove .gitignore files
+find "$2" -name .gitignore -delete
+
 # choose which packages to install
 cd flavors
 . "./$1"
@@ -18,10 +21,10 @@ cd ..
 # if all packages were built locally, use the build output
 if [ -d repo ]
 then
-        repo="file://$(pwd)/repo"
+	repo="file://$(pwd)/repo"
 else
-        # otherwise, use the upstream repository
-        repo="http://dimkr.insomnia247.nl/$ARCH"
+	# otherwise, use the upstream repository
+	repo="http://dimkr.insomnia247.nl/$ARCH"
 fi
 
 # install the packages
@@ -31,32 +34,11 @@ do
 	packdude -i $package -n -p "$2" -u "$repo"
 done
 
-# remove unneeded files and directories
-for i in "$2/lib"/*.a \
-         "$2/lib"/*.o \
-         "$2/lib"/*.lds \
-         "$2/lib/alsa-lib/smixer"/*.a \
-         "$2/usr/share/man/man2" \
-         "$2/usr/share/man/man3" \
-         "$2/usr/include" \
-         "$2/lib/pkgconfig" \
-         "$2/bin"/*-config \
-         "$2/usr/share/ffmpeg/examples" \
-         "$2/usr/share/ghostscript"/*/examples \
-         "$2/usr/share/doc/libxml2/examples" \
-         "$2/usr/share/doc/libjpeg-turbo/examples" \
-         "$2/usr/share/doc/xz/examples" \
-         "$2/usr/share/doc/xz/examples_old" \
-         "$2/usr/share/gdk-pixbuf" \
-         "$2/usr/share/x11vnc" \
-         "$2/var/packdude/lock" \
-         "$2/var/packdude"/repo-*.sqlite3
+# clean up after packdude
+for i in "$2/var/packdude/lock" "$2/var/packdude"/repo-*.sqlite3
 do
-	rm -rvf "$i" 2>/dev/null
+	rm -vf "$i"
 done
-
-# remove .gitignore files
-find "$2" -name .gitignore -delete
 
 # add RLSD's documentation
 install -m 644 README "$2/usr/share/doc/rlsd/README"
