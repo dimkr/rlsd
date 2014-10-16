@@ -1,4 +1,4 @@
-PACKAGE_VERSION="3.14.21"
+PACKAGE_VERSION="3.14.22"
 PACKAGE_MAJOR_VERSION="3.14"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz"
 PACKAGE_DESC="An operating system kernel"
