@@ -3,15 +3,30 @@
 # gpackdude: a graphical frontend for packdude
 
 _list_avail_packages() {
+	# let the user enter a search keyword
+	eval $(echo "<wtitle>Package Manager</wtitle>
+<vbox>
+<hbox>
+	<text>
+		<label>What are you looking for?</label>
+	</text>
+	<entry>
+		<variable>KEYWORD</variable>
+	</entry>
+	</hbox>
+	<button ok></button>
+</vbox>" | gtkdialog1 -s)
+	[ "OK" != "$EXIT" ] && exit 1
+
 	# obtain the list of installed packages
 	inst_packages=""
-	packdude -q | while read line
+	packdude -q | grep -i "$KEYWORD" | while read line
 	do
 		inst_packages="$inst_packages ${line%%\|*}"
 	done
 
 	# list available packages
-	packdude -l | while read line
+	packdude -l | grep -i "$KEYWORD" | while read line
 	do
 		name="${line%%\|*}"
 		installed=0
