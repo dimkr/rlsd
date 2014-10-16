@@ -8,6 +8,8 @@ font_adobe_100dpi_build() {
 	tar -xjvf font-adobe-100dpi-$PACKAGE_VERSION.tar.bz2
 	cd font-adobe-100dpi-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/font_adobe_100dpi-tiny.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

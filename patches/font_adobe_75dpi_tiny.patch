@@ -1,0 +1,60 @@
+diff -rup font-adobe-75dpi-1.0.3-orig/Makefile.in font-adobe-75dpi-1.0.3/Makefile.in
+--- font-adobe-75dpi-1.0.3-orig/Makefile.in	2014-10-16 19:15:16.037998728 +0300
++++ font-adobe-75dpi-1.0.3/Makefile.in	2014-10-16 19:26:27.682986700 +0300
+@@ -287,55 +287,7 @@ BDF2UCS_FONT_FILES = \
+ 	helvR12 \
+ 	helvR14 \
+ 	helvR18 \
+-	helvR24 \
+-	ncenB08 \
+-	ncenB10 \
+-	ncenB12 \
+-	ncenB14 \
+-	ncenB18 \
+-	ncenB24 \
+-	ncenBI08 \
+-	ncenBI10 \
+-	ncenBI12 \
+-	ncenBI14 \
+-	ncenBI18 \
+-	ncenBI24 \
+-	ncenI08 \
+-	ncenI10 \
+-	ncenI12 \
+-	ncenI14 \
+-	ncenI18 \
+-	ncenI24 \
+-	ncenR08 \
+-	ncenR10 \
+-	ncenR12 \
+-	ncenR14 \
+-	ncenR18 \
+-	ncenR24 \
+-	timB08 \
+-	timB10 \
+-	timB12 \
+-	timB14 \
+-	timB18 \
+-	timB24 \
+-	timBI08 \
+-	timBI10 \
+-	timBI12 \
+-	timBI14 \
+-	timBI18 \
+-	timBI24 \
+-	timI08 \
+-	timI10 \
+-	timI12 \
+-	timI14 \
+-	timI18 \
+-	timI24 \
+-	timR08 \
+-	timR10 \
+-	timR12 \
+-	timR14 \
+-	timR18 \
+-	timR24
++	helvR24
+ 
+ EXTRA_FONT_FILES = \
+ 	symb08 \
