@@ -1,0 +1,27 @@
+diff -rup ffmpeg-2.2.9-orig/doc/Makefile ffmpeg-2.2.9/doc/Makefile
+--- ffmpeg-2.2.9-orig/doc/Makefile	2014-10-16 20:24:12.374954221 +0300
++++ ffmpeg-2.2.9/doc/Makefile	2014-10-16 20:27:27.206950732 +0300
+@@ -106,7 +106,6 @@ doc/%.3: doc/%.pod $(GENTEXI)
+ 
+ $(DOCS) doc/doxy/html: | doc/
+ $(DOC_EXAMPLES:%$(EXESUF)=%.o): | doc/examples
+-OBJDIRS += doc/examples
+ 
+ DOXY_INPUT      = $(addprefix $(SRC_PATH)/, $(INSTHEADERS) $(DOC_EXAMPLES:%$(EXESUF)=%.c) $(LIB_EXAMPLES:%$(EXESUF)=%.c))
+ 
+diff -rup ffmpeg-2.2.9-orig/Makefile ffmpeg-2.2.9/Makefile
+--- ffmpeg-2.2.9-orig/Makefile	2014-10-16 20:24:12.372954221 +0300
++++ ffmpeg-2.2.9/Makefile	2014-10-16 20:27:11.489951013 +0300
+@@ -147,10 +147,9 @@ install-progs: install-progs-yes $(AVPRO
+ 	$(Q)mkdir -p "$(BINDIR)"
+ 	$(INSTALL) -c -m 755 $(INSTPROGS) "$(BINDIR)"
+ 
+-install-data: $(DATA_FILES) $(EXAMPLES_FILES)
+-	$(Q)mkdir -p "$(DATADIR)/examples"
++install-data: $(DATA_FILES)
++	$(Q)mkdir -p "$(DATADIR)"
+ 	$(INSTALL) -m 644 $(DATA_FILES) "$(DATADIR)"
+-	$(INSTALL) -m 644 $(EXAMPLES_FILES) "$(DATADIR)/examples"
+ 
+ uninstall: uninstall-libs uninstall-headers uninstall-progs uninstall-data
+ 

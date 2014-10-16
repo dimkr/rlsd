@@ -1,0 +1,12 @@
+diff -rup ytree-1.97-orig/match.c ytree-1.97/match.c
+--- ytree-1.97-orig/match.c	2014-10-16 20:31:34.985946294 +0300
++++ ytree-1.97/match.c	2014-10-16 20:33:36.516944118 +0300
+@@ -24,6 +24,8 @@
+ #endif
+ 
+ 
++#define HAS_REGCOMP
++#undef HAS_REGEX
+ #ifdef HAS_REGEX
+ #ifdef sun
+ #define INIT   		register char *sp = "";

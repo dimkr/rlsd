@@ -1,0 +1,21 @@
+diff -rup htop-1.0.3-orig/Makefile.in htop-1.0.3/Makefile.in
+--- htop-1.0.3-orig/Makefile.in	2014-10-16 21:49:47.165862266 +0300
++++ htop-1.0.3/Makefile.in	2014-10-16 21:50:21.723861647 +0300
+@@ -128,7 +128,7 @@ am__base_list = \
+ man1dir = $(mandir)/man1
+ NROFF = nroff
+ MANS = $(dist_man_MANS)
+-DATA = $(applications_DATA) $(pixmap_DATA)
++DATA = $(pixmap_DATA)
+ ETAGS = etags
+ CTAGS = ctags
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+@@ -1408,7 +1408,7 @@ info: info-am
+ 
+ info-am:
+ 
+-install-data-am: install-applicationsDATA install-man \
++install-data-am: install-man \
+ 	install-pixmapDATA
+ 
+ install-dvi: install-dvi-am

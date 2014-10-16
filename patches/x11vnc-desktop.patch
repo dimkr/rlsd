@@ -1,0 +1,21 @@
+diff -rup x11vnc-0.9.13-orig/x11vnc/Makefile.in x11vnc-0.9.13/x11vnc/Makefile.in
+--- x11vnc-0.9.13-orig/x11vnc/Makefile.in	2014-10-16 21:21:20.608892828 +0300
++++ x11vnc-0.9.13/x11vnc/Makefile.in	2014-10-16 21:45:12.535867184 +0300
+@@ -109,7 +109,7 @@ am__vpath_adj = case $$p in \
+   esac;
+ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+ desktopDATA_INSTALL = $(INSTALL_DATA)
+-DATA = $(desktop_DATA)
++DATA =
+ ETAGS = etags
+ CTAGS = ctags
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+@@ -1277,7 +1277,7 @@ info: info-recursive
+ 
+ info-am:
+ 
+-install-data-am: install-desktopDATA install-man
++install-data-am: install-man
+ 
+ install-exec-am: install-binPROGRAMS
+ 

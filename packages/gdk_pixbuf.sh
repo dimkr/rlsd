@@ -8,8 +8,8 @@ gdk_pixbuf_build() {
 	cd gdk-pixbuf-master
 
 	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-tiff.patch"
-	sed s~'SUBDIRS = gdk-pixbuf demo doc'~'SUBDIRS = gdk-pixbuf doc'~ \
-	    -i Makefile.in
+	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-demo.patch"
+
 	./configure --host=$HOST \
 	            --prefix=/usr \
 	            --bindir=/bin \

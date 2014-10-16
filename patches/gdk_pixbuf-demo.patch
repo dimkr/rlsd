@@ -1,0 +1,12 @@
+diff -rup gdk-pixbuf-master-orig/Makefile.in gdk-pixbuf-master/Makefile.in
+--- gdk-pixbuf-master-orig/Makefile.in	2014-10-16 22:06:55.898843844 +0300
++++ gdk-pixbuf-master/Makefile.in	2014-10-16 22:07:07.006843645 +0300
+@@ -111,7 +111,7 @@ STRIP_DUMMY = @STRIP_DUMMY@
+ STRIP_END = @STRIP_END@
+ VERSION = @VERSION@
+ 
+-SUBDIRS = gdk-pixbuf demo doc
++SUBDIRS = gdk-pixbuf doc
+ 
+ bin_SCRIPTS = gdk-pixbuf-config
+ 

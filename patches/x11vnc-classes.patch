@@ -1,0 +1,18 @@
+diff -rup x11vnc-0.9.13-orig/Makefile.in x11vnc-0.9.13/Makefile.in
+--- x11vnc-0.9.13-orig/Makefile.in	2014-10-16 21:21:20.611892827 +0300
++++ x11vnc-0.9.13/Makefile.in	2014-10-16 21:39:23.060873443 +0300
+@@ -218,10 +218,10 @@ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+ with_ffmpeg = @with_ffmpeg@
+ EXTRA_DIST = tightvnc-1.3dev5-vncviewer-alpha-cursor.patch RELEASE-NOTES README.LibVNCServer
+-@HAVE_SYSTEM_LIBVNCSERVER_FALSE@SUBDIRS = libvncserver libvncclient x11vnc classes
+-@HAVE_SYSTEM_LIBVNCSERVER_TRUE@SUBDIRS = x11vnc classes
+-@HAVE_SYSTEM_LIBVNCSERVER_FALSE@DIST_SUBDIRS = libvncserver libvncclient x11vnc classes
+-@HAVE_SYSTEM_LIBVNCSERVER_TRUE@DIST_SUBDIRS = x11vnc classes
++@HAVE_SYSTEM_LIBVNCSERVER_FALSE@SUBDIRS = libvncserver libvncclient x11vnc
++@HAVE_SYSTEM_LIBVNCSERVER_TRUE@SUBDIRS = x11vnc
++@HAVE_SYSTEM_LIBVNCSERVER_FALSE@DIST_SUBDIRS = libvncserver libvncclient x11vnc
++@HAVE_SYSTEM_LIBVNCSERVER_TRUE@DIST_SUBDIRS = x11vnc
+ @WITH_X11VNC_TRUE@X11VNC = x11vnc
+ #include_HEADERS=rfb.h rfbconfig.h rfbint.h rfbproto.h keysym.h rfbregion.h
+ @HAVE_SYSTEM_LIBVNCSERVER_FALSE@include_HEADERS = rfb/rfb.h rfb/rfbconfig.h rfb/rfbint.h rfb/rfbproto.h \

@@ -182,14 +182,8 @@ for i in "$installation_prefix/usr/share/applications" \
          "$installation_prefix/usr/include" \
          "$installation_prefix/lib/pkgconfig" \
          "$installation_prefix/bin"/*-config \
-         "$installation_prefix/usr/share/ffmpeg/examples" \
-         "$installation_prefix/usr/share/ghostscript"/*/examples \
-         "$installation_prefix/usr/share/doc/libxml2/examples" \
-         "$installation_prefix/usr/share/doc/libjpeg-turbo/examples" \
-         "$installation_prefix/usr/share/doc/xz/examples" \
-         "$installation_prefix/usr/share/doc/xz/examples_old" \
          "$installation_prefix/usr/share/gdk-pixbuf" \
-         "$installation_prefix/usr/share/x11vnc"
+         "$installation_prefix/usr/share/libxml2/xml2Conf.sh"
 do
 	rm -rvf "$i" 2>/dev/null
 done
@@ -267,7 +261,7 @@ then
 	find "$installation_prefix/usr/share/man" -name '*.gz' -type f |
 	while read page
 	do
-		gunzip "$page"
+		gunzip -v "$page"
 	done
 fi
 

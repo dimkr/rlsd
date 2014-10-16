@@ -7,14 +7,12 @@ gtkcat_build() {
 	tar -xzvf gtkcat-$PACKAGE_VERSION.tar.gz
 	cd gtkcat-$PACKAGE_VERSION
 
-	sed -e s~'CC		= .*'~"CC = $CC"~ \
-	    -e s~'CFLAGS		= -O3 -Wall '~"CFLAGS = $CFLAGS "~ \
-	    -e s~'LDFLAGS		= '~"&$LDFLAGS "~ \
-	    -i Makefile
+	patch -p 1 < "$BASE_DIR/patches/gtkcat-build.patch"
+
 	$MAKE
 }
 
 gtkcat_package() {
-	install -D -m 755 gtkcat "$1/bin/gtkcat"
+	$MAKE PREFIX="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gtkcat/README"
 }

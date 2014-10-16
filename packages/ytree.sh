@@ -7,22 +7,13 @@ ytree_build() {
 	tar -xzvf ytree-$PACKAGE_VERSION.tar.gz
 	cd ytree-$PACKAGE_VERSION
 
-	sed s~'#ifdef HAS_REGEX'~'#define HAS_REGCOMP\n#undef HAS_REGEX\n&'~ -i match.c
-	sed -e s~'LDFLAGS     += -lncurses -lreadline'~'LDFLAGS     += -lncurses'~ \
-	    -e s~'-DREADLINE_SUPPORT'~''~ \
-	    -e s~'ADD_CFLAGS  = -O'~'ADD_CFLAGS  ='~ \
-	    -e s~'DESTDIR     = /usr'~'DESTDIR     = /'~ \
-	    -e s~'\$(DESTDIR)/share/man'~'$(DESTDIR)/usr/share/man'~g \
-	    -e s~'install \$(MAIN) \$(BINDIR)'~'install -D $(MAIN) $(BINDIR)/$(MAIN)'~ \
-	    -e s~'install -m 0644 ytree.1.gz  \$(MANDIR)/'~'install -D -m 0644 ytree.1.gz  $(MANDIR)/ytree.1.gz'~ \
-	    -e s~'install -m 0644 ytree.1.es.gz \$(MANESDIR)/'~'install -D -m 0644 ytree.1.es.gz $(MANESDIR)/ytree.1.es.gz'~ \
-	    -i Makefile
+	patch -p 1 < "$BASE_DIR/patches/ytree-musl.patch"
+	patch -p 1 < "$BASE_DIR/patches/ytree-build.patch"
 
 	$MAKE CC="$CC"
 }
 
 ytree_package() {
-	mkdir -p "$1/usr/share/man/man1" "$1/usr/share/man/es/man1"
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/ytree/README"
 	install -m 644 CHANGES "$1/usr/share/doc/ytree/CHANGES"

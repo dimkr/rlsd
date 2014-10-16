@@ -7,9 +7,9 @@ libjpeg_turbo_build() {
 	tar -xzvf libjpeg-turbo-$PACKAGE_VERSION.tar.gz
 	cd libjpeg-turbo-$PACKAGE_VERSION
 
-	sed -e s~'docdir = $(datadir)/doc'~'docdir = $(datadir)/doc/libjpeg-turbo'~ \
-	    -e s~'exampledir = $(datadir)/doc'~'exampledir = $(docdir)/examples'~ \
-	    -i Makefile.in
+	patch -p 1 < "$BASE_DIR/patches/libjpeg_turbo-examples.patch"
+	patch -p 1 < "$BASE_DIR/patches/libjpeg_turbo-doc.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \

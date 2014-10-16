@@ -1,0 +1,12 @@
+diff -rup ghostscript-9.15-orig/base/unixinst.mak ghostscript-9.15/base/unixinst.mak
+--- ghostscript-9.15-orig/base/unixinst.mak	2014-10-16 20:42:16.829934800 +0300
++++ ghostscript-9.15/base/unixinst.mak	2014-10-16 20:52:57.937923319 +0300
+@@ -142,7 +142,7 @@ install-doc: $(PSDOCDIR)/News.htm
+ 	done'
+ 
+ # install the man pages for each locale
+-MAN_LCDIRS=. de
++MAN_LCDIRS=.
+ MAN1_LINKS_PS2PS=eps2eps
+ MAN1_LINKS_PS2PDF=ps2pdf12 ps2pdf13 ps2pdf14
+ MAN1_LINKS_GSLP=gsbj gsdj gsdj500 gslj

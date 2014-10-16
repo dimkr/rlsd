@@ -1,0 +1,12 @@
+diff -rup ghostscript-9.15-orig/base/unixinst.mak ghostscript-9.15/base/unixinst.mak
+--- ghostscript-9.15-orig/base/unixinst.mak	2014-10-16 20:42:16.829934800 +0300
++++ ghostscript-9.15/base/unixinst.mak	2014-10-16 20:43:08.327933878 +0300
+@@ -55,7 +55,7 @@ PSDOCDIR=$(PSLIBDIR)/../doc
+ PSEXDIR=$(PSLIBDIR)/../examples
+ PSMANDIR=$(PSLIBDIR)/../man
+ 
+-install-data: install-libdata install-resdata$(COMPILE_INITS) install-iccdata$(COMPILE_INITS) install-doc install-man install-examples
++install-data: install-libdata install-resdata$(COMPILE_INITS) install-iccdata$(COMPILE_INITS) install-doc install-man
+ 
+ # There's no point in providing a complete dependency list: we include
+ # one file from each subdirectory just as a sanity check.

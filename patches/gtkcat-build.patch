@@ -1,0 +1,30 @@
+diff -rup gtkcat-0.1-orig/Makefile gtkcat-0.1/Makefile
+--- gtkcat-0.1-orig/Makefile	2014-10-16 21:55:12.445856441 +0300
++++ gtkcat-0.1/Makefile	2014-10-16 22:05:30.025845382 +0300
+@@ -1,12 +1,14 @@
+-CC		= gcc
+-CFLAGS		= -O3 -Wall $(shell gtk-config --cflags)
+-LDFLAGS		= $(shell gtk-config --libs)
++CC		?= gcc
++CFLAGS		?=
++CFLAGS		+= -Wall $(shell gtk-config --cflags)
++LDFLAGS		?=
++LDFLAGS		+= $(shell gtk-config --libs)
+ OBJECTS		= main.o loadcat.o search.o savecat.o scan.o utils.o cb.o ui.o
+ 
+ # where to install this program (also for packaging stuff)
+-DESTDIR		=
+-PREFIX		= $(DESTDIR)/usr/X11R6
+-INSTALL		= -m 755
++DESTDIR		?=
++PREFIX		?= $(DESTDIR)/usr/X11R6
++INSTALL		= -D -m 755
+ 
+ gtkcat: $(OBJECTS)
+ 	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LDFLAGS)
+@@ -15,4 +17,4 @@ clean:
+ 	rm -rf *.o gtkcat *~
+ 
+ install: gtkcat
+-	install $(INSTALL) gtkcat $(PREFIX)/bin
++	install $(INSTALL) gtkcat $(PREFIX)/bin/gtkcat

@@ -1,0 +1,12 @@
+diff -rup libjpeg-turbo-1.3.1-orig/Makefile.in libjpeg-turbo-1.3.1/Makefile.in
+--- libjpeg-turbo-1.3.1-orig/Makefile.in	2014-10-16 19:57:14.635983191 +0300
++++ libjpeg-turbo-1.3.1/Makefile.in	2014-10-16 19:58:06.978982254 +0300
+@@ -2007,7 +2007,7 @@ info: info-recursive
+ 
+ info-am:
+ 
+-install-data-am: install-dist_docDATA install-dist_exampleDATA \
++install-data-am: install-dist_docDATA \
+ 	install-includeHEADERS install-man \
+ 	install-nodist_includeHEADERS
+ 

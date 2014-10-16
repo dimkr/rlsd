@@ -7,6 +7,8 @@ xz_build() {
 	tar -xJvf xz-$PACKAGE_VERSION.tar.xz
 	cd xz-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/xz-examples.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \

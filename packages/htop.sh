@@ -6,6 +6,9 @@ htop_build() {
 	[ -d htop-$PACKAGE_VERSION ] && rm -rf htop-$PACKAGE_VERSION
 	tar -xzvf htop-$PACKAGE_VERSION.tar.gz
 	cd htop-$PACKAGE_VERSION
+
+	patch -p 1 < "$BASE_DIR/patches/htop-desktop.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

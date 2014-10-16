@@ -1,0 +1,13 @@
+diff -rup xz-5.0.7-orig/Makefile.in xz-5.0.7/Makefile.in
+--- xz-5.0.7-orig/Makefile.in	2014-10-16 19:53:20.763987380 +0300
++++ xz-5.0.7/Makefile.in	2014-10-16 19:54:50.560985771 +0300
+@@ -951,8 +951,7 @@ info: info-recursive
+ 
+ info-am:
+ 
+-install-data-am: install-dist_docDATA install-dist_examplesDATA \
+-	install-dist_examplesoldDATA
++install-data-am: install-dist_docDATA
+ 
+ install-dvi: install-dvi-recursive
+ 

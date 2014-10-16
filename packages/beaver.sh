@@ -7,15 +7,9 @@ beaver_build() {
 	unzip beaver-$PACKAGE_VERSION.zip
 	cd beaver-master
 
-	cd src
+	patch -p 1 < "$BASE_DIR/patches/beaver-build.patch"
 
-	sed -e s~'CC      = .*'~"CC      = $CC"~ \
-	    -e s~'DESTDIR = .*'~'DESTDIR ?= /'~ \
-	    -e s~'OPTI    = .*'~"OPTI    = $CFLAGS"~ \
-	    -e s~'LDFLAGS = '~"LDFLAGS = $LDFLAGS"~ \
-	    -e s~'\$(DESTDIR)/share'~'$(DESTDIR)/usr/share'~g \
-	    -e s~'\$(DESTDIR)/man'~'$(DESTDIR)/usr/share/man'~g \
-	    -i Makefile
+	cd src
 	$MAKE
 }
 

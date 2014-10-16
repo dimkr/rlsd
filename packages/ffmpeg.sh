@@ -7,6 +7,8 @@ ffmpeg_build() {
 	tar -xjvf ffmpeg-$PACKAGE_VERSION.tar.bz2
 	cd ffmpeg-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/ffmpeg-examples.patch"
+
 	./configure --prefix=/usr \
 	            --bindir=/bin \
 	            --libdir=/lib \

@@ -9,6 +9,8 @@ ghostscript_build() {
 
 	rm -rf zlib jpegxr
 	patch -p 1 < "$BASE_DIR/patches/ghostscript-tinyxlib.patch"
+	patch -p 1 < "$BASE_DIR/patches/ghostscript-examples.patch"
+	patch -p 1 < "$BASE_DIR/patches/ghostscript-man.patch"
 	patch -p 1 < ../ghostscript-libre.patch
 	patch -p 1 < "$BASE_DIR/patches/ghostscript-build.patch"
 
@@ -29,6 +31,5 @@ ghostscript_package() {
 	$MAKE DESTDIR="$1" install
 	mkdir -p "$1/usr/share/doc"
 	ln -s ../ghostscript/$PACKAGE_VERSION/doc "$1/usr/share/doc/ghostscript"
-	install -m 644 jpegxr/COPYRIGHT.txt "$1/usr/share/doc/ghostscript/COPYRIGHT.jpegxr"
 	install -m 644 LICENSE "$1/usr/share/doc/ghostscript/LICENSE"
 }

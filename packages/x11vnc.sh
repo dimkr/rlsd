@@ -7,6 +7,9 @@ x11vnc_build() {
 	tar -xzvf x11vnc-$PACKAGE_VERSION.tar.gz
 	cd x11vnc-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/x11vnc-classes.patch"
+	patch -p 1 < "$BASE_DIR/patches/x11vnc-desktop.patch"
+
 	./configure --host=$HOST \
 	            --prefix=/usr \
 	            --bindir=/bin \
