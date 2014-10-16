@@ -194,7 +194,7 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +		<TrayButton icon="text.xpm" popup="Text editor" border="false">exec:gtkedit</TrayButton>
 +		<TrayButton icon="settings.xpm" popup="Settings" border="false">exec:settings</TrayButton>
 +		<TrayButton icon="terminal.xpm" popup="Terminal" border="false">exec:aterm</TrayButton>
-+		<TrayButton icon="home.xpm" popup="File manager" border="false">exec:emelfm</TrayButton>
++		<TrayButton icon="home.xpm" popup="File manager" border="false">exec:rox</TrayButton>
 +		<TrayButton icon="executable.xpm" popup="Launcher" border="false">exec:grun</TrayButton>
 +		<TrayButton icon="chat.xpm" popup="Chat" border="false">exec:aterm -title ScrollZ -e scrollz -c \#rlsdlinux irc.freenode.net</TrayButton>
 +		<TrayButton icon="help.png" popup="Help" border="false">exec:dillo /usr/share/doc/rlsd/getting_started.html</TrayButton>
@@ -338,6 +338,6 @@ diff -rup jwm-2.2.2-orig/example.jwmrc jwm-2.2.2/example.jwmrc
 +	<Key mask="4" key="d">showdesktop</Key>
 +	<Key mask="4" key="r">exec:grun</Key>
 +	<Key mask="4" key="t">exec:aterm</Key>
-+	<Key mask="4" key="h">exec:exec:emelfm</Key>
++	<Key mask="4" key="h">exec:exec:rox</Key>
 +	<Key mask="A" key="Return">exec:aterm</Key>
  </JWM>
