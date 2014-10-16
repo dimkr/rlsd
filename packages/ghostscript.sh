@@ -1,5 +1,5 @@
 PACKAGE_VERSION="9.15"
-PACKAGE_SOURCES="http://downloads.ghostscript.com/public/ghostscript-$PACKAGE_VERSION.tar.gz"
+PACKAGE_SOURCES="http://downloads.ghostscript.com/public/ghostscript-$PACKAGE_VERSION.tar.gz https://projects.parabola.nu/abslibre.git/tree/libre/ghostscript/ghostscript-libre.patch"
 PACKAGE_DESC="A PostScript and PDF interpreter"
 
 ghostscript_build() {
@@ -7,8 +7,9 @@ ghostscript_build() {
 	tar -xzvf ghostscript-$PACKAGE_VERSION.tar.gz
 	cd ghostscript-$PACKAGE_VERSION
 
-	rm -rf zlib
+	rm -rf zlib jpegxr
 	patch -p 1 < "$BASE_DIR/patches/ghostscript-tinyxlib.patch"
+	patch -p 1 < ../ghostscript-libre.patch
 	patch -p 1 < "$BASE_DIR/patches/ghostscript-build.patch"
 
 	autoconf
