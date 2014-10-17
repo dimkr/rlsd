@@ -9398,7 +9398,8 @@ CONFIG_EOF
 
 linux_package() {
 	install -D -m 644 "$(find arch -name bzImage -type f)" "$1/boot/bzImage"
-	install -D -m 644 COPYING "$1/usr/share/doc/linux-libre/COPYING"
+	install -D -m 644 README "$1/usr/share/doc/linux-libre/README"
+	install -m 644 COPYING "$1/usr/share/doc/linux-libre/COPYING"
 	install -m 644 CREDITS "$1/usr/share/doc/linux-libre/CREDITS"
 	install -m 644 MAINTAINERS "$1/usr/share/doc/linux-libre/MAINTAINERS"
 }

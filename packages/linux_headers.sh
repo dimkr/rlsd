@@ -15,4 +15,8 @@ linux_headers_package() {
 	mkdir "$1/usr"
 	mv "$1/include" "$1/usr/"
 	find "$1/usr/include" -name .install -or -name ..install.cmd | xargs rm -f
+	install -D -m 644 README "$1/usr/share/doc/linux_headers/README"
+	install -m 644 COPYING "$1/usr/share/doc/linux_headers/COPYING"
+	install -m 644 CREDITS "$1/usr/share/doc/linux_headers/CREDITS"
+	install -m 644 MAINTAINERS "$1/usr/share/doc/linux_headers/MAINTAINERS"
 }
