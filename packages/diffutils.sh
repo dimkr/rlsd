@@ -7,6 +7,8 @@ diffutils_build() {
 	tar -xJvf diffutils-$PACKAGE_VERSION.tar.xz
 	cd diffutils-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/diffutils-info.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

@@ -1,0 +1,12 @@
+diff -rup vifm-0.7.7-orig/src/Makefile.in vifm-0.7.7/src/Makefile.in
+--- vifm-0.7.7-orig/src/Makefile.in	2014-10-17 14:09:55.090983684 +0300
++++ vifm-0.7.7/src/Makefile.in	2014-10-17 14:11:16.299982230 +0300
+@@ -1213,7 +1213,7 @@ info: info-am
+ 
+ info-am:
+ 
+-install-data-am: install-desktopappDATA install-desktoppixDATA \
++install-data-am: install-desktoppixDATA \
+ 	install-man install-pkgdataDATA
+ 
+ install-dvi: install-dvi-am

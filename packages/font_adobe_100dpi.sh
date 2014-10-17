@@ -9,6 +9,7 @@ font_adobe_100dpi_build() {
 	cd font-adobe-100dpi-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/font_adobe_100dpi-tiny.patch"
+	patch -p 1 < "$BASE_DIR/patches/font_adobe_100dpi-cache.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \

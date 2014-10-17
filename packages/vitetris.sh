@@ -9,7 +9,11 @@ vitetris_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/vitetris-build.patch"
 
-	./configure --prefix= --datarootdir=/usr/share curses=yes xlib=no
+	./configure --prefix= \
+	            --datarootdir=/usr/share \
+	            --desktopdir="" \
+	            curses=yes \
+	            xlib=no
 	$MAKE
 }
 

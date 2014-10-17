@@ -1,0 +1,12 @@
+diff -rup gdk-pixbuf-master-orig/doc/Makefile.in gdk-pixbuf-master/doc/Makefile.in
+--- gdk-pixbuf-master-orig/doc/Makefile.in	2014-10-17 13:37:29.615827444 +0300
++++ gdk-pixbuf-master/doc/Makefile.in	2014-10-17 13:41:28.985823157 +0300
+@@ -248,7 +248,7 @@ installcheck: installcheck-am
+ install-exec-am:
+ install-exec: install-exec-am
+ 
+-install-data-am: install-data-local
++install-data-am:
+ install-data: install-data-am
+ 
+ install-am: all-am

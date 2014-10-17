@@ -1,0 +1,29 @@
+diff -rup fuse-2.9.3-orig/util/Makefile.in fuse-2.9.3/util/Makefile.in
+--- fuse-2.9.3-orig/util/Makefile.in	2014-10-17 13:34:42.329830440 +0300
++++ fuse-2.9.3/util/Makefile.in	2014-10-17 13:35:44.837829320 +0300
+@@ -124,7 +124,7 @@ am__can_run_installinfo = \
+   esac
+ ETAGS = etags
+ CTAGS = ctags
+-DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
++DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS)
+ ACLOCAL = @ACLOCAL@
+ AMTAR = @AMTAR@
+ AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
+@@ -685,16 +685,8 @@ install-exec-hook:
+ install-exec-local:
+ 	$(MKDIR_P) $(DESTDIR)$(MOUNT_FUSE_PATH)
+ 	$(INSTALL_PROGRAM) $(builddir)/mount.fuse $(DESTDIR)$(MOUNT_FUSE_PATH)/mount.fuse
+-	$(MKDIR_P) $(DESTDIR)$(INIT_D_PATH)
+-	$(INSTALL_SCRIPT) $(srcdir)/init_script $(DESTDIR)$(INIT_D_PATH)/fuse
+-	@if test -x /usr/sbin/update-rc.d; then \
+-		echo "/usr/sbin/update-rc.d fuse start 34 S . start 41 0 6 . || true"; \
+-		/usr/sbin/update-rc.d fuse start 34 S . start 41 0 6 . || true; \
+-	fi
+ 
+ install-data-local:
+-	$(MKDIR_P) $(DESTDIR)$(UDEV_RULES_PATH)
+-	$(INSTALL_DATA) $(srcdir)/udev.rules $(DESTDIR)$(UDEV_RULES_PATH)/99-fuse.rules
+ 
+ uninstall-local:
+ 	rm -f $(DESTDIR)$(MOUNT_FUSE_PATH)/mount.fuse

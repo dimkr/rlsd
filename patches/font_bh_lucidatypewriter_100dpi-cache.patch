@@ -1,0 +1,11 @@
+diff -rup font-bh-lucidatypewriter-100dpi-1.0.3-orig/Makefile.in font-bh-lucidatypewriter-100dpi-1.0.3/Makefile.in
+--- font-bh-lucidatypewriter-100dpi-1.0.3-orig/Makefile.in	2014-10-17 12:35:20.438894226 +0300
++++ font-bh-lucidatypewriter-100dpi-1.0.3/Makefile.in	2014-10-17 12:35:26.150894124 +0300
+@@ -578,7 +578,6 @@ info-am:
+ 
+ install-data-am: install-fontDATA
+ 	@$(NORMAL_INSTALL)
+-	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
+ install-dvi: install-dvi-am
+ 
+ install-dvi-am:

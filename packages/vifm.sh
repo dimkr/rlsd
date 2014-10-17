@@ -9,6 +9,7 @@ vifm_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/vifm-elvis.patch"
 	patch -p 1 < "$BASE_DIR/patches/vifm-converter.patch"
+	patch -p 1 < "$BASE_DIR/patches/vifm-desktop.patch"
 
 	LIBS="-lmagic -lz" \
 	./configure --host=$HOST \

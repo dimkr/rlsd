@@ -8,6 +8,8 @@ fuse_build() {
 	cd fuse-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/fuse-musl.patch"
+	patch -p 1 < "$BASE_DIR/patches/fuse-extra.patch"
+
 	MOUNT_FUSE_PATH="/bin" \
 	./configure --host=$HOST \
 	            --prefix=/usr \

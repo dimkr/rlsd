@@ -164,14 +164,11 @@ fi
 cp -a "$installation_prefix"/* "$SYSROOT/"
 
 # remove all files not needed at run-time
-for i in "$installation_prefix/usr/share/applications" \
-         "$installation_prefix/usr/share/info" \
+for i in "$installation_prefix/usr/share/info" \
          "$installation_prefix/usr/share/gtk-doc" \
          "$installation_prefix/lib/charset.alias" \
          "$installation_prefix/etc/X11" \
          "$installation_prefix/usr/share/gnome" \
-         "$installation_prefix/etc/init.d" \
-         "$installation_prefix/etc/udev" \
          "$installation_prefix/usr/share/aclocal" \
          "$installation_prefix/lib"/*.a \
          "$installation_prefix/lib"/*.o \
@@ -262,15 +259,6 @@ then
 	while read page
 	do
 		gunzip -v "$page"
-	done
-fi
-
-# remove font cache files
-if [ -d "$installation_prefix/usr/share/fonts" ]
-then
-	for i in "$installation_prefix/usr/share/fonts"/*
-	do
-		[ -f "$i/fonts.dir" ] && rm -vf "$i/fonts.dir"
 	done
 fi
 

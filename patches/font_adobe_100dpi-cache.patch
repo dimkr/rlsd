@@ -1,0 +1,11 @@
+diff -rup font-adobe-100dpi-1.0.3-orig/Makefile.in font-adobe-100dpi-1.0.3/Makefile.in
+--- font-adobe-100dpi-1.0.3-orig/Makefile.in	2014-10-17 12:28:38.782901419 +0300
++++ font-adobe-100dpi-1.0.3/Makefile.in	2014-10-17 12:29:34.262900426 +0300
+@@ -668,7 +668,6 @@ info-am:
+ 
+ install-data-am: install-fontDATA
+ 	@$(NORMAL_INSTALL)
+-	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
+ install-dvi: install-dvi-am
+ 
+ install-dvi-am:

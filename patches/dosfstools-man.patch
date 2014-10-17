@@ -1,0 +1,24 @@
+diff -rup dosfstools-3.0.26-orig/Makefile dosfstools-3.0.26/Makefile
+--- dosfstools-3.0.26-orig/Makefile	2014-10-17 13:25:12.125840651 +0300
++++ dosfstools-3.0.26/Makefile	2014-10-17 13:28:07.308837514 +0300
+@@ -19,7 +19,7 @@
+ # can be found in /usr/share/common-licenses/GPL-3 file.
+ 
+ SHELL := sh -e
+-LANGUAGES = $(shell cd manpages/po && ls)
++LANGUAGES =
+ 
+ DESTDIR =
+ PREFIX = /usr/local
+diff -rup dosfstools-3.0.26-orig/manpages/Makefile dosfstools-3.0.26/manpages/Makefile
+--- dosfstools-3.0.26-orig/manpages/Makefile	2014-10-17 13:25:12.128840651 +0300
++++ dosfstools-3.0.26/manpages/Makefile	2014-10-17 13:25:49.958839973 +0300
+@@ -10,7 +10,7 @@
+ 
+ SHELL := sh -e
+ 
+-LANGUAGES = $(shell cd po && ls)
++LANGUAGES =
+ 
+ all: build
+ 

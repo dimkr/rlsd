@@ -7,7 +7,9 @@ dosfstools_build() {
 	tar -xJvf dosfstools-$PACKAGE_VERSION.tar.xz
 	cd dosfstools-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/dosfstools-man.patch"
 	patch -p 1 < "$BASE_DIR/patches/dosfstools-build.patch"
+
 	$MAKE
 }
 

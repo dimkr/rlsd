@@ -7,6 +7,8 @@ clzip_build() {
 	tar -xzvf clzip-$PACKAGE_VERSION.tar.gz
 	cd clzip-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/clzip-info.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

@@ -1,0 +1,12 @@
+diff -rup gtk-master-orig/docs/Makefile.in gtk-master/docs/Makefile.in
+--- gtk-master-orig/docs/Makefile.in	2014-10-17 12:38:54.818890387 +0300
++++ gtk-master/docs/Makefile.in	2014-10-17 12:39:46.922889454 +0300
+@@ -366,7 +366,7 @@ installcheck: installcheck-am
+ install-exec-am:
+ install-exec: install-exec-am
+ 
+-install-data-am: install-info-am install-man
++install-data-am: install-man
+ install-data: install-data-am
+ 
+ install-am: all-am

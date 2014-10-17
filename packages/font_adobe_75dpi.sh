@@ -8,7 +8,8 @@ font_adobe_75dpi_build() {
 	tar -xjvf font-adobe-75dpi-$PACKAGE_VERSION.tar.bz2
 	cd font-adobe-75dpi-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/font_adobe_75dpi_tiny.patch"
+	patch -p 1 < "$BASE_DIR/patches/font_adobe_75dpi-tiny.patch"
+	patch -p 1 < "$BASE_DIR/patches/font_adobe_75dpi-cache.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \

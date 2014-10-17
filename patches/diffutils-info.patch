@@ -1,0 +1,21 @@
+diff -rup diffutils-3.3-orig/doc/Makefile.in diffutils-3.3/doc/Makefile.in
+--- diffutils-3.3-orig/doc/Makefile.in	2014-10-17 12:47:12.827881469 +0300
++++ diffutils-3.3/doc/Makefile.in	2014-10-17 12:52:31.828875756 +0300
+@@ -1376,7 +1376,7 @@ info: info-am
+ 
+ info-am: $(INFO_DEPS)
+ 
+-install-data-am: install-info-am
++install-data-am:
+ 
+ install-dvi: install-dvi-am
+ 
+@@ -1516,7 +1516,7 @@ uninstall-am: uninstall-dvi-am uninstall
+ 
+ .PHONY: all all-am check check-am clean clean-aminfo clean-generic \
+ 	cscopelist-am ctags-am dist-info distclean distclean-generic \
+-	distdir dvi dvi-am html html-am info info-am install \
++	distdir dvi dvi-am html html-am info-am install \
+ 	install-am install-data install-data-am install-dvi \
+ 	install-dvi-am install-exec install-exec-am install-html \
+ 	install-html-am install-info install-info-am install-man \

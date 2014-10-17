@@ -8,6 +8,8 @@ mhwaveedit_build() {
 	cd mhwaveedit-$PACKAGE_VERSION
 
 	patch -p1 < "$BASE_DIR/patches/mhwaveedit-musl.patch"
+	patch -p1 < "$BASE_DIR/patches/mhwaveedit-desktop.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
@@ -15,7 +17,7 @@ mhwaveedit_build() {
 	            --disable-gtk2 \
 	            --disable-ladspa \
 	            --with-default-driver=alsa \
-	            --with-default-mixerapp="aterm -e alsamixer" \
+	            --with-default-mixerapp="aterm -title AlsaMixer -e alsamixer" \
 	            --without-libsndfile \
 	            --without-libsamplerate \
 	            --without-oss \

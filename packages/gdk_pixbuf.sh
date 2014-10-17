@@ -9,6 +9,7 @@ gdk_pixbuf_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-tiff.patch"
 	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-demo.patch"
+	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-doc.patch"
 
 	./configure --host=$HOST \
 	            --prefix=/usr \

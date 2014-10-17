@@ -9,6 +9,7 @@ gtk_build() {
 
 	patch -p 1 < "$BASE_DIR/patches/gtk-font.patch"
 	patch -p 1 < "$BASE_DIR/patches/gtk-modules.patch"
+	patch -p 1 < "$BASE_DIR/patches/gtk-info.patch"
 
 	LIBS="$(pkg-config --libs xt)" \
 	./configure --host=$HOST \

@@ -8,6 +8,8 @@ font_bh_lucidatypewriter_100dpi_build() {
 	tar -xjvf font-bh-lucidatypewriter-100dpi-$PACKAGE_VERSION.tar.bz2
 	cd font-bh-lucidatypewriter-100dpi-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/font_bh_lucidatypewriter_100dpi-cache.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \

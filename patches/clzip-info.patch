@@ -1,0 +1,30 @@
+diff -rup clzip-1.6-orig/Makefile.in clzip-1.6/Makefile.in
+--- clzip-1.6-orig/Makefile.in	2014-10-17 12:44:07.988884779 +0300
++++ clzip-1.6/Makefile.in	2014-10-17 12:45:44.652883048 +0300
+@@ -11,7 +11,7 @@ objs = carg_parser.o encoder.o decoder.o
+ 
+ .PHONY : all install install-bin install-info install-man install-strip \
+          install-as-lzip uninstall uninstall-bin uninstall-info uninstall-man \
+-         doc info man check dist clean distclean
++         doc man check dist clean distclean
+ 
+ all : $(progname)
+ 
+@@ -34,7 +34,7 @@ encoder.o     : lzip.h encoder.h
+ main.o        : carg_parser.h lzip.h decoder.h encoder.h
+ 
+ 
+-doc : info man
++doc : man
+ 
+ info : $(VPATH)/doc/$(pkgname).info
+ 
+@@ -52,7 +52,7 @@ Makefile : $(VPATH)/configure $(VPATH)/M
+ check : all
+ 	@$(VPATH)/testsuite/check.sh $(VPATH)/testsuite $(pkgversion)
+ 
+-install : install-bin install-info install-man
++install : install-bin install-man
+ 
+ install-bin : all
+ 	if [ ! -d "$(DESTDIR)$(bindir)" ] ; then $(INSTALL_DIR) "$(DESTDIR)$(bindir)" ; fi
