@@ -7,6 +7,8 @@ bc_build() {
 	tar -xzvf bc-$PACKAGE_VERSION.tar.gz
 	cd bc-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/bc-info.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --mandir=/usr/share/man \

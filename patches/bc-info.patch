@@ -1,0 +1,21 @@
+diff -rup bc-1.06-orig/doc/Makefile.in bc-1.06/doc/Makefile.in
+--- bc-1.06-orig/doc/Makefile.in	2014-10-17 14:42:42.306948455 +0300
++++ bc-1.06/doc/Makefile.in	2014-10-17 14:43:20.576947770 +0300
+@@ -79,7 +79,7 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/m
+ CONFIG_HEADER = ../config.h
+ CONFIG_CLEAN_FILES = 
+ TEXI2DVI = texi2dvi
+-INFO_DEPS = bc.info dc.info
++INFO_DEPS =
+ DVIS = bc.dvi dc.dvi
+ TEXINFOS = bc.texi dc.texi
+ man1dir = $(mandir)/man1
+@@ -295,7 +295,7 @@ installcheck: installcheck-am
+ install-exec-am:
+ install-exec: install-exec-am
+ 
+-install-data-am: install-info-am install-man
++install-data-am: install-man
+ install-data: install-data-am
+ 
+ install-am: all-am

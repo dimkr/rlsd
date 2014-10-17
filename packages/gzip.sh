@@ -7,6 +7,8 @@ gzip_build() {
 	tar -xJvf gzip-$PACKAGE_VERSION.tar.xz
 	cd gzip-$PACKAGE_VERSION
 
+	patch -p 1 < "$BASE_DIR/patches/gzip-info.patch"
+
 	./configure --host=$HOST \
 	            --prefix= \
 	            --includedir=/usr/include \

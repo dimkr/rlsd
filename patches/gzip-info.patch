@@ -1,0 +1,29 @@
+diff -rup gzip-1.6-orig/doc/Makefile.in gzip-1.6/doc/Makefile.in
+--- gzip-1.6-orig/doc/Makefile.in	2014-10-17 16:43:56.563992952 +0300
++++ gzip-1.6/doc/Makefile.in	2014-10-17 16:44:49.221992009 +0300
+@@ -229,7 +229,7 @@ AM_V_texidevnull = $(am__v_texidevnull_@
+ am__v_texidevnull_ = $(am__v_texidevnull_@AM_DEFAULT_V@)
+ am__v_texidevnull_0 = > /dev/null
+ am__v_texidevnull_1 = 
+-INFO_DEPS = $(srcdir)/gzip.info
++INFO_DEPS =
+ TEXINFO_TEX = $(top_srcdir)/build-aux/texinfo.tex
+ am__TEXINFO_TEX_DIR = $(top_srcdir)/build-aux
+ DVIS = gzip.dvi
+@@ -1525,16 +1525,10 @@ distdir: $(DISTFILES)
+ 	    || exit 1; \
+ 	  fi; \
+ 	done
+-	$(MAKE) $(AM_MAKEFLAGS) \
+-	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
+-	  dist-info
+ check-am: all-am
+ check: check-am
+ all-am: Makefile $(INFO_DEPS)
+ installdirs:
+-	for dir in "$(DESTDIR)$(infodir)"; do \
+-	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+-	done
+ install: install-am
+ install-exec: install-exec-am
+ install-data: install-data-am
