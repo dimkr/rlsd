@@ -85,7 +85,7 @@ lok: musl
 loksh: musl
 luufs: musl zlib fuse
 lynx: musl zlib ncurses libressl
-mandoc: musl
+mandoc: musl less
 mhwaveedit: musl gtk alsa_lib
 mkfontdir: mkfontscale
 mkfontscale: musl zlib tinyxlib libfontenc
