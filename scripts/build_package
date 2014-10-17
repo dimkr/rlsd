@@ -278,6 +278,7 @@ do
 	                       mv "$installation_prefix/$i" "$doc_prefix/usr/share/"
 done
 rmdir "$installation_prefix/usr/share" 2>/dev/null
+rmdir "$installation_prefix/usr" 2>/dev/null
 
 # create packdude packages from the package itself and its documentation
 [ ! -d "$REPO_DIR" ] && mkdir -p "$REPO_DIR"
