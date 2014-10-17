@@ -274,6 +274,13 @@ then
 	done
 fi
 
+# add the package template
+[ -d "$BASE_DIR/templates/$1" ] && \
+                        cp -a "$BASE_DIR/templates/$1"/* "$installation_prefix/"
+
+# remove .gitignore files
+find "$installation_prefix" -name .gitignore -delete
+
 # create a packdude package from the built package
 [ ! -d "$REPO_DIR" ] && mkdir -p "$REPO_DIR"
 tar -C "$installation_prefix" -c . | \
