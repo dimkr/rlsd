@@ -4,8 +4,7 @@ PACKAGES="toybox
           lazy_utils
           loksh
           packdude
-          mandoc
-          less
-          packdude"
+          packdude_doc
+          mandoc"
 
 SUFFIX="-rootfs"
