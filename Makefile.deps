@@ -102,7 +102,7 @@ ncdu: musl ncurses
 ncurses: musl
 nethack: musl xz
 ogg122: musl tinyalsa
-packdude: musl zlib libarchive sqlite curl
+packlad: musl zlib libarchive curl clzip
 patch: musl
 prboom: musl libpng sdl sdl_mixer sdl_net freedoom
 rfkill: musl

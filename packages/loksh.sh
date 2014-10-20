@@ -7,7 +7,7 @@ loksh_build() {
 	unzip loksh-$PACKAGE_VERSION.zip
 	cd loksh-master
 
-	patch -p 1 < "$BASE_DIR/patches/loksh-packdude.patch"
+	patch -p 1 < "$BASE_DIR/patches/loksh-packlad.patch"
 	patch -p 1 < "$BASE_DIR/patches/loksh-boss.patch"
 	patch -p 1 < "$BASE_DIR/patches/loksh-build.patch"
 

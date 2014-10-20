@@ -28,17 +28,15 @@ else
 fi
 
 # install the packages
-mkdir -p "$2/var/packdude"
+mkdir -p "$2/var/packlad/downloaded" "$2/var/packlad/installed"
+REPO="$repo" packlad -p "$2" -u
 for package in $PACKAGES
 do
-	packdude -i $package -n -p "$2" -u "$repo"
+	REPO="$repo" packlad -s -i $package -n -p "$2"
 done
 
-# clean up after packdude
-for i in "$2/var/packdude/lock" "$2/var/packdude"/repo-*.sqlite3
-do
-	rm -vf "$i"
-done
+# clean up after packlad
+rm -vf "$2/var/packlad/available" "$2/var/packlad/downloaded"/*
 
 # add RLSD's documentation
 install -m 644 README "$2/usr/share/doc/rlsd/README"
@@ -56,7 +54,3 @@ done
 chmod 700 "$2/home/boss"
 chown 1000:1000 "$2/home/someone"
 chmod 755 "$2/home/someone"
-
-# rename packdude's installation database; it is copied to the writeable layer
-# by rc.initramfs
-mv "$2/var/packdude/data.sqlite3" "$2/var/packdude/core.sqlite3"

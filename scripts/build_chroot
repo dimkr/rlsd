@@ -12,9 +12,9 @@ MIRROR="http://us.archive.ubuntu.com/ubuntu/"
 REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev
                    autoconf-archive unzip flex bison git nasm squashfs-tools
                    pkg-config file subversion bc xfonts-utils dosfstools mtools
-                   yasm libarchive-dev libcurl4-gnutls-dev libsqlite3-dev
-                   xorriso wget liblwp-useragent-determined-perl advancecomp
-                   optipng curl gawk"
+                   yasm libarchive-dev libcurl4-gnutls-dev xorriso wget
+                   liblwp-useragent-determined-perl advancecomp optipng curl
+                   gawk clzip"
 
 # set the locale to the default, to speed up everything
 export LANG="C"
@@ -96,12 +96,12 @@ then
 	                   cd /root/musl-cross; sh build.sh"
 fi
 
-# install packdude
-if [ ! -f "$1/bin/packdude" ]
+# install packlad
+if [ ! -f "$1/bin/packlad" ]
 then
-	chroot "$1" sh -c "git clone https://github.com/dimkr/packdude.git \
-	                             /root/packdude; \
-	                   cd /root/packdude; make; make install"
+	chroot "$1" sh -c "git clone https://github.com/dimkr/packlad.git \
+	                             /root/packlad; \
+	                   cd /root/packlad; make; make install"
 fi
 
 # install sstrip

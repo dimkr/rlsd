@@ -1,10 +1,10 @@
-# rootfs: a basic, non-bootable root file system with nothing but packdude
+# rootfs: a basic, non-bootable root file system with nothing but packlad
 
 PACKAGES="toybox
           lazy_utils
           loksh
-          packdude
-          packdude_doc
+          packlad
+          packlad_doc
           mandoc"
 
 SUFFIX="-rootfs"

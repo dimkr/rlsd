@@ -94,7 +94,7 @@ export PACKAGE_ARCH="$ARCH"
 . ./packages/$1.sh
 
 # if the binary package exists already, do nothing
-[ -f "$REPO_DIR/$1-$PACKAGE_VERSION.dude" ] && exit 0
+[ -f "$REPO_DIR/$1-$PACKAGE_VERSION-$PACKAGE_ARCH.pkg" ] && exit 0
 
 # create a directory for the package sources
 mkdir -p ./sources/$1
@@ -280,23 +280,24 @@ done
 rmdir "$installation_prefix/usr/share" 2>/dev/null
 rmdir "$installation_prefix/usr" 2>/dev/null
 
-# create packdude packages from the package itself and its documentation
+# create packlad packages from the package itself and its documentation
 [ ! -d "$REPO_DIR" ] && mkdir -p "$REPO_DIR"
-tar -C "$installation_prefix" -c . | \
-xz -9 -e --check=none | \
-dudepack > "$REPO_DIR/$1-$PACKAGE_VERSION.dude"
-tar -C "$doc_prefix" -c . | \
-xz -9 -e --check=none | \
-dudepack > "$REPO_DIR/${1}_doc-$PACKAGE_VERSION.dude"
+dir2pkg "$installation_prefix" \
+        "$BASE_DIR/priv_key" \
+        "$BASE_DIR/pub_key" \
+        "$REPO_DIR/$1-$PACKAGE_VERSION-$PACKAGE_ARCH.pkg"
+dir2pkg "$doc_prefix" \
+        "$BASE_DIR/priv_key" \
+        "$BASE_DIR/pub_key" \
+        "$REPO_DIR/${1}_doc-$PACKAGE_VERSION-all.pkg"
 
 # remove the temporary installation directory and the documentation
 rm -rf "$doc_prefix"
 rm -rf "$installation_prefix"
 
-# generate entries
+# generate package entries
 dependencies="$(grep ^$1: "$BASE_DIR/Makefile.deps" | \
                 cut -f 2 -d : | \
                 cut -c 2-)"
-[ -z "$dependencies" ] && dependencies="-"
-echo "$1,$PACKAGE_VERSION,$PACKAGE_DESC,$1-$PACKAGE_VERSION.dude,$PACKAGE_ARCH,$dependencies
-${1}_doc,$PACKAGE_VERSION,$PACKAGE_DESC - documentation,${1}_doc-$PACKAGE_VERSION.dude,all,-" >> "$REPO_DIR/repo.csv"
+echo "$1|$PACKAGE_VERSION|$PACKAGE_DESC|$1-$PACKAGE_VERSION-$PACKAGE_ARCH.pkg|$PACKAGE_ARCH|$dependencies
+${1}_doc|$PACKAGE_VERSION|$PACKAGE_DESC - documentation|${1}_doc-$PACKAGE_VERSION-all.pkg|all|" >> "$REPO_DIR/available"

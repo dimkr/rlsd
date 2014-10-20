@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# gpackdude: a graphical frontend for packdude
+# gpacklad: a graphical frontend for packlad
 
 _list_avail_packages() {
 	# let the user enter a search keyword
@@ -20,13 +20,13 @@ _list_avail_packages() {
 
 	# obtain the list of installed packages
 	inst_packages=""
-	packdude -q | grep -i "$KEYWORD" | while read line
+	packlad -q | grep -i "$KEYWORD" | while read line
 	do
 		inst_packages="$inst_packages ${line%%\|*}"
 	done
 
 	# list available packages
-	packdude -l | grep -i "$KEYWORD" | while read line
+	packlad -l | grep -i "$KEYWORD" | while read line
 	do
 		name="${line%%\|*}"
 		installed=0
@@ -46,7 +46,7 @@ _list_avail_packages() {
 
 _list_inst_packages() {
 	# show all installed packages
-	packdude -q | while read line
+	packlad -q | while read line
 	do
 		echo "  <item>$line</item>"
 	done
@@ -54,7 +54,7 @@ _list_inst_packages() {
 
 _list_removable_packages() {
 	# show all removable packages
-	packdude -c | while read line
+	packlad -c | while read line
 	do
 		echo "	<item>$line</item>"
 	done
@@ -125,7 +125,7 @@ case "$action" in
 		exit 0
 		;;
 esac
-exec aterm -title packdude -e sh -c "packdude -$flag \"$choice\"; \
-                                     [ 0 -eq \$? ] && exit; \
-                                     echo 'Press any key to close'; \
-                                     read dummy"
+exec aterm -title packlad -e sh -c "packlad -$flag \"$choice\"; \
+                                    [ 0 -eq \$? ] && exit; \
+                                    echo 'Press any key to close'; \
+                                    read dummy"
