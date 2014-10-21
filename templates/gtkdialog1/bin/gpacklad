@@ -70,6 +70,7 @@ _choose_package() {
 "
 	case "$1" in
 		install)
+			packlad -u > /dev/null 2>&1
 			_list_avail_packages
 			;;
 		remove)

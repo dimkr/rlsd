@@ -5,13 +5,12 @@
 SYSROOT ?= $(shell pwd)/sysroot
 PACKAGES = $(shell ls packages/ | cut -f 1 -d .)
 
-all: iso
+all: images
 
 $(PACKAGES):
 	SYSROOT="$(SYSROOT)" ./scripts/build_package $@
 
 packages: $(PACKAGES)
-	cd repo; repodude repo.csv repo.sqlite3
 
 images:
 	./scripts/create_tar rootfs

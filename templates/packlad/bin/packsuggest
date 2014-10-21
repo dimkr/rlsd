@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# packsuggest: a package suggestion helper for ksh
+
+[ 1 -ne $# ] && exit 1
+
+match="$(packlad -l | sort -r | grep "^$1" | head -n 1 | cut -f 1 -d \|)"
+case "$match" in
+	"")
+		exit 1
+		;;
+	"$1")
+		echo "$match is not installed. To install $match, run 'packlad -i $match'."
+		;;
+	*)
+		echo "Maybe you meant '$match'. To install $match, run 'packlad -i $match'."
+		;;
+esac
+
+exit 0
