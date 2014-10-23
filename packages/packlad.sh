@@ -7,19 +7,11 @@ packlad_build() {
 	unzip packlad-$PACKAGE_VERSION.zip
 	cd packlad-master
 
-	for i in "$BASE_DIR"/*_key "$BASE_DIR"/*_key.h
-	do
-		cp "$i" core/
-	done
-
+	cp /etc/packlad/pub_key keys/
+	cp /etc/packlad/priv_key keys/
 	$MAKE
 }
 
 packlad_package() {
-	for i in core/*_key core/*_key.h
-	do
-		cp $i "$BASE_DIR/"
-	done
-	
 	$MAKE DESTDIR="$1" install
 }

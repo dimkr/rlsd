@@ -283,12 +283,12 @@ rmdir "$installation_prefix/usr" 2>/dev/null
 # create packlad packages from the package itself and its documentation
 [ ! -d "$REPO_DIR" ] && mkdir -p "$REPO_DIR"
 dir2pkg "$installation_prefix" \
-        "$BASE_DIR/priv_key" \
-        "$BASE_DIR/pub_key" \
+        /etc/packlad/priv_key \
+        /etc/packlad/pub_key \
         "$REPO_DIR/$1-$PACKAGE_VERSION-$PACKAGE_ARCH.pkg"
 dir2pkg "$doc_prefix" \
-        "$BASE_DIR/priv_key" \
-        "$BASE_DIR/pub_key" \
+        /etc/packlad/priv_key \
+        /etc/packlad/pub_key \
         "$REPO_DIR/${1}_doc-$PACKAGE_VERSION-all.pkg"
 
 # remove the temporary installation directory and the documentation

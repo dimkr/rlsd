@@ -96,12 +96,14 @@ then
 	                   cd /root/musl-cross; sh build.sh"
 fi
 
-# install packlad
+# install packlad and its private key; the key pair in /etc/packlad will be used
+# by RLSD's packlad
 if [ ! -f "$1/bin/packlad" ]
 then
 	chroot "$1" sh -c "git clone https://github.com/dimkr/packlad.git \
 	                             /root/packlad; \
-	                   cd /root/packlad; make; make install"
+	                   cd /root/packlad; make; make keys; make install"
+	install -m 400 "$1/root/packlad/keys/priv_key" "$1/etc/packlad/priv_key"
 fi
 
 # install sstrip
