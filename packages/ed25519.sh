@@ -16,5 +16,5 @@ ed25519_build() {
 ed25519_package() {
 	install -D -m 644 libed25519.a "$1/lib/libed25519.a"
 	install -D -m 644 ed25519.h "$1/usr/include/ed25519.h"
-	install -D -m 644 ../readme.md "$1/usr/share/doc/ed25519/doc/readme.md"
+	install -D -m 644 ../readme.md "$1/usr/share/doc/ed25519/readme.md"
 }
