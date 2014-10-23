@@ -1,0 +1,25 @@
+diff -rupN ed25519-orig/src/Makefile ed25519/src/Makefile
+--- ed25519-orig/src/Makefile	1970-01-01 02:00:00.000000000 +0200
++++ ed25519/src/Makefile	2014-10-23 22:48:24.630924971 +0300
+@@ -0,0 +1,21 @@
++CC ?= cc
++CFLAGS ?= -O2 -pipe
++LDFLAGS ?= -s
++
++CFLAGS += -std=gnu99 -Wall -pedantic
++
++SRCS = $(wildcard *.c)
++OBJS = $(SRCS:.c=.o)
++
++LIB = libed25519.a
++
++all: $(LIB)
++
++%.o: %.c
++	$(CC) -c -o $@ $< $(CFLAGS)
++
++$(LIB): $(OBJS)
++	ar rcs $@ $^
++
++clean:
++	rm -f $(LIB) $(OBJS)

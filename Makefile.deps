@@ -21,6 +21,7 @@ dillo: musl libpng libjpeg_turbo gtk libressl wget
 dosfstools: musl
 dropbear: musl zlib
 dvtm: musl ncurses
+ed25519: musl
 elilo: musl gnu_efi
 elvis: musl ncurses
 emelfm: musl gtk
@@ -102,7 +103,7 @@ ncdu: musl ncurses
 ncurses: musl
 nethack: musl xz
 ogg122: musl tinyalsa
-packlad: musl zlib libarchive curl clzip
+packlad: musl zlib libarchive curl clzip ed25519
 patch: musl
 prboom: musl libpng sdl sdl_mixer sdl_net freedoom
 rfkill: musl

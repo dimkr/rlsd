@@ -102,7 +102,7 @@ if [ ! -f "$1/bin/packlad" ]
 then
 	chroot "$1" sh -c "git clone https://github.com/dimkr/packlad.git \
 	                             /root/packlad; \
-	                   cd /root/packlad; make; make keys; make install"
+	                   cd /root/packlad; make; make genkeys; make install"
 	install -m 400 "$1/root/packlad/keys/priv_key" "$1/etc/packlad/priv_key"
 fi
 
