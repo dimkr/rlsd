@@ -1,7 +1,26 @@
-diff -rup dropbear-2014.65-orig/options.h dropbear-2014.65/options.h
---- dropbear-2014.65-orig/options.h	2014-08-15 17:44:11.211770397 +0300
-+++ dropbear-2014.65/options.h	2014-08-15 17:44:58.834769544 +0300
-@@ -264,7 +264,7 @@ much traffic. */
+diff -rup dropbear-2014.66-orig/dropbear.8 dropbear-2014.66/dropbear.8
+--- dropbear-2014.66-orig/dropbear.8	2014-10-24 18:02:26.731979124 +0300
++++ dropbear-2014.66/dropbear.8	2014-10-24 18:03:23.912978100 +0300
+@@ -72,7 +72,7 @@ In program mode the \-F option is implie
+ .TP
+ .B \-P \fIpidfile
+ Specify a pidfile to create when running as a daemon. If not specified, the 
+-default is /var/run/dropbear.pid
++default is /run/dropbear.pid
+ .TP
+ .B \-a
+ Allow remote hosts to connect to forwarded ports.
+diff -rup dropbear-2014.66-orig/options.h dropbear-2014.66/options.h
+--- dropbear-2014.66-orig/options.h	2014-10-24 18:02:26.731979124 +0300
++++ dropbear-2014.66/options.h	2014-10-24 18:03:04.184978453 +0300
+@@ -258,13 +258,13 @@ much traffic. */
+ /* The default file to store the daemon's process ID, for shutdown
+    scripts etc. This can be overridden with the -P flag */
+ #ifndef DROPBEAR_PIDFILE
+-#define DROPBEAR_PIDFILE "/var/run/dropbear.pid"
++#define DROPBEAR_PIDFILE "/run/dropbear.pid"
+ #endif
+ 
  /* The command to invoke for xauth when using X11 forwarding.
   * "-q" for quiet */
  #ifndef XAUTH_COMMAND
@@ -28,11 +47,11 @@ diff -rup dropbear-2014.65-orig/options.h dropbear-2014.65/options.h
  
  /* Some other defines (that mostly should be left alone) are defined
   * in sysoptions.h */
-diff -rup dropbear-2014.65-orig/sysoptions.h dropbear-2014.65/sysoptions.h
---- dropbear-2014.65-orig/sysoptions.h	2014-08-15 17:44:11.201770397 +0300
-+++ dropbear-2014.65/sysoptions.h	2014-08-15 17:44:42.202769842 +0300
+diff -rup dropbear-2014.66-orig/sysoptions.h dropbear-2014.66/sysoptions.h
+--- dropbear-2014.66-orig/sysoptions.h	2014-10-24 18:02:26.716979124 +0300
++++ dropbear-2014.66/sysoptions.h	2014-10-24 18:02:32.640979018 +0300
 @@ -7,7 +7,7 @@
- #define DROPBEAR_VERSION "2014.65"
+ #define DROPBEAR_VERSION "2014.66"
  #endif
  
 -#define LOCAL_IDENT "SSH-2.0-dropbear_" DROPBEAR_VERSION
