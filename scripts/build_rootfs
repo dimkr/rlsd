@@ -29,6 +29,7 @@ fi
 
 # install the packages
 mkdir -p "$2/var/packlad/downloaded" "$2/var/packlad/installed"
+install -D -m 400 "$SYSROOT/etc/packlad/pub_key" "$2/etc/packlad/pub_key"
 REPO="$repo" packlad -p "$2" -u
 for package in $PACKAGES
 do
