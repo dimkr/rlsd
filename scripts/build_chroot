@@ -96,13 +96,34 @@ then
 	                   cd /root/musl-cross; sh build.sh"
 fi
 
+# fetch or update the RLSD build environment
+if [ ! -d "$1/root/rlsd" ]
+then
+	chroot "$1" git clone https://github.com/dimkr/rlsd.git /root/rlsd
+else
+	chroot "$1" sh -c "cd /root/rlsd; git pull"
+fi
+
+# install Ed25519
+if [ ! -f "$1/lib/libed25519.a" ]
+then
+	chroot "$1" sh -c "git clone https://github.com/orlp/ed25519.git \
+	                             /root/ed25519; \
+	                   cd /root/ed25519; \
+	                   patch -p 1 < ../rlsd/patches/ed25519-build.patch; \
+	                   cd src; \
+	                   make; \
+	                   cp libed25519.a /lib/;
+	                   cp ed25519.h /usr/include/"
+fi
+
 # install packlad and its private key; the key pair in /etc/packlad will be used
 # by RLSD's packlad
 if [ ! -f "$1/bin/packlad" ]
 then
 	chroot "$1" sh -c "git clone https://github.com/dimkr/packlad.git \
 	                             /root/packlad; \
-	                   cd /root/packlad; make; make genkeys; make install"
+	                   cd /root/packlad; make genkeys; make; make install"
 	install -m 400 "$1/root/packlad/keys/priv_key" "$1/etc/packlad/priv_key"
 fi
 
@@ -118,19 +139,13 @@ then
 	 cp sstrip /usr/local/bin"
 fi
 
-# clean and update or fetch the RLSD build environment
-if [ -d "$1/root/rlsd" ]
-then
-	for i in repo build sysroot
-	do
-		[ -d "$1/root/rlsd/$i" ] && rm -rf "$1/root/rlsd/$i"
-	done
-	rm -f "$1/root/rlsd"/*-config > /dev/null 2>&1
-	rm -f "$1/root/rlsd"/musl-gcc* > /dev/null 2>&1
-	chroot "$1" sh -c "cd /root/rlsd; git pull"
-else
-	chroot "$1" git clone https://github.com/dimkr/rlsd.git /root/rlsd
-fi
+# clean up files from the previous build
+for i in repo build sysroot
+do
+	[ -d "$1/root/rlsd/$i" ] && rm -rf "$1/root/rlsd/$i"
+done
+rm -f "$1/root/rlsd"/*-config > /dev/null 2>&1
+rm -f "$1/root/rlsd"/musl-gcc* > /dev/null 2>&1
 
 # build RLSD
 chroot "$1" sh -c "cd /root/rlsd; \
