@@ -9,11 +9,8 @@ PACKAGES="$PACKAGES
           luufs
           rfkill
           dhcpcd
-          dhcpcd_doc
           iw
-          iw_doc
           wpa_supplicant
-          wpa_supplicant_doc
           gzip
           lbzip2
           xz

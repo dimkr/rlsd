@@ -16,7 +16,6 @@ PACKAGES="$PACKAGES
           rox
           scrollz
           dillo
-          dillo_doc
           grun"
 
 SUFFIX=""
