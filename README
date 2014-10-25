@@ -33,8 +33,8 @@ Daily builds of RLSD are available through its homepage.
 Building
 ========
 
-RLSD is built from source. It is cross-compiled through Ubuntu
-(http://www.ubuntu.com/) 14.04 x86_64.
+RLSD is built from source. It is cross-compiled through Trisquel
+(http://www.trisquel.info/) 7 x86_64.
 
 The whole process is automated; there's a script (http://goo.gl/8x9id4) that
 generates a clean, up-to-date build environment, then cross-compiles the entire
@@ -48,9 +48,9 @@ To build a 64-bit RLSD:
 Alternatively, to build a 32-bit variant, use setarch(1), e.g:
   sudo setarch i486 sh 8x9id4 ./rlsd-chroot
 
-The script should run on Ubuntu (http://www.ubuntu.com/) 14.04 x86_64. It is
-highly recommended to read the script first, as it installs debootstrap on the
-host.
+It is highly recommended to read the script first, as it installs debootstrap on
+the host. It should run on Trisquel 7, although it should work on any comparable
+distribution with debootstrap after minor adjustments.
 
 Credits and Legal Information
 =============================

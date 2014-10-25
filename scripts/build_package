@@ -94,7 +94,7 @@ export PACKAGE_ARCH="$ARCH"
 . ./packages/$1.sh
 
 # if the binary package exists already, do nothing
-[ -f "$REPO_DIR/$1-$PACKAGE_VERSION-$PACKAGE_ARCH.pkg" ] && exit 0
+[ -f "$REPO_DIR/$1-$PACKAGE_VERSION.pkg" ] && exit 0
 
 # create a directory for the package sources
 mkdir -p ./sources/$1

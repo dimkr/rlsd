@@ -2,11 +2,11 @@
 
 # build_chroot: generates a chroot environment and builds RLSD inside it
 
-# the Ubuntu version to use
-RELEASE="trusty"
+# the Trisquel version to use
+RELEASE="belenos"
 
 # the package mirror to fetch packages from
-MIRROR="http://us.archive.ubuntu.com/ubuntu/"
+MIRROR="http://mirror.fsf.org/trisquel/"
 
 # packages required to build RLSD
 REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev
@@ -54,14 +54,9 @@ else
 	[ 0 -ne $? ] && exit 1
 
 	# set the repositories list
-	echo "deb $MIRROR $RELEASE main restricted
-	deb $MIRROR $RELEASE-updates main restricted
-
-	deb $MIRROR $RELEASE universe
-	deb $MIRROR $RELEASE-updates universe
-
-	deb $MIRROR $RELEASE multiverse
-	deb $MIRROR $RELEASE-updates multiverse" > "$1/etc/apt/sources.list"
+	echo "deb $MIRROR $RELEASE main
+deb $MIRROR $RELEASE-updates main
+deb $MIRROR $RELEASE-security main" > "$1/etc/apt/sources.list"
 
 	exists=0
 fi
