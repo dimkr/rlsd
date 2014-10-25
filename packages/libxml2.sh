@@ -18,6 +18,8 @@ build() {
 	            --datarootdir=/usr/share \
 	            $CONFIGURE_LIBRARY_FLAGS \
 	            --without-debug \
+	            --without-ftp \
+	            --without-http \
 	            --without-html-dir \
 	            --without-python \
 	            --without-threads \
