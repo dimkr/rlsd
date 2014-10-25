@@ -1,5 +1,5 @@
-alsa_lib: musl
-alsa_utils: musl ncurses alsa_lib
+alsa-lib: musl
+alsa-utils: musl ncurses alsa-lib
 aop: musl ncurses
 aterm: musl tinyxlib
 bc: musl
@@ -7,8 +7,8 @@ beaver: musl gtk
 bftpd: musl zlib
 binutils: musl
 bs: musl ncurses
-bwm_ng: musl ncurses
-ca_certificates:
+bwm-ng: musl ncurses
+ca-certificates:
 calcoo: musl gtk
 calcurse: musl ncurses
 chimaera: musl
@@ -17,85 +17,85 @@ conky: musl tinyxlib
 curl: musl zlib libressl
 dhcpcd: musl
 diffutils: musl
-dillo: musl libpng libjpeg_turbo gtk libressl wget
+dillo: musl libpng libjpeg-turbo gtk libressl wget
 dosfstools: musl
 dropbear: musl zlib
 dvtm: musl ncurses
 ed25519: musl
-elilo: musl gnu_efi
+elilo: musl gnu-efi
 elvis: musl ncurses
 emelfm: musl gtk
 evilwm: musl tinyxlib
 fbshot: musl libpng
-ffmpeg: musl zlib alsa_lib sdl
+ffmpeg: musl zlib alsa-lib sdl
 figlet: musl
 file: musl zlib
 findutils: musl
-font_adobe_100dpi: font_util
-font_adobe_75dpi: font_util
-font_bh_lucidatypewriter_100dpi: font_util
-font_bh_lucidatypewriter_75dpi: font_util
-font_util: musl
+font-adobe-100dpi: font-util
+font-adobe-75dpi: font-util
+font-bh-lucidatypewriter-100dpi: font-util
+font-bh-lucidatypewriter-75dpi: font-util
+font-util: musl
 freedoom:
 fuse: musl
 gbase: musl gtk
 gcalendar: musl gtk
 gcolor: musl gtk
-gdk_pixbuf: musl libpng libjpeg_turbo
+gdk-pixbuf: musl libpng libjpeg-turbo
 gdmap: musl gtk
-ghostscript: musl zlib libpng libjpeg_turbo tiff tinyxlib
+ghostscript: musl zlib libpng libjpeg-turbo tiff tinyxlib
 giflib: musl
 gifsicle: musl giflib
 glib: musl
-gnu_efi: musl
+gnu-efi: musl
 greed: musl ncurses
 grun: musl gtk
-gtk: musl tinyxlib glib font_adobe_75dpi font_adobe_100dpi
+gtk: musl tinyxlib glib font-adobe-75dpi font-adobe-100dpi
 gtkcat: musl gtk
-gtkdialog1: musl gtk findutils gdk_pixbuf
+gtkdialog1: musl gtk findutils gdk-pixbuf
 gtkdiskfree: musl gtk
 gtkedit: musl gtk
 gtkfind: musl findutils gtk
 gtkfontsel: musl gtk
 gtklepin: musl gtk
-gtksee: musl gtk gdk_pixbuf
+gtksee: musl gtk gdk-pixbuf
 guiftp: musl gtk
 guitar: musl gtk libarchive
 gv: musl libxaw3d ghostscript
 gzip: musl diffutils
 htop: musl ncurses
 isolinux: 
-iw: musl libnl_tiny
+iw: musl libnl-tiny
 jimtcl: musl
-jwm: musl tinyxlib libpng font_adobe_75dpi font_adobe_100dpi
-lazy_utils: musl
+jwm: musl tinyxlib libpng font-adobe-75dpi font-adobe-100dpi
+lazy-utils: musl
 lbzip2: musl
 less: musl ncurses
 libarchive: musl zlib lbzip2 xz
 libfontenc: musl zlib tinyxlib
-libjpeg_turbo: musl
-libnl_tiny: musl
+libjpeg-turbo: musl
+libnl-tiny: musl
 libpcap: musl
 libpng: musl zlib
-libressl: musl zlib ca_certificates
+libressl: musl zlib ca-certificates
 libxaw3d: musl tinyxlib
 libxml2: musl
-linux: toybox loksh lazy_utils lok luufs fuse
-linux_headers: 
+linux: toybox loksh lazy-utils lok luufs fuse
+linux-headers:
 lok: musl
 loksh: musl
 luufs: musl zlib fuse
 lynx: musl zlib ncurses libressl
 mandoc: musl less
-mhwaveedit: musl gtk alsa_lib
+mhwaveedit: musl gtk alsa-lib
 mkfontdir: mkfontscale
 mkfontscale: musl zlib tinyxlib libfontenc
-moon_buggy: musl ncurses
+moon-buggy: musl ncurses
 mowitz: musl tinyxlib
 mpg123: musl tinyalsa
 msmtp: musl libressl
-mtpaint: musl gtk libpng libjpeg_turbo giflib gifsicle
-musl: linux_headers iana_etc
+mtpaint: musl gtk libpng libjpeg-turbo giflib gifsicle
+musl: linux-headers iana-etc
 mutt: musl ncurses libressl msmtp
 nano: musl ncurses
 nc: musl
@@ -108,12 +108,12 @@ patch: musl
 prboom: musl libpng sdl sdl_mixer sdl_net freedoom
 rfkill: musl
 rogue: musl ncurses
-rox: musl file gtk gdk_pixbuf libxml2
+rox: musl file gtk gdk-pixbuf libxml2
 screen: musl ncurses
 scrollz: musl ncurses libressl
-sdl: musl tinyxlib alsa_lib
-sdl_mixer: musl tinyxlib alsa_lib sdl
-sdl_net: musl tinyxlib alsa_lib sdl
+sdl: musl tinyxlib alsa-lib
+sdl_mixer: musl tinyxlib alsa-lib sdl
+sdl_net: musl tinyxlib alsa-lib sdl
 shed: musl ncurses
 shus: musl
 shutbox: musl gtk
@@ -121,24 +121,24 @@ siag: musl mowitz
 snownews: musl zlib ncurses libressl libxml2
 sqlite: musl
 sumeria: musl
-sylpheed: musl libressl gtk gdk_pixbuf
+sylpheed: musl libressl gtk gdk-pixbuf
 tcpdump: musl libressl libpcap
-ted: musl zlib libpng libjpeg_turbo tiff gtk font_adobe_75dpi font_adobe_100dpi
-tiff: musl zlib libjpeg_turbo
+ted: musl zlib libpng libjpeg-turbo tiff gtk font-adobe-75dpi font-adobe-100dpi
+tiff: musl zlib libjpeg-turbo
 tinyalsa: musl
 tinyunmute: musl tinyalsa
 tinyxlib: musl
 tinyxserver: musl zlib mkfontscale mkfontdir
 toybox: musl
-tty_clock: musl ncurses
+tty-clock: musl ncurses
 vifm: musl ncurses file
 vitetris: musl ncurses
 wget: musl libressl
-wpa_supplicant: musl libressl libnl_tiny
-x11vnc: musl libressl tinyxlib libjpeg_turbo
+wpa_supplicant: musl libressl libnl-tiny
+x11vnc: musl libressl tinyxlib libjpeg-turbo
 xaos: musl libpng tinyxlib
 xasteroids: musl tinyxlib
-xchat: musl libressl gtk font_bh_lucidatypewriter_75dpi font_bh_lucidatypewriter_100dpi
+xchat: musl libressl gtk font-bh-lucidatypewriter-75dpi font-bh-lucidatypewriter-100dpi
 xev: musl tinyxlib
 xhippo: musl gtk ogg122 mpg123
 xmodmap: musl tinyxlib
