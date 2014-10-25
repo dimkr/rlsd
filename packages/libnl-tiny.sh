@@ -7,7 +7,7 @@ build() {
 	tar -xJvf libnl-tiny-$PACKAGE_VERSION.tar.xz
 	cd libnl-tiny-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/libnl_tiny-build.patch"
+	patch -p 1 < "$BASE_DIR/patches/libnl-tiny-build.patch"
 	cd src
 
 	$MAKE CC="$CC" CFLAGS="$CFLAGS"

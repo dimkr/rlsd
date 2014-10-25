@@ -7,9 +7,9 @@ build() {
 	unzip gdk-pixbuf-$PACKAGE_VERSION.zip
 	cd gdk-pixbuf-master
 
-	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-tiff.patch"
-	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-demo.patch"
-	patch -p 1 < "$BASE_DIR/patches/gdk_pixbuf-doc.patch"
+	patch -p 1 < "$BASE_DIR/patches/gdk-pixbuf-tiff.patch"
+	patch -p 1 < "$BASE_DIR/patches/gdk-pixbuf-demo.patch"
+	patch -p 1 < "$BASE_DIR/patches/gdk-pixbuf-doc.patch"
 
 	./configure --host=$HOST \
 	            --prefix=/usr \

@@ -7,8 +7,8 @@ build() {
 	tar -xzvf libjpeg-turbo-$PACKAGE_VERSION.tar.gz
 	cd libjpeg-turbo-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/libjpeg_turbo-examples.patch"
-	patch -p 1 < "$BASE_DIR/patches/libjpeg_turbo-doc.patch"
+	patch -p 1 < "$BASE_DIR/patches/libjpeg-turbo-examples.patch"
+	patch -p 1 < "$BASE_DIR/patches/libjpeg-turbo-doc.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \

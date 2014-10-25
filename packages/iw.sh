@@ -7,7 +7,7 @@ build() {
 	tar -xJvf iw-$PACKAGE_VERSION.tar.xz
 	cd iw-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/iw-libnl_tiny.patch"
+	patch -p 1 < "$BASE_DIR/patches/iw-libnl-tiny.patch"
 	CFLAGS="-D_GNU_SOURCE $CFLAGS" \
 	LDFLAGS="$(echo $LDFLAGS | sed s~'-Wl,-gc-sections'~~)" \
 	$MAKE

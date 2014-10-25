@@ -8,7 +8,7 @@ build() {
 	cd wpa_supplicant-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/wpa_supplicant-musl.patch"
-	patch -p 1 < "$BASE_DIR/patches/wpa_supplicant-libnl_tiny.patch"
+	patch -p 1 < "$BASE_DIR/patches/wpa_supplicant-libnl-tiny.patch"
 
 	cd wpa_supplicant
 	cp defconfig .config

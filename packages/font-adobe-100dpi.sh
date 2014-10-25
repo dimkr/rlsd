@@ -8,8 +8,8 @@ build() {
 	tar -xjvf font-adobe-100dpi-$PACKAGE_VERSION.tar.bz2
 	cd font-adobe-100dpi-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/font_adobe_100dpi-tiny.patch"
-	patch -p 1 < "$BASE_DIR/patches/font_adobe_100dpi-cache.patch"
+	patch -p 1 < "$BASE_DIR/patches/font-adobe-100dpi-tiny.patch"
+	patch -p 1 < "$BASE_DIR/patches/font-adobe-100dpi-cache.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \
