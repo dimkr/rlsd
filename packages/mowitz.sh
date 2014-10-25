@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.3.1"
 PACKAGE_SOURCES="http://siag.nu/pub/mowitz/Mowitz-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An extra GUI widgets library"
 
-mowitz_build() {
+build() {
 	[ -d Mowitz-$PACKAGE_VERSION ] && rm -rf siag-$PACKAGE_VERSION
 	tar -xzvf Mowitz-$PACKAGE_VERSION.tar.gz
 	cd Mowitz-$PACKAGE_VERSION
@@ -20,7 +20,7 @@ mowitz_build() {
 	$MAKE
 }
 
-mowitz_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mowitz/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/mowitz/ChangeLog"

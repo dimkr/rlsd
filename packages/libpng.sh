@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.6.13"
 PACKAGE_SOURCES="http://prdownloads.sourceforge.net/libpng/libpng-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A library for handling PNG images"
 
-libpng_build() {
+build() {
 	[ -d libpng-$PACKAGE_VERSION ] && rm -rf libpng-$PACKAGE_VERSION
 	tar -xJvf libpng-$PACKAGE_VERSION.tar.xz
 	cd libpng-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ libpng_build() {
 	$MAKE
 }
 
-libpng_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/libpng/README"
 	install -m 644 CHANGES "$1/usr/share/doc/libpng/CHANGES"

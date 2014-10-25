@@ -2,7 +2,7 @@ PACKAGE_VERSION="3.10"
 PACKAGE_SOURCES="http://www.catb.org/~esr/greed/greed-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A strategy game"
 
-greed_build() {
+build() {
 	[ -d greed-$PACKAGE_VERSION ] && rm -rf greed-$PACKAGE_VERSION
 	tar -xzvf greed-$PACKAGE_VERSION.tar.gz
 	cd greed-$PACKAGE_VERSION
@@ -12,7 +12,7 @@ greed_build() {
 	$MAKE
 }
 
-greed_package() {
+package() {
 	install -D -m 755 greed "$1/bin/greed"
 	install -D -m 644 greed.6 "$1/usr/share/man/man6/greed.6"
 	install -d -D -m 755 "$1/var/games/greed"

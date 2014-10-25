@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.8.1"
 PACKAGE_SOURCES="http://distro.ibiblio.org/amigolinux/download/DeskTop/Launchers/grun-$PACKAGE_VERSION/grun-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="An application launcher"
 
-grun_build() {
+build() {
 	[ -d grun-$PACKAGE_VERSION ] && rm -rf grun-$PACKAGE_VERSION
 	tar -xjvf grun-$PACKAGE_VERSION.tar.bz2
 	cd grun-$PACKAGE_VERSION
@@ -12,7 +12,7 @@ grun_build() {
 	$MAKE
 }
 
-grun_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 grun2.xpm "$1/usr/share/pixmaps/grun.xpm"
 	install -D -m 644 README "$1/usr/share/doc/grun/README"

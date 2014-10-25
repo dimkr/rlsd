@@ -2,7 +2,7 @@ PACKAGE_VERSION="9.15"
 PACKAGE_SOURCES="http://downloads.ghostscript.com/public/ghostscript-$PACKAGE_VERSION.tar.gz https://projects.parabola.nu/abslibre.git/tree/libre/ghostscript/ghostscript-libre.patch"
 PACKAGE_DESC="A PostScript and PDF interpreter"
 
-ghostscript_build() {
+build() {
 	[ -d ghostscript-$PACKAGE_VERSION ] && rm -rf ghostscript-$PACKAGE_VERSION
 	tar -xzvf ghostscript-$PACKAGE_VERSION.tar.gz
 	cd ghostscript-$PACKAGE_VERSION
@@ -27,7 +27,7 @@ ghostscript_build() {
 	$MAKE
 }
 
-ghostscript_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	mkdir -p "$1/usr/share/doc"
 	ln -s ../ghostscript/$PACKAGE_VERSION/doc "$1/usr/share/doc/ghostscript"

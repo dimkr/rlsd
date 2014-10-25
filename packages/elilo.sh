@@ -2,7 +2,7 @@ PACKAGE_VERSION="3.16"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/elilo/elilo/elilo-$PACKAGE_VERSION/elilo-$PACKAGE_VERSION-all.tar.gz"
 PACKAGE_DESC="A UEFI boot loader"
 
-elilo_build() {
+build() {
 	[ -d elilo-$PACKAGE_VERSION-source ] && rm -rf elilo-$PACKAGE_VERSION-source
 	[ -f elilo-$PACKAGE_VERSION-source.tar.gz ] && rm -rf elilo-$PACKAGE_VERSION-source.tar.gz
 	tar -xzvf elilo-$PACKAGE_VERSION-all.tar.gz
@@ -21,7 +21,7 @@ elilo_build() {
 	$MAKE
 }
 
-elilo_package() {
+package() {
 	for i in *.efi
 	do
 		install -D -m 644 $i "$1/boot/$i"

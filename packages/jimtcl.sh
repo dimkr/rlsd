@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="http://repo.or.cz/w/jimtcl.git/snapshot/HEAD.tar.gz,jimtcl-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A small Tcl interpreter"
 
-jimtcl_build() {
+build() {
 	[ -d jimtcl ] && rm -rf jimtcl
 	tar -xzvf jimtcl-$PACKAGE_VERSION.tar.gz
 	cd jimtcl
@@ -18,7 +18,7 @@ jimtcl_build() {
 	$MAKE
 }
 
-jimtcl_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/jimtcl/README"
 	install -m 644 AUTHORS "$1/usr/share/doc/jimtcl/AUTHORS"

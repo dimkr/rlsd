@@ -2,7 +2,7 @@ PACKAGE_VERSION="3.3"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/diffutils/diffutils-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="Patch creation and file comparison tools"
 
-diffutils_build() {
+build() {
 	[ -d diffutils-$PACKAGE_VERSION ] && rm -rf diffutils-$PACKAGE_VERSION
 	tar -xJvf diffutils-$PACKAGE_VERSION.tar.xz
 	cd diffutils-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ diffutils_build() {
 	$MAKE
 }
 
-diffutils_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/diffutils/README"
 	install -m 644 NEWS "$1/usr/share/doc/diffutils/NEWS"

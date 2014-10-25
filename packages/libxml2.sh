@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.9.2"
 PACKAGE_SOURCES="ftp://ftp.xmlsoft.org/libxml2/libxml2-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A XML parsing library"
 
-libxml2_build() {
+build() {
 	[ -d libxml2-$PACKAGE_VERSION ] && rm -rf libxml2-$PACKAGE_VERSION
 	tar -xzvf libxml2-$PACKAGE_VERSION.tar.gz
 	cd libxml2-$PACKAGE_VERSION
@@ -26,7 +26,7 @@ libxml2_build() {
 	$MAKE
 }
 
-libxml2_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -m 644 README "$1/usr/share/doc/libxml2/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/libxml2/ChangeLog"

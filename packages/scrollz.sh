@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.2.3"
 PACKAGE_SOURCES="http://www.scrollz.info/download/ScrollZ-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An IRC client"
 
-scrollz_build() {
+build() {
 	[ -d ScrollZ-$PACKAGE_VERSION ] && rm -rf ScrollZ-$PACKAGE_VERSION
 	tar -xzvf ScrollZ-$PACKAGE_VERSION.tar.gz
 	cd ScrollZ-$PACKAGE_VERSION
@@ -20,7 +20,7 @@ scrollz_build() {
 	$MAKE
 }
 
-scrollz_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/scrollz/README"
 	install -m 644 README.ircII "$1/usr/share/doc/scrollz/README.ircII"

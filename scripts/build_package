@@ -147,11 +147,11 @@ done
 
 # build the package
 cd build
-${1}_build
+build
 
 # install the package to a directory
 installation_prefix="$(mktemp -d)"
-${1}_package "$installation_prefix"
+package "$installation_prefix"
 
 # remove libtool libraries
 if [ -d "$installation_prefix/lib" ]

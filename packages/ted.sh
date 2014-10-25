@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/ted/archive/master.zip,ted-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A word processor"
 
-ted_build() {
+build() {
 	[ -d ted-master ] && rm -rf ted-master
 	unzip ted-$PACKAGE_VERSION.zip
 	cd ted-master
@@ -13,7 +13,7 @@ ted_build() {
 	$MAKE package
 }
 
-ted_package() {
+package() {
 	mkdir -p "$1/usr/share/ted"
 	tar -xzvf tedPackage/Ted_*_Linux_${ARCH}.tar.gz -C "$1/usr/share/ted"
 	mv "$1/usr/share/ted/bin" "$1/"

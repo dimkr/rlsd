@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.5"
 PACKAGE_SOURCES="http://archive.lbzip2.org/lbzip2-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="Compression tools"
 
-lbzip2_build() {
+build() {
 	[ -d lbzip2-$PACKAGE_VERSION ] && rm -rf lbzip2-$PACKAGE_VERSION
 	tar -xzvf lbzip2-$PACKAGE_VERSION.tar.gz
 	cd lbzip2-$PACKAGE_VERSION
@@ -14,7 +14,7 @@ lbzip2_build() {
 	$MAKE
 }
 
-lbzip2_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	for i in "$1/bin"/*
 	do

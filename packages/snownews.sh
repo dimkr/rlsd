@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.5.12"
 PACKAGE_SOURCES="https://kiza.eu/media/software/snownews/snownews-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A news reader"
 
-snownews_build() {
+build() {
 	[ -d snownews-$PACKAGE_VERSION ] && rm -rf snownews-$PACKAGE_VERSION
 	tar -xzvf snownews-$PACKAGE_VERSION.tar.gz
 	cd snownews-$PACKAGE_VERSION
@@ -14,7 +14,7 @@ snownews_build() {
 	$MAKE
 }
 
-snownews_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/snownews/README"
 	install -m 644 Changelog "$1/usr/share/doc/snownews/Changelog"

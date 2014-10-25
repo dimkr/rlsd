@@ -3,7 +3,7 @@ PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/app/mkfontdir-$P
 PACKAGE_DESC="A tool for indexing fonts"
 PACKAGE_ARCH="all"
 
-mkfontdir_build() {
+build() {
 	[ -d mkfontdir-$PACKAGE_VERSION ] && rm -rf mkfontdir-$PACKAGE_VERSION
 	tar -xjvf mkfontdir-$PACKAGE_VERSION.tar.bz2
 	cd mkfontdir-$PACKAGE_VERSION
@@ -14,7 +14,7 @@ mkfontdir_build() {
 	$MAKE
 }
 
-mkfontdir_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mkfontdir/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/mkfontdir/ChangeLog"

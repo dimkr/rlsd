@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/gdk-pixbuf/archive/master.zip,gdk-pixbuf-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="An image loading library"
 
-gdk_pixbuf_build() {
+build() {
 	[ -d gdk-pixbuf-master ] && rm -rf gdk-pixbuf-master
 	unzip gdk-pixbuf-$PACKAGE_VERSION.zip
 	cd gdk-pixbuf-master
@@ -20,7 +20,7 @@ gdk_pixbuf_build() {
 	$MAKE
 }
 
-gdk_pixbuf_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gdk-pixbuf/README"
 	install -m 644 NEWS "$1/usr/share/doc/gdk-pixbuf/NEWS"

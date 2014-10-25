@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.2"
 PACKAGE_SOURCES="http://ordiluc.net/gtklepin/gtklepin-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A note taking application"
 
-gtklepin_build() {
+build() {
 	[ -d gtklepin-$PACKAGE_VERSION ] && rm -rf gtklepin-$PACKAGE_VERSION
 	tar -xjvf gtklepin-$PACKAGE_VERSION.tar.bz2
 	cd gtklepin-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ gtklepin_build() {
 	$MAKE
 }
 
-gtklepin_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gtklepin/README"
 	install -m 644 AUTHORS "$1/usr/share/doc/gtklepin/AUTHORS"

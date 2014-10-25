@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.5.0"
 PACKAGE_SOURCES="http://sourceforge.net/projects/prboom/files/prboom%20stable/2.5.0/prboom-2.5.0.tar.gz"
 PACKAGE_DESC="A first-person shooter"
 
-prboom_build() {
+build() {
 	[ -d prboom-$PACKAGE_VERSION ] && rm -rf prboom-$PACKAGE_VERSION
 	tar -xzvf prboom-$PACKAGE_VERSION.tar.gz
 	cd prboom-$PACKAGE_VERSION
@@ -23,6 +23,6 @@ prboom_build() {
 	$MAKE
 }
 
-prboom_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 }

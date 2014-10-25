@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.0.4"
 PACKAGE_SOURCES="http://www.musl-libc.org/releases/musl-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A C library"
 
-musl_build() {
+build() {
 	[ -d musl-$PACKAGE_VERSION ] && rm -rf musl-$PACKAGE_VERSION
 	tar -xzvf musl-$PACKAGE_VERSION.tar.gz
 	cd musl-$PACKAGE_VERSION
@@ -20,7 +20,7 @@ musl_build() {
 	$MAKE
 }
 
-musl_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 
 	# move the GCC wrapper out of the package

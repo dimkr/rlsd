@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/dillo/archive/master.zip,dillo-$PACKAGE_VERSION.zip http://www.dillo.org/Icons/ProgramIcon48.png,dillo.png"
 PACKAGE_DESC="A web browser"
 
-dillo_build() {
+build() {
 	[ -d dillo-master ] && rm -rf dillo-master
 	unzip dillo-$PACKAGE_VERSION.zip
 	cd dillo-master
@@ -20,7 +20,7 @@ dillo_build() {
 	$MAKE
 }
 
-dillo_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 ../dillo.png "$1/usr/share/pixmaps/dillo.png"
 	install -D -m 644 README "$1/usr/share/doc/dillo/README"

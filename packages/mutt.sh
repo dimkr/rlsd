@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.5.23"
 PACKAGE_SOURCES="http://sourceforge.net/projects/mutt/files/mutt/mutt-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An e-mail client"
 
-mutt_build() {
+build() {
 	[ -d mutt-$PACKAGE_VERSION ] && rm -rf mutt-$PACKAGE_VERSION
 	tar -xzvf mutt-$PACKAGE_VERSION.tar.gz
 	cd mutt-$PACKAGE_VERSION
@@ -18,6 +18,6 @@ mutt_build() {
 	$MAKE
 }
 
-mutt_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 }

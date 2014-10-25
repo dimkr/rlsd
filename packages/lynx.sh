@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.8.8"
 PACKAGE_SOURCES="http://lynx.isc.org/lynx$PACKAGE_VERSION/lynx$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A web browser"
 
-lynx_build() {
+build() {
 	version=$(echo $PACKAGE_VERSION | sed s/\\./-/g)
 	[ -d lynx$version ] && rm -rf lynx$version
 	tar -xjvf lynx$PACKAGE_VERSION.tar.bz2
@@ -21,7 +21,7 @@ lynx_build() {
 	$MAKE
 }
 
-lynx_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/lynx/README"
 	install -D -m 644 CHANGES "$1/usr/share/doc/lynx/CHANGES"

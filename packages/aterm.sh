@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.0.1"
 PACKAGE_SOURCES="ftp://ftp.afterstep.org/apps/aterm/aterm-1.0.1.tar.bz2"
 PACKAGE_DESC="Terminal emulator"
 
-aterm_build() {
+build() {
 	[ -d aterm-$PACKAGE_VERSION ] && rm -rf aterm-$PACKAGE_VERSION
 	tar -xjvf aterm-$PACKAGE_VERSION.tar.bz2
 	cd aterm-$PACKAGE_VERSION
@@ -18,7 +18,7 @@ aterm_build() {
 	$MAKE
 }
 
-aterm_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 ChangeLog "$1/usr/share/doc/aterm/ChangeLog"
 	install -m 644 ChangeLog.0.4 "$1/usr/share/doc/aterm/ChangeLog.0.4"

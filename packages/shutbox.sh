@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.4"
 PACKAGE_SOURCES="http://sourceforge.net/projects/shutthebox/files/shutthebox/$PACKAGE_VERSION/shutbox-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A dice game"
 
-shutbox_build() {
+build() {
 	[ -d shutbox-$PACKAGE_VERSION ] && rm -rf shutbox-$PACKAGE_VERSION
 	tar -xzvf shutbox-$PACKAGE_VERSION.tar.gz
 	cd shutbox-$PACKAGE_VERSION
@@ -14,7 +14,7 @@ shutbox_build() {
             -o shutbox
 }
 
-shutbox_package() {
+package() {
 	install -D -m 755 shutbox "$1/bin/shutbox"
 	install -D -m 644 data/gnome-die1.xpm "$1/usr/share/pixmaps/shutbox.xpm"
 	install -D -m 644 README "$1/usr/share/doc/shutbox/README"

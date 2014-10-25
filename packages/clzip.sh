@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.6"
 PACKAGE_SOURCES="http://download.savannah.gnu.org/releases/lzip/clzip/clzip-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A compression tool"
 
-clzip_build() {
+build() {
 	[ -d clzip-$PACKAGE_VERSION ] && rm -rf clzip-$PACKAGE_VERSION
 	tar -xzvf clzip-$PACKAGE_VERSION.tar.gz
 	cd clzip-$PACKAGE_VERSION
@@ -18,7 +18,7 @@ clzip_build() {
 	$MAKE
 }
 
-clzip_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/clzip/README"
 	install -m 644 NEWS "$1/usr/share/doc/clzip/NEWS"

@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.13.1"
 PACKAGE_SOURCES="http://mdocml.bsd.lv/snapshots/mdocml-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A man page formatting tool"
 
-mandoc_build() {
+build() {
 	[ -d mdocml-$PACKAGE_VERSION ] && rm -rf mdocml-$PACKAGE_VERSION
 	tar -xzvf mdocml-$PACKAGE_VERSION.tar.gz
 	cd mdocml-$PACKAGE_VERSION
@@ -14,7 +14,7 @@ mandoc_build() {
 	      mandoc
 }
 
-mandoc_package() {
+package() {
 	install -D -m 755 mandoc "$1/bin/mandoc"
 	install -D -m 644 mandoc.1 "$1/usr/share/man/man1/mandoc.1"
 	install -D -m 644 NEWS "$1/usr/share/doc/mandoc/NEWS"

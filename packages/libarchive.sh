@@ -2,7 +2,7 @@ PACKAGE_VERSION="3.1.2"
 PACKAGE_SOURCES="http://www.libarchive.org/downloads/libarchive-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An archive handling library"
 
-libarchive_build() {
+build() {
 	[ -d libarchive-$PACKAGE_VERSION ] && rm -rf libarchive-$PACKAGE_VERSION
 	tar -xzvf libarchive-$PACKAGE_VERSION.tar.gz
 	cd libarchive-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ libarchive_build() {
 	$MAKE
 }
 
-libarchive_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	ln -s bsdtar "$1/bin/tar"
 	ln -s bsdcpio "$1/bin/cpio"

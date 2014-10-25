@@ -3,7 +3,7 @@ PACKAGE_SOURCES="http://sethwklein.net/iana-etc-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="IANA data files"
 PACKAGE_ARCH="all"
 
-iana_etc_build() {
+build() {
 	[ -d iana-etc-$PACKAGE_VERSION ] && rm -rf iana-etc-$PACKAGE_VERSION
 	tar -xjvf iana-etc-$PACKAGE_VERSION.tar.bz2
 	cd iana-etc-$PACKAGE_VERSION
@@ -11,7 +11,7 @@ iana_etc_build() {
 	$MAKE
 }
 
-iana_etc_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/iana-etc/README"
 	install -m 644 NEWS "$1/usr/share/doc/iana-etc/NEWS"

@@ -2,7 +2,7 @@ PACKAGE_VERSION="3.6.1"
 PACKAGE_SOURCES="http://fossies.org/linux/misc/siag-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An office suite"
 
-siag_build() {
+build() {
 	[ -d siag-$PACKAGE_VERSION ] && rm -rf siag-$PACKAGE_VERSION
 	tar -xzvf siag-$PACKAGE_VERSION.tar.gz
 	cd siag-$PACKAGE_VERSION
@@ -17,7 +17,7 @@ siag_build() {
 	$MAKE
 }
 
-siag_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/siag/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/siag/ChangeLog"

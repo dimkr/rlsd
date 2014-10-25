@@ -2,7 +2,7 @@ PACKAGE_VERSION="5.1.0"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/giflib/giflib-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A library for handling of GIF images"
 
-giflib_build() {
+build() {
 	[ -d giflib-$PACKAGE_VERSION ] && rm -rf giflib-$PACKAGE_VERSION
 	tar -xjvf giflib-$PACKAGE_VERSION.tar.bz2
 	cd giflib-$PACKAGE_VERSION
@@ -15,7 +15,7 @@ giflib_build() {
 	$MAKE
 }
 
-giflib_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/giflib/README"
 	install -m 644 NEWS "$1/usr/share/doc/giflib/NEWS"

@@ -4,7 +4,7 @@ PACKAGE_DESC="A file manager"
 
 PLATFORM="$(uname -s)-$(uname -m)"
 
-rox_build() {
+build() {
 	[ -d rox-master ] && rm -rf rox-master
 	unzip rox-$PACKAGE_VERSION.zip
 	cd rox-master
@@ -18,7 +18,7 @@ rox_build() {
 	$MAKE
 }
 
-rox_package() {
+package() {
 	cd ..
 
 	mkdir -p "$1/usr/share/rox"

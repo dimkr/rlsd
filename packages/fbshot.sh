@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.3"
 PACKAGE_SOURCES="http://www.sfires.net/stuff/fbshot/fbshot-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A screenshot taking tool"
 
-fbshot_build() {
+build() {
 	[ -d fbshot-$PACKAGE_VERSION ] && rm -rf fbshot-$PACKAGE_VERSION
 	tar -xzvf fbshot-$PACKAGE_VERSION.tar.gz
 	cd fbshot-$PACKAGE_VERSION
@@ -12,7 +12,7 @@ fbshot_build() {
 	$CC -o fbshot fbshot.c $CFLAGS $LDFLAGS $(pkg-config --cflags --libs libpng)
 }
 
-fbshot_package() {
+package() {
 	install -D -m 755 fbshot "$1/bin/fbshot"
 	install -D -m 644 fbshot.1.man "$1/usr/share/man/man1/fbshot.1"
 	install -D -m 644 README "$1/usr/share/doc/fbshot/README"

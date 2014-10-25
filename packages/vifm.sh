@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.7.7"
 PACKAGE_SOURCES="http://prdownloads.sourceforge.net/vifm/vifm-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A two-pane file manager"
 
-vifm_build() {
+build() {
 	[ -d vifm-$PACKAGE_VERSION ] && rm -rf vifm-$PACKAGE_VERSION
 	tar -xjvf vifm-$PACKAGE_VERSION.tar.bz2
 	cd vifm-$PACKAGE_VERSION
@@ -20,7 +20,7 @@ vifm_build() {
 	$MAKE
 }
 
-vifm_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/vifm/README"
 	install -m 644 FAQ "$1/usr/share/doc/vifm/FAQ"

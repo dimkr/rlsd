@@ -43,7 +43,7 @@ INITRAMFS_DIRECTORIES="run
                        mnt/ro
                        sys"
 
-linux_build() {
+build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION
 	tar -xJvf linux-libre-$PACKAGE_VERSION-gnu.tar.xz
 	cd linux-$PACKAGE_VERSION
@@ -9396,7 +9396,7 @@ CONFIG_EOF
 	rm -f "$initramfs"
 }
 
-linux_package() {
+package() {
 	install -D -m 644 "$(find arch -name bzImage -type f)" "$1/boot/bzImage"
 	install -D -m 644 README "$1/usr/share/doc/linux-libre/README"
 	install -m 644 COPYING "$1/usr/share/doc/linux-libre/COPYING"

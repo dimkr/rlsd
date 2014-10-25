@@ -2,7 +2,7 @@ PACKAGE_VERSION="5"
 PACKAGE_SOURCES="http://www.ibiblio.org/pub/Linux/games/arcade/asteroids/xasteroids.tgz https://aur.archlinux.org/packages/xa/xasteroids/xasteroids.tar.gz,xasteroids-arch.tar.gz"
 PACKAGE_DESC="An Asteroids clone"
 
-xasteroids_build() {
+build() {
 	[ -d xasteroids ] && rm -rf xasteroids
 	tar -xzvf xasteroids.tgz
 	cd xasteroids
@@ -15,7 +15,7 @@ xasteroids_build() {
 	$MAKE
 }
 
-xasteroids_package() {
+package() {
 	install -D -m 755 xast "$1/bin/xast"
 	install -D -m 644 xast.man "$1/usr/share/man/man6/xast.6"
 	install -D -m 644 README "$1/usr/share/doc/xasteroids/README"

@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.3.1"
 PACKAGE_SOURCES="http://sourceforge.net/projects/libjpeg-turbo/files/$PACKAGE_VERSION/libjpeg-turbo-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A library for handling JPEG images"
 
-libjpeg_turbo_build() {
+build() {
 	[ -d libjpeg-turbo-$PACKAGE_VERSION ] && rm -rf libjpeg-turbo-$PACKAGE_VERSION
 	tar -xzvf libjpeg-turbo-$PACKAGE_VERSION.tar.gz
 	cd libjpeg-turbo-$PACKAGE_VERSION
@@ -22,6 +22,6 @@ libjpeg_turbo_build() {
 	$MAKE
 }
 
-libjpeg_turbo_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 }

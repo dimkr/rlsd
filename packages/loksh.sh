@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/loksh/archive/master.zip,loksh-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A command-line shell"
 
-loksh_build() {
+build() {
 	[ -d loksh-master ] && rm -rf loksh-master
 	unzip loksh-$PACKAGE_VERSION.zip
 	cd loksh-master
@@ -14,7 +14,7 @@ loksh_build() {
 	$MAKE
 }
 
-loksh_package() {
+package() {
 	$MAKE DESTDIR="$1" BIN_DIR="/bin" install
 	ln -s ksh "$1/bin/sh"
 }

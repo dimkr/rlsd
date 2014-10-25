@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/packlad/archive/master.zip,packlad-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A package manager"
 
-packlad_build() {
+build() {
 	[ -d packlad-master ] && rm -rf packlad-master
 	unzip packlad-$PACKAGE_VERSION.zip
 	cd packlad-master
@@ -12,6 +12,6 @@ packlad_build() {
 	$MAKE
 }
 
-packlad_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 }

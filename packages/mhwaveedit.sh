@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.4.23"
 PACKAGE_SOURCES="http://download.gna.org/mhwaveedit/mhwaveedit-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="An audio recording and editing tool"
 
-mhwaveedit_build() {
+build() {
 	[ -d mhwaveedit-$PACKAGE_VERSION ] && rm -rf mhwaveedit-$PACKAGE_VERSION
 	tar -xjvf mhwaveedit-$PACKAGE_VERSION.tar.bz2
 	cd mhwaveedit-$PACKAGE_VERSION
@@ -29,7 +29,7 @@ mhwaveedit_build() {
 	$MAKE
 }
 
-mhwaveedit_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mhwaveedit/README"
 	install -m 644 NEWS "$1/usr/share/doc/mhwaveedit/NEWS"

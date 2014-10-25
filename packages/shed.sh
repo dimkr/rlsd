@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.15"
 PACKAGE_SOURCES="http://sourceforge.net/projects/shed/files/shed/shed%201.15/shed-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A hex editor"
 
-shed_build() {
+build() {
 	[ -d shed-$PACKAGE_VERSION ] && rm -rf shed-$PACKAGE_VERSION
 	tar -xzvf shed-$PACKAGE_VERSION.tar.gz
 	cd shed-$PACKAGE_VERSION
@@ -14,7 +14,7 @@ shed_build() {
 	$MAKE
 }
 
-shed_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/shed/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/shed/ChangeLog"

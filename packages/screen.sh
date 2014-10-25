@@ -2,7 +2,7 @@ PACKAGE_VERSION="4.2.1"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/screen/screen-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A terminal multiplexer"
 
-screen_build() {
+build() {
 	[ -d screen-$PACKAGE_VERSION ] && rm -rf screen-$PACKAGE_VERSION
 	tar -xzvf screen-$PACKAGE_VERSION.tar.gz
 	cd screen-$PACKAGE_VERSION
@@ -22,7 +22,7 @@ screen_build() {
 	$MAKE
 }
 
-screen_package() {
+package() {
 	mkdir -p "$1/bin" "$1/usr/share/screen/utf8encodings"
 	$MAKE DESTDIR="$1" install
 	rm -f "$1/bin/screen"

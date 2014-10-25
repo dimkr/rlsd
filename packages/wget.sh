@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.15"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/wget/wget-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A HTTP and FTP client"
 
-wget_build() {
+build() {
 	[ -d wget-$PACKAGE_VERSION ] && rm -rf wget-$PACKAGE_VERSION
 	tar -xJvf wget-$PACKAGE_VERSION.tar.xz
 	cd wget-$PACKAGE_VERSION
@@ -20,7 +20,7 @@ wget_build() {
 	$MAKE
 }
 
-wget_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/wget/README"
 	install -m 644 NEWS "$1/usr/share/doc/wget/NEWS"

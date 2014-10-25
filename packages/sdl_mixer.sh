@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.2.12"
 PACKAGE_SOURCES="http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An audio mixer library"
 
-sdl_mixer_build() {
+build() {
 	[ -d SDL_mixer-$PACKAGE_VERSION ] && rm -rf SDL_mixer-$PACKAGE_VERSION
 	tar -xzvf SDL_mixer-$PACKAGE_VERSION.tar.gz
 	cd SDL_mixer-$PACKAGE_VERSION
@@ -20,7 +20,7 @@ sdl_mixer_build() {
 	$MAKE
 }
 
-sdl_mixer_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/sdl_mixer/README"
 	install -D -m 644 CHANGES $"$1/usr/share/doc/sdl_mixer/CHANGES"

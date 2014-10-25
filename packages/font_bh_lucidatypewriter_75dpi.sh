@@ -3,7 +3,7 @@ PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/font/font-bh-luc
 PACKAGE_DESC="Lucida 75 DPI fonts"
 PACKAGE_ARCH="all"
 
-font_bh_lucidatypewriter_75dpi_build() {
+build() {
 	[ -d font-bh-lucidatypewriter-75dpi-$PACKAGE_VERSION ] && rm -rf font-bh-lucidatypewriter-75dpi-$PACKAGE_VERSION
 	tar -xjvf font-bh-lucidatypewriter-75dpi-$PACKAGE_VERSION.tar.bz2
 	cd font-bh-lucidatypewriter-75dpi-$PACKAGE_VERSION
@@ -18,7 +18,7 @@ font_bh_lucidatypewriter_75dpi_build() {
 	$MAKE
 }
 
-font_bh_lucidatypewriter_75dpi_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/font-bh-lucidatypewriter-75dpi/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/font-bh-lucidatypewriter-75dpi/ChangeLog"

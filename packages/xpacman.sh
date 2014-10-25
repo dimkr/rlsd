@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.11"
 PACKAGE_SOURCES="http://www.ibiblio.org/pub/X11/contrib/games/xpacman.tar.gz"
 PACKAGE_DESC="A Pac-Man clone"
 
-xpacman_build() {
+build() {
 	[ -d xpacman ] && rm -rf xpacman
 	tar -xzvf xpacman.tar.gz
 	cd xpacman
@@ -13,7 +13,7 @@ xpacman_build() {
 	$CC $CFLAGS xpacman.c -o xpacman $LDFLAGS $(pkg-config --libs x11)
 }
 
-xpacman_package() {
+package() {
 	install -D -m 755 xpacman "$1/bin/xpacman"
 	install -D -m 644 xpacman.README "$1/usr/share/doc/xpacman/xpacman.README"
 }

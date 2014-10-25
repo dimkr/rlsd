@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.6"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/gzip/gzip-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="Compression tools"
 
-gzip_build() {
+build() {
 	[ -d gzip-$PACKAGE_VERSION ] && rm -rf gzip-$PACKAGE_VERSION
 	tar -xJvf gzip-$PACKAGE_VERSION.tar.xz
 	cd gzip-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ gzip_build() {
 	$MAKE
 }
 
-gzip_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gzip/README"
 	install -m 644 NEWS "$1/usr/share/doc/gzip/NEWS"

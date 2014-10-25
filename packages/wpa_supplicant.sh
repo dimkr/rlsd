@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.3"
 PACKAGE_SOURCES="http://hostap.epitest.fi/releases/wpa_supplicant-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A tool for association with wireless networks"
 
-wpa_supplicant_build() {
+build() {
 	[ -d wpa_supplicant-$PACKAGE_VERSION ] && rm -rf wpa_supplicant-$PACKAGE_VERSION
 	tar -xzvf wpa_supplicant-$PACKAGE_VERSION.tar.gz
 	cd wpa_supplicant-$PACKAGE_VERSION
@@ -22,7 +22,7 @@ wpa_supplicant_build() {
 	$MAKE CC="$CC"
 }
 
-wpa_supplicant_package() {
+package() {
 	$MAKE DESTDIR="$1" BINDIR="/bin" install
 	install -D -m 644 README "$1/usr/share/doc/wpa_supplicant/README"
 	install -m 644 ../CONTRIBUTIONS "$1/usr/share/doc/wpa_supplicant/CONTRIBUTIONS"

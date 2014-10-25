@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.3.0"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/font/font-util-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="X11 font utilities"
 
-font_util_build() {
+build() {
 	[ -d font-util-$PACKAGE_VERSION ] && rm -rf font-util-$PACKAGE_VERSION
 	tar -xjvf font-util-$PACKAGE_VERSION.tar.bz2
 	cd font-util-$PACKAGE_VERSION
@@ -15,7 +15,7 @@ font_util_build() {
 	$MAKE
 }
 
-font_util_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/font-util/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/font-util/ChangeLog"

@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.9.3"
 PACKAGE_SOURCES="http://downloads.sourceforge.net/project/fuse/fuse-2.X/$PACKAGE_VERSION/fuse-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An interface for user-mode file systems"
 
-fuse_build() {
+build() {
 	[ -d fuse-$PACKAGE_VERSION ] && rm -rf fuse-$PACKAGE_VERSION
 	tar -xzvf fuse-$PACKAGE_VERSION.tar.gz
 	cd fuse-$PACKAGE_VERSION
@@ -21,7 +21,7 @@ fuse_build() {
 	$MAKE
 }
 
-fuse_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/fuse/README"
 	install -m 644 README.NFS "$1/usr/share/doc/fuse/README.NFS"

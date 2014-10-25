@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/tinyxserver/archive/master.zip,tinyxserver-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A display server"
 
-tinyxserver_build() {
+build() {
 	[ -d tinyxserver-master ] && rm -rf tinyxserver-master
 	unzip tinyxserver-$PACKAGE_VERSION.zip
 	cd tinyxserver-master
@@ -21,6 +21,6 @@ tinyxserver_build() {
 	      Xfbdev xinit
 }
 
-tinyxserver_package() {
+package() {
 	$MAKE DESTDIR="$1" BINDIR="/bin" install
 }

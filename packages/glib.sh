@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/glib/archive/master.zip,glib-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="Common C functions"
 
-glib_build() {
+build() {
 	[ -d glib-master ] && rm -rf glib-master
 	unzip glib-$PACKAGE_VERSION.zip
 	cd glib-master
@@ -19,7 +19,7 @@ glib_build() {
 	$MAKE
 }
 
-glib_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/glib/README"
 	install -m 644 NEWS "$1/usr/share/doc/glib/NEWS"

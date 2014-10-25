@@ -2,7 +2,7 @@ PACKAGE_VERSION="4.6.2"
 PACKAGE_SOURCES="http://www.tcpdump.org/release/tcpdump-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A packet capture and analysis tool"
 
-tcpdump_build() {
+build() {
 	[ -d tcpdump-$PACKAGE_VERSION ] && rm -rf tcpdump-$PACKAGE_VERSION
 	tar -xzvf tcpdump-$PACKAGE_VERSION.tar.gz
 	cd tcpdump-$PACKAGE_VERSION
@@ -18,7 +18,7 @@ tcpdump_build() {
 	$MAKE
 }
 
-tcpdump_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README.md "$1/usr/share/doc/tcpdump/README.md"
 	install -m 644 CHANGES "$1/usr/share/doc/tcpdump/CHANGES"

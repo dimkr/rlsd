@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/emelfm/archive/master.zip,emelfm-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A two-pane file manager"
 
-emelfm_build() {
+build() {
 	[ -d emelfm-master ] && rm -rf emelfm-master
 	unzip emelfm-$PACKAGE_VERSION.zip
 	cd emelfm-master
@@ -13,7 +13,7 @@ emelfm_build() {
 	$MAKE
 }
 
-emelfm_package() {
+package() {
 	install -D -m 755 emelfm "$1/bin/emelfm"
 	install -D -m 644 README "$1/usr/share/doc/emelfm/README"
 	install -D -m 644 docs/help.txt \

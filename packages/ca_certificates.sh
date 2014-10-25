@@ -3,11 +3,11 @@ PACKAGE_SOURCES="https://raw.githubusercontent.com/bagder/curl/master/lib/mk-ca-
 PACKAGE_DESC="CA certificates"
 PACKAGE_ARCH="all"
 
-ca_certificates_build() {
+build() {
 	perl mk-ca-bundle-$PACKAGE_VERSION.pl cert.pem
 }
 
-ca_certificates_package() {
+package() {
 	install -D -m 644 cert.pem "$1/etc/ssl/cert.pem"
 	install -D -m 644 COPYING "$1/usr/share/doc/ca-certificates/COPYING"
 }

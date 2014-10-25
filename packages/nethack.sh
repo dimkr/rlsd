@@ -3,7 +3,7 @@ PACKAGE_VERSION_NO_DOTS="$(echo $PACKAGE_VERSION | sed s/\\.//g)"
 PACKAGE_SOURCES="http://sourceforge.net/projects/nethack/files/nethack/$PACKAGE_VERSION/nethack-$PACKAGE_VERSION_NO_DOTS-src.tgz"
 PACKAGE_DESC="A dungeon crawling game"
 
-nethack_build() {
+build() {
 	[ -d nethack-$PACKAGE_VERSION ] && rm -rf nethack-$PACKAGE_VERSION
 	tar -xzvf nethack-$PACKAGE_VERSION_NO_DOTS-src.tgz
 	cd nethack-$PACKAGE_VERSION
@@ -15,7 +15,7 @@ nethack_build() {
 	$MAKE
 }
 
-nethack_package() {
+package() {
 	$MAKE PREFIX="$1" install
 	cd doc
 	mkdir -p "$1/usr/share/man/man6"

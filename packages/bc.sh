@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.06"
 PACKAGE_SOURCES="http://ftp.gnu.org/pub/gnu/bc/bc-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A numeric processing language"
 
-bc_build() {
+build() {
 	[ -d bc-$PACKAGE_VERSION ] && rm -rf bc-$PACKAGE_VERSION
 	tar -xzvf bc-$PACKAGE_VERSION.tar.gz
 	cd bc-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ bc_build() {
 	$MAKE
 }
 
-bc_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/bc/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/bc/ChangeLog"

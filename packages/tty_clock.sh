@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/xorg62/tty-clock/archive/master.zip,tty-clock-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="An analog clock"
 
-tty_clock_build() {
+build() {
 	[ -d tty-clock-master ] && rm -rf tty-clock-master
 	unzip tty-clock-$PACKAGE_VERSION.zip
 	cd tty-clock-master
@@ -10,7 +10,7 @@ tty_clock_build() {
 	$CC -o tty-clock ttyclock.c $CFLAGS $LDFLAGS -lncurses
 }
 
-tty_clock_package() {
+package() {
 	install -D -m 755 tty-clock "$1/bin/tty-clock"
 	install -D -m 644 tty-clock.1 "$1/usr/share/man/man1/tty-clock.1"
 	install -D -m 644 README "$1/usr/share/doc/tty-clock/README"

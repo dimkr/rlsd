@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.4.32"
 PACKAGE_SOURCES="http://sourceforge.net/projects/msmtp/files/msmtp/$PACKAGE_VERSION/msmtp-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="An e-mail sending tool"
 
-msmtp_build() {
+build() {
 	[ -d msmtp-$PACKAGE_VERSION ] && rm -rf msmtp-$PACKAGE_VERSION
 	tar -xjvf msmtp-$PACKAGE_VERSION.tar.bz2
 	cd msmtp-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ msmtp_build() {
 	$MAKE
 }
 
-msmtp_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/msmtp/README"
 	install -m 644 NEWS "$1/usr/share/doc/msmtp/NEWS"

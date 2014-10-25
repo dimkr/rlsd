@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.6"
 PACKAGE_SOURCES="http://www.gropp.org/bwm-ng/bwm-ng-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A network monitor"
 
-bwm_ng_build() {
+build() {
 	[ -d bwm-ng-$PACKAGE_VERSION ] && rm -rf bwm-ng-$PACKAGE_VERSION
 	tar -xzvf bwm-ng-$PACKAGE_VERSION.tar.gz
 	cd bwm-ng-$PACKAGE_VERSION
@@ -10,7 +10,7 @@ bwm_ng_build() {
 	$MAKE
 }
 
-bwm_ng_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/bwm-ng/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/bwm-ng/NEWS"

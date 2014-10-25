@@ -4,7 +4,7 @@ PACKAGE_DESC="A SSH server and client"
 
 PROGRAMS="dropbear dbclient dropbearkey scp"
 
-dropbear_build() {
+build() {
 	[ -d dropbear-$PACKAGE_VERSION ] && rm -rf dropbear-$PACKAGE_VERSION
 	tar -xjvf dropbear-$PACKAGE_VERSION.tar.bz2
 	cd dropbear-$PACKAGE_VERSION
@@ -21,7 +21,7 @@ dropbear_build() {
 	$MAKE PROGRAMS="$PROGRAMS" MULTI=1
 }
 
-dropbear_package() {
+package() {
 	$MAKE DESTDIR="$1" PROGRAMS="$PROGRAMS" MULTI=1 install
 	ln -s dropbearmulti "$1/bin/ssh"
 	install -d -m 644 "$1/etc/dropbear"

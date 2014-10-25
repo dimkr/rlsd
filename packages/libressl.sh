@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.1.1"
 PACKAGE_SOURCES="http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An encryption and privacy library"
 
-libressl_build() {
+build() {
 	[ -d libressl-$PACKAGE_VERSION ] && rm -rf libressl-$PACKAGE_VERSION
 	tar -xzvf libressl-$PACKAGE_VERSION.tar.gz
 	cd libressl-$PACKAGE_VERSION
@@ -18,7 +18,7 @@ libressl_build() {
 	$MAKE
 }
 
-libressl_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/libressl/README"
 	install -m 644 NEWS "$1/usr/share/doc/libressl/NEWS"

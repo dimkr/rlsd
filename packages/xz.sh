@@ -2,7 +2,7 @@ PACKAGE_VERSION="5.0.7"
 PACKAGE_SOURCES="http://tukaani.org/xz/xz-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="Compression tools"
 
-xz_build() {
+build() {
 	[ -d xz-$PACKAGE_VERSION ] && rm -rf xz-$PACKAGE_VERSION
 	tar -xJvf xz-$PACKAGE_VERSION.tar.xz
 	cd xz-$PACKAGE_VERSION
@@ -21,7 +21,7 @@ xz_build() {
 	$MAKE
 }
 
-xz_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/xz/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/xz/ChangeLog"

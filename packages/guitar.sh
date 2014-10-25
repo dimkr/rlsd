@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.1.4"
 PACKAGE_SOURCES="http://ibiblio.org/pub/linux/utils/compress/guiTAR-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An archive manager"
 
-guitar_build() {
+build() {
 	[ -d guiTAR-$PACKAGE_VERSION ] && rm -rf guiTAR-$PACKAGE_VERSION
 	tar -xzvf guiTAR-$PACKAGE_VERSION.tar.gz
 	cd guiTAR-$PACKAGE_VERSION
@@ -15,7 +15,7 @@ guitar_build() {
 	$MAKE
 }
 
-guitar_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/guitar/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/guitar/ChangeLog"

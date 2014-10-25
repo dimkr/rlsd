@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/gtk/archive/master.zip,gtk-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A graphical toolkit"
 
-gtk_build() {
+build() {
 	[ -d gtk-master ] && rm -rf gtk-master
 	unzip gtk-$PACKAGE_VERSION.zip
 	cd gtk-master
@@ -26,7 +26,7 @@ gtk_build() {
 	$MAKE
 }
 
-gtk_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/gtk/README"
 	install -m 644 ChangeLog "$1/usr/share/doc/gtk/ChangeLog"

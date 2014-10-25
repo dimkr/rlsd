@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.0.3"
 PACKAGE_SOURCES="http://hisham.hm/htop/releases/$PACKAGE_VERSION/htop-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A process viewer"
 
-htop_build() {
+build() {
 	[ -d htop-$PACKAGE_VERSION ] && rm -rf htop-$PACKAGE_VERSION
 	tar -xzvf htop-$PACKAGE_VERSION.tar.gz
 	cd htop-$PACKAGE_VERSION
@@ -19,7 +19,7 @@ htop_build() {
 	$MAKE
 }
 
-htop_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/htop/README"
 	install -m 644 NEWS "$1/usr/share/doc/htop/NEWS"

@@ -2,7 +2,7 @@ PACKAGE_VERSION="git$(date +%d%m%Y)"
 PACKAGE_SOURCES="https://github.com/dimkr/beaver/archive/master.zip,beaver-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="A text editor"
 
-beaver_build() {
+build() {
 	[ -d beaver-master ] && rm -rf beaver-master
 	unzip beaver-$PACKAGE_VERSION.zip
 	cd beaver-master
@@ -13,7 +13,7 @@ beaver_build() {
 	$MAKE
 }
 
-beaver_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 ../README "$1/usr/share/doc/beaver/README"
 	install -m 644 ../NEWS "$1/usr/share/doc/beaver/NEWS"

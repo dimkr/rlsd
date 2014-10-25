@@ -2,7 +2,7 @@ PACKAGE_VERSION="1.97"
 PACKAGE_SOURCES="http://www.han.de/~werner/ytree-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A file manager"
 
-ytree_build() {
+build() {
 	[ -d ytree-$PACKAGE_VERSION ] && rm -rf ytree-$PACKAGE_VERSION
 	tar -xzvf ytree-$PACKAGE_VERSION.tar.gz
 	cd ytree-$PACKAGE_VERSION
@@ -13,7 +13,7 @@ ytree_build() {
 	$MAKE CC="$CC"
 }
 
-ytree_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/ytree/README"
 	install -m 644 CHANGES "$1/usr/share/doc/ytree/CHANGES"

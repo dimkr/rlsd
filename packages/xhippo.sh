@@ -2,7 +2,7 @@ PACKAGE_VERSION="3.5"
 PACKAGE_SOURCES="ftp://ftp.gnu.org/gnu/xhippo/xhippo-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An audio player"
 
-xhippo_build() {
+build() {
 	[ -d xhippo-$PACKAGE_VERSION ] && rm -rf xhippo-$PACKAGE_VERSION
 	tar -xzvf xhippo-$PACKAGE_VERSION.tar.gz
 	cd xhippo-$PACKAGE_VERSION
@@ -16,7 +16,7 @@ xhippo_build() {
 	$MAKE
 }
 
-xhippo_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/xhippo/README"
 	install -m 644 NEWS "$1/usr/share/doc/xhippo/NEWS"

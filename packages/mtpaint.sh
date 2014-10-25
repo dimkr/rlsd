@@ -3,7 +3,7 @@ COMMIT="3368929b5c44fd62e04219c6d2a5054b6b5e678f"
 PACKAGE_SOURCES="https://github.com/wjaguar/mtPaint/archive/$COMMIT.zip,mtpaint-$PACKAGE_VERSION.zip"
 PACKAGE_DESC="An image editor"
 
-mtpaint_build() {
+build() {
 	[ -d mtPaint-$COMMIT ] && rm -rf mtPaint-$COMMIT
 	unzip mtpaint-$PACKAGE_VERSION.zip
 	cd mtPaint-$COMMIT
@@ -27,7 +27,7 @@ mtpaint_build() {
 	$MAKE
 }
 
-mtpaint_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/mtpaint/README"
 	install -m 644 NEWS "$1/usr/share/doc/mtpaint/NEWS"

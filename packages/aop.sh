@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.6"
 PACKAGE_SOURCES="http://raffi.at/code/aop/aop-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An arcade game"
 
-aop_build() {
+build() {
 	[ -d aop-$PACKAGE_VERSION ] && rm -rf aop-$PACKAGE_VERSION
 	tar -xzvf aop-$PACKAGE_VERSION.tar.gz
 	cd aop-$PACKAGE_VERSION
@@ -13,7 +13,7 @@ aop_build() {
 	$CC -o aop aop.c $CFLAGS $LDFLAGS -lncurses
 }
 
-aop_package() {
+package() {
 	install -D -m 755 aop "$1/bin/aop"
 	for i in *.txt
 	do

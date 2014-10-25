@@ -2,7 +2,7 @@ PACKAGE_VERSION="458"
 PACKAGE_SOURCES="http://www.greenwoodsoftware.com/less/less-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A file viewer"
 
-less_build() {
+build() {
 	[ -d less-$PACKAGE_VERSION ] && rm -rf less-$PACKAGE_VERSION
 	tar -xzvf less-$PACKAGE_VERSION.tar.gz
 	cd less-$PACKAGE_VERSION
@@ -15,7 +15,7 @@ less_build() {
 	$MAKE
 }
 
-less_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/less/README"
 	install -D -m 644 NEWS "$1/usr/share/doc/less/NEWS"

@@ -2,7 +2,7 @@ PACKAGE_VERSION="2.2.9"
 PACKAGE_SOURCES="http://www.ffmpeg.org/releases/ffmpeg-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A complete multimedia solution"
 
-ffmpeg_build() {
+build() {
 	[ -d ffmpeg-$PACKAGE_VERSION ] && rm -rf ffmpeg-$PACKAGE_VERSION
 	tar -xjvf ffmpeg-$PACKAGE_VERSION.tar.bz2
 	cd ffmpeg-$PACKAGE_VERSION
@@ -28,7 +28,7 @@ ffmpeg_build() {
 	$MAKE
 }
 
-ffmpeg_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/ffmpeg/README"
 	install -m 644 LICENSE "$1/usr/share/doc/ffmpeg/LICENSE"

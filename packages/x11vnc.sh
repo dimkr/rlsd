@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.9.13"
 PACKAGE_SOURCES="http://sourceforge.net/projects/libvncserver/files/x11vnc/$PACKAGE_VERSION/x11vnc-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A VNC server"
 
-x11vnc_build() {
+build() {
 	[ -d x11vnc-$PACKAGE_VERSION ] && rm -rf x11vnc-$PACKAGE_VERSION
 	tar -xzvf x11vnc-$PACKAGE_VERSION.tar.gz
 	cd x11vnc-$PACKAGE_VERSION
@@ -20,7 +20,7 @@ x11vnc_build() {
 	$MAKE
 }
 
-x11vnc_package() {
+package() {
 	$MAKE DESTDIR="$1" install
 	install -D -m 644 README "$1/usr/share/doc/x11vnc/README"
 	install -m 644 README.LibVNCServer "$1/usr/share/doc/x11vnc/README.LibVNCServer"

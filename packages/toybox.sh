@@ -2,7 +2,7 @@ PACKAGE_VERSION="0.5.0"
 PACKAGE_SOURCES="http://www.landley.net/toybox/downloads/toybox-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="System tools"
 
-toybox_build() {
+build() {
 	[ -d toybox-$PACKAGE_VERSION ] && rm -rf toybox-$PACKAGE_VERSION
 	tar -xjvf toybox-$PACKAGE_VERSION.tar.bz2
 	cd toybox-$PACKAGE_VERSION
@@ -286,7 +286,7 @@ EOF
 	OPTIMIZE=" " $MAKE
 }
 
-toybox_package() {
+package() {
 	$MAKE PREFIX="$1/bin" install_flat
 	install -D -m 644 README "$1/usr/share/doc/toybox/README"
 	install -m 644 LICENSE "$1/usr/share/doc/toybox/LICENSE"
