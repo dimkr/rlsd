@@ -1,0 +1,62 @@
+There are two basic rules in the world of software security:
+  1) No matter what a piece of malware tries to do, there is more than one way
+     to do this. For example, if traces of malicious activity cannot be removed
+     from /var/log/messages because open() with O_RDWR is disallowed, writing
+     directly to the file system on the block device could work.
+  2) Hacker always win. Security is an unfair cat and mouse game, where the
+     mouse can choose when to start running and has all the time in the world to
+     examine the cat's abilities. For example, if a certain distro disallows
+     ptrace(), malware developers can test their code before they distribute it,
+     see the effect of this new security feature and switch to
+     process_vm_writev() to deal with it. The cat must develop the ability to
+     forecast the enemy's moves to win this game.
+
+Therefore, we assume it will always be possible to break into RLSD and install
+malware that survives reboots and upgrades or even infects other operating
+systems or firmware running on the same hardware. RLSD's approach to security is
+focused on complication, rather than prevention of malware. RLSD tries to make
+life hard for malware developers, using restrictions and traps.
+
+This complication is achieved using several techniques:
+  - Packages are digitally-signed. If an attacker has enough time and computing
+    power, this defense is useless.
+  - Servers always run as "nobody", a restricted user with a blank password and
+    without a login shell.
+  - Daemons run in a separate mounts namespace, to prevent malware from changing
+    their behavior by replacing the file systems they access.
+  - Since everything is linked statically, malware must be implemented as a
+    thread, so it's easy to notice unless it also hooks the implementation of
+    proc. Also, if it's a regular userspace thread (which means, a process),
+    there must must be executable file somewhere.
+  - Since all executables are placed under /bin, any extra executable or process
+    running from somewhere else attracts extra attention, so infecting an
+    existing executable (e.g a malicious /bin/login that whitelists a certain
+    password for all users) is a much better idea: that's where luufs steps in.
+    It's a special, layered file system that prevents the system's core files
+    from getting replaced.
+  - A LSM (Linux Security Modules) module prevents non-root processes from
+    performing several activities often associated with malware:
+    - Attempts to map files to memory with execution permissions (PROT_EXEC),
+      using either mmap() or mprotect() (after mmap() without this flag).
+      Packers do this to make the plain-text code executable.
+    - Attempts to debug a process, using ptrace(). Classic code injection tools
+      do this to change the flow of processes or inject malicious shared
+      objects.
+    - Attempts to unmount proc, sysfs, devtmpfs or devpts file systems.
+      Potentially, malware could unmount or replace these file systems to hide
+      itself (e.g unmount /dev and replace it with a tmpfs that lacks a device
+      node created by a malicious driver).
+    - Attempts to change the name of a process, using prctl(). There's no
+      legitimate use for this, except esthetics. Using the combination of
+      prctl() and modification of argv[], malicious process can mask their
+      original name. If malware tries to do this, its name would be inconsistent
+      with its command-line and executable name, which means it attracts more
+      attention (the exact opposite of the author's intention).
+    - Attempts to run a setguid or setuid executable for privilege escalation.
+    - Attempts to give execution permissions to a file. This makes it harder to
+      write exploits, since the developer cannot offload all complex code to a
+      regular ELF binary; everything must happen through the shellcode.
+    - Attempts to call listen(), to prevent IPC with other malware.
+  This module does not deal with processes running as root, because its main
+  purpose is to fight intrusion through outward-facing servers. The root user
+  can disable the module's LSM hooks anyway.
