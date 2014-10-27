@@ -127,6 +127,5 @@ case "$action" in
 		;;
 esac
 exec aterm -title packlad -e sh -c "packlad -$flag \"$choice\"; \
-                                    [ 0 -eq \$? ] && exit; \
                                     echo 'Press any key to close'; \
                                     read dummy"
