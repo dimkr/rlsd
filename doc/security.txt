@@ -18,6 +18,13 @@ focused on complication, rather than prevention of malware. RLSD tries to make
 life hard for malware developers, using restrictions and traps.
 
 This complication is achieved using several techniques:
+  - The system log is saved in XORed form. Even if it's encrypted using
+    something stronger, there must be some way the user can read it (i.e to
+    decrypt it) and syslogd is open-source, so its code is available to malware
+    developers. Therefore, it doesn't matter how the log is stored, because it's
+    always possible and even easy for an attacker to modify it. However, we want
+    to make it hard to edit /var/log/messages using text-processing tools like
+    grep and sed, so XOR is good enough.
   - Packages are digitally-signed. If an attacker has enough time and computing
     power, this defense is useless.
   - Servers always run as "nobody", a restricted user with a blank password and
