@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.15"
+PACKAGE_VERSION="1.16"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/wget/wget-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A HTTP and FTP client"
 
