@@ -26,26 +26,27 @@ fi
 
 # create a temporary directory for the extracted ISO image contents
 iso_root="$(mktemp -d)"
+mkdir "$iso_root/boot"
 
 # create a 11 MB, FAT12 UEFI boot image, for UEFI boot
 if [ -f "$root_fs/boot/elilo.efi" ]
 then
-	dd if=/dev/zero of="$iso_root/efiboot.img" bs=1024K count=11
-	/sbin/mkfs.vfat -F 12 -n "RLSD" "$iso_root/efiboot.img"
-	mmd -i "$iso_root/efiboot.img" "EFI"
-	mmd -i "$iso_root/efiboot.img" "EFI/BOOT"
-	mcopy -i "$iso_root/efiboot.img" \
+	dd if=/dev/zero of="$iso_root/boot/efiboot.img" bs=1024K count=11
+	/sbin/mkfs.vfat -F 12 -n "RLSD" "$iso_root/boot/efiboot.img"
+	mmd -i "$iso_root/boot/efiboot.img" "EFI"
+	mmd -i "$iso_root/boot/efiboot.img" "EFI/BOOT"
+	mcopy -i "$iso_root/boot/efiboot.img" \
 	         "$root_fs/boot/elilo.efi" \
 	         "::EFI/BOOT/BOOTX64.EFI"
-	mcopy -i "$iso_root/efiboot.img" \
+	mcopy -i "$iso_root/boot/efiboot.img" \
 	         "$root_fs/boot/elilo.conf" \
 	         "::EFI/BOOT/"
-	mcopy -i "$iso_root/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
+	mcopy -i "$iso_root/boot/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
 fi
 
 # put the kernel, the boot loader and its configuration file in the image root,
 # for BIOS boot
-mv "$root_fs/boot/bzImage" "$iso_root/"
+mv "$root_fs/boot/bzImage" "$iso_root/boot/"
 mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
@@ -53,7 +54,7 @@ rm -rf "$root_fs/boot"
 
 # generate the root file system image
 mksquashfs "$root_fs" \
-           "$iso_root/rootfs.sfs" \
+           "$iso_root/boot/rootfs.sfs" \
            -comp xz \
            -Xbcj x86 \
            -b 512K \
@@ -62,10 +63,10 @@ rm -rf "$root_fs"
 
 # generate an ISO image
 [ ! -d releases ] && mkdir releases
-if [ -f "$iso_root/efiboot.img" ]
+if [ -f "$iso_root/boot/efiboot.img" ]
 then
 	uefi_flags="-eltorito-alt-boot \
-	            -e efiboot.img \
+	            -e boot/efiboot.img \
 	            -no-emul-boot \
 	            -isohybrid-gpt-basdat"
 else

@@ -69,7 +69,7 @@ do
 		mount -o ro /dev/$partition /mnt/home
 		if [ 0 -eq $? ]
 		then
-			if [ -f /mnt/home/bzImage ] && [ -f /mnt/home/rootfs.sfs ]
+			if [ -f /mnt/home/boot/bzImage ] && [ -f /mnt/home/boot/rootfs.sfs ]
 			then
 				is_found=1
 				break 2
@@ -87,11 +87,11 @@ fi
 # copy the root file system image to RAM
 if [ 0 -eq $copy ]
 then
-	image_path="/mnt/home/rootfs.sfs"
+	image_path="/mnt/home/boot/rootfs.sfs"
 else
 	echo -n " done.
 Copying the root file system to RAM ..."
-	cp /mnt/home/rootfs.sfs /rootfs.sfs
+	cp /mnt/home/boot/rootfs.sfs /rootfs.sfs
 	umount /mnt/home
 	image_path="/rootfs.sfs"
 fi
