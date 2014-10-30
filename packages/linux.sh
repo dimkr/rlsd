@@ -3,46 +3,6 @@ PACKAGE_MAJOR_VERSION="3.14"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu/linux-libre-$PACKAGE_VERSION-gnu.tar.xz"
 PACKAGE_DESC="An operating system kernel"
 
-# files present in the initramfs
-INITRAMFS_FILES="bin/toybox
-                 bin/init
-                 bin/ksh
-                 bin/awk
-                 bin/syslogd
-                 bin/klogd
-                 bin/mkdir
-                 bin/cp
-                 bin/chroot
-                 bin/cttyhack
-                 bin/grep
-                 bin/losetup
-                 bin/mount
-                 bin/umount
-                 bin/luufs
-                 bin/fusermount
-                 bin/sleep
-                 bin/clear
-                 bin/cat
-                 bin/contain
-                 bin/poweroff
-                 bin/reboot
-                 etc/rc.d/rc.initramfs
-                 etc/rc.d/rc.shutdown"
-
-# directories present in the initramfs
-INITRAMFS_DIRECTORIES="run
-                       tmp
-                       etc/rc.d
-                       bin
-                       var/log
-                       proc
-                       dev
-                       mnt/home
-                       mnt/rw
-                       mnt/union
-                       mnt/ro
-                       sys"
-
 build() {
 	[ -d linux-$PACKAGE_VERSION ] && rm -rf linux-$PACKAGE_VERSION
 	tar -xJvf linux-libre-$PACKAGE_VERSION-gnu.tar.xz
@@ -67,40 +27,6 @@ build() {
 	# clean the sources tree
 	ARCH="$KARCH" $MAKE clean
 	ARCH="$KARCH" $MAKE mrproper
-
-	# create a temporary directory for the initramfs contents
-	initramfs_root="$(mktemp -d -u)"
-
-	# create the initramfs directories
-	for directory in $INITRAMFS_DIRECTORIES
-	do
-		mkdir -p "$initramfs_root/$directory"
-	done
-
-	# add required programs and scripts to the initramfs
-	for i in $INITRAMFS_FILES
-	do
-		if [ -e "$SYSROOT/$i" ]
-		then
-			path="$SYSROOT/$i"
-		else
-			path="$BASE_DIR/initramfs/$i"
-		fi
-		cp "$path" "$initramfs_root/$i"
-	done
-
-	# create /dev/console
-	mknod -m 622 "$initramfs_root/dev/console" c 5 1
-
-	# generate an initramfs archive
-	kernel="$(pwd)"
-	cd "$initramfs_root"
-	chown -R 0:0 .
-	chmod 1777 tmp
-	initramfs="$(mktemp -u --suffix .cpio)"
-	find . | cpio -o -H newc > "$initramfs"
-	cd "$kernel"
-	rm -rf "$initramfs_root"
 
 	case "$KARCH" in
 		x86_64)
@@ -248,9 +174,7 @@ CONFIG_PID_NS=y
 # CONFIG_SYSFS_DEPRECATED is not set
 # CONFIG_RELAY is not set
 CONFIG_BLK_DEV_INITRD=y
-CONFIG_INITRAMFS_SOURCE="$initramfs"
-CONFIG_INITRAMFS_ROOT_UID=0
-CONFIG_INITRAMFS_ROOT_GID=0
+CONFIG_INITRAMFS_SOURCE=""
 # CONFIG_RD_GZIP is not set
 # CONFIG_RD_BZIP2 is not set
 # CONFIG_RD_LZMA is not set
@@ -4831,9 +4755,7 @@ CONFIG_PID_NS=y
 # CONFIG_SYSFS_DEPRECATED is not set
 # CONFIG_RELAY is not set
 CONFIG_BLK_DEV_INITRD=y
-CONFIG_INITRAMFS_SOURCE="$initramfs"
-CONFIG_INITRAMFS_ROOT_UID=0
-CONFIG_INITRAMFS_ROOT_GID=0
+CONFIG_INITRAMFS_SOURCE=""
 # CONFIG_RD_GZIP is not set
 # CONFIG_RD_BZIP2 is not set
 # CONFIG_RD_LZMA is not set
@@ -9393,7 +9315,6 @@ CONFIG_EOF
 	esac
 
 	ARCH="$KARCH" $MAKE CROSS_COMPILE="$HOST-" bzImage
-	rm -f "$initramfs"
 }
 
 package() {

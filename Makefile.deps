@@ -80,7 +80,7 @@ libpng: musl zlib
 libressl: musl zlib ca-certificates
 libxaw3d: musl tinyxlib
 libxml2: musl
-linux: toybox loksh lazy-utils lok luufs fuse
+linux:
 linux-headers:
 lok: musl
 loksh: musl

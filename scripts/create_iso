@@ -28,6 +28,9 @@ fi
 iso_root="$(mktemp -d)"
 mkdir "$iso_root/boot"
 
+# generate an initramfs
+./scripts/build_initramfs "$root_fs" "$iso_root/boot/initrd.xz"
+
 # create a 11 MB, FAT12 UEFI boot image, for UEFI boot
 if [ -f "$root_fs/boot/elilo.efi" ]
 then
@@ -42,6 +45,9 @@ then
 	         "$root_fs/boot/elilo.conf" \
 	         "::EFI/BOOT/"
 	mcopy -i "$iso_root/boot/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
+	mcopy -i "$iso_root/boot/efiboot.img" \
+	         "$iso_root/boot/initrd.xz" \
+	         "::EFI/BOOT/"
 fi
 
 # put the kernel, the boot loader and its configuration file in the image root,
