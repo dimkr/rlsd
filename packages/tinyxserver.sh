@@ -7,6 +7,17 @@ build() {
 	unzip tinyxserver-$PACKAGE_VERSION.zip
 	cd tinyxserver-master
 
+	for i in fonts/*-*.bdf
+	do
+		case "$i" in
+			*-ISO8859-1.bdf)
+				;;
+			*)
+				rm -f $i
+				;;
+		esac
+	done
+
 	case "$HOST" in
 		*64*)
 			CFLAGS="-D_XSERVER64=1 $CFLAGS"
