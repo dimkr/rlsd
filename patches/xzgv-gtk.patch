@@ -1,0 +1,465 @@
+diff -rup xzgv-0.9.1-orig/doc/xzgv.texi xzgv-0.9.1/doc/xzgv.texi
+--- xzgv-0.9.1-orig/doc/xzgv.texi	2014-10-31 21:34:19.178899102 +0200
++++ xzgv-0.9.1/doc/xzgv.texi	2014-10-31 22:04:39.004866513 +0200
+@@ -300,12 +300,6 @@ Use dithering in 15/16-bit, whatever the
+ @xref{Viewer Options}, for a discussion of benefits/drawbacks. You can
+ also use @code{--dither-hicol=off} to disable this.
+ 
+-@vindex exif-orient
+-@item --exif-orient
+-In JPEG files, use Exif orientation tags (inserted by e.g. digital
+-cameras) to correct image orientation before display. @xref{Viewer
+-Options}, for details.
+-
+ @vindex fast-recursive-update
+ @item --fast-recursive-update
+ When doing a recursive thumbnail update, don't read existing thumbnails
+@@ -387,12 +381,6 @@ Interpolate between the picture's pixels
+ If enabled, control-clicking on the viewer scales only the X axis. (The
+ default is to scale only the Y axis.)
+ 
+-@vindex revert-orient
+-@item --revert-orient
+-(Note that this is normally enabled; use @code{--revert-orient=off} to
+-disable it.) If @emph{disabled}, orientation (flip/mirror/rotate) state
+-is retained between pictures (@pxref{Viewer Options}).
+-
+ @vindex revert-scale
+ @item --revert-scale
+ (Note that this is normally enabled; use @code{--revert-scale=off} to
+@@ -2076,65 +2064,6 @@ Interpolation is not currently supported
+ scaling does not match the y scaling.
+ 
+ 
+-@node  Mirror and Rotate, Brightness and Contrast, Scaling, The Viewer
+-@comment  node-name,  next,  previous,  up
+-@section Mirror and Rotate
+-
+-@cindex mirroring a picture
+-@cindex flipping a picture
+-@cindex rotating a picture
+-@cindex picture, mirroring a
+-@cindex picture, flipping a
+-@cindex picture, rotating a
+-@cindex picture orientation
+-@cindex orientation, picture
+-@cindex restoring picture orientation
+-
+-Sometimes when viewing a picture you will want to flip it horizontally
+-or vertically, or rotate it:
+-
+-@table @kbd
+-@kindex m
+-@item m
+-@findex Viewer menu, Orientation, Mirror (horiz)
+-@itemx Viewer menu, Orientation, Mirror (horiz)
+-`Mirror' the picture (flip it horizontally).
+-
+-@kindex f
+-@item f
+-@findex Viewer menu, Orientation, Flip (vert)
+-@itemx Viewer menu, Orientation, Flip (vert)
+-`Flip' the picture (flip it vertically).
+-
+-@kindex r
+-@item r
+-@findex Viewer menu, Orientation, Rotate Right
+-@itemx Viewer menu, Orientation, Rotate Right
+-Rotate the picture 90 degrees clockwise.
+-
+-@kindex R
+-@item R (Shift-r)
+-@findex Viewer menu, Orientation, Rotate Left
+-@itemx Viewer menu, Orientation, Rotate Left
+-Rotate the picture 90 degrees anti-clockwise. (Any US readers surprised
+-and/or annoyed by my not saying `counter-clockwise' will realise why the
+-menus say rotate right/left. :-))
+-
+-@kindex N
+-@item N (Shift-n)
+-@findex Viewer menu, Orientation, Normal
+-@itemx Viewer menu, Orientation, Normal
+-Restore the picture orientation to normal. This undoes the effect of any
+-mirrors, flips, and/or rotations.
+-@end table
+-
+-xzgv normally `reverts' the picture orientation (the way the picture has
+-been transformed by mirror/flip/rotate) back to normal when you view a
+-new picture. However, it's possible to disable this (@pxref{Viewer
+-Options}), so that any new pictures are mirrored, flipped, and/or
+-rotated in the same way.
+-
+-
+ @node  Brightness and Contrast, Gamma Adjustment, Mirror and Rotate, The Viewer
+ @comment  node-name,  next,  previous,  up
+ @section Brightness and Contrast
+@@ -2417,18 +2346,10 @@ Minimize the xzgv window.
+ @cindex scaling with interpolation, toggling
+ @cindex enlarged pictures, toggling interpolation for
+ @cindex revert scaling, toggling
+-@cindex revert orientation, toggling
+ @cindex preserving scaling
+-@cindex preserving orientation
+ @cindex scaling, preserving
+-@cindex orientation, preserving
+-@cindex mirrors, preserving
+-@cindex flips, preserving
+-@cindex rotation, preserving
+ @cindex correcting digital camera pictures
+ @cindex digital camera pictures, correcting
+-@cindex exif orientation support
+-@cindex orientation, exif
+ @cindex dithering in 15/16-bit modes
+ @cindex 15/16-bit modes, toggling dithering in
+ @cindex high-colour modes, toggling dithering in
+@@ -2486,29 +2407,6 @@ picture selection. (There is currently n
+ fairly-seldom-changed option --- to toggle it from the keyboard, you
+ should use the popup menu (press @kbd{F10}), and select the menu item.)
+ 
+-@findex Viewer menu, Options, Revert Orient. For New Pic
+-@item Viewer menu, Options, Revert Orient. For New Pic
+-Similarly, xzgv returns to the picture's true orientation (not mirrored,
+-rotated, etc.) on selecting a new picture. Disabling this option means
+-that any mirrors/flips/rotates applied persist across multiple images.
+-(No keyboard shortcut --- see above.)
+-
+-@findex Viewer menu, Options, Use Exif Orientation
+-@item Viewer menu, Options, Use Exif Orientation
+-Toggle support for Exif orientation. Devices which create JPEG files
+-in the Exif format (e.g. many digital cameras) may add an orientation
+-tag to the file, which says how the camera was being held when the
+-picture was taken. When this tag is present, xzgv can adjust the image
+-to compensate for a camera being held on its side. (This isn't done by
+-default as it misrepresents the true image, which could be confusing
+-if you don't know why it's happening.) Enabling this option may be
+-useful if you take pictures with your camera on its side, but don't
+-want to have to rotate the pictures before being able to view them
+-properly. Of course, for this to work your camera has to be inserting
+-the orientation tag in the first place --- but it can't hurt to try it
+-and see. (No keyboard shortcut --- see above.)
+-@end table
+-
+ 
+ @node  File Formats, Configuring xzgv, The Viewer, Top
+ @comment  node-name,  next,  previous,  up
+diff -rup xzgv-0.9.1-orig/src/backend.c xzgv-0.9.1/src/backend.c
+--- xzgv-0.9.1-orig/src/backend.c	2014-10-31 21:34:19.179899102 +0200
++++ xzgv-0.9.1/src/backend.c	2014-10-31 21:35:41.164897634 +0200
+@@ -104,6 +104,7 @@ void backend_image_changed(xzgv_image *i
+ /* flip image vertically. Should `dirty' image if needed.
+  * Should also update xzgv_image's rgb/w/h fields (use public_info_update()).
+  */
++#if 0
+ void backend_flip_vert(xzgv_image *image)
+ {
+ GdkPixbuf *new_img = gdk_pixbuf_flip(BACKEND_IMAGE(image), FALSE);
+@@ -141,6 +142,7 @@ g_object_unref(BACKEND_IMAGE(image));
+ BACKEND_IMAGE(image) = new_img;
+ public_info_update(image);
+ }
++#endif
+ 
+ 
+ /* create an image from RGB data, given width and height.
+@@ -215,13 +217,12 @@ xzgv_image *backend_create_image_from_fi
+ {
+ GdkPixbuf *backim;
+ xzgv_image *im;
+-GError *gerror = NULL;
+ 
+ if((im=malloc(sizeof(xzgv_image)))==NULL)
+   return(NULL);
+ 
+ /* XXX does this deal with the 32767 issue or not? */
+-if((backim=gdk_pixbuf_new_from_file((const char *)filename, &gerror))==NULL)
++if((backim=gdk_pixbuf_new_from_file((const char *)filename))==NULL)
+   {
+   free(im);
+   return(NULL);
+@@ -249,7 +250,7 @@ static GdkGC *gc=NULL;
+ if(!gc)
+   gc=gdk_gc_new(win);
+ 
+-gdk_draw_pixbuf(win,gc,BACKEND_IMAGE(image),
++gdk_pixbuf_render_to_drawable(BACKEND_IMAGE(image),win,gc,
+                 0,0,x,y,image->w,image->h,
+                 dither_type,0,0);
+ }
+diff -rup xzgv-0.9.1-orig/src/main.c xzgv-0.9.1/src/main.c
+--- xzgv-0.9.1-orig/src/main.c	2014-10-31 21:34:19.179899102 +0200
++++ xzgv-0.9.1/src/main.c	2014-10-31 21:54:24.298877521 +0200
+@@ -141,8 +141,6 @@ guint cb_selection_id;		/* id of cb_sele
+ int ignore_selector_input=0;	/* awkward but necessary, for blocking input */
+ int hide_saved_pos;		/* saved pane-split pos for auto-hide */
+ int hidden=0;			/* selector hidden if true */
+-int orient_current_state=0;	/* current picture orientation state */
+-int jpeg_exif_orient=0;		/* orientation from Exif tag, for some JPEGs */
+ 
+ int cmdline_files=0;		/* if true, started as `xzgv file(s)' */
+ 
+@@ -191,10 +189,12 @@ struct pastpos_tag
+  * 7 to...	3	2	4	5
+  */
+ 
++#if 0
+ int orient_state_rot_cw[8] ={4,5,7,6,1,0,2,3};
+ int orient_state_rot_acw[8]={5,4,6,7,0,1,3,2};
+ int orient_state_mirror[8] ={3,2,1,0,7,6,5,4};
+ int orient_state_flip[8]   ={2,3,0,1,6,7,4,5};
++#endif
+ 
+ 
+ 
+@@ -229,6 +229,7 @@ yscaling=tmp;
+ /* change from one orientation state to another.
+  * (See the comment about this above.)
+  */
++#if 0
+ void orient_change_state(int from,int to)
+ {
+ /* the basic idea is this:
+@@ -281,6 +282,7 @@ if(orient_state_mirror[orient_state_flip
+   fprintf(stderr,"can't happen - orient_change_state(%d,%d) failed!\n",
+           from,to);
+ }
++#endif
+ 
+ 
+ /* run GTK+ stuff until events are dealt with. Normally the idle func
+@@ -356,8 +358,6 @@ xzgv_image *load_image(char *file,int fo
+ xzgv_image *ret;
+ int origw,origh;
+ 
+-jpeg_exif_orient=0;
+-
+ ret=backend_create_image_from_file(file);	/* use backend's loader */
+ origw=0; origh=0;
+ if(ret)
+@@ -2004,6 +2004,7 @@ revert=!revert;
+ }
+ 
+ 
++#if 0
+ void toggle_revert_orient(gpointer cb_data,guint cb_action,GtkWidget *widget)
+ {
+ if(!listen_to_toggles || in_nextprev) return;
+@@ -2018,6 +2019,7 @@ if(!listen_to_toggles || in_nextprev) re
+ 
+ use_exif_orient=!use_exif_orient;
+ }
++#endif
+ 
+ 
+ void toggle_thin_rows(gpointer cb_data,guint cb_action,GtkWidget *widget)
+@@ -2112,6 +2114,7 @@ listen_to_toggles=1;
+ }
+ 
+ 
++#if 0
+ void cb_flip(void)
+ {
+ if (!theimage) return;
+@@ -2173,6 +2176,7 @@ if(orient_current_state!=0)
+   }
+ RECURSE_PROTECT_END;
+ }
++#endif
+ 
+ 
+ int thumbnail_read_running(void)
+@@ -3135,7 +3139,6 @@ if(theimage)
+ 
+ /* ignore revert/revert_orient for this */
+ xscaling=yscaling=1;
+-orient_current_state=0;
+ }
+ 
+ 
+@@ -3441,6 +3444,7 @@ if((theimage=load_image(ptr,0,NULL,NULL)
+   return;
+   }
+ 
++#if 0
+ /* reflect loading of new pic in orientation stuff */
+ orient_lastpicexit_state=orient_current_state;
+ orient_current_state=0;
+@@ -3451,6 +3455,7 @@ if(use_exif_orient)
+   orient_change_state(0,jpeg_exif_orient);
+   orient_current_state=0;
+   }
++#endif
+ 
+ if(revert)
+   {
+@@ -3459,6 +3464,7 @@ if(revert)
+   /* XXX should mention this in docs, may confuse zgv refugees :-) */
+   }
+ 
++#if 0
+ if(revert_orient)
+   {
+   /* if the last state was rotated, need to swap over scales. */
+@@ -3476,6 +3482,7 @@ else
+   orient_current_state=orient_lastpicexit_state;
+   xscaling=xsav; yscaling=ysav;
+   }
++#endif
+ 
+ /* don't pointlessly render a zoomed copy if we're just about to resize
+  * it due to auto-hide!
+@@ -3645,12 +3652,14 @@ static GtkItemFactoryEntry viewer_menu_i
+   {"/_Scaling/_Y Only/_Add 1 to Scaling","<alt>y",cb_yscaling_add,0,	NULL},
+   {"/_Scaling/_Y Only/_Sub 1 from Scaling","<alt><shift>y",
+    cb_yscaling_sub,0,	NULL},
++#if 0
+   {"/O_rientation",	NULL,		NULL,		0,	"<Branch>"},
+   {"/O_rientation/_Normal","<shift>n",	cb_normal_orient,0,	NULL},
+   {"/O_rientation/_Mirror (horiz)","m",	cb_mirror,	0,	NULL},
+   {"/O_rientation/_Flip (vert)","f",	cb_flip,	0,	NULL},
+   {"/O_rientation/_Rotate Right","r",	cb_rot_cw,	0,	NULL},
+   {"/O_rientation/Rotate _Left","<shift>r",cb_rot_acw,	0,	NULL},
++#endif
+   {"/_Window",		NULL,		NULL,		0,	"<Branch>"},
+   {"/_Window/_Hide Selector","<shift>z",cb_hide_selector,0,	NULL},
+   /* I would normally write `minimise', but it looks a bit odd and the -ize
+@@ -3665,12 +3674,9 @@ static GtkItemFactoryEntry viewer_menu_i
+    toggle_mouse_x,	1,	"<ToggleItem>"},
+   {"/_Options/_Dither in 15 & 16-bit","<shift>f",
+    toggle_hicol_dither,1, "<ToggleItem>"},
+-  {"/_Options/Use _Exif Orientation",NULL,toggle_exif_orient,1, "<ToggleItem>"},
+   {"/_Options/sep1",	NULL,		NULL,		0,	"<Separator>"},
+   {"/_Options/Revert _Scaling For New Pic",NULL,
+    toggle_revert,	1,	"<ToggleItem>"},
+-  {"/_Options/Revert _Orient. For New Pic",NULL,
+-   toggle_revert_orient,1,	"<ToggleItem>"},
+   {"/_Help",		NULL,		NULL,		0,	"<Branch>"},
+   {"/_Help/_Contents",  "F1",		cb_help_contents,0,	NULL},
+   {"/_Help/The _Viewer",NULL,		cb_help_viewer,	0,	NULL},
+@@ -3919,11 +3925,13 @@ else
+                                   "<main>/Options/Dither in 15 & 16-bit")),
+     hicol_dither);
+ 
++#if 0
+ gtk_check_menu_item_set_active(
+   GTK_CHECK_MENU_ITEM(
+     gtk_item_factory_get_widget(viewer_menu_factory,
+                                 "<main>/Options/Revert Orient. For New Pic")),
+   revert_orient);
++#endif
+ 
+ gtk_check_menu_item_set_active(
+   GTK_CHECK_MENU_ITEM(
+@@ -3931,11 +3939,13 @@ gtk_check_menu_item_set_active(
+                                 "<main>/Options/Revert Scaling For New Pic")),
+   revert);
+ 
++#if 0
+ gtk_check_menu_item_set_active(
+   GTK_CHECK_MENU_ITEM(
+     gtk_item_factory_get_widget(viewer_menu_factory,
+                                 "<main>/Options/Use Exif Orientation")),
+   use_exif_orient);
++#endif
+ 
+ zoom_widget=gtk_item_factory_get_widget(viewer_menu_factory,
+                                         "<main>/Options/Zoom (fit to window)");
+diff -rup xzgv-0.9.1-orig/src/Makefile xzgv-0.9.1/src/Makefile
+--- xzgv-0.9.1-orig/src/Makefile	2014-10-31 21:34:19.179899102 +0200
++++ xzgv-0.9.1/src/Makefile	2014-10-31 21:47:42.408884718 +0200
+@@ -9,8 +9,8 @@
+ # This gets definitions for CC, CFLAGS, BINDIR etc.
+ include ../config.mk
+ 
+-CFLAGS+=`pkg-config --cflags gtk+-2.0` `pkg-config --cflags gdk-pixbuf-2.0`
+-LDFLAGS+=`pkg-config --libs gtk+-2.0` `pkg-config --libs gdk-pixbuf-2.0`
++CFLAGS+=`glib-config --cflags` `gdk-pixbuf-config --cflags`
++LDFLAGS+=`glib-config --libs` `gdk-pixbuf-config --libs`
+ 
+ all: xzgv
+ 
+@@ -23,7 +23,7 @@ OBJS=	main.o \
+ 	backend.o
+ 
+ xzgv: $(OBJS)
+-	$(CC) $(LDFLAGS) -o xzgv $(OBJS)
++	$(CC) -o xzgv $(OBJS) $(LDFLAGS)
+ 
+ installdirs:
+ 	/bin/sh ../mkinstalldirs $(BINDIR)
+diff -rup xzgv-0.9.1-orig/src/options.src xzgv-0.9.1/src/options.src
+--- xzgv-0.9.1-orig/src/options.src	2014-10-31 21:34:19.179899102 +0200
++++ xzgv-0.9.1/src/options.src	2014-10-31 21:40:51.295892080 +0200
+@@ -46,7 +46,6 @@
+ "click-for-next" 0	0 1 OPT_ARG	get_bool	&click_nextpic
+ "dither-hicol"	0	1 1 OPT_ARG	get_bool	&hicol_dither
+ "delete-single-prompt" 0 1 1 OPT_ARG	get_bool	&delete_single_prompt
+-"exif-orient"	0	1 1 OPT_ARG	get_bool	&use_exif_orient
+ "fast-recursive-update" 0 1 1 OPT_ARG	get_bool	&fast_recursive_update
+ "fullscreen"	'f'	1 1 OPT_ARG	get_bool	&fullscreen
+ "gamma"		'G'	1 1 REQ_ARG	get_double	&picgamma
+@@ -54,7 +53,6 @@
+ "image-bigness-threshold" 0 1 1 REQ_ARG	get_int	       &image_bigness_threshold
+ "interpolate"	0	1 1 OPT_ARG	get_bool	&interp
+ "mouse-scale-x" 0	1 1 OPT_ARG	get_bool	&mouse_scale_x
+-"revert-orient"	0	1 1 OPT_ARG	get_bool	&revert_orient
+ "revert-scale"	0	1 1 OPT_ARG	get_bool	&revert
+ "selector-width" 0	1 1 REQ_ARG	get_selwidth	&default_sel_width
+ "show-thumbnail-messages" 0 1 1 OPT_ARG	get_bool	&tn_msgs
+diff -rup xzgv-0.9.1-orig/src/rcfile.c xzgv-0.9.1/src/rcfile.c
+--- xzgv-0.9.1-orig/src/rcfile.c	2014-10-31 21:34:19.180899102 +0200
++++ xzgv-0.9.1/src/rcfile.c	2014-10-31 21:41:18.746891589 +0200
+@@ -36,7 +36,6 @@ int tn_msgs=0;			/* say when reading thu
+ int thin_rows=0;		/* use lower row height */
+ int auto_hide=0;		/* auto-hide selector */
+ int revert=1;			/* revert to normal scale/interp on pic load */
+-int revert_orient=1;		/* revert to normal orientation on pic load */
+ int fullscreen=0;		/* take up whole screen for window */
+ int show_tagged=0;		/* echo currently-tagged files on exit */
+ int fast_recursive_update=0;	/* if 0, use blocking tn update (slow :-/) */
+@@ -51,7 +50,6 @@ int image_bigness_threshold=2000000; /*
+ int delete_single_prompt=1;	/* prompt for deleting a single file */
+ int careful_jpeg=0;		/* enable (don't disable) fancy upsampling */
+ int sort_timestamp_type=0;	/* 0=mtime, 1=ctime, 2=atime */
+-int use_exif_orient=0;		/* use Exif orientation tag for JPEGs */
+ 
+ 
+ /* now non-config vars :-) */
+@@ -590,9 +588,6 @@ puts(
+ "			colour depth, whatever Imlib's default setting is.\n"
+ "			You can also use `--dither-hicol=off' to disable\n"
+ "			this if you normally have Imlib use it.\n"
+-"	--exif-orient	in JPEG files, use Exif orientation tags (inserted\n"
+-"			by e.g. digital cameras) to correct image orientation\n"
+-"			before display.\n"
+ "	--fast-recursive-update\n"
+ "			when doing recursive thumbnail update, don't\n"
+ "			read visible thumbnails for a directory before\n"
+@@ -622,9 +617,6 @@ puts(
+ "			scaling up. Usually looks nicer, but it's slow.\n"
+ "	--mouse-scale-x	if enabled, control-click scales only the X axis -\n"
+ "			the default is to scale only the Y axis.\n"
+-"	--revert-orient	(normally enabled, use --revert-orient=off to disable)\n"
+-"			if *disabled*, orientation (flip/mirror/rotate) state\n"
+-"			is retained between pictures.\n"
+ "	--revert-scale	(normally enabled, use --revert-scale=off to disable)\n"
+ "			if *disabled*, scaling is retained between pictures.\n"
+ "	--selector-width width\n"
+diff -rup xzgv-0.9.1-orig/src/rcfile.h xzgv-0.9.1/src/rcfile.h
+--- xzgv-0.9.1-orig/src/rcfile.h	2014-10-31 21:34:19.179899102 +0200
++++ xzgv-0.9.1/src/rcfile.h	2014-10-31 21:41:33.198891330 +0200
+@@ -33,7 +33,6 @@ extern int tn_msgs;
+ extern int thin_rows;
+ extern int auto_hide;
+ extern int revert;
+-extern int revert_orient;
+ extern int fullscreen;
+ extern int show_tagged;
+ extern int fast_recursive_update;
+@@ -46,7 +45,6 @@ extern int image_bigness_threshold;
+ extern int delete_single_prompt;
+ extern int careful_jpeg;
+ extern int sort_timestamp_type;
+-extern int use_exif_orient;
+ 
+ extern void get_config(void);
+ extern int parse_options(int argc,char *argv[]);

@@ -1,0 +1,51 @@
+diff -rup xzgv-0.9.1-orig/config.mk xzgv-0.9.1/config.mk
+--- xzgv-0.9.1-orig/config.mk	2014-10-31 21:45:34.796887003 +0200
++++ xzgv-0.9.1/config.mk	2014-10-31 21:49:15.619883049 +0200
+@@ -6,8 +6,8 @@
+ # Set the C compiler to use, and options for it.
+ # This is likely to be what you'll want for most systems:
+ #
+-CC=gcc
+-CFLAGS=-O2 -Wall
++CC?=gcc
++CFLAGS?=-O2 -Wall
+ 
+ # Set the awk interpreter to use for a script used while compiling.
+ # (This should be a `new' awk, such as gawk or mawk.)
+@@ -24,8 +24,8 @@ AWK=awk
+ # MANDIR to directory for man page.
+ # Usually it will be simpler to just set PREFIX.
+ #
+-PREFIX=/usr/local
+-BINDIR=$(PREFIX)/bin
++PREFIX?=/usr
++BINDIR?=$(PREFIX)/bin
+ INFODIR=$(PREFIX)/share/info
+ MANDIR=$(PREFIX)/share/man/man1
+ 
+diff -rup xzgv-0.9.1-orig/doc/Makefile xzgv-0.9.1/doc/Makefile
+--- xzgv-0.9.1-orig/doc/Makefile	2014-10-31 21:45:34.795887003 +0200
++++ xzgv-0.9.1/doc/Makefile	2014-10-31 21:50:42.380881495 +0200
+@@ -8,7 +8,7 @@
+ include ../config.mk
+ 
+ 
+-all: info man
++all: man
+ 
+ info: xzgv.info.gz
+ dvi: xzgv.dvi
+@@ -34,12 +34,10 @@ xzgv.1: xzgv.texi makeman.awk
+ 	LANG= gawk -f makeman.awk <xzgv.texi >xzgv.1
+ 
+ installdirs:
+-	/bin/sh ../mkinstalldirs $(INFODIR) $(MANDIR)
++	/bin/sh ../mkinstalldirs $(MANDIR)
+ 
+ install: installdirs
+ 	install xzgv.1 $(MANDIR)
+-	install -m 644 xzgv.info.gz $(INFODIR)
+-	install-info --infodir=$(INFODIR) xzgv.info.gz
+ 
+ uninstall:
+ 	$(RM) $(MANDIR)/xzgv.1

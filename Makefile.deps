@@ -80,8 +80,8 @@ libpng: musl zlib
 libressl: musl zlib ca-certificates
 libxaw3d: musl tinyxlib
 libxml2: musl
-linux:
 linux-headers:
+linux:
 lok: musl
 loksh: musl
 luufs: musl zlib fuse
@@ -146,5 +146,6 @@ xpacman: musl tinyxlib
 xplayargs: musl mpg123 ogg122
 xsoldier: musl tinyxlib
 xz: musl
+xzgv: musl gtk gdk-pixbuf
 ytree: musl ncurses
 zlib: musl
