@@ -14,6 +14,8 @@ build() {
 	./configure --host=$HOST \
 	            --prefix= \
 	            --datarootdir=/usr/share \
+	            --disable-all-encodings \
+	            --enable-iso8859-1 \
 	            --with-fontdir=/usr/share/fonts/75dpi \
 	            --with-compression=no
 	$MAKE
