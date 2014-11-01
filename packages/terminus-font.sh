@@ -1,6 +1,7 @@
 PACKAGE_VERSION="4.39"
 PACKAGE_SOURCES="http://sourceforge.net/projects/terminus-font/files/terminus-font-$PACKAGE_VERSION/terminus-font-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A monospace font"
+PACKAGE_ARCH="all"
 
 build() {
 	[ -d terminus-font-$PACKAGE_VERSION ] && rm -rf terminus-font-$PACKAGE_VERSION

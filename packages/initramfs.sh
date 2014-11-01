@@ -27,7 +27,7 @@ INITRAMFS_FILES="bin/toybox
                  bin/poweroff
                  bin/reboot
                  bin/setfont
-                 usr/share/consolefonts/ter-114n.psf"
+                 usr/share/consolefonts/Tamsyn8x16r.psf"
 
 # directories present in the initramfs
 INITRAMFS_DIRECTORIES="run
@@ -80,7 +80,15 @@ export PATH="/bin"
 clear
 
 # set the console font
-setfont /usr/share/consolefonts/ter-114n.psf
+setfont /usr/share/consolefonts/Tamsyn8x16r.psf
+
+# display an ASCII logo
+echo "       _         _
+  ____| |___  __| |
+ |  __| / __|/ _  |
+ | |  | \__ \ (_| |
+ |_|  |_|___/\__,_|
+"
 
 # mount virtual file systems
 echo -n "Mounting virtual file systems ..."

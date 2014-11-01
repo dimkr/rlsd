@@ -64,7 +64,7 @@ guitar: musl gtk libarchive
 gv: musl libxaw3d ghostscript
 gzip: musl diffutils
 htop: musl ncurses
-initramfs: toybox loksh lazy-utils lok luufs fuse setfont terminus-font
+initramfs: toybox loksh lazy-utils lok luufs fuse setfont tamsyn-font
 isolinux: 
 iw: musl libnl-tiny
 jimtcl: musl
