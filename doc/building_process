@@ -1,0 +1,47 @@
+RLSD has only one package repository, for simplicity. All packages in the
+repository are built using build scripts in the following form:
+
+  PACKAGE_VERSION="1"
+  PACKAGE_SOURCES="http://..."
+  PACKAGE_DESC="Some human-readable description"
+
+  build() {
+    $MAKE
+  }
+
+  package() {
+    install -m 644 "$BASE_DIR/COPYING" "$1/usr/share/doc/rlsd/COPYING"
+  }
+
+A configuration file (config) specifies the package target architecture,
+compiler flags, etc'.
+
+When a package is built, it is forced to search for headers and libraries under
+$SYSROOT, a temporary directory containing a "dirty", unoptimized file system
+root.
+
+Once the package is built, it is copied to $SYSROOT as-is. Then, it is trimmed
+and packaged in a packlad package that lacks files not needed at run-time (e.g
+static libraries and headers). The user receives the optimized package, while
+$SYSROOT also contains files required to build packages that depend on it.
+
+The whole building process is automated:
+  - The user runs make at the top directory; the makefile specifies the build
+    dependencies of each package
+  - scripts/build_package is executed for each package:
+    - The package build script (packages/$name.sh) is included
+    - The package source files ($PACKAGE_SOURCES) are downloaded to sources/
+    - The package is built using build()
+    - The package is installed to a directory using package()
+    - The package is copied as-is to $SYSROOT
+    - A packlad package is created under repo/
+    - A packlad package entry is appended to repo/available:
+      - if the build script does not set PACKAGE_DEPS, its build-time
+        dependencies are used instead
+      - if the build script does not set PACKAGE_ARCH, $ARCH is used instead
+
+Build scripts should use variables defined by scripts/build_package, e.g:
+  - MAKE: a parallel make
+  - BASE_DIR: the top directory
+  - ARCH: the target architecture
+  - KARCH: the target architecture, as the kernel calls it
