@@ -8,6 +8,7 @@ build() {
 	cd findutils-$PACKAGE_VERSION
 
 	patch -p 1 < "$BASE_DIR/patches/findutils-musl.patch"
+	patch -p 1 < "$BASE_DIR/patches/findutils-old.patch"
 
 	./configure --host=$HOST \
 	            --prefix= \

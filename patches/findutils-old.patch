@@ -1,0 +1,12 @@
+diff -rup findutils-4.4.2-orig/find/Makefile.in findutils-4.4.2/find/Makefile.in
+--- findutils-4.4.2-orig/find/Makefile.in	2014-11-01 15:35:26.248901662 +0200
++++ findutils-4.4.2/find/Makefile.in	2014-11-01 15:36:21.729900668 +0200
+@@ -34,7 +34,7 @@ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+ @WITH_FTS_FALSE@bin_PROGRAMS = find$(EXEEXT) ftsfind$(EXEEXT)
+-@WITH_FTS_TRUE@bin_PROGRAMS = find$(EXEEXT) oldfind$(EXEEXT)
++@WITH_FTS_TRUE@bin_PROGRAMS = find$(EXEEXT)
+ subdir = find
+ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
