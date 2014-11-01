@@ -1,6 +1,7 @@
 # rootfs: a basic, non-bootable root file system with nothing but packlad
 
-PACKAGES="toybox
+PACKAGES="skeleton
+          toybox
           lazy-utils
           loksh
           packlad

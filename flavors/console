@@ -3,10 +3,10 @@
 . ./rootfs
 
 PACKAGES="$PACKAGES
+          initramfs
           linux
           isolinux
           lok
-          luufs
           rfkill
           dhcpcd
           iw

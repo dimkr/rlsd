@@ -17,9 +17,14 @@ cd ..
 # build the root file system
 root_fs="$(mktemp -d -u)"
 ./scripts/build_rootfs "$1" "$root_fs"
-if [ ! -f "$root_fs/boot/bzImage" ] || [ ! -f "$root_fs/boot/isolinux.bin" ]
+if [ ! -f "$root_fs/boot/bzImage" ] ||
+   [ ! -f "$root_fs/boot/initrd.xz" ] ||
+   [ ! -f "$root_fs/boot/isolinux.bin" ]
 then
-	echo "Error: the root file system must contain the kernel and isolinux."
+	echo "Error: the root file system must contain:
+  1) A kernel (/boot/bzImage)
+  2) An initramfs archive (/boot/initrd.xz)
+  3) A boot loader (/boot/isolinux.bin)"
 	rm -rf "$root_fs"
 	exit 1
 fi
@@ -27,9 +32,6 @@ fi
 # create a temporary directory for the extracted ISO image contents
 iso_root="$(mktemp -d)"
 mkdir "$iso_root/boot"
-
-# generate an initramfs
-./scripts/build_initramfs "$root_fs" "$iso_root/boot/initrd.xz"
 
 # create a 11 MB, FAT12 UEFI boot image, for UEFI boot
 if [ -f "$root_fs/boot/elilo.efi" ]
@@ -46,13 +48,14 @@ then
 	         "::EFI/BOOT/"
 	mcopy -i "$iso_root/boot/efiboot.img" "$root_fs/boot/bzImage" "::EFI/BOOT/"
 	mcopy -i "$iso_root/boot/efiboot.img" \
-	         "$iso_root/boot/initrd.xz" \
+	         "$root_fs/boot/initrd.xz" \
 	         "::EFI/BOOT/"
 fi
 
 # put the kernel, the boot loader and its configuration file in the image root,
 # for BIOS boot
 mv "$root_fs/boot/bzImage" "$iso_root/boot/"
+mv "$root_fs/boot/initrd.xz" "$iso_root/boot/"
 mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"

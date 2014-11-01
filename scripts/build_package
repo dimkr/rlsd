@@ -82,6 +82,9 @@ then
     exit 1
 fi
 
+# initialize the package dependencies list with its build dependencies
+PACKAGE_DEPS="$(grep ^$1: ./Makefile.deps | cut -f 2 -d : | cut -c 2-)"
+
 # include the build script
 export PACKAGE_ARCH="$ARCH"
 . ./packages/$1.sh
@@ -273,7 +276,4 @@ dir2pkg "$installation_prefix" \
 rm -rf "$installation_prefix"
 
 # generate a packlad package entry
-dependencies="$(grep ^$1: "$BASE_DIR/Makefile.deps" | \
-                cut -f 2 -d : | \
-                cut -c 2-)"
-echo "$1|$PACKAGE_VERSION|$PACKAGE_DESC|$1-$PACKAGE_VERSION.pkg|$PACKAGE_ARCH|$dependencies" >> "$REPO_DIR/available"
+echo "$1|$PACKAGE_VERSION|$PACKAGE_DESC|$1-$PACKAGE_VERSION.pkg|$PACKAGE_ARCH|$PACKAGE_DEPS" >> "$REPO_DIR/available"

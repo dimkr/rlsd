@@ -1,5 +1,6 @@
 PACKAGE_VERSION="1.0.3"
 PACKAGE_SOURCES="http://xorg.freedesktop.org/archive/individual/font/font-bh-lucidatypewriter-75dpi-$PACKAGE_VERSION.tar.bz2"
+PACKAGE_DEPS=""
 PACKAGE_DESC="Lucida 75 DPI fonts"
 PACKAGE_ARCH="all"
 

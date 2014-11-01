@@ -64,6 +64,7 @@ guitar: musl gtk libarchive
 gv: musl libxaw3d ghostscript
 gzip: musl diffutils
 htop: musl ncurses
+initramfs: toybox loksh lazy-utils lok luufs fuse
 isolinux: 
 iw: musl libnl-tiny
 jimtcl: musl
@@ -118,6 +119,7 @@ shed: musl ncurses
 shus: musl
 shutbox: musl gtk
 siag: musl mowitz
+skeleton:
 snownews: musl zlib ncurses libressl libxml2
 sqlite: musl
 sumeria: musl
