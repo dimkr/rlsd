@@ -25,7 +25,9 @@ INITRAMFS_FILES="bin/toybox
                  bin/cat
                  bin/contain
                  bin/poweroff
-                 bin/reboot"
+                 bin/reboot
+                 bin/setfont
+                 usr/share/consolefonts/ter-114n.psf"
 
 # directories present in the initramfs
 INITRAMFS_DIRECTORIES="run
@@ -40,7 +42,8 @@ INITRAMFS_DIRECTORIES="run
                        mnt/union
                        mnt/ro
                        sys
-                       etc/rc.d"
+                       etc/rc.d
+                       usr/share/consolefonts"
 
 build() {
 	# create a temporary directory for the initramfs contents
@@ -76,6 +79,9 @@ export PATH="/bin"
 # clear the screen from boot loader or early kernel messages
 clear
 
+# set the console font
+setfont /usr/share/consolefonts/ter-114n.psf
+
 # mount virtual file systems
 echo -n "Mounting virtual file systems ..."
 
@@ -91,7 +97,7 @@ mkdir /run/shm /dev/shm
 mount -B /run/shm /dev/shm
 
 # if there is at least 256 MB of RAM, copy the root file system image to RAM
-if [ 262144 -le $(grep MemTotal: /proc/meminfo | awk "{print $2}") ]
+if [ 262144 -le $(grep MemTotal: /proc/meminfo | awk "{print \$2}") ]
 then
 	copy=1
 else

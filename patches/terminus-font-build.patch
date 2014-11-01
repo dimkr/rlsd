@@ -1,0 +1,42 @@
+diff -rup terminus-font-4.39-orig/Makefile terminus-font-4.39/Makefile
+--- terminus-font-4.39-orig/Makefile	2014-11-01 14:59:50.209939914 +0200
++++ terminus-font-4.39/Makefile	2014-11-01 15:05:04.678934283 +0200
+@@ -39,7 +39,7 @@ PSF_PT_154  = ter-p12n.psf ter-p14n.psf
+ PSF_KOI8_UV = ter-u14n.psf ter-u14b.psf ter-u14v.psf ter-u16n.psf ter-u16b.psf ter-u16v.psf
+ PSF_KOI8_U  = ter-u12n.psf ter-u18n.psf ter-u18b.psf ter-u20n.psf ter-u20b.psf ter-u22n.psf ter-u22b.psf ter-u24n.psf ter-u24b.psf ter-u28n.psf ter-u28b.psf ter-u32n.psf ter-u32b.psf
+ PSF_XOS4_2  = ter-v12n.psf ter-v14n.psf ter-v14b.psf ter-v14v.psf ter-v16n.psf ter-v16b.psf ter-v16v.psf ter-v18n.psf ter-v18b.psf ter-v20n.psf ter-v20b.psf ter-v22n.psf ter-v22b.psf ter-v24n.psf ter-v24b.psf ter-v28n.psf ter-v28b.psf ter-v32n.psf ter-v32b.psf
+-PSF = $(PSF_8859_1) $(PSF_8859_2) $(PSF_8859_7) $(PSF_8859_9) $(PSF_W_1251) $(PSF_8859_13) $(PSF_8859_16) $(PSF_IBM_437) $(PSF_KOI8_RV) $(PSF_KOI8_R) $(PSF_BG_MIK) $(PSF_PT_154) $(PSF_KOI8_UV) $(PSF_KOI8_U) $(PSF_XOS4_2)
++PSF = $(PSF_8859_1)
+ 
+ TXT = cp1252.txt cp1250.txt cp1253.txt cp1254.txt cp1251.txt cp1257.txt pt154.txt 8859-16.txt cp437.txt koi8-r.txt koi8-u.txt mik.txt pt254.txt
+ 
+@@ -56,7 +56,7 @@ RAW_IBM_437 = ter-i14n.raw ter-i14b.raw
+ RAW_KOI8_R  = ter-k14n.raw ter-k14b.raw ter-k14v.raw ter-k16n.raw ter-k16b.raw ter-k16v.raw
+ RAW_PT_154  = ter-p14n.raw ter-p14b.raw ter-p14v.raw ter-p16n.raw ter-p16b.raw ter-p16v.raw
+ RAW_KOI8_U  = ter-u14n.raw ter-u14b.raw ter-u14v.raw ter-u16n.raw ter-u16b.raw ter-u16v.raw
+-RAW = $(RAW_8859_1) $(RAW_8859_2) $(RAW_8859_5) $(RAW_8859_7) $(RAW_8859_9) $(RAW_W_1251) $(RAW_8859_13) $(RAW_8859_15) $(RAW_8859_16) $(RAW_IBM_437) $(RAW_KOI8_R) $(RAW_PT_154) $(RAW_KOI8_U)
++RAW = $(RAW_8859_1)
+ 
+ PCF_8859_1  = ter-112n.pcf ter-112b.pcf ter-114n.pcf ter-114b.pcf ter-116n.pcf ter-116b.pcf ter-118n.pcf ter-118b.pcf ter-120n.pcf ter-120b.pcf ter-122n.pcf ter-122b.pcf ter-124n.pcf ter-124b.pcf ter-128n.pcf ter-128b.pcf ter-132n.pcf ter-132b.pcf
+ PCF_8859_2  = ter-212n.pcf ter-212b.pcf ter-214n.pcf ter-214b.pcf ter-216n.pcf ter-216b.pcf ter-218n.pcf ter-218b.pcf ter-220n.pcf ter-220b.pcf ter-222n.pcf ter-222b.pcf ter-224n.pcf ter-224b.pcf ter-228n.pcf ter-228b.pcf ter-232n.pcf ter-232b.pcf
+@@ -71,7 +71,7 @@ PCF_KOI8_R  = ter-k12n.pcf ter-k12b.pcf
+ PCF_PT_154  = ter-p12n.pcf ter-p12b.pcf ter-p14n.pcf ter-p14b.pcf ter-p16n.pcf ter-p16b.pcf ter-p18n.pcf ter-p18b.pcf ter-p20n.pcf ter-p20b.pcf ter-p22n.pcf ter-p22b.pcf ter-p24n.pcf ter-p24b.pcf ter-p28n.pcf ter-p28b.pcf ter-p32n.pcf ter-p32b.pcf
+ PCF_KOI8_U  = ter-u12n.pcf ter-u12b.pcf ter-u14n.pcf ter-u14b.pcf ter-u16n.pcf ter-u16b.pcf ter-u18n.pcf ter-u18b.pcf ter-u20n.pcf ter-u20b.pcf ter-u22n.pcf ter-u22b.pcf ter-u24n.pcf ter-u24b.pcf ter-u28n.pcf ter-u28b.pcf ter-u32n.pcf ter-u32b.pcf
+ PCF_U_10646 = ter-x12n.pcf ter-x12b.pcf ter-x14n.pcf ter-x14b.pcf ter-x16n.pcf ter-x16b.pcf ter-x18n.pcf ter-x18b.pcf ter-x20n.pcf ter-x20b.pcf ter-x22n.pcf ter-x22b.pcf ter-x24n.pcf ter-x24b.pcf ter-x28n.pcf ter-x28b.pcf ter-x32n.pcf ter-x32b.pcf
+-PCF = $(PCF_8859_1) $(PCF_8859_2) $(PCF_8859_5) $(PCF_8859_7) $(PCF_8859_9) $(PCF_W_1251) $(PCF_8859_13) $(PCF_8859_15) $(PCF_8859_16) $(PCF_KOI8_R) $(PCF_PT_154) $(PCF_KOI8_U) $(PCF_U_10646)
++PCF = $(PCF_8859_1)
+ 
+ all: $(PSF) $(PCF)
+ psf: $(PSF)
+@@ -87,9 +87,9 @@ x11dir	= $(prefix)/share/fonts/terminus
+ 
+ install: $(PSF) $(PCF)
+ 	mkdir -p $(DESTDIR)$(psfdir)
+-	for i in $(PSF) ; do gzip -c $$i > $(DESTDIR)$(psfdir)/$$i.gz ; done
++	for i in $(PSF) ; do cp $$i $(DESTDIR)$(psfdir)/$$i ; done
+ 	mkdir -p $(DESTDIR)$(x11dir)
+-	for i in $(PCF) ; do gzip -c $$i > $(DESTDIR)$(x11dir)/$$i.gz ; done
++	for i in $(PCF) ; do cp $$i $(DESTDIR)$(x11dir)/$$i ; done
+ 
+ uninstall:
+ 	for i in $(PSF) ; do rm -f $(DESTDIR)$(psfdir)/$$i.gz ; done

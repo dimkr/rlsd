@@ -64,7 +64,7 @@ guitar: musl gtk libarchive
 gv: musl libxaw3d ghostscript
 gzip: musl diffutils
 htop: musl ncurses
-initramfs: toybox loksh lazy-utils lok luufs fuse
+initramfs: toybox loksh lazy-utils lok luufs fuse setfont terminus-font
 isolinux: 
 iw: musl libnl-tiny
 jimtcl: musl
@@ -115,6 +115,7 @@ scrollz: musl ncurses libressl
 sdl: musl tinyxlib alsa-lib
 sdl_mixer: musl tinyxlib alsa-lib sdl
 sdl_net: musl tinyxlib alsa-lib sdl
+setfont: musl
 shed: musl ncurses
 shus: musl
 shutbox: musl gtk
@@ -126,6 +127,7 @@ sumeria: musl
 sylpheed: musl libressl gtk gdk-pixbuf
 tcpdump: musl libressl libpcap
 ted: musl zlib libpng libjpeg-turbo tiff gtk font-adobe-75dpi font-adobe-100dpi
+terminus-font:
 tiff: musl zlib libjpeg-turbo
 tinyalsa: musl
 tinyunmute: musl tinyalsa

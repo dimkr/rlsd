@@ -1,0 +1,32 @@
+diff -rup kbd-2.0.2-orig/src/libkeymap/dump.c kbd-2.0.2/src/libkeymap/dump.c
+--- kbd-2.0.2-orig/src/libkeymap/dump.c	2014-11-01 14:04:35.679999271 +0200
++++ kbd-2.0.2/src/libkeymap/dump.c	2014-11-01 14:05:12.853998605 +0200
+@@ -13,6 +13,7 @@
+ #include <string.h>
+ #include <ctype.h>
+ #include <unistd.h>
++#include <sys/types.h>
+ 
+ #include "keymap.h"
+ 
+diff -rup kbd-2.0.2-orig/src/libkeymap/kmap.c kbd-2.0.2/src/libkeymap/kmap.c
+--- kbd-2.0.2-orig/src/libkeymap/kmap.c	2014-11-01 14:04:35.680999271 +0200
++++ kbd-2.0.2/src/libkeymap/kmap.c	2014-11-01 14:05:27.058998351 +0200
+@@ -1,5 +1,6 @@
+ #include <stdlib.h>
+ #include <string.h>
++#include <sys/types.h>
+ 
+ #include "nls.h"
+ #include "kbd.h"
+diff -rup kbd-2.0.2-orig/src/libkeymap/summary.c kbd-2.0.2/src/libkeymap/summary.c
+--- kbd-2.0.2-orig/src/libkeymap/summary.c	2014-11-01 14:04:35.680999271 +0200
++++ kbd-2.0.2/src/libkeymap/summary.c	2014-11-01 14:05:37.978998156 +0200
+@@ -9,6 +9,7 @@
+ #include <string.h>
+ #include <errno.h>
+ #include <sys/ioctl.h>
++#include <sys/types.h>
+ 
+ #include "keymap.h"
+ 

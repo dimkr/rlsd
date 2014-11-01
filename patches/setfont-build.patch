@@ -1,0 +1,12 @@
+diff -rup kbd-2.0.2-orig/configure.ac kbd-2.0.2/configure.ac
+--- kbd-2.0.2-orig/configure.ac	2014-11-01 14:04:35.712999271 +0200
++++ kbd-2.0.2/configure.ac	2014-11-01 14:09:04.704994453 +0200
+@@ -11,8 +11,6 @@ AM_INIT_AUTOMAKE([1.9 -Wall color-tests
+ AC_CONFIG_SRCDIR([src/loadkeys.c])
+ AC_CONFIG_HEADERS(config.h)
+ 
+-PKG_CHECK_MODULES([CHECK], [check >= 0.9.4])
+-
+ m4_ifndef([AM_SILENT_RULES], [m4_define([AM_SILENT_RULES],[])])
+ AM_SILENT_RULES([yes])
+ 
