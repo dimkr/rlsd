@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.2.9"
+PACKAGE_VERSION="2.2.10"
 PACKAGE_SOURCES="http://www.ffmpeg.org/releases/ffmpeg-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A complete multimedia solution"
 
