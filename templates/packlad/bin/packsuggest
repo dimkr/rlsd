@@ -4,7 +4,7 @@
 
 [ 1 -ne $# ] && exit 1
 
-match="$(packlad -l | sort -r | grep "^$1" | head -n 1 | cut -f 1 -d \|)"
+match="$(packlad -l 2>/dev/null | sort -r | grep "^$1" | head -n 1 | cut -f 1 -d \|)"
 case "$match" in
 	"")
 		exit 1
