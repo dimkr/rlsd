@@ -258,6 +258,12 @@ then
 	done
 fi
 
+# remove empty directories
+rmdir "$installation_prefix/usr/share/man"/* 2>/dev/null
+rmdir "$installation_prefix/usr/share"/* 2>/dev/null
+rmdir "$installation_prefix/usr"/* 2>/dev/null
+rmdir "$installation_prefix"/* 2>/dev/null
+
 # add the package template
 [ -d "$BASE_DIR/templates/$1" ] && \
                         cp -a "$BASE_DIR/templates/$1"/* "$installation_prefix/"
