@@ -8,6 +8,8 @@ build() {
 	tar -xjvf lynx$PACKAGE_VERSION.tar.bz2
 	cd lynx$version
 
+	patch -p 1 < "$BASE_DIR/patches/lynx-config.patch"
+
 	CFLAGS="-DUSE_OPENSSL_INCL $CFLAGS" \
 	./configure --host=$HOST \
 	            --prefix= \
@@ -16,6 +18,7 @@ build() {
 	            --with-ssl \
 	            --enable-ipv6 \
 	            --with-screen=ncurses \
+	            --enable-underlines \
 	            --disable-gzip-help \
 	            --with-zlib
 	$MAKE

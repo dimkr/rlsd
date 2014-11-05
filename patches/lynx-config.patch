@@ -1,0 +1,63 @@
+diff -rup lynx2-8-8-orig/lynx.cfg lynx2-8-8/lynx.cfg
+--- lynx2-8-8-orig/lynx.cfg	2014-03-09 23:43:10.000000000 +0200
++++ lynx2-8-8/lynx.cfg	2014-11-05 11:42:30.378939034 +0200
+@@ -90,7 +90,8 @@
+ #
+ # Normally we expect you will connect to a remote site, e.g., the Lynx starting
+ # site:
+-STARTFILE:http://lynx.isc.org/
++.ex
++#STARTFILE:http://lynx.isc.org/
+ #
+ # As an alternative, you may want to use a local URL.  A good choice for this is
+ # the user's home directory:
+diff -rup lynx2-8-8-orig/userdefs.h lynx2-8-8/userdefs.h
+--- lynx2-8-8-orig/userdefs.h	2014-03-09 23:43:10.000000000 +0200
++++ lynx2-8-8/userdefs.h	2014-11-05 11:47:35.867933563 +0200
+@@ -146,7 +146,7 @@
+  * Make this NULL if you don't have such a viewer or don't want to
+  * use any default viewers for image types.
+  */
+-#define XLOADIMAGE_COMMAND "xv %s"
++#define XLOADIMAGE_COMMAND "xzgv %s"
+ 
+ /**************************
+  * SYSTEM_MAIL must be defined here to your mail sending command,
+@@ -345,7 +345,7 @@
+  * use any default viewers for image types.  Note that open is used as
+  * the default for NeXT, instead of the XLOADIMAGE_COMMAND definition.
+  */
+-#define XLOADIMAGE_COMMAND "xli %s &"
++#define XLOADIMAGE_COMMAND "xzgv %s &"
+ 
+ /**************************
+  * For UNIX systems, SYSTEM_MAIL and SYSTEM_MAIL_FLAGS are set by the
+@@ -483,7 +483,7 @@
+  * Normally we expect you will connect to a remote site, e.g., the Lynx starting
+  * site:
+  */
+-#define STARTFILE "http://lynx.isc.org/"
++#define STARTFILE "file://localhost/usr/share/doc/rlsd/getting_started.html"
+ /*
+  * As an alternative, you may want to use a local URL.  A good choice for this
+  * is the user's home directory:
+@@ -921,7 +921,7 @@
+  * The default defined here can be changed in lynx.cfg, and .lynxrc, or
+  * toggled via the -accept_all_cookies command line switch.
+  */
+-#define ACCEPT_ALL_COOKIES FALSE
++#define ACCEPT_ALL_COOKIES TRUE
+ 
+ /****************************************************************
+  *   Section 2.   Things that you probably want to change or review
+@@ -1549,8 +1549,8 @@
+ #else
+ /* have to define something... */
+ #undef SYSTEM_MAIL
+-#define SYSTEM_MAIL             "sendmail"
+-#define SYSTEM_MAIL_FLAGS       "-t -oi"
++#define SYSTEM_MAIL             "msmtp"
++#define SYSTEM_MAIL_FLAGS       "-t"
+ #endif /* _WINDOWS */
+ 
+ /*
