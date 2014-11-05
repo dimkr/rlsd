@@ -1,4 +1,4 @@
-PACKAGE_VERSION="7.38.0"
+PACKAGE_VERSION="7.39.0"
 PACKAGE_SOURCES="http://curl.haxx.se/download/curl-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A file transfer library"
 
