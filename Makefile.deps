@@ -26,7 +26,7 @@ elilo: musl gnu-efi
 elvis: musl ncurses
 emelfm: musl gtk
 evilwm: musl tinyxlib
-fbshot: musl libpng
+fbgrab: musl libpng
 ffmpeg: musl zlib alsa-lib sdl
 figlet: musl
 file: musl zlib
