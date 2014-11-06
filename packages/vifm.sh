@@ -1,4 +1,4 @@
-PACKAGE_VERSION="0.7.7"
+PACKAGE_VERSION="0.7.8"
 PACKAGE_SOURCES="http://prdownloads.sourceforge.net/vifm/vifm-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A two-pane file manager"
 
@@ -16,7 +16,8 @@ build() {
 		    --prefix=/usr \
 	            --bindir=/bin \
 	            --disable-desktop-files \
-	            --with-curses-name=ncurses
+	            --with-curses-name=ncurses \
+	            --without-X11
 	$MAKE
 }
 

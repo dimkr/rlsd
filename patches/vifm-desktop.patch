@@ -1,12 +1,21 @@
-diff -rup vifm-0.7.7-orig/src/Makefile.in vifm-0.7.7/src/Makefile.in
---- vifm-0.7.7-orig/src/Makefile.in	2014-10-17 14:09:55.090983684 +0300
-+++ vifm-0.7.7/src/Makefile.in	2014-10-17 14:11:16.299982230 +0300
-@@ -1213,7 +1213,7 @@ info: info-am
+diff -rup vifm-0.7.8-orig/src/Makefile.in vifm-0.7.8/src/Makefile.in
+--- vifm-0.7.8-orig/src/Makefile.in	2014-10-25 18:09:35.000000000 +0300
++++ vifm-0.7.8/src/Makefile.in	2014-11-06 22:24:24.968887323 +0200
+@@ -173,7 +173,7 @@ am__can_run_installinfo = \
+ man1dir = $(mandir)/man1
+ NROFF = nroff
+ MANS = $(man_MANS)
+-DATA = $(desktopapp_DATA) $(desktoppix_DATA) $(pkgdata_DATA) \
++DATA = $(desktoppix_DATA) $(pkgdata_DATA) \
+ 	$(vim_autoload_vifm__DATA) $(vim_doc__DATA) \
+ 	$(vim_ftdetect__DATA) $(vim_ftplugin__DATA) \
+ 	$(vim_plugin__DATA) $(vim_syntax__DATA) $(vimdoc_doc__DATA)
+@@ -1450,7 +1450,7 @@ info: info-am
  
  info-am:
  
 -install-data-am: install-desktopappDATA install-desktoppixDATA \
 +install-data-am: install-desktoppixDATA \
- 	install-man install-pkgdataDATA
- 
- install-dvi: install-dvi-am
+ 	install-man install-pkgdataDATA install-vim_autoload_vifm_DATA \
+ 	install-vim_doc_DATA install-vim_ftdetect_DATA \
+ 	install-vim_ftplugin_DATA install-vim_plugin_DATA \
