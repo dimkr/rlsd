@@ -13,5 +13,5 @@ build() {
 package() {
 	install -D -m 755 fbgs "$1/bin/fbgs"
 	install -D -m 644 fbgs.man "$1/usr/share/man/man1/fbgs.1"
-	install -D -m 644 COPYING "$1/usr/share/doc/fbida/COPYING"
+	install -D -m 644 COPYING "$1/usr/share/doc/fbgs/COPYING"
 }
