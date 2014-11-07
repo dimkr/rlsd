@@ -1,0 +1,189 @@
+diff -rup fbida-2.09-orig/fbgs fbida-2.09/fbgs
+--- fbida-2.09-orig/fbgs	2014-11-07 18:54:57.112978884 +0200
++++ fbida-2.09/fbgs	2014-11-07 18:55:18.843978495 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ 
+ #
+ # PostScript/pdf viewer for the linux framebuffer console
+@@ -7,22 +7,21 @@
+ 
+ 
+ # tmp dir
+-DIR="$(mktemp -dtp ${TMPDIR-/var/tmp} fbgs-XXXXXX)"
++DIR="$(mktemp -dp ${TMPDIR-/tmp} fbgs-XXXXXX)"
+ test -d "$DIR" || exit 1
+ trap "rm -rf $DIR" EXIT
+ 
+ # parse options
+-fbiopts=""
+-gsopts=""
++gsopts="-r100x100"
+ passwd=""
+-device="tiffpack"
++device="pnggray"
+ opt=1
+ bell="off"
+ helptext="
+ This program displays PostScript/pdf files using the linux framebuffer device.
+-It is a simple wrapper script for GhostScript and fbi.
++It is a simple wrapper script for GhostScript and fbv. 
+ 
+-usage: fbgs [fbgs options] [fbi options] file
++usage: fbgs [fbgs options] file
+ 
+    -b    --bell              emit a beep when the document is ready
+    -h    --help              print this help text
+@@ -30,12 +29,11 @@ usage: fbgs [fbgs options] [fbi options]
+    -fp   --firstpage <arg>   begins on the <arg> page
+    -lp	 --lastpage <arg>    stops on the <arg> page
+    -c    --color             pages in color
+-   -l                        pages rendered with 100 dpi
+-   -xl                       pages rendered with 120 dpi
+-   -xxl                      pages rendered with 150 dpi
++   -l                       pages rendered with 120 dpi
++   -xl                      pages rendered with 150 dpi
+    -r    --resolution <arg>  choose resolution of <arg> dpi
+ 
+-Read the fbgs(1) and fbi(1) manpages for more details.
++Read the fbgs(1) and fbv(1) manpages for more details.
+ "
+ 
+ while test "$opt" = "1"; do
+@@ -65,41 +63,16 @@ while test "$opt" = "1"; do
+ 			device="png16m"
+ 			shift
+ 			;;
+-		-l)	gsopts="$gsopts -r100x100"
++		-l)	gsopts="$gsopts -r120x120"
+ 			shift
+ 			;;
+-		-xl)	gsopts="$gsopts -r120x120"
+-			shift
+-			;;
+-		-xxl)	gsopts="$gsopts -r150x150"
++		-xl)	gsopts="$gsopts -r150x150"
+ 			shift
+ 			;;
+ 		-r | --resolution)
+ 			gsopts="$gsopts -r$2x$2"
+ 			shift; shift
+ 			;;
+-		# fbi options without argument
+-		-a | --autozoom | \
+-		--autoup | --noautoup | \
+-		--autodown | --noautodown | \
+-		--fitwidth | --nofitwidth | \
+-		-v | --verbose | --noverbose | \
+-		-u | --random | --norandom | \
+-		-1 | --once | --noonce)
+-			fbiopts="$fbiopts $1"
+-			shift
+-			;;
+-		# fbi options with one argument
+-		-T | --vt | \
+-		-s | --scroll | \
+-		-t | --timeout  | \
+-		-g | --gamma | \
+-		-f | --font | \
+-		-d | --device | \
+-		-m | --mode)
+-			fbiopts="$fbiopts $1 $2"
+-			shift; shift
+-			;;
+ 		# others options
+ 		-*)	echo "unknown option: $1"
+ 			exit 1
+@@ -115,7 +88,7 @@ echo "### rendering pages, please wait .
+ echo
+ gs	-dSAFER -dNOPAUSE -dBATCH			\
+ 	-sPDFPassword="$password"			\
+-	-sDEVICE=${device} -sOutputFile=$DIR/ps%03d.tiff \
++	-sDEVICE=${device} -sOutputFile=$DIR/ps%03d.png \
+ 	$gsopts						\
+ 	"$1"
+ 
+@@ -125,7 +98,7 @@ if test "$bell" = "on"; then
+ fi
+ 
+ # sanity check
+-pages=`ls $DIR/ps*.tiff 2>/dev/null | wc -l`
++pages=`ls $DIR/ps*.png 2>/dev/null | wc -l`
+ if test "$pages" -eq "0"; then
+ 	echo
+ 	echo "Oops: ghostscript wrote no pages?"
+@@ -134,4 +107,4 @@ if test "$pages" -eq "0"; then
+ fi
+ 
+ # show pages
+-fbi $fbiopts -P $DIR/ps*.tiff
++fbv --noinfo $DIR/ps*.png
+diff -rup fbida-2.09-orig/fbgs.man fbida-2.09/fbgs.man
+--- fbida-2.09-orig/fbgs.man	2014-11-07 18:54:57.115978884 +0200
++++ fbida-2.09/fbgs.man	2014-11-07 18:58:28.318975102 +0200
+@@ -7,13 +7,12 @@ fbgs \- Poor man's PostScript/pdf viewer
+ \#
+ .SH SYNOPSIS
+ \fBfbgs\fP\
+- [\fB\-l\fP|\fB\-xl\fP|\fB\-xxl\fP|\fB\-r\fP \fIn\fP]\
++ [\fB\-l\fP|\fB\-xl\fP|\fB\-r\fP \fIn\fP]\
+  [\fB\-c\fP]\
+  [\fB\-b\fP]\
+  [\fB\-p\fP\ \fIpassword\fP]\
+  [\fB\--fp\fP\ \fInumber\fP]\
+  [\fB\--lp\fP\ \fInumber\fP]\
+- [\fIfbi\ options\fP]\
+  \fIfile\fP
+ \#
+ \#
+@@ -23,19 +22,12 @@ is a simple wrapper script which takes a
+ Document Format\fP (PDF) file as input, renders the pages using
+ .BR gs (1) 
+ \- GhostScript \- into a temporary directory and finally calls
+-.BR fbi (1)
++.BR fbv (1)
+ to display them.
+ .SH OPTIONS
+-.BR Fbgs
+-understands all
+-.BR fbi (1)
+-options (they are passed through), except: store, list, text, (no)comments, e,
+-(no)edit, (no)backup, (no)preserve, (no)readahead, cachemem, blend.
+-.P
+-Additionally you can specify:
+ .TP
+ .B -h, --help
+-Print usage info (overwrites fbi option).
++Print usage info.
+ .TP
+ .B -b, --bell
+ Emit a beep when the document is ready.
+@@ -44,16 +36,13 @@ Emit a beep when the document is ready.
+ To render the pages in color (default is N&B).
+ .TP
+ .B -l
+-To get the pages rendered with 100 dpi (default is 75).
++To get the pages rendered with 120 dpi (default is 100).
+ .TP
+ .B -xl
+-To get the pages rendered with 120 dpi.
+-.TP
+-.B -xxl
+ To get the pages rendered with 150 dpi.
+ .TP
+ .BI "-r" "\ n" ", --resolution" "\ n"
+-To get the pages rendered with \fIn\fP dpi (overwrites fbi option).
++To get the pages rendered with \fIn\fP dpi.
+ .TP
+ .BI "-fp" "\ number" ", --firstpage" "\ number"
+ Begins interpreting on the designated page of the document.
+@@ -66,7 +55,7 @@ You can use this option if your PDF file
+ \#
+ \#
+ .SH "SEE ALSO"
+-.BR fbi (1),
++.BR fbv (1),
+ .BR gs (1)
+ \#
+ \#

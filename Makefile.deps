@@ -27,6 +27,7 @@ elvis: musl ncurses
 emelfm: musl gtk
 evilwm: musl tinyxlib
 fbgrab: musl libpng
+fbgs: ghostscript fbv
 fbv: musl libpng libjpeg-turbo giflib
 ffmpeg: musl zlib alsa-lib sdl
 figlet: musl
