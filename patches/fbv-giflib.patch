@@ -1,0 +1,62 @@
+diff -rup fbv-1.0b-orig/gif.c fbv-1.0b/gif.c
+--- fbv-1.0b-orig/gif.c	2014-11-07 13:50:03.809976669 +0200
++++ fbv-1.0b/gif.c	2014-11-07 13:50:22.307976338 +0200
+@@ -31,10 +31,10 @@
+ #include <string.h>
+ #define min(a,b) ((a) < (b) ? (a) : (b))
+ #define gflush return(FH_ERROR_FILE);
+-#define grflush { DGifCloseFile(gft); return(FH_ERROR_FORMAT); }
+-#define mgrflush { free(lb); free(slb); DGifCloseFile(gft); return(FH_ERROR_FORMAT); }
++#define grflush { DGifCloseFile(gft,NULL); return(FH_ERROR_FORMAT); }
++#define mgrflush { free(lb); free(slb); DGifCloseFile(gft,NULL); return(FH_ERROR_FORMAT); }
+ #define agflush return(FH_ERROR_FORMAT);
+-#define agrflush { DGifCloseFile(gft); return(FH_ERROR_FORMAT); }
++#define agrflush { DGifCloseFile(gft,NULL); return(FH_ERROR_FORMAT); }
+ 
+ 
+ int fh_gif_id(char *name)
+@@ -81,7 +81,7 @@ int fh_gif_load(char *name,unsigned char
+     ColorMapObject *cmap;
+     int cmaps;
+ 
+-    gft=DGifOpenFileName(name);
++    gft=DGifOpenFileName(name,NULL);
+     if(gft==NULL){printf("err5\n"); gflush;} //////////
+     do
+     {
+@@ -170,7 +170,7 @@ int fh_gif_load(char *name,unsigned char
+ 	}
+     }
+     while( rt!= TERMINATE_RECORD_TYPE );
+-    DGifCloseFile(gft);
++    DGifCloseFile(gft,NULL);
+     return(FH_ERROR_OK);
+ }
+ 
+@@ -184,7 +184,7 @@ int fh_gif_getsize(char *name,int *x,int
+     int extcode;
+     GifRecordType rt;
+ 
+-    gft=DGifOpenFileName(name);
++    gft=DGifOpenFileName(name,NULL);
+     if(gft==NULL) gflush;
+     do
+     {
+@@ -197,7 +197,7 @@ int fh_gif_getsize(char *name,int *x,int
+ 		px=gft->Image.Width;
+ 		py=gft->Image.Height;
+ 		*x=px; *y=py;
+-		DGifCloseFile(gft);
++		DGifCloseFile(gft,NULL);
+ 		return(FH_ERROR_OK);
+ 		break;
+ 	    case EXTENSION_RECORD_TYPE:
+@@ -210,7 +210,7 @@ int fh_gif_getsize(char *name,int *x,int
+ 	}  
+     }
+     while( rt!= TERMINATE_RECORD_TYPE );
+-    DGifCloseFile(gft);
++    DGifCloseFile(gft,NULL);
+     return(FH_ERROR_FORMAT);
+ }
+ #endif

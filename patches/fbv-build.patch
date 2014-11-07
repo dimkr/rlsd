@@ -1,0 +1,46 @@
+diff -rupN fbv-1.0b-orig/config.h fbv-1.0b/config.h
+--- fbv-1.0b-orig/config.h	1970-01-01 02:00:00.000000000 +0200
++++ fbv-1.0b/config.h	2014-11-07 17:55:09.497994081 +0200
+@@ -0,0 +1,6 @@
++#define IDSTRING "fbv 1.0b, s-tech"
++#define DEFAULT_FRAMEBUFFER "/dev/fb0"
++#define FBV_SUPPORT_GIF
++#define FBV_SUPPORT_JPEG
++#define FBV_SUPPORT_PNG
++#define FBV_SUPPORT_BMP
+diff -rupN fbv-1.0b-orig/Make.conf fbv-1.0b/Make.conf
+--- fbv-1.0b-orig/Make.conf	2014-11-07 13:50:09.513976567 +0200
++++ fbv-1.0b/Make.conf	2014-11-07 17:56:01.424993151 +0200
+@@ -1,2 +1,4 @@
+-error:
+-	@echo Please run ./configure first...
++bindir	= /bin
++mandir	= /usr/share/man
++
++LIBS	= $(shell $(PKG_CONFIG) --libs libpng) -ljpeg -lgif
+diff -rupN fbv-1.0b-orig/Makefile fbv-1.0b/Makefile
+--- fbv-1.0b-orig/Makefile	2014-11-07 13:50:09.513976567 +0200
++++ fbv-1.0b/Makefile	2014-11-07 17:56:37.487992505 +0200
+@@ -5,8 +5,9 @@
+ 
+ include Make.conf
+ 
+-CC	= gcc 
+-CFLAGS  = -O2 -Wall -D_GNU_SOURCE
++CC	?= gcc
++CFLAGS  ?= -O2
++CFLAGS  += -Wall -D_GNU_SOURCE
+ 
+ SOURCES	= main.c jpeg.c gif.c png.c bmp.c fb_display.c transforms.c
+ OBJECTS	= ${SOURCES:.c=.o}
+@@ -28,8 +29,8 @@ distclean: clean
+ 	rm -f $(OUT) config.h
+ 
+ install: $(OUT)
+-	cp $(OUT) $(DESTDIR)$(bindir)
+-	gzip -9c $(OUT).1 > $(DESTDIR)$(mandir)/man1/$(OUT).1.gz
++	install -D -m 755 $(OUT) $(DESTDIR)$(bindir)/$(OUT)
++	install -D -m 644 $(OUT).1 $(DESTDIR)$(mandir)/man1/$(OUT).1
+ 
+ uninstall: $(DESTDIR)$(bindir)/$(OUT)
+ 	rm -f $(DESTDIR)$(bindir)/$(OUT)
