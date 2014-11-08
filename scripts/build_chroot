@@ -14,7 +14,7 @@ REQUIRED_PACKAGES="build-essential autoconf automake autotools-dev
                    pkg-config file subversion bc xfonts-utils dosfstools mtools
                    yasm libarchive-dev libcurl4-gnutls-dev xorriso wget
                    liblwp-useragent-determined-perl advancecomp optipng curl
-                   gawk clzip"
+                   gawk clzip libtool"
 
 # set the locale to the default, to speed up everything
 export LANG="C"

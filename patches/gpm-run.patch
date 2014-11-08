@@ -1,0 +1,12 @@
+diff -rup gpm-1.20.7-orig/src/headers/gpm.h gpm-1.20.7/src/headers/gpm.h
+--- gpm-1.20.7-orig/src/headers/gpm.h	2012-10-26 23:21:38.000000000 +0200
++++ gpm-1.20.7/src/headers/gpm.h	2014-11-08 14:15:50.305896683 +0200
+@@ -51,7 +51,7 @@ extern "C" {
+ #define _PATH_DEV	"/dev/"
+ #endif
+ 
+-#define GPM_NODE_DIR      _PATH_VARRUN
++#define GPM_NODE_DIR      "/run/"
+ 
+ /* itz Wed Jul  1 11:56:46 PDT 1998 this definitely ought not to be
+    world-writable; umask doesn't apply either, as gpm is most often

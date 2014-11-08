@@ -1,0 +1,12 @@
+diff -rup gpm-1.20.7-orig/src/Makefile.in gpm-1.20.7/src/Makefile.in
+--- gpm-1.20.7-orig/src/Makefile.in	2012-10-26 23:21:38.000000000 +0200
++++ gpm-1.20.7/src/Makefile.in	2014-11-08 13:47:48.258926805 +0200
+@@ -172,8 +172,6 @@ lib/libgpm.so.@abi_lev@:	lib/libgpm.so.@
+ #lib/libgpm.so:	lib/libgpm.so.@abi_full@
+ #	$(LN_S) -f libgpm.so.@abi_full@ lib/libgpm.so
+ 
+-include $(DEPFILE)
+-
+ ## Release / Dist
+ 
+ 

@@ -50,6 +50,7 @@ giflib: musl
 gifsicle: musl giflib
 glib: musl
 gnu-efi: musl
+gpm: musl
 greed: musl ncurses
 grun: musl gtk
 gtk: musl tinyxlib glib font-adobe-75dpi font-adobe-100dpi

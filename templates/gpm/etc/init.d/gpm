@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		echo -n "Starting GPM ..."
+		gpm -m /dev/input/mice -t imps2
+		echo " done."
+		;;
+
+	stop)
+		killall gpm
+		;;
+esac

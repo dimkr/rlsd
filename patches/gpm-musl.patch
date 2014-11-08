@@ -1,0 +1,50 @@
+diff -rup gpm-1.20.7-orig/src/daemon/open_console.c gpm-1.20.7/src/daemon/open_console.c
+--- gpm-1.20.7-orig/src/daemon/open_console.c	2012-10-26 23:21:38.000000000 +0200
++++ gpm-1.20.7/src/daemon/open_console.c	2014-11-08 13:25:40.509950582 +0200
+@@ -21,6 +21,7 @@
+ 
+ #include <fcntl.h>                  /* open and co.      */
+ #include <sys/stat.h>               /* stat()            */
++#include <sys/types.h>              /* major()           */
+ #include <sys/ioctl.h>              /* ioctl             */
+ 
+ /* Linux specific (to be outsourced in gpm2 */
+Only in gpm-1.20.7/src/headers: config.h.in
+Only in gpm-1.20.7/src/headers: config.h.in~
+diff -rup gpm-1.20.7-orig/src/prog/display-buttons.c gpm-1.20.7/src/prog/display-buttons.c
+--- gpm-1.20.7-orig/src/prog/display-buttons.c	2012-10-26 23:21:38.000000000 +0200
++++ gpm-1.20.7/src/prog/display-buttons.c	2014-11-08 13:23:08.632953302 +0200
+@@ -36,6 +36,7 @@
+ #include <stdio.h>            /* printf()             */
+ #include <time.h>             /* time()               */
+ #include <errno.h>            /* errno                */
++#include <sys/select.h>       /* fd_set and FD_*      */
+ #include <gpm.h>              /* gpm information      */
+ 
+ /* display resulting data */
+diff -rup gpm-1.20.7-orig/src/prog/display-coords.c gpm-1.20.7/src/prog/display-coords.c
+--- gpm-1.20.7-orig/src/prog/display-coords.c	2012-10-26 23:21:38.000000000 +0200
++++ gpm-1.20.7/src/prog/display-coords.c	2014-11-08 13:23:02.429953413 +0200
+@@ -37,6 +37,7 @@
+ #include <stdio.h>            /* printf()             */
+ #include <time.h>             /* time()               */
+ #include <errno.h>            /* errno                */
++#include <sys/select.h>       /* fd_set and FD_*      */
+ #include <gpm.h>              /* gpm information      */
+ 
+ /* display resulting data */
+diff -rup gpm-1.20.7-orig/src/prog/gpm-root.y gpm-1.20.7/src/prog/gpm-root.y
+--- gpm-1.20.7-orig/src/prog/gpm-root.y	2012-10-26 23:21:38.000000000 +0200
++++ gpm-1.20.7/src/prog/gpm-root.y	2014-11-08 13:31:39.126944160 +0200
+@@ -1199,9 +1199,9 @@ int main(int argc, char **argv)
+ #if defined(__GLIBC__)
+    __sigemptyset(&childaction.sa_mask);
+ #else /* __GLIBC__ */
+-   childaction.sa_mask=0;
++   sigemptyset(&childaction.sa_mask);
+ #endif /* __GLIBC__ */
+-   childaction.sa_flags=SA_INTERRUPT; /* need to break the select() call */
++   childaction.sa_flags=0;
+    sigaction(SIGCHLD,&childaction,NULL);
+ 
+    /*....................................... Connect and get your buffer */
