@@ -84,7 +84,7 @@ libpng: musl zlib
 libressl: musl zlib ca-certificates
 libxaw3d: musl tinyxlib
 libxml2: musl
-links: musl zlib xz libressl libpng libjpeg-turbo tinyxlib
+links: musl zlib xz libressl libpng libjpeg-turbo tinyxlib gpm
 linux-headers:
 linux:
 lok: musl

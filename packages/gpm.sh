@@ -17,6 +17,7 @@ build() {
 	            --prefix= \
 	            --localstatedir=/run
 	cd src
+	$MAKE lib/libgpm.a
 	$MAKE gpm
 	cd ../doc
 	$MAKE gpm.8
@@ -24,6 +25,8 @@ build() {
 
 package() {
 	install -D -m 755 ../src/gpm "$1/bin/gpm"
+	install -D -m 644 ../src/lib/libgpm.a "$1/lib/libgpm.a"
+	install -D -m 644 ../src/headers/gpm.h "$1/usr/include/gpm.h"
 	install -D -m 755 gpm.8 "$1/usr/share/man/man8/gpm.8"
 	install -D -m 644 ../README "$1/usr/share/doc/gpm/README"
 	install -m 644 ../COPYING "$1/usr/share/doc/gpm/COPYING"
