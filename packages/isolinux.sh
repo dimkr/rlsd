@@ -11,6 +11,7 @@ build() {
 package() {
 	install -D -m 644 core/isolinux.bin "$1/boot/isolinux.bin"
 	install -m 644 mbr/isohdpfx.bin "$1/boot/isohdpfx.bin"
+	install -m 644 com32/menu/menu.c32 "$1/boot/menu.c32"
 	install -D -m 644 README "$1/usr/share/doc/isolinux/README"
 	install -m 644 NEWS "$1/usr/share/doc/isolinux/NEWS"
 	install -m 644 COPYING "$1/usr/share/doc/isolinux/COPYING"

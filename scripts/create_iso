@@ -58,6 +58,8 @@ mv "$root_fs/boot/bzImage" "$iso_root/boot/"
 mv "$root_fs/boot/initrd.xz" "$iso_root/boot/"
 mv "$root_fs/boot/isolinux.bin" "$iso_root/"
 mv "$root_fs/boot/isohdpfx.bin" "$iso_root/"
+mv "$root_fs/boot/menu.c32" "$iso_root/"
+mv "$root_fs/boot/help.txt" "$iso_root/"
 mv "$root_fs/boot/isolinux.cfg" "$iso_root/"
 rm -rf "$root_fs/boot"
 

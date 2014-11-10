@@ -1,0 +1,3 @@
+If unsure, select the default session.
+
+If the graphical environment fails to start, try the fallback session.
