@@ -1,3 +1,4 @@
-If unsure, select the default session.
+If unsure, go for normal boot.
 
-If the graphical environment fails to start, try the fallback session.
+If the graphical environment fails to start, try to boot with automatic guessing
+of the display resolution.
