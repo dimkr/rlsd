@@ -1,6 +1,6 @@
 diff -rup vifm-0.7.8-orig/data/vifm.1 vifm-0.7.8/data/vifm.1
---- vifm-0.7.8-orig/data/vifm.1	2014-10-25 18:09:35.000000000 +0300
-+++ vifm-0.7.8/data/vifm.1	2014-11-06 22:19:14.580892881 +0200
+--- vifm-0.7.8-orig/data/vifm.1	2014-11-12 23:17:04.860789331 +0200
++++ vifm-0.7.8/data/vifm.1	2014-11-12 23:17:12.865789188 +0200
 @@ -3337,7 +3337,7 @@ Maximum number of changes that can be un
  .BI vicmd
  type: string
@@ -10,9 +10,28 @@ diff -rup vifm-0.7.8-orig/data/vifm.1 vifm-0.7.8/data/vifm.1
  .br
  The actual command used to start vi.  Ampersand sign at the end (regardless
  whether it's preceded by space or not) means backgrounding of command.
+diff -rup vifm-0.7.8-orig/data/vifmrc vifm-0.7.8/data/vifmrc
+--- vifm-0.7.8-orig/data/vifmrc	2014-11-12 23:17:04.861789331 +0200
++++ vifm-0.7.8/data/vifmrc	2014-11-12 23:18:41.961787592 +0200
+@@ -7,11 +7,12 @@
+ 
+ " ------------------------------------------------------------------------------
+ 
+-" This is the actual command used to start vi.  The default is vim.
+-" If you would like to use another vi clone such Elvis or Vile
++" This is the actual command used to start vi.  The default is vi.
++" If you would like to use a vi clone such Elvis or Vile
+ " you will need to change this setting.
+ 
+-set vicmd=vim
++set vicmd=vi
++" set vicmd=vim
+ " set vicmd=elvis\ -G\ termcap
+ " set vicmd=vile
+ 
 diff -rup vifm-0.7.8-orig/data/vim/doc/app/vifm-app.txt vifm-0.7.8/data/vim/doc/app/vifm-app.txt
---- vifm-0.7.8-orig/data/vim/doc/app/vifm-app.txt	2014-10-25 18:09:35.000000000 +0300
-+++ vifm-0.7.8/data/vim/doc/app/vifm-app.txt	2014-11-06 22:20:36.512891414 +0200
+--- vifm-0.7.8-orig/data/vim/doc/app/vifm-app.txt	2014-11-12 23:17:04.861789331 +0200
++++ vifm-0.7.8/data/vim/doc/app/vifm-app.txt	2014-11-12 23:17:12.867789188 +0200
 @@ -2741,7 +2741,7 @@ Maximum number of changes that can be un
                                                 *vifm-'vicmd'*
  vicmd
@@ -23,8 +42,8 @@ diff -rup vifm-0.7.8-orig/data/vim/doc/app/vifm-app.txt vifm-0.7.8/data/vim/doc/
  whether it's preceded by space or not) means backgrounding of command.
  
 diff -rup vifm-0.7.8-orig/src/cfg/config.c vifm-0.7.8/src/cfg/config.c
---- vifm-0.7.8-orig/src/cfg/config.c	2014-10-25 18:09:35.000000000 +0300
-+++ vifm-0.7.8/src/cfg/config.c	2014-11-06 22:19:49.111892263 +0200
+--- vifm-0.7.8-orig/src/cfg/config.c	2014-11-12 23:17:04.857789331 +0200
++++ vifm-0.7.8/src/cfg/config.c	2014-11-12 23:17:12.867789188 +0200
 @@ -125,7 +125,7 @@ init_config(void)
  	cfg.follow_links = 1;
  	cfg.fast_run = 0;
