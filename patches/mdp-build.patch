@@ -1,0 +1,35 @@
+diff -rup mdp-orig/Makefile mdp/Makefile
+--- mdp-orig/Makefile	2014-11-20 20:57:37.391930115 +0200
++++ mdp/Makefile	2014-11-20 20:57:43.189930011 +0200
+@@ -27,7 +27,7 @@ DESTDIR =
+ PREFIX  = /usr/local
+ 
+ CURSES  = ncursesw
+-LDFLAGS = -s
++LDFLAGS ?= -s
+ 
+ ifeq (Windows_NT,$(OS))
+ 	ifeq (,$(findstring CYGWIN,$(UNAME_S)))
+diff -rup mdp-orig/src/Makefile mdp/src/Makefile
+--- mdp-orig/src/Makefile	2014-11-20 20:52:17.890935837 +0200
++++ mdp/src/Makefile	2014-11-20 20:55:54.874931951 +0200
+@@ -22,8 +22,8 @@ UNAME_S := $(shell uname -s 2>/dev/null
+ 
+ SOURCES  = $(wildcard *.c)
+ OBJECTS  = $(SOURCES:.c=.o)
+-CFLAGS   = -O3 -Wall
+-CPPFLAGS = -I../include
++CFLAGS   += -Wall
++CPPFLAGS += -I../include
+ 
+ ifeq ($(DEBUG),1)
+ 	CFLAGS := -O0 -Wall -g
+@@ -35,7 +35,7 @@ ifeq ($(OS),Windows_NT)
+ 	endif
+ endif
+ 
+-ifeq ($(UNAME_S),Linux)
++ifeq (0,1)
+ 	LSB_RELEASE := $(shell lsb_release -si 2>/dev/null || echo not)
+ 	ifneq ($(filter $(LSB_RELEASE),Debian Ubuntu LinuxMint),)
+ 		CPPFLAGS += -I/usr/include/ncursesw
