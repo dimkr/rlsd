@@ -228,8 +228,8 @@ else
 			reboot
 			;;
 	esac
-fi' > "$initramfs_root/etc/rc.d/rc.initramfs"
-	chmod 755 "$initramfs_root/etc/rc.d/rc.initramfs"
+fi' > "$initramfs_root/etc/rc.d/rc.sysinit"
+	chmod 755 "$initramfs_root/etc/rc.d/rc.sysinit"
 
 	echo -n '#!/bin/ksh
 
