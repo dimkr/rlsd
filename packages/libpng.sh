@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.6.14"
+PACKAGE_VERSION="1.6.15"
 PACKAGE_SOURCES="http://prdownloads.sourceforge.net/libpng/libpng-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A library for handling PNG images"
 
