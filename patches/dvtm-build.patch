@@ -1,30 +1,32 @@
-diff -rup dvtm-0.12-orig/config.mk dvtm-0.12/config.mk
---- dvtm-0.12-orig/config.mk	2014-07-05 10:32:09.000000000 +0300
-+++ dvtm-0.12/config.mk	2014-09-24 14:12:19.258987799 +0300
-@@ -3,11 +3,11 @@ VERSION = 0.12
+diff -rup dvtm-0.13-orig/config.mk dvtm-0.13/config.mk
+--- dvtm-0.13-orig/config.mk	2014-11-30 21:51:17.709875508 +0200
++++ dvtm-0.13/config.mk	2014-11-30 21:53:18.532873344 +0200
+@@ -3,11 +3,11 @@ VERSION = 0.13
  
  # Customize below to fit your system
  
--PREFIX = /usr/local
+-PREFIX ?= /usr/local
 -MANPREFIX = ${PREFIX}/share/man
 +PREFIX = /
 +MANPREFIX = /usr/share/man
+ # specify your systems terminfo directory
+ # leave empty to install into your home folder
+-TERMINFO := ${DESTDIR}${PREFIX}/share/terminfo
++TERMINFO := ${DESTDIR}/usr/share/terminfo
  
  INCS = -I.
--LIBS = -lc -lutil -lncursesw
-+LIBS = -lc -lutil -lncurses
- # NetBSD
- #LIBS = -lc -lutil -lcurses
- # AIX
-@@ -15,9 +15,9 @@ LIBS = -lc -lutil -lncursesw
+ LIBS = -lc -lutil -lncursesw
+@@ -21,10 +21,10 @@ LIBS = -lc -lutil -lncursesw
  # Cygwin
- #INCS += -I/usr/include/ncurses
+ #INCS = -I/usr/include/ncurses
  
--CFLAGS += -std=c99 -Os ${INCS} -DVERSION=\"${VERSION}\" -DNDEBUG
-+CFLAGS += -std=c99 ${INCS} -DVERSION=\"${VERSION}\" -DNDEBUG
+-CFLAGS += -std=c99 -Os ${INCS} -DVERSION=\"${VERSION}\" -DNDEBUG -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700
++CFLAGS += -std=c99 ${INCS} -DVERSION=\"${VERSION}\" -DNDEBUG -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700
  LDFLAGS += ${LIBS}
  
- DEBUG_CFLAGS = ${CFLAGS} -UNDEBUG -O0 -g -ggdb -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter
+ DEBUG_CFLAGS = ${CFLAGS} -UNDEBUG -O0 -g -ggdb -Wall -Wextra -Wno-unused-parameter
  
 -CC = cc
+-STRIP = strip
 +CC ?= cc
++STRIP ?= strip

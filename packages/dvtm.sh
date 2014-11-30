@@ -1,4 +1,4 @@
-PACKAGE_VERSION="0.12"
+PACKAGE_VERSION="0.13"
 PACKAGE_SOURCES="http://www.brain-dump.org/projects/dvtm/dvtm-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A dynamic virtual terminal manager"
 
@@ -7,7 +7,6 @@ build() {
 	tar -xzvf dvtm-$PACKAGE_VERSION.tar.gz
 	cd dvtm-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/dvtm-term.patch"
 	patch -p 1 < "$BASE_DIR/patches/dvtm-build.patch"
 
 	$MAKE
