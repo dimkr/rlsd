@@ -1,4 +1,4 @@
-PACKAGE_VERSION="0.5.0"
+PACKAGE_VERSION="0.5.1"
 PACKAGE_SOURCES="http://www.landley.net/toybox/downloads/toybox-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="System tools"
 
@@ -11,12 +11,15 @@ build() {
 #
 # Automatically generated make config: don't edit
 # ToyBox version: KCONFIG_VERSION
-# Thu Oct  9 19:16:11 2014
+# Sun Nov 30 22:05:00 2014
 #
 CONFIG_TOYBOX_CONTAINER=y
 CONFIG_TOYBOX_FIFREEZE=y
 CONFIG_TOYBOX_ICONV=y
 CONFIG_TOYBOX_FALLOCATE=y
+CONFIG_TOYBOX_UTMPX=y
+CONFIG_TOYBOX_PTY=y
+CONFIG_TOYBOX_SHADOW=y
 
 #
 # Posix commands
@@ -104,6 +107,7 @@ CONFIG_BRCTL=y
 # CONFIG_COMPRESS is not set
 # CONFIG_ZCAT is not set
 # CONFIG_CROND is not set
+# CONFIG_CRONTAB is not set
 CONFIG_DD=y
 # CONFIG_DHCP is not set
 # CONFIG_DHCPD is not set
@@ -119,9 +123,11 @@ CONFIG_FTPGET=y
 # CONFIG_GROUPADD is not set
 # CONFIG_GROUPDEL is not set
 # CONFIG_HOST is not set
+# CONFIG_HWCLOCK is not set
 # CONFIG_ICONV is not set
 # CONFIG_INIT is not set
 # CONFIG_IP is not set
+# CONFIG_IPCRM is not set
 # CONFIG_IPCS is not set
 # CONFIG_KLOGD is not set
 # CONFIG_KLOGD_SOURCE_RING_BUFFER is not set
@@ -138,6 +144,7 @@ CONFIG_MKE2FS_EXTENDED=y
 # CONFIG_MODPROBE is not set
 CONFIG_MORE=y
 CONFIG_NETSTAT=y
+# CONFIG_NSENTER is not set
 # CONFIG_OPENVT is not set
 # CONFIG_DEALLOCVT is not set
 CONFIG_PGREP=y
@@ -160,6 +167,7 @@ CONFIG_TELNET=y
 CONFIG_TEST=y
 # CONFIG_TFTPD is not set
 CONFIG_TOP=y
+CONFIG_TR=y
 CONFIG_TRACEROUTE=y
 # CONFIG_USERADD is not set
 # CONFIG_USERDEL is not set
@@ -278,6 +286,7 @@ CONFIG_TOYBOX_HELP=y
 CONFIG_TOYBOX_HELP_DASHDASH=y
 # CONFIG_TOYBOX_I18N is not set
 # CONFIG_TOYBOX_FREE is not set
+# CONFIG_TOYBOX_NORECURSE is not set
 # CONFIG_TOYBOX_DEBUG is not set
 CONFIG_TOYBOX_UID_SYS=0
 CONFIG_TOYBOX_UID_USR=1000
