@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.16"
+PACKAGE_VERSION="1.16.1"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/wget/wget-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A HTTP and FTP client"
 
@@ -7,7 +7,6 @@ build() {
 	tar -xJvf wget-$PACKAGE_VERSION.tar.xz
 	cd wget-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/wget-static.patch"
 	patch -p 1 < "$BASE_DIR/patches/wget-libressl.patch"
 	autoreconf
 
