@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.6.32.64"
+PACKAGE_VERSION="2.6.32.65"
 PACKAGE_SOURCES="http://linux-libre.fsfla.org/pub/linux-libre/releases/$PACKAGE_VERSION-gnu1/linux-libre-$PACKAGE_VERSION-gnu1.tar.xz"
 PACKAGE_DESC="Kernel API headers"
 
