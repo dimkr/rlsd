@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.9"
+PACKAGE_VERSION="2.10"
 PACKAGE_SOURCES="http://www.catb.org/~esr/bs/bs-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A Battleships clone"
 
