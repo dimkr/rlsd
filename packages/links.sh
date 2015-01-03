@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.8"
+PACKAGE_VERSION="2.9"
 PACKAGE_SOURCES="http://links.twibright.com/download/links-$PACKAGE_VERSION.tar.bz2"
 PACKAGE_DESC="A web browser"
 
