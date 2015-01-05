@@ -19,6 +19,7 @@ INITRAMFS_FILES="bin/toybox
                  bin/mount
                  bin/umount
                  bin/luufs
+                 bin/logfence
                  bin/fusermount
                  bin/sleep
                  bin/clear
@@ -137,6 +138,7 @@ done
 echo -n " done.
 Starting logging services ..."
 
+[ 1 -eq $secure ] && logfence /var/log
 syslogd
 klogd
 

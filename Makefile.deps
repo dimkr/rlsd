@@ -67,8 +67,8 @@ guitar: musl gtk libarchive
 gv: musl libxaw3d ghostscript
 gzip: musl diffutils
 htop: musl ncurses
-initramfs: toybox loksh lazy-utils lok luufs fuse setfont tamsyn-font
-isolinux: 
+initramfs: toybox loksh lazy-utils lok luufs logfence fuse setfont tamsyn-font
+isolinux:
 iw: musl libnl-tiny
 jimtcl: musl
 jwm: musl tinyxlib libpng font-adobe-75dpi font-adobe-100dpi
@@ -87,6 +87,7 @@ libxml2: musl
 links: musl zlib xz libressl libpng libjpeg-turbo tinyxlib gpm
 linux-headers:
 linux:
+logfence: musl fuse
 lok: musl
 loksh: musl
 luufs: musl zlib fuse
