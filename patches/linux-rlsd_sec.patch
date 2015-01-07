@@ -77,8 +77,8 @@ diff -rupN linux-3.14.27-orig/security/rlsd/Makefile linux-3.14.27/security/rlsd
 +rlsd-y := rlsd_lsm.o
 diff -rupN linux-3.14.27-orig/security/rlsd/rlsd_lsm.c linux-3.14.27/security/rlsd/rlsd_lsm.c
 --- linux-3.14.27-orig/security/rlsd/rlsd_lsm.c	1970-01-01 02:00:00.000000000 +0200
-+++ linux-3.14.27/security/rlsd/rlsd_lsm.c	2015-01-07 23:19:44.894119540 +0200
-@@ -0,0 +1,300 @@
++++ linux-3.14.27/security/rlsd/rlsd_lsm.c	2015-01-07 23:49:07.438161429 +0200
+@@ -0,0 +1,301 @@
 +/*
 + * RLSD Linux Security Module
 + *
@@ -176,24 +176,25 @@ diff -rupN linux-3.14.27-orig/security/rlsd/rlsd_lsm.c linux-3.14.27/security/rl
 +	if ((0 == strcmp("proc", mnt->mnt_sb->s_type->name)) ||
 +	    (0 == strcmp("sysfs", mnt->mnt_sb->s_type->name)) ||
 +	    (0 == strcmp("devtmpfs", mnt->mnt_sb->s_type->name)) ||
-+	    (0 == strcmp("devpts", mnt->mnt_sb->s_type->name)) ||
-+	    ((0 == strcmp("fuse", mnt->mnt_sb->s_type->name)) &&
-+	     (0 == strcmp("logfence", mnt->mnt_sb->s_subtype)))) {
++	    (0 == strcmp("devpts", mnt->mnt_sb->s_type->name))) {
 +		tsk = current;
-+		(void) get_task_comm(name, tsk);
-+		if ((mnt->mnt_sb->s_subtype) && (mnt->mnt_sb->s_subtype[0])) {
-+			printk(KERN_ALERT "rlsd: denied unmount of %s.%s from %lu (%s)\n",
-+			       mnt->mnt_sb->s_type->name,
-+			       mnt->mnt_sb->s_subtype,
-+			       (unsigned long) tsk->pid,
-+			       name);
-+		}
-+		else {
-+			printk(KERN_ALERT "rlsd: denied unmount of %s from %lu (%s)\n",
-+			       mnt->mnt_sb->s_type->name,
-+			       (unsigned long) tsk->pid,
-+			       name);
-+		}
++		printk(KERN_ALERT "rlsd: denied unmount of %s from %lu (%s)\n",
++		       mnt->mnt_sb->s_type->name,
++		       (unsigned long) tsk->pid,
++		       get_task_comm(name, tsk));
++		return -EPERM;
++	}
++
++	if ((mnt->mnt_sb->s_subtype) &&
++	    (mnt->mnt_sb->s_subtype[0]) &&
++	    (0 == strcmp("fuse", mnt->mnt_sb->s_type->name)) &&
++	    (0 == strcmp("logfence", mnt->mnt_sb->s_subtype))) {
++		tsk = current;
++		printk(KERN_ALERT "rlsd: denied unmount of %s.%s from %lu (%s)\n",
++		       mnt->mnt_sb->s_type->name,
++		       mnt->mnt_sb->s_subtype,
++		       (unsigned long) tsk->pid,
++		       get_task_comm(name, tsk));
 +		return -EPERM;
 +	}
 +
