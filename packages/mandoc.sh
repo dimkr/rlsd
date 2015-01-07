@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.13.1"
+PACKAGE_VERSION="1.13.2"
 PACKAGE_SOURCES="http://mdocml.bsd.lv/snapshots/mdocml-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A man page formatting tool"
 
@@ -7,11 +7,8 @@ build() {
 	tar -xzvf mdocml-$PACKAGE_VERSION.tar.gz
 	cd mdocml-$PACKAGE_VERSION
 
-	patch -p 1 < "$BASE_DIR/patches/mandoc-musl.patch"
-
-	$MAKE CC="$CC" \
-	      CFLAGS="-D__BEGIN_DECLS=\; -D__END_DECLS=\; -DVERSION=\'\"$PACKAGE_VERSION\"\' $CFLAGS" \
-	      mandoc
+	./configure
+	$MAKE CC="$CC" CFLAGS="$CFLAGS"
 }
 
 package() {
