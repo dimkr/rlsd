@@ -1,4 +1,4 @@
-PACKAGE_VERSION="1.3.1"
+PACKAGE_VERSION="1.4.0"
 PACKAGE_SOURCES="http://sourceforge.net/projects/libjpeg-turbo/files/$PACKAGE_VERSION/libjpeg-turbo-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="A library for handling JPEG images"
 
