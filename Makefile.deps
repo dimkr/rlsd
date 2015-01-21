@@ -129,6 +129,7 @@ siag: musl mowitz
 skeleton:
 snownews: musl zlib ncurses libressl libxml2
 sqlite: musl
+stag: musl ncurses
 sumeria: musl
 sylpheed: musl libressl gtk gdk-pixbuf
 tcpdump: musl libressl libpcap

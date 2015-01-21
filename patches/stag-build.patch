@@ -1,0 +1,29 @@
+diff -rupN stag-master-orig/Makefile stag-master/Makefile
+--- stag-master-orig/Makefile	2015-01-21 22:11:27.702742958 +0200
++++ stag-master/Makefile	2015-01-21 22:12:27.898744389 +0200
+@@ -1,20 +1,19 @@
+ CC ?= gcc
+-CFLAGS=-Wall -Werror -Wextra -std=c99 -pedantic -Wno-unused-parameter
+-# D_BSD_SOURCE for strsep
++CFLAGS+=-Wall -Werror -Wextra -std=c99 -pedantic -Wno-unused-parameter -D_BSD_SOURCE
+ LIBS=-lncurses -lm -D_DEFAULT_SOURCE
+-PREFIX ?= /usr/local
++PREFIX ?= /usr
+ 
+ .PHONY: install uninstall clean
+ 
+ all: stag
+ 
+ stag:
+-	$(CC) $(CFLAGS) stag.c view.c data.c -o stag $(LIBS) 
++	$(CC) $(CFLAGS) stag.c view.c data.c -o stag $(LDFLAGS) $(LIBS) 
+ 
+ install:
+-	install -d "$(DESTDIR)$(PREFIX)/bin"
++	install -d "$(DESTDIR)/bin"
+ 	install -d "$(DESTDIR)$(PREFIX)/share/man/man1"
+-	install -m755 stag "$(DESTDIR)$(PREFIX)/bin/stag"
++	install -m755 stag "$(DESTDIR)/bin/stag"
+ 	install -m644 doc/stag.1 "$(DESTDIR)$(PREFIX)/share/man/man1/stag.1"
+ 
+ uninstall:
