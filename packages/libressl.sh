@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.1.2"
+PACKAGE_VERSION="2.1.3"
 PACKAGE_SOURCES="http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$PACKAGE_VERSION.tar.gz"
 PACKAGE_DESC="An encryption and privacy library"
 
