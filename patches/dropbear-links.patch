@@ -1,6 +1,6 @@
-diff -rup dropbear-2014.63-orig/Makefile.in dropbear-2014.63/Makefile.in
---- dropbear-2014.63-orig/Makefile.in	2014-07-30 15:59:34.833966479 +0300
-+++ dropbear-2014.63/Makefile.in	2014-07-30 16:02:06.269963767 +0300
+diff -rup dropbear-2015.67-orig/Makefile.in dropbear-2015.67/Makefile.in
+--- dropbear-2015.67-orig/Makefile.in	2015-01-28 21:23:28.632281070 +0200
++++ dropbear-2015.67/Makefile.in	2015-01-28 21:25:09.328283463 +0200
 @@ -129,14 +129,14 @@ install: $(addprefix inst_, $(TARGETS))
  insmultidropbear: dropbearmulti
  	$(INSTALL) -d $(DESTDIR)$(sbindir)
@@ -8,7 +8,7 @@ diff -rup dropbear-2014.63-orig/Makefile.in dropbear-2014.63/Makefile.in
 -	-ln -s $(bindir)/dropbearmulti$(EXEEXT) $(DESTDIR)$(sbindir)/dropbear$(EXEEXT) 
 +	-ln -s dropbearmulti$(EXEEXT) $(DESTDIR)$(sbindir)/dropbear$(EXEEXT) 
  	$(INSTALL) -d $(DESTDIR)$(mandir)/man8
- 	$(INSTALL) -m 644 dropbear.8  $(DESTDIR)$(mandir)/man8/dropbear.8
+ 	$(INSTALL) -m 644 $(srcdir)/dropbear.8  $(DESTDIR)$(mandir)/man8/dropbear.8
  
  insmulti%: dropbearmulti
  	$(INSTALL) -d $(DESTDIR)$(bindir)
