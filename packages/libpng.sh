@@ -1,5 +1,5 @@
-PACKAGE_VERSION="1.6.15"
-PACKAGE_SOURCES="http://prdownloads.sourceforge.net/libpng/libpng-$PACKAGE_VERSION.tar.xz"
+PACKAGE_VERSION="1.6.16"
+PACKAGE_SOURCES="ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng16/libpng-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A library for handling PNG images"
 
 build() {
