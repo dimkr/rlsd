@@ -1,4 +1,4 @@
-PACKAGE_VERSION="2.7.1"
+PACKAGE_VERSION="2.7.3"
 PACKAGE_SOURCES="http://ftp.gnu.org/gnu/patch/patch-$PACKAGE_VERSION.tar.xz"
 PACKAGE_DESC="A file patching tool"
 
